@@ -32,6 +32,7 @@ public class HealthBar : MonoBehaviour
     public void BarFilter()
     {
         Healthbar.fillAmount = Mathf.Lerp(Healthbar.fillAmount, Health / Maxhealth, _lerpspeed);
+        Debug.Log(Healthbar.fillAmount);
         //StartCoroutine(HealthBarDelay());                
     }
     //IEnumerator HealthBarDelay()

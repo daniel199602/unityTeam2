@@ -19,14 +19,7 @@ public class HealthBarFollowing1 : MonoBehaviour
        
 
         bloodTransform.position = HeadPosition;
-        frameTransform.position = HeadPosition;
-        //Debug.Log("螢幕長度" + Screen.width+"螢幕寬度" + Screen.height);
-        //Debug.Log(bloodTransform.localScale);
-        
-        //Vector2 ScaleValue = new Vector2((Screen.width / Screen.height), (Screen.width / Screen.height));
-        //Debug.Log(ScaleValue);
-        //bloodTransform.localScale = ScaleValue;
-        //frameTransform.localScale = ScaleValue;
+        frameTransform.position = HeadPosition;        
 
         //血條超出螢幕        
         if (player2DPosition.x > Screen.width || player2DPosition.x < 0 || player2DPosition.y > Screen.height || player2DPosition.y < 0)

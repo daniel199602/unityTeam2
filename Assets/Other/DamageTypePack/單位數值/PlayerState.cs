@@ -10,10 +10,12 @@ public class PlayerState : MonoBehaviour
     Animator MubAnimator = new Animator();
 
     HealthBar Health;
+    CapsuleCollider capsule;
 
     private void Awake()
     {
         Hp = 1000;
+        capsule = GetComponent<CapsuleCollider>();
     }
     private void Start()
     {
@@ -37,9 +39,12 @@ public class PlayerState : MonoBehaviour
         {
             MubAnimator.SetBool("GetHit", false);
         }
-        if (currentHp <= 0)
+        if (currentHp < 0)
         {
             MubAnimator.SetTrigger("isTriggerDie");
+            currentHp = 0;
+            currentHp = Hp;
+            capsule.radius = 0f;
         }
        
     }

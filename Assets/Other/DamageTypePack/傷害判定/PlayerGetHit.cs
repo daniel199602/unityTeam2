@@ -4,26 +4,26 @@ using UnityEngine;
 
 public class PlayerGetHit : MonoBehaviour
 {
-    int Weapondamage_Instant=70;
-    int Weapondamamge_Delay=0;
+    int Weapondamage_Instant = 70;
+    int Weapondamamge_Delay = 0;
     int Count;
     CharacterAttackManager fooHp;
     private void Start()
     {
         fooHp = GetComponent<CharacterAttackManager>();
-        //fooHp.Weapondamage_Instant = Weapondamage_Instant;
-        //fooHp.Weapondamamge_Delay = Weapondamamge_Delay;
+        //Weapondamage_Instant = fooHp.Weapondamage_Instant;
+        //Weapondamamge_Delay = fooHp.Weapondamamge_Delay;
         Count = 0;
     }
     public int GetHitByOther(int i)
     {
-       GetHitType_Damage(i);
-        Debug.Log("傳入值"+i);
+        GetHitType_Damage(i);
+        Debug.Log("傳入值" + i);
         return i;
     }
     public int GetHitType_Damage(int Type)
     {
-        Debug.Log("傷害類型"+Type);
+        Debug.Log("傷害類型" + Type);
         switch (Type)
         {
             case 1:
@@ -31,15 +31,15 @@ public class PlayerGetHit : MonoBehaviour
                 break;
             case 0:
                 AttackWithoutDebuff();
-                break;            
+                break;
         }
         return Type;
     }
     public void AttackWithDebuff()
     {
         fooHp.fHp -= Weapondamage_Instant;
-        StartCoroutine(DamageDelay());     
-        Debug.Log("HP減少量"+ fooHp.fHp);
+        StartCoroutine(DamageDelay());
+        Debug.Log("HP減少量" + fooHp.fHp);
         Debug.Log("傷害量" + Weapondamage_Instant);
     }
 
@@ -51,11 +51,11 @@ public class PlayerGetHit : MonoBehaviour
             yield return new WaitForSeconds(1);
             fooHp.fHp -= Weapondamamge_Delay;
             Count--;
-        }        
+        }
     }
     public void AttackWithoutDebuff()
     {
-        fooHp.fHp -= Weapondamage_Instant;        
+        fooHp.fHp -= Weapondamage_Instant;
         Debug.Log("HP減少量" + fooHp.fHp);
         Debug.Log("傷害量" + Weapondamage_Instant);
     }
