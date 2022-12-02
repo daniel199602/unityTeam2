@@ -72,7 +72,7 @@ public class SimpleFsm : MonoBehaviour
     }
     public void IdleThing()
     {
-        var position = new Vector3(transform.position.x+ Random.Range(-10.0f, 10.0f), 0, transform.position.z+Random.Range(-10.0f, 10.0f));
+        var position = new Vector3(transform.forward.x+ Random.Range(-1.0f, 1.0f), 0, transform.forward.z+Random.Range(-1.0f, 1.0f));
         Instantiate(WalkPoint, position, Quaternion.identity);
         transform.forward = transform.position - WalkPoint.transform.position;
         transform.position = Vector3.MoveTowards(transform.position, position, Time.deltaTime);        
