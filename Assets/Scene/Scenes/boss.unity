@@ -3373,7 +3373,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 10199059806689093, guid: 843a687dd2b95bb4cb66922c432cf3f4, type: 3}
       propertyPath: hitMask.m_Bits
-      value: 768
+      value: 896
       objectReference: {fileID: 0}
     - target: {fileID: 2631163319326334126, guid: 843a687dd2b95bb4cb66922c432cf3f4, type: 3}
       propertyPath: m_Name
@@ -3437,7 +3437,7 @@ PrefabInstance:
       objectReference: {fileID: 1303227114}
     - target: {fileID: 8251171311221856198, guid: 843a687dd2b95bb4cb66922c432cf3f4, type: 3}
       propertyPath: hitMask.m_Bits
-      value: 887
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 843a687dd2b95bb4cb66922c432cf3f4, type: 3}

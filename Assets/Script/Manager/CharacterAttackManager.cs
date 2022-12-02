@@ -16,11 +16,11 @@ public class CharacterAttackManager : MonoBehaviour
 
     [SerializeField] private List<GameObject> Target;
 
-    CapsuleCollider[] TargetSize;
+    List<CapsuleCollider> TargetSize;
 
     Weapon weaponData;
 
-    PlayerState[] PlayerData;
+    List<PlayerState> PlayerData;
 
     private bool flag;
 
@@ -66,7 +66,7 @@ public class CharacterAttackManager : MonoBehaviour
         DMtype = 0;
 
     }
-    private void Attack()
+    private void AttackEvent()
     {
         for (int i = 0; i == Target.Count; i++)
         {
