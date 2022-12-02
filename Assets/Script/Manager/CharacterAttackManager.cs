@@ -66,7 +66,7 @@ public class CharacterAttackManager : MonoBehaviour
         DMtype = 0;
 
     }
-    private void Attack()
+    private void AttackEvent()
     {
         for (int i = 0; i == Target.Count; i++)
         {
