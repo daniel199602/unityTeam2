@@ -23,7 +23,7 @@ public class TrapController : MonoBehaviour
     {
         if (Player.tag=="Player")
         {            
-            Debug.Log("Enter");
+            //Debug.Log("Enter");
             TrapRelease();
         }
     }
@@ -31,7 +31,7 @@ public class TrapController : MonoBehaviour
     {
         if (Player.tag == "Player")
         {
-            Debug.Log("Stay");
+            //Debug.Log("Stay");
             this.Invoke("TrapRelease", Timer);
         }
     }
@@ -39,7 +39,7 @@ public class TrapController : MonoBehaviour
     {
         if (Player.tag == "Player")
         {
-            Debug.Log("Exit");
+            //Debug.Log("Exit");
             CancelInvoke("TrapRelease");
             TrapRevoke();
         }

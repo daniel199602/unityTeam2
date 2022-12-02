@@ -88,23 +88,23 @@ public class ExplosiveChest : MonoBehaviour
     public void ObsorbPower()
     {
         GetPower.Play();
-        Debug.Log("1");
+        //Debug.Log("1");
     }
     public void GetEnoughOfPower()
     {
         GetPower.Stop();
-        Debug.Log("2");
+        //Debug.Log("2");
     }
     public void KaBoom()
     {
         Booms.Play();
-        Debug.Log("3");
+        //Debug.Log("3");
     }
     public void ReClam()
     {
         Booms.Stop();
         this.gameObject.SetActive(false);
-        Debug.Log("4");
+        //Debug.Log("4");
     }
     public void Boom()
     {

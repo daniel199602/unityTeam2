@@ -67,7 +67,9 @@ public class ObjectPool : MonoBehaviour
             if (pList[i].go == go)
             {
                 go.SetActive(false);
+                
                 pList[i].bUsing = false;
+                
                 break;
             }
         }

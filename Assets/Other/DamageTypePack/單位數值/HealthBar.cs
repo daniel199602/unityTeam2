@@ -27,7 +27,7 @@ public class HealthBar : MonoBehaviour
     void Update()
     {
         Health = PlayerHp.Hp;
-        Debug.Log(Health / Maxhealth);    
+        //Debug.Log(Health / Maxhealth);    
     }
     public void BarFilter()
     {

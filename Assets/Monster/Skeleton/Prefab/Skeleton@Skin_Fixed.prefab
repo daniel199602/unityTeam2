@@ -921,6 +921,7 @@ GameObject:
   - component: {fileID: 852561675358087138}
   - component: {fileID: 3244984096567057990}
   - component: {fileID: 3485271348948714616}
+  - component: {fileID: 403543031348824484}
   m_Layer: 0
   m_Name: Skeleton@Skin_Fixed
   m_TagString: Untagged
@@ -976,7 +977,7 @@ CapsuleCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8171539735143675359}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   m_Radius: 0.05
   m_Height: 0.2
@@ -1027,6 +1028,18 @@ MonoBehaviour:
   bloodTransform: {fileID: 1617921843991885429}
   frameTransform: {fileID: 1617921843530245251}
   Head: {fileID: 7950407591871305344}
+--- !u!114 &403543031348824484
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8171539735143675359}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f398d9a3569e144d8afc89d7600f7eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8171539735143675361
 GameObject:
   m_ObjectHideFlags: 0
