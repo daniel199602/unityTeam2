@@ -35,7 +35,7 @@ public class killMoBTest : MonoBehaviour
         int count = MobMain.Instance().pAliveObject.Count;
         if(count<=0)
         {
-            //MobMain.Instance().MobBox.Find
+            MobMain.Instance().MobBox.SendMessage("born");
             //GameObject.Find("MobBoxBorn").SendMessage("born");
 
         }

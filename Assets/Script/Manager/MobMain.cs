@@ -22,7 +22,7 @@ public class MobMain : MonoBehaviour
     public List<ObjectPool.ObjectPoolData> pTestList = null;
     public GameObject npcObject;
     public List<GameObject> pAliveObject = new List<GameObject>();
-    public List<MobBoXBorn> MobBox = new List<MobBoXBorn>();
+    public MobBoXBorn MobBox ;
 
     private void Awake()
     {

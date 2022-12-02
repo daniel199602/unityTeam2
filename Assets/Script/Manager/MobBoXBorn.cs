@@ -16,7 +16,7 @@ public class MobBoXBorn : MonoBehaviour
     {
         GenerationTimes = 0;
         m_Collider = GetComponent<Collider>();
-        MobMain.Instance().MobBox.Add(this);
+        
     }
     void MobBord()
     {
@@ -72,7 +72,7 @@ public class MobBoXBorn : MonoBehaviour
             Debug.Log(isInZone);
             GenerationTimes = 0;
             Debug.Log(GenerationTimes);
-            
+            MobMain.Instance().MobBox = this;
             m_Collider.enabled = false;
         }
 
@@ -92,10 +92,7 @@ public class MobBoXBorn : MonoBehaviour
             Invoke(nameof(MobBord), duration);
 
             GenerationTimes++;
-            if(GenerationTimes==2)
-            {
-                MobMain.Instance().MobBox.Remove(this);
-            }
+            
             Debug.Log(GenerationTimes);
         }
     }
