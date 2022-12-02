@@ -26,7 +26,7 @@ public class SimpleFsm : MonoBehaviour
     void Start()
     {
         m_NowState = currentState.Idle;
-        InRange = IsInRange(DisRange, MySelf, Target);
+        InRange = IsInRange_MeleeBattleRange(DisRange, MySelf, Target);
         MubAnimator = GetComponent<Animator>();
         hpTemporary = State.Hp;
         capsule = GetComponent<CapsuleCollider>();
@@ -54,7 +54,7 @@ public class SimpleFsm : MonoBehaviour
                 m_NowState = currentState.Seek01;
                 if (m_NowState == currentState.Seek01)
                 {
-                    IdleThing();
+                    //IdleThing();
                 }
             }
             if (InRange == true)
@@ -64,30 +64,40 @@ public class SimpleFsm : MonoBehaviour
             }
         }        
     }
-    public bool IsInRange( float Radius, GameObject attacker, GameObject attacked)
+    /*§ä¥Ø¼Ð*/
+    //public void IdleThing()
+    //{
+    //    var position = new Vector3(transform.forward.x+ Random.Range(-1.0f, 1.0f), 0, transform.forward.z+Random.Range(-1.0f, 1.0f));
+    //    Instantiate(WalkPoint, position, Quaternion.identity);
+    //    transform.forward = transform.position - WalkPoint.transform.position;
+    //    transform.position = Vector3.MoveTowards(transform.position, position, Time.deltaTime);        
+    //    if ((transform.position - position).magnitude <= 1)
+    //    {
+    //        m_NowState = currentState.Idle;
+    //        //Stop
+    //    }
+    //}
+    /*§ðÀ»½d³ò§P©w_ªñ¶ZÂ÷§ðÀ»*/
+    public bool IsInRange_MeleeBattleRange( float Radius, GameObject attacker, GameObject attacked)
     {
         Vector3 direction = attacked.transform.position - attacker.transform.position;
                
         return direction.magnitude > Radius;
     }
-    public void IdleThing()
-    {
-        var position = new Vector3(transform.forward.x+ Random.Range(-1.0f, 1.0f), 0, transform.forward.z+Random.Range(-1.0f, 1.0f));
-        Instantiate(WalkPoint, position, Quaternion.identity);
-        transform.forward = transform.position - WalkPoint.transform.position;
-        transform.position = Vector3.MoveTowards(transform.position, position, Time.deltaTime);        
-        if ((transform.position - position).magnitude <= 1)
-        {
-            m_NowState = currentState.Idle;
-            //Stop
-        }
-    }
-    public bool InAttackRange(float RadiusMIn,float RadiusMax, GameObject attacker, GameObject attacked)
+    /*§ðÀ»½d³ò§P©w_»·µ{§ðÀ»*/
+    public bool IsInRange_LongRangeBattleRange(float RadiusMIn,float RadiusMax, GameObject attacker, GameObject attacked)
     {
         Vector3 direction = attacked.transform.position - attacker.transform.position;
         RadiusMax += AttackRangeMiddle;
         RadiusMIn -= AttackRangeMiddle;
 
         return direction.magnitude > RadiusMIn && direction.magnitude < RadiusMIn; 
+    }
+    /*½d³ò§P©w_°lÂÜ*/
+    public bool IsInRange_TraceRange(float Radius, GameObject attacker, GameObject attacked)
+    {
+        Vector3 direction = attacked.transform.position - attacker.transform.position;
+
+        return direction.magnitude > Radius;
     }
 }
