@@ -3371,6 +3371,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 10199059806689093, guid: 843a687dd2b95bb4cb66922c432cf3f4, type: 3}
+      propertyPath: hitMask.m_Bits
+      value: 896
+      objectReference: {fileID: 0}
     - target: {fileID: 2631163319326334126, guid: 843a687dd2b95bb4cb66922c432cf3f4, type: 3}
       propertyPath: m_Name
       value: Male_Player_B

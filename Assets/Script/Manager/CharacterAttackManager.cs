@@ -16,11 +16,11 @@ public class CharacterAttackManager : MonoBehaviour
 
     [SerializeField] private List<GameObject> Target;
 
-    CapsuleCollider[] TargetSize;
+    List<CapsuleCollider> TargetSize;
 
     Weapon weaponData;
 
-    PlayerState[] PlayerData;
+    List<PlayerState> PlayerData;
 
     private bool flag;
 
