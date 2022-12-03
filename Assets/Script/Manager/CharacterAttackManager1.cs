@@ -17,17 +17,17 @@ public class CharacterAttackManager1 : MonoBehaviour
 
     [SerializeField] private List<GameObject> Target;
 
-    [SerializeField] private GameObject TargetFix;
+    private GameObject TargetFix;
 
     List<CapsuleCollider> TargetSize;
 
     CapsuleCollider TargetSizeFix;
 
-    Weapon weaponData;
-
     [SerializeField] List<PlayerState> PlayerData;
 
     PlayerState PlayerDataFix;
+
+    Weapon weaponData;
 
     private bool flag;
 
@@ -36,7 +36,7 @@ public class CharacterAttackManager1 : MonoBehaviour
     public int fHp;
 
     int DMtype = 0;
- 
+
     private void Awake()
     {
         //TargetSizeFix = TargetFix.GetComponent<CapsuleCollider>();
@@ -47,17 +47,23 @@ public class CharacterAttackManager1 : MonoBehaviour
         //TargetSize.Clear();
     }
     private void Start()
-    {        
-        for (int i = 0; i <= Target.Count; i++)
-        {
-            Debug.Log(i);
-            PlayerData = Target[i].GetComponents<PlayerState>().ToList();            
-            TargetSize = Target[i].GetComponents<CapsuleCollider>().ToList();
-        }
-
+    {
+        //for (int i = 0; i <= Target.Count; i++)
+        //{
+        //    Debug.Log(i);
+        //    PlayerData = Target[i].GetComponents<PlayerState>().ToList();
+        //    TargetSize = Target[i].GetComponents<CapsuleCollider>().ToList();
+        //}
+        //PlayerData.Add(Target[1].GetComponent<PlayerState>());
         // fHp = PlayerData.Hp;
         fHp = 0;
-
+        for (int i = 0; i < Target.Count; i++)
+        {
+            Debug.Log(i);
+            Target[i].GetComponents(PlayerData);
+            Target[i].GetComponents(TargetSize);
+        }
+        
         /*weaponData相關_暫時註解起來*/
         //radius = weaponData.weaPonRadius;
         //Debug.Log("radius" + radius);
@@ -93,7 +99,7 @@ public class CharacterAttackManager1 : MonoBehaviour
         for (int i = 0; i <= Target.Count; i++)
         {
             Debug.Log("attack");
-            if (IsInRange(angle, radius, gameObject.transform, Target[i].transform,i))
+            if (IsInRange(angle, radius, gameObject.transform, Target[i].transform, i))
             {
                 fHp = 0;
                 playerGetHit.GetHitByOther(DMtype);
@@ -101,7 +107,7 @@ public class CharacterAttackManager1 : MonoBehaviour
                 Debug.Log("我猜有抓到怪物Hp" + PlayerData[i].Hp);
                 Debug.LogWarning("Hit");
             }
-        }        
+        }
         //if (IsInRange(angle, radius, gameObject.transform, TargetFix.transform))
         //{
         //    fHp = 0;
@@ -137,7 +143,7 @@ public class CharacterAttackManager1 : MonoBehaviour
     /// <param name="attacker"></param>
     /// <param name="attacked"></param>
     /// <returns></returns>
-    public bool IsInRange(float sectorAngle, float sectorRadius, Transform attacker, Transform attacked,int x)
+    public bool IsInRange(float sectorAngle, float sectorRadius, Transform attacker, Transform attacked, int x)
     {
         Vector3 direction = attacked.position - attacker.position;
         float dot = Vector3.Dot(direction.normalized, transform.forward);
