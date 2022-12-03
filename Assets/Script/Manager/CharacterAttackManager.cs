@@ -73,13 +73,13 @@ public class CharacterAttackManager : MonoBehaviour
     /// </summary>
     private void AttackEvent()
     {
-        foreach(GameObject mob in Target)
+        foreach (GameObject mob in Target)
         {
             if (IsInRange(angle, radius, gameObject.transform, mob.transform))
             {
                 playerGetHit.GetHitByOther(DMtype);
                 mob.GetComponent<PlayerState>().Hp -= fHp;
-                Debug.Log("我猜有抓到怪物Hp"+mob.GetComponent<PlayerState>().Hp);
+                Debug.Log("我猜有抓到怪物Hp" + mob.GetComponent<PlayerState>().Hp);
                 Debug.LogWarning("Hit");
             }
         }
