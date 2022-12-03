@@ -86,7 +86,7 @@ public class MobBoXBorn : MonoBehaviour
     {
         int count = MobMain.Instance().pAliveObject.Count;
         Debug.Log($"{isInZone} {count} {GenerationTimes}");
-        if (isInZone && count <= 0 && GenerationTimes < 2)
+        if (isInZone && count <= 0 && GenerationTimes < 1)
         {
             duration = 2;
             Invoke(nameof(MobBord), duration);
