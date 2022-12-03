@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class SimpleFsm : MonoBehaviour
+public class RangeSensorFSM : MonoBehaviour
 {
     public enum currentState
     {
@@ -99,5 +99,13 @@ public class SimpleFsm : MonoBehaviour
         Vector3 direction = attacked.transform.position - attacker.transform.position;
 
         return direction.magnitude > Radius;
+    }
+    public bool IsInRange_LongRangeBattleRange_Flee(float Radius, GameObject attacker, GameObject attacked)
+    {
+        Vector3 direction = attacked.transform.position - attacker.transform.position;
+        //³Ì¤p¶ZÂ÷
+        Radius -= AttackRangeMiddle;
+
+        return direction.magnitude < Radius;
     }
 }
