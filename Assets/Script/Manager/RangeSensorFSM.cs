@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class RangeSensorFSM : MonoBehaviour
+public class RangeSensorFSM
 {
     public enum currentState
     {
@@ -22,14 +22,14 @@ public class RangeSensorFSM : MonoBehaviour
     Animator MubAnimator;
     int hpTemporary;
     CapsuleCollider capsule;
-    // Start is called before the first frame update
+    // Start is called before the first frame update    
     void Start()
     {
         m_NowState = currentState.Idle;
         InRange = IsInRange_MeleeBattleRange(DisRange, MySelf, Target);
-        MubAnimator = GetComponent<Animator>();
+        //MubAnimator = GetComponent<Animator>();
         hpTemporary = State.Hp;
-        capsule = GetComponent<CapsuleCollider>();
+        //capsule = GetComponent<CapsuleCollider>();
     }
 
     // Update is called once per frame
@@ -37,18 +37,18 @@ public class RangeSensorFSM : MonoBehaviour
     {
         if (State.Hp <=0)//¦º¤`¡÷µLª¬ºA
         {
-            MubAnimator.SetTrigger("isTriggerDie");
+            //MubAnimator.SetTrigger("isTriggerDie");
             capsule.radius = 0f;
             return;
         }
         else if (State.Hp!=hpTemporary)
         {
             hpTemporary = State.Hp;
-            MubAnimator.SetBool("GetHit", true);
+            //MubAnimator.SetBool("GetHit", true);
         }        
         else
         {
-            MubAnimator.SetBool("GetHit", false);
+            //MubAnimator.SetBool("GetHit", false);
             if (m_NowState == currentState.Idle && InRange == false)
             {
                 m_NowState = currentState.Seek01;
@@ -100,6 +100,7 @@ public class RangeSensorFSM : MonoBehaviour
 
         return direction.magnitude > Radius;
     }
+    /*½d³ò§P©w_°k¶]*/
     public bool IsInRange_LongRangeBattleRange_Flee(float Radius, GameObject attacker, GameObject attacked)
     {
         Vector3 direction = attacked.transform.position - attacker.transform.position;
