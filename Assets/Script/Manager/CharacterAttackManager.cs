@@ -6,9 +6,9 @@ using Unity.VisualScripting;
 public class CharacterAttackManager : MonoBehaviour
 {
 
-    [HideInInspector] public float angle;
+    [HideInInspector] public float angle = 80f;
 
-    [HideInInspector] public float radius;
+    [HideInInspector] public float radius = 80f;
 
     [HideInInspector] public int Weapondamage_Instant;
 
@@ -45,51 +45,92 @@ public class CharacterAttackManager : MonoBehaviour
 
         // fHp = PlayerData.Hp;
         fHp = 0;
-        radius = weaponData.weaPonRadius;
-        Debug.Log("radius" + radius);
-        angle = weaponData.weaPonangle;
-        Debug.Log(angle);
-        Weapondamage_Instant = weaponData.Weapon_Damage_Instant;
-        Debug.Log(Weapondamage_Instant);
-        Weapondamamge_Delay = weaponData.Weapon_Damamge_Delay;
-        Debug.Log(Weapondamamge_Delay);
+
+        /*weaponData相關_暫時註解起來*/
+        //radius = weaponData.weaPonRadius;
+        //Debug.Log("radius" + radius);
+        //angle = weaponData.weaPonangle;
+        //Debug.Log(angle);
+        //Weapondamage_Instant = weaponData.Weapon_Damage_Instant;
+        //Debug.Log(Weapondamage_Instant);
+        //Weapondamamge_Delay = weaponData.Weapon_Damamge_Delay;
+        //Debug.Log(Weapondamamge_Delay);
     }
+
     private void Update()
     {
-
-
-        weaponData.WeaponType(0);
-        radius = weaponData.weaPonRadius;
-        angle = weaponData.weaPonangle;
-        Weapondamage_Instant = weaponData.Weapon_Damage_Instant;
-        Weapondamamge_Delay = weaponData.Weapon_Damamge_Delay;
-        DMtype = 0;
-
+        /*weaponData相關_暫時註解起來*/
+        //weaponData.WeaponType(0);
+        //radius = weaponData.weaPonRadius;
+        //angle = weaponData.weaPonangle;
+        //Weapondamage_Instant = weaponData.Weapon_Damage_Instant;
+        //Weapondamamge_Delay = weaponData.Weapon_Damamge_Delay;
+        //DMtype = 0;
     }
+
+    /// <summary>
+    /// 1203_施工中_改宗倫寫的 AttackEvent()
+    /// </summary>
     private void AttackEvent()
     {
-        for (int i = 0; i == Target.Count; i++)
+        foreach(GameObject mob in Target)
         {
-            flag = IsInRange(angle, radius, gameObject.transform, Target[i].transform, i);
-            if (flag == true)
+            if (IsInRange(angle, radius, gameObject.transform, mob.transform))
             {
                 playerGetHit.GetHitByOther(DMtype);
-                PlayerData[i].Hp -= fHp;
+                mob.GetComponent<PlayerState>().Hp -= fHp;
+                Debug.Log("我猜有抓到怪物Hp"+mob.GetComponent<PlayerState>().Hp);
                 Debug.LogWarning("Hit");
             }
         }
     }
-    public bool IsInRange(float sectorAngle, float sectorRadius, Transform attacker, Transform attacked, int x)
+    /// <summary>
+    /// 原本宗倫寫的 AttackEvent()
+    /// </summary>
+    //private void AttackEvent()
+    //{
+    //    for (int i = 0; i == Target.Count; i++)
+    //    {
+    //        flag = IsInRange(angle, radius, gameObject.transform, Target[i].transform, i);
+    //        if (flag == true)
+    //        {
+    //            playerGetHit.GetHitByOther(DMtype);
+    //            PlayerData[i].Hp -= fHp;
+    //            Debug.LogWarning("Hit");
+    //        }
+    //    }
+    //}
+
+
+    /// <summary>
+    /// 1203_施工中_改宗倫寫的 IsInRange()
+    /// </summary>
+    /// <param name="sectorAngle"></param>
+    /// <param name="sectorRadius"></param>
+    /// <param name="attacker"></param>
+    /// <param name="attacked"></param>
+    /// <returns></returns>
+    public bool IsInRange(float sectorAngle, float sectorRadius, Transform attacker, Transform attacked)
     {
-
         Vector3 direction = attacked.position - attacker.position;
-
         float dot = Vector3.Dot(direction.normalized, transform.forward);
-
         float offsetAngle = Mathf.Acos(dot) * Mathf.Rad2Deg;
-
-        return offsetAngle < sectorAngle * .7f && direction.magnitude - TargetSize[x].radius < sectorRadius;
+        float xRadius = attacked.GetComponent<CapsuleCollider>().radius;
+        return offsetAngle < sectorAngle * .7f && direction.magnitude - xRadius < sectorRadius;
     }
+    /// <summary>
+    /// 原本宗倫寫的 IsInRange()
+    /// </summary>
+    //public bool IsInRange(float sectorAngle, float sectorRadius, Transform attacker, Transform attacked, int x)
+    //{
+    //    Vector3 direction = attacked.position - attacker.position;
+    //    float dot = Vector3.Dot(direction.normalized, transform.forward);
+    //    float offsetAngle = Mathf.Acos(dot) * Mathf.Rad2Deg;
+    //    return offsetAngle < sectorAngle * .7f && direction.magnitude - TargetSize[x].radius < sectorRadius;
+    //}
+
+
+
     private void OnDrawGizmos()
     {
         Handles.color = flag ? Color.cyan : Color.red;

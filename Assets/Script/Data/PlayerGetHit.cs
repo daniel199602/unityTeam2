@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerGetHit : MonoBehaviour
 {
-    int Weapondamage_Instant = 70;
+    int Weapondamage_Instant = -70;
     int Weapondamamge_Delay = 0;
     int Count;
     CharacterAttackManager fooHp;
