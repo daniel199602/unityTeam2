@@ -27,15 +27,15 @@ public class PlayerState : MonoBehaviour
     {
         if (Hp != currentHp)
         {
+            Debug.Log("¦©¦å");
             currentHp = Hp;
             Health.BarFilter();
         }
         if (currentHp < 0)
         {
             currentHp = 0;
-            currentHp = Hp;
+            Hp = currentHp;
         }
-        Health.BarFilter();
     }
     private void FixedUpdate()
     {

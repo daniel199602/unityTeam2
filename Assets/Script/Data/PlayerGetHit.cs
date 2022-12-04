@@ -4,13 +4,16 @@ using UnityEngine;
 
 public class PlayerGetHit : MonoBehaviour
 {
-    int Weapondamage_Instant = -70;
+    int Weapondamage_Instant = 70;
     int Weapondamamge_Delay = 0;
     int Count;
     CharacterAttackManager fooHp;
+    CharacterAttackManager1 fooHp1;
+
     private void Start()
     {
         fooHp = GetComponent<CharacterAttackManager>();
+        fooHp1 = GetComponent<CharacterAttackManager1>();
         //Weapondamage_Instant = fooHp.Weapondamage_Instant;
         //Weapondamamge_Delay = fooHp.Weapondamamge_Delay;
         Count = 0;
@@ -38,9 +41,10 @@ public class PlayerGetHit : MonoBehaviour
     public void AttackWithDebuff()
     {
         fooHp.fHp -= Weapondamage_Instant;
+        fooHp1.fHp -= Weapondamage_Instant;
         StartCoroutine(DamageDelay());
-        Debug.Log("HP減少量" + fooHp.fHp);
-        Debug.Log("傷害量" + Weapondamage_Instant);
+        //Debug.Log("HP減少量" + fooHp.fHp);
+        //Debug.Log("傷害量" + Weapondamage_Instant);
     }
 
     IEnumerator DamageDelay()
@@ -55,8 +59,9 @@ public class PlayerGetHit : MonoBehaviour
     }
     public void AttackWithoutDebuff()
     {
-        fooHp.fHp -= Weapondamage_Instant;
-        Debug.Log("HP減少量" + fooHp.fHp);
-        Debug.Log("傷害量" + Weapondamage_Instant);
+        fooHp1.fHp = 0;
+        fooHp1.fHp -= Weapondamage_Instant;
+        Debug.Log("應造成傷害量:" + (fooHp1.fHp -= Weapondamage_Instant));        
     }
+    
 }

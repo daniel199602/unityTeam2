@@ -27,11 +27,12 @@ public class HealthBar : MonoBehaviour
     void Update()
     {
         Health = PlayerHp.Hp;
-        //Debug.Log(Health / Maxhealth);    
+        
     }
     public void BarFilter()
     {
         Healthbar.fillAmount = Mathf.Lerp(Healthbar.fillAmount, Health / Maxhealth, _lerpspeed*Time.deltaTime);
+        Debug.Log("´î¤Ö¤¤"+Health / Maxhealth);    
         //Debug.Log(Healthbar.fillAmount);
         //StartCoroutine(HealthBarDelay());                
     }
