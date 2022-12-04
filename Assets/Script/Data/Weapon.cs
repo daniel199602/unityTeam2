@@ -47,10 +47,10 @@ public class Weapon : MonoBehaviour
                 ExplosionBugData();
                 break;
             case 6:
-                MagicCasterData();
+                ExplosionBugData_Explosion();
                 break;
             case 7:
-                FrogTrapData();
+                MagicCasterData();
                 break;
             case 8:
                 BoxTrapData();
@@ -59,109 +59,164 @@ public class Weapon : MonoBehaviour
                 FloorTrapData();
                 break;
             case 10:
-                BossData();
+                FrogTrapData();
+                break;
+            case 11:
+                BossData_Melee();
+                break;
+            case 12:
+                BossData_Ranged();
                 break;
         }
         return Type;
     }
+    public void TorchData()
+    {
+        Debug.Log("Torch");
+        Weapon_Type = 0;
+        Weapon_Damage_Instant = 10;
+        Weapon_Damamge_Delay = 5;
+        weaPonangle = 30f;
+        weaPonRadius = 5f;
+    }
+   public void SowrdData()
+    {
+        Weapon_Type = 1;
+        Debug.Log("Sword_Sheid");
+        Weapon_Damage_Instant = 50;
+        Weapon_Damamge_Delay = 0;
+        weaPonangle = 60f;
+        weaPonRadius = 10f;
+    }
+
     public void GreatSowrdData()
     {
         Debug.Log("GreatSword");
-        Weapon_Type = 7;
+        Weapon_Type = 2;
         Weapon_Damage_Instant = 90;
         Weapon_Damamge_Delay = 0;
         weaPonangle = 95f;
         weaPonRadius = 15f;
     }
-    public void SowrdData()
+    
+    public void MagicData()
     {
-        Weapon_Type = 6;
-        Debug.Log("Sword_Sheid");
-        Weapon_Damage_Instant = 50;
+        Debug.Log("Magic?");
+        Weapon_Type = 3;
+        Weapon_Damage_Instant = 30;
+        Weapon_Damamge_Delay = 10;
+        weaPonangle = 10f;
+        weaPonRadius = 40f;
+    }
+
+    public void SketletonMonsterData()
+    {
+        Debug.Log("SketletonMonster");
+        Weapon_Type = 4;
+        Weapon_Damage_Instant = 70;
         Weapon_Damamge_Delay = 0;
         weaPonangle = 40f;
         weaPonRadius = 10f;
     }
-    public void TorchData()
-    {
-        Debug.Log("Torch");
-        Weapon_Type = 9;
-        Weapon_Damage_Instant = 10;
-        Weapon_Damamge_Delay = 5;
-        weaPonangle = 30f;
-        weaPonRadius = 55f;
-    }
-    public void MagicData()
-    {
-        Debug.Log("Magic?");
-        Weapon_Type = 8;
-        Weapon_Damage_Instant = 30;
-        Weapon_Damamge_Delay = 10;
-        weaPonangle = 150f;
-        weaPonRadius = 2f;
-    }
-    public void BoxTrapData()
-    {
-        Weapon_Type = 2;
-        Debug.Log("Monster_01");
-        Weapon_Damage_Instant = 30;
-        Weapon_Damamge_Delay = 10;
-        weaPonangle = 40f;
-        weaPonRadius = 85f;
-    }
-    public void FloorTrapData()
-    {
-        Weapon_Type = 2;
-        Debug.Log("Monster_01");
-        Weapon_Damage_Instant = 30;
-        Weapon_Damamge_Delay = 10;
-        weaPonangle = 40f;
-        weaPonRadius = 85f;
-    }
-    public void FrogTrapData()
-    {
-        Debug.Log("Poison");
-        Weapon_Type = 0;
-        Weapon_Damage_Instant = 30;
-        Weapon_Damamge_Delay = 10;
-        weaPonangle = 40f;
-        weaPonRadius = 85f;
-    }
-    public void SketletonMonsterData()
-    {
-        Debug.Log("Monster_03");
-        Weapon_Type = 4;
-        Weapon_Damage_Instant = 30;
-        Weapon_Damamge_Delay = 10;
-        weaPonangle = 40f;
-        weaPonRadius = 85f;
-    }
+
     public void ExplosionBugData()
     {
-        Debug.Log("Monster_02");
-        Weapon_Type = 3;
+        Debug.Log(" ExplosionBugData");
+        Weapon_Type = 5;
         Weapon_Damage_Instant = 30;
-        Weapon_Damamge_Delay = 10;
+        Weapon_Damamge_Delay = 0;
         weaPonangle = 40f;
-        weaPonRadius = 85f;
+        weaPonRadius = 5f;
     }
+
+    public void ExplosionBugData_Explosion()
+    {
+        Debug.Log("ExplosionBugData_Explosing");
+        Weapon_Type = 6;
+        Weapon_Damage_Instant = 250;
+        Weapon_Damamge_Delay = 0;
+        weaPonangle = 360;
+        weaPonRadius = 5;
+    }
+
     public void MagicCasterData()
     {
         Debug.Log("MagicCaster");
-        Weapon_Type = 5;
-        Weapon_Damage_Instant = 30;
+        Weapon_Type = 7;
+        Weapon_Damage_Instant = 50;
         Weapon_Damamge_Delay = 10;
-        weaPonangle = 40f;
-        weaPonRadius = 85f;
+        weaPonangle = 20f;
+        weaPonRadius = 55f;
     }
-    public void BossData()
+    public void BoxTrapData()
     {
-        Debug.Log("Monster_04");
-        Weapon_Type = 5;
+        Weapon_Type = 8;
+        Debug.Log("BoxTrap");
         Weapon_Damage_Instant = 30;
         Weapon_Damamge_Delay = 10;
         weaPonangle = 40f;
-        weaPonRadius = 85f;
+        weaPonRadius = 20f;
+    }
+
+    public void FloorTrapData()
+    {
+        Weapon_Type = 9;
+        Debug.Log("FloorTrap");
+        Weapon_Damage_Instant = 30;
+        Weapon_Damamge_Delay = 10;
+        weaPonangle = 360f;
+        weaPonRadius = 5f;
+    }
+
+    public void FrogTrapData()
+    {
+        Debug.Log("FrogTrap");
+        Weapon_Type = 10;
+        Weapon_Damage_Instant = 30;
+        Weapon_Damamge_Delay = 10;
+        weaPonangle = 30f;
+        weaPonRadius = 25f;
+    }
+
+
+    public void BossData_Melee()
+    {
+        Debug.Log("Boss_Melee Attack");
+        Weapon_Type = 11;
+        Weapon_Damage_Instant = 90;
+        Weapon_Damamge_Delay = 10;
+        weaPonangle = 120f;
+        weaPonRadius = 25f;
+    }
+
+    public void BossData_Ranged()
+    {
+        Debug.Log("Boss_Ranged Attack");
+        Weapon_Type = 12;
+        Weapon_Damage_Instant = 40;
+        Weapon_Damamge_Delay = 20;
+        weaPonangle = 25f;
+        weaPonRadius = 55f;
+    }
+
+    public void BossData_Melee_StageTwo()
+    {
+        Debug.Log("Boss_Melee Attack");
+        Weapon_Type = 11;
+        Weapon_Damage_Instant = 100;
+        Weapon_Damamge_Delay = 20;
+        weaPonangle = 150f;
+        weaPonRadius = 30f;
+    }
+
+    public void BossData_Ranged_StageTwo()
+    {
+        Debug.Log("Boss_Ranged Attack");
+        Weapon_Type = 12;
+        Weapon_Damage_Instant = 60;
+        Weapon_Damamge_Delay = 50;
+        weaPonangle = 40f;
+        weaPonRadius = 60f;
     }
 }
 
