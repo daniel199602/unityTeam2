@@ -109,6 +109,7 @@ GameObject:
   - component: {fileID: 8690983853635113517}
   - component: {fileID: -8165131132011516308}
   - component: {fileID: 8615669416295071467}
+  - component: {fileID: 813059538177002403}
   m_Layer: 0
   m_Name: Spider_Flower
   m_TagString: Untagged
@@ -213,6 +214,20 @@ MonoBehaviour:
   bloodTransform: {fileID: 9161454152486111766}
   frameTransform: {fileID: 9161454153081968864}
   Head: {fileID: 265251631853447546}
+--- !u!136 &813059538177002403
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1143180963066806}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 1.24
+  m_Height: 5.52
+  m_Direction: 1
+  m_Center: {x: 0, y: 2.21, z: 0}
 --- !u!1 &1149313386028478
 GameObject:
   m_ObjectHideFlags: 0

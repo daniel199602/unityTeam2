@@ -1947,6 +1947,7 @@ GameObject:
   - component: {fileID: 339337938069763331}
   - component: {fileID: -3211659231050840349}
   - component: {fileID: -3933064489400172081}
+  - component: {fileID: 3716577718639574146}
   m_Layer: 0
   m_Name: Bear_4
   m_TagString: Untagged
@@ -2038,6 +2039,20 @@ MonoBehaviour:
   bloodTransform: {fileID: 2561239135526240254}
   frameTransform: {fileID: 2561239133973556488}
   Head: {fileID: 3979362087637544056}
+--- !u!136 &3716577718639574146
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7962199819078159310}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 1.31
+  m_Height: 1
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.76, z: 0}
 --- !u!1 &8002475675295336084
 GameObject:
   m_ObjectHideFlags: 0

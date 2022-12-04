@@ -3133,6 +3133,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Char_DemonGirl
       objectReference: {fileID: 0}
+    - target: {fileID: 1639818050706832, guid: 28fce92923d67c2449f9c3d295c70aef, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4104614698926284, guid: 28fce92923d67c2449f9c3d295c70aef, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -3535,23 +3539,23 @@ PrefabInstance:
     - target: {fileID: 4765728035046430749, guid: 843a687dd2b95bb4cb66922c432cf3f4, type: 3}
       propertyPath: Target.Array.data[0]
       value: 
-      objectReference: {fileID: 1303227109}
+      objectReference: {fileID: 1619749693}
     - target: {fileID: 4765728035046430749, guid: 843a687dd2b95bb4cb66922c432cf3f4, type: 3}
       propertyPath: Target.Array.data[1]
       value: 
-      objectReference: {fileID: 1171242455}
+      objectReference: {fileID: 1303227109}
     - target: {fileID: 4765728035046430749, guid: 843a687dd2b95bb4cb66922c432cf3f4, type: 3}
       propertyPath: Target.Array.data[2]
       value: 
-      objectReference: {fileID: 581441924}
+      objectReference: {fileID: 2098045066}
     - target: {fileID: 4765728035046430749, guid: 843a687dd2b95bb4cb66922c432cf3f4, type: 3}
       propertyPath: Target.Array.data[3]
       value: 
-      objectReference: {fileID: 2098045066}
+      objectReference: {fileID: 581441924}
     - target: {fileID: 4765728035046430749, guid: 843a687dd2b95bb4cb66922c432cf3f4, type: 3}
       propertyPath: Target.Array.data[4]
       value: 
-      objectReference: {fileID: 1619749693}
+      objectReference: {fileID: 1171242455}
     - target: {fileID: 4765728035046430749, guid: 843a687dd2b95bb4cb66922c432cf3f4, type: 3}
       propertyPath: PlayerData.Array.size
       value: 0
@@ -4420,6 +4424,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Skeleton@Skin_Fixed
       objectReference: {fileID: 0}
+    - target: {fileID: 8171539735143675359, guid: ed8be09a84171f64c9400daeffa1c66f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8171539735143901695, guid: ed8be09a84171f64c9400daeffa1c66f, type: 3}
       propertyPath: m_RootOrder
       value: 5
@@ -4593,6 +4601,10 @@ PrefabInstance:
     - target: {fileID: 1143180963066806, guid: f7769b1fc067cae44b63ccdcc8288127, type: 3}
       propertyPath: m_Name
       value: Spider_Flower
+      objectReference: {fileID: 0}
+    - target: {fileID: 1143180963066806, guid: f7769b1fc067cae44b63ccdcc8288127, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4308944480718410, guid: f7769b1fc067cae44b63ccdcc8288127, type: 3}
       propertyPath: m_RootOrder
@@ -4770,6 +4782,10 @@ PrefabInstance:
     - target: {fileID: 7962199819078159310, guid: f5b41ba4c79702547a89de7544b80656, type: 3}
       propertyPath: m_Name
       value: Bear_4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7962199819078159310, guid: f5b41ba4c79702547a89de7544b80656, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f5b41ba4c79702547a89de7544b80656, type: 3}
