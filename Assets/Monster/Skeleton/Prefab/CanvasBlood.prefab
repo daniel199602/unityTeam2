@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5038550679939750093}
   - component: {fileID: 5038550679939750092}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: CanvasBlood
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -146,11 +146,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4133971083673688183, guid: 15373c3673977644dbe5a9204791b5eb, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: -848.1982
       objectReference: {fileID: 0}
     - target: {fileID: 4133971083673688183, guid: 15373c3673977644dbe5a9204791b5eb, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: -661.9562
       objectReference: {fileID: 0}
     - target: {fileID: 4133971083673688183, guid: 15373c3673977644dbe5a9204791b5eb, type: 3}
       propertyPath: m_LocalPosition.x
@@ -182,11 +182,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4133971083673688183, guid: 15373c3673977644dbe5a9204791b5eb, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: -42.409912
       objectReference: {fileID: 0}
     - target: {fileID: 4133971083673688183, guid: 15373c3673977644dbe5a9204791b5eb, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 35
+      value: 44.92932
       objectReference: {fileID: 0}
     - target: {fileID: 4133971083673688183, guid: 15373c3673977644dbe5a9204791b5eb, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

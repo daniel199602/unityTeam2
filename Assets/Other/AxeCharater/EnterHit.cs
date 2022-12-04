@@ -30,11 +30,11 @@ public class EnterHit : MonoBehaviour
         LavaGuardGetPower = GameObject.Find("Explosioloop fallback");
         HeadEnable = LavaGuardHead.GetComponent<ParticleSystem>();
         HeadEnables = LavaGuardHead02.GetComponent<ParticleSystem>();
-        Booms = LavaGuardGetPower.GetComponent<ParticleSystem>();
-        Boomes = LavaGuardHit.GetComponent<ParticleSystem>();
+        //Booms = LavaGuardGetPower.GetComponent<ParticleSystem>();
+        //Boomes = LavaGuardHit.GetComponent<ParticleSystem>();
         //Boomess = LavaGuardHit02.GetComponent<ParticleSystem>();
-        Booms.Stop();
-        Boomes.Stop();
+        //Booms.Stop();
+        //Boomes.Stop();
         //HeadEnable.Stop();
         //HeadEnables.Stop();
         //Boomess.Stop();
