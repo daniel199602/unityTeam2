@@ -9,9 +9,12 @@ public class PlayerState : MonoBehaviour
 
     HealthBar Health;
 
+    IdleFSM_temp idleFSM_;
+
     private void Awake()
     {
         Health = GetComponent<HealthBar>();
+        idleFSM_ = GetComponent<IdleFSM_temp>();
         Hp = 1000;
     }
     private void Start()
@@ -25,15 +28,21 @@ public class PlayerState : MonoBehaviour
     }
     public void HpCheck()
     {
+        if (Hp == currentHp)
+        {
+            idleFSM_.Idle();
+        }
         if (Hp != currentHp)
         {
             Debug.Log("¦©¦å");
             currentHp = Hp;
+            idleFSM_.BeHit();
             Health.BarFilter();
         }
         if (currentHp < 0)
         {
             currentHp = 0;
+            idleFSM_.Die();
             Hp = currentHp;
         }
     }
