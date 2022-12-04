@@ -202,7 +202,7 @@ public class Weapon : MonoBehaviour
     public void BossData_Melee_StageTwo()
     {
         Debug.Log("Boss_Melee Attack");
-        Weapon_Type = 11;
+        Weapon_Type = 13;
         Weapon_Damage_Instant = 100;
         Weapon_Damamge_Delay = 20;
         weaPonangle = 150f;
@@ -212,7 +212,7 @@ public class Weapon : MonoBehaviour
     public void BossData_Ranged_StageTwo()
     {
         Debug.Log("Boss_Ranged Attack");
-        Weapon_Type = 12;
+        Weapon_Type = 14;
         Weapon_Damage_Instant = 60;
         Weapon_Damamge_Delay = 50;
         weaPonangle = 40f;
