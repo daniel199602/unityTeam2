@@ -1948,6 +1948,7 @@ GameObject:
   - component: {fileID: -3211659231050840349}
   - component: {fileID: -3933064489400172081}
   - component: {fileID: 3716577718639574146}
+  - component: {fileID: 1070152119589441916}
   m_Layer: 0
   m_Name: Bear_4
   m_TagString: Untagged
@@ -2053,6 +2054,18 @@ CapsuleCollider:
   m_Height: 1
   m_Direction: 1
   m_Center: {x: 0, y: 0.76, z: 0}
+--- !u!114 &1070152119589441916
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7962199819078159310}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 777b924c59cda0e48a4c521996c81569, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8002475675295336084
 GameObject:
   m_ObjectHideFlags: 0

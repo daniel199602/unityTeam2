@@ -2425,6 +2425,7 @@ GameObject:
   - component: {fileID: 4051324754958994056}
   - component: {fileID: 2287063813628994175}
   - component: {fileID: 1764858278061436294}
+  - component: {fileID: 796329680502127141}
   m_Layer: 0
   m_Name: DemonGirlMesh
   m_TagString: Untagged
@@ -2441,8 +2442,8 @@ Transform:
   m_GameObject: {fileID: 8557610552027109654}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 13, y: 13, z: 13}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 8559738064493583688}
   - {fileID: 8562546524481008148}
@@ -2537,6 +2538,18 @@ MonoBehaviour:
   bloodTransform: {fileID: 92118045550701076}
   frameTransform: {fileID: 92118044955900130}
   Head: {fileID: 1264909834952796637}
+--- !u!114 &796329680502127141
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8557610552027109654}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 777b924c59cda0e48a4c521996c81569, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8557626694189890328
 GameObject:
   m_ObjectHideFlags: 0

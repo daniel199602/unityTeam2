@@ -34,6 +34,7 @@ public class ObjectPool : MonoBehaviour
             data.bUsing = false;
             data.go = go;
             go.SetActive(false);
+            go.transform.SetParent(this.transform);
             pList.Add(data);
         }
         return pList;
