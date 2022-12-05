@@ -82,7 +82,7 @@ public class RangeSensorFSM
     {
         Vector3 direction = attacked.transform.position - attacker.transform.position;
                
-        return direction.magnitude > Radius;
+        return direction.magnitude < Radius;
     }
     /*§ðÀ»½d³ò§P©w_»·µ{§ðÀ»*/
     public bool IsInRange_LongRangeBattleRange(float RadiusMIn,float RadiusMax, GameObject attacker, GameObject attacked)
@@ -91,15 +91,15 @@ public class RangeSensorFSM
         RadiusMax += AttackRangeMiddle;
         RadiusMIn -= AttackRangeMiddle;
 
-        return direction.magnitude > RadiusMIn && direction.magnitude < RadiusMIn; 
+        return direction.magnitude > RadiusMIn && direction.magnitude < RadiusMax; 
     }
-    /*½d³ò§P©w_°lÂÜ*/
-    public bool IsInRange_TraceRange(float Radius, GameObject attacker, GameObject attacked)
-    {
-        Vector3 direction = attacked.transform.position - attacker.transform.position;
+    ///*½d³ò§P©w_°lÂÜ*/
+    //public bool IsInRange_TraceRange(float Radius, GameObject attacker, GameObject attacked)
+    //{
+    //    Vector3 direction = attacked.transform.position - attacker.transform.position;
 
-        return direction.magnitude > Radius;
-    }
+    //    return direction.magnitude > Radius;
+    //}
     /*½d³ò§P©w_°k¶]*/
     public bool IsInRange_LongRangeBattleRange_Flee(float Radius, GameObject attacker, GameObject attacked)
     {
