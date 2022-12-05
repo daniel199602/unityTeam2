@@ -154,7 +154,7 @@ public class Weapon : MonoBehaviour
         Debug.Log("BoxTrap");
         Weapon_Damage_Instant = 30;
         Weapon_Damamge_Delay = 10;
-        weaPonangle = 40f;
+        weaPonangle = 360f;
         weaPonRadius = 20f;
     }
 

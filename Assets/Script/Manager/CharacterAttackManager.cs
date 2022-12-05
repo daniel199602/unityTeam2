@@ -28,6 +28,7 @@ public class CharacterAttackManager : MonoBehaviour
 
     int DMtype = 0;
 
+
     private void Awake()
     {
         TargetGetHit_DamageDeal = GetComponent<PlayerGetHit>();

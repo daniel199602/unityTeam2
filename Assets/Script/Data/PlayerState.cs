@@ -28,21 +28,15 @@ public class PlayerState : MonoBehaviour
     }
     public void HpCheck()
     {
-        //if (Hp == currentHp)
-        //{
-        //    idleFSM_.Idle();
-        //}
         if (Hp != currentHp)
         {
             Debug.Log("¦©¦å");
             currentHp = Hp;
-            idleFSM_.BeHit();
             Health.BarFilter();
         }
         if (currentHp < 0)
         {
             currentHp = 0;
-            idleFSM_.Die();
             Hp = currentHp;
         }
     }
