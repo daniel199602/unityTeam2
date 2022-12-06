@@ -67,6 +67,9 @@ public class Weapon : MonoBehaviour
             case 12:
                 BossData_Ranged();
                 break;
+            case 13:
+                Cystalsv_IncreaseBlood();
+                break;
         }
         return Type;
     }
@@ -217,6 +220,12 @@ public class Weapon : MonoBehaviour
         Weapon_Damamge_Delay = 50;
         weaPonangle = 40f;
         weaPonRadius = 60f;
+    }
+
+    public void Cystalsv_IncreaseBlood()
+    {
+        Weapon_Damage_Instant = -200;
+        Debug.Log("-200-----------------------------------------------");
     }
 }
 

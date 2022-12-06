@@ -27,12 +27,13 @@ public class CharacterAttackManager : MonoBehaviour
     public int fHp;
 
     int DMtype = 0;
-
+    int Type_weapon;
 
     private void Awake()
     {
         TargetGetHit_DamageDeal = GetComponent<PlayerGetHit>();
         weaponData = GetComponent<Weapon>();
+        Type_weapon = weaponData.Weapon_Type;
     }
 
     private void Start()
@@ -46,25 +47,25 @@ public class CharacterAttackManager : MonoBehaviour
         }
 
         /*weaponData相關_暫時註解起來*/
-        //radius = weaponData.weaPonRadius;
-        //Debug.Log("radius" + radius);
-        //angle = weaponData.weaPonangle;
-        //Debug.Log(angle);
-        //Weapondamage_Instant = weaponData.Weapon_Damage_Instant;
-        //Debug.Log(Weapondamage_Instant);
-        //Weapondamamge_Delay = weaponData.Weapon_Damamge_Delay;
-        //Debug.Log(Weapondamamge_Delay);
+        radius = weaponData.weaPonRadius;
+        Debug.Log("radius" + radius);
+        angle = weaponData.weaPonangle;
+        Debug.Log(angle);
+        Weapondamage_Instant = weaponData.Weapon_Damage_Instant;
+        Debug.Log(Weapondamage_Instant);
+        Weapondamamge_Delay = weaponData.Weapon_Damamge_Delay;
+        Debug.Log(Weapondamamge_Delay);
     }
 
     private void Update()
     {
         /*weaponData相關_暫時註解起來*/
-        //weaponData.WeaponType(0);
-        //radius = weaponData.weaPonRadius;
-        //angle = weaponData.weaPonangle;
-        //Weapondamage_Instant = weaponData.Weapon_Damage_Instant;
-        //Weapondamamge_Delay = weaponData.Weapon_Damamge_Delay;
-        //DMtype = 0;
+        weaponData.WeaponType(Type_weapon);
+        radius = weaponData.weaPonRadius;
+        angle = weaponData.weaPonangle;
+        Weapondamage_Instant = weaponData.Weapon_Damage_Instant;
+        Weapondamamge_Delay = weaponData.Weapon_Damamge_Delay;
+        DMtype = 0;
         Debug.Log("Target.Count:" + Target.Count);
         Debug.Log("PlayerData.Count:" + PlayerData.Count);
     }
@@ -86,6 +87,16 @@ public class CharacterAttackManager : MonoBehaviour
                 Debug.Log("傷害數值:" + fHp);
                 Debug.LogWarning("Hit");
             }
+        }
+
+    }
+    public void HealEvent()
+    {
+        for (int i = 0; i <= Target.Count - 1; i++)
+        {
+            weaponData.WeaponType(13);
+            TargetGetHit_DamageDeal.GetHitByOther(DMtype);
+            PlayerData[i].Hp += fHp;
         }
 
     }
