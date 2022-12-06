@@ -23,18 +23,12 @@ public class SkeletonFSM : MonoBehaviour
     int TraceRadius;//之後要塞攻擊距離用
     int ATKRadius;
 
-    public GameObject Object;
-    public GameObject Self;
-    float direction;
-    float directionow;
+    float direction;  
     public float Speed;
-    float radius = 10f;
-    Vector3 c;
+    float radius = 10f; 
     Vector3 Get3;
-    float Get;
-    float Get1;
+    float Get;   
     public float mSpeed;
-    Vector3 move;
     void Start()
     {
         m_NowState = currentState.Idle;
@@ -45,10 +39,8 @@ public class SkeletonFSM : MonoBehaviour
         TraceRadius = 15 * 2;
         ATKRadius = 15;
 
-        direction = Vector3.Distance(transform.position, Object.transform.position);
-        Debug.Log(direction);
-        //Vector3 v = Object.transform.position- transform.position;
-        //transform.position = v;
+        direction = Vector3.Distance(transform.position, Target.transform.position);
+        Debug.Log(direction);        
         Speed = .01f;
     }
 
@@ -92,14 +84,10 @@ public class SkeletonFSM : MonoBehaviour
             }
 
 
-            Get3 = (Object.transform.position - transform.position).normalized;
-            Get = (Object.transform.position - transform.position).magnitude;
-            //Get1 = Get - mSpeed;
-            transform.forward = Get3;
-            //c = new Vector3(Object.transform.position.x / Get1, Object.transform.position.y, Object.transform.position.z / Get1);
-            //move =transform.position * Get* Speed*Time.deltaTime;
-            //Self.transform.position -= move;
-            transform.position = Vector3.Lerp(transform.position, Object.transform.position, Speed);
+            Get3 = (Target.transform.position - transform.position).normalized;
+            Get = (Target.transform.position - transform.position).magnitude;            
+            transform.forward = Get3;            
+            transform.position = Vector3.Lerp(transform.position, Target.transform.position, Speed);
             if (Get <= radius)
             {
                 Speed = 0f;
