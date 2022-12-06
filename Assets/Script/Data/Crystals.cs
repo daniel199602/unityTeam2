@@ -16,7 +16,7 @@ public class Crystals : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            characterM.HealEvent();
+            characterM.fHp = -200;
 
 
             this.gameObject.SetActive(false);

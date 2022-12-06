@@ -90,16 +90,7 @@ public class CharacterAttackManager : MonoBehaviour
         }
 
     }
-    public void HealEvent()
-    {
-        for (int i = 0; i <= Target.Count - 1; i++)
-        {
-            weaponData.WeaponType(13);
-            TargetGetHit_DamageDeal.GetHitByOther(DMtype);
-            PlayerData[i].Hp += fHp;
-        }
-
-    }
+ 
 
 
     /// <summary>
