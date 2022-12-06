@@ -7,8 +7,8 @@ public enum currentState
     Idle, Trace, Attack, GetHit, Dead,
 }
 public class SkeletonFSM : MonoBehaviour
-{ 
-    private currentState m_NowState;    
+{
+    private currentState m_NowState;
     public GameObject Target;
     public GameObject MySelf;
     float DisRange;
@@ -22,6 +22,19 @@ public class SkeletonFSM : MonoBehaviour
     bool InATKrange;
     int TraceRadius;//之後要塞攻擊距離用
     int ATKRadius;
+
+    public GameObject Object;
+    public GameObject Self;
+    float direction;
+    float directionow;
+    public float Speed;
+    float radius = 10f;
+    Vector3 c;
+    Vector3 Get3;
+    float Get;
+    float Get1;
+    public float mSpeed;
+    Vector3 move;
     void Start()
     {
         m_NowState = currentState.Idle;
@@ -31,15 +44,21 @@ public class SkeletonFSM : MonoBehaviour
         //capsule = GetComponent<CapsuleCollider>();
         TraceRadius = 15 * 2;
         ATKRadius = 15;
+
+        direction = Vector3.Distance(transform.position, Object.transform.position);
+        Debug.Log(direction);
+        //Vector3 v = Object.transform.position- transform.position;
+        //transform.position = v;
+        Speed = .01f;
     }
-   
+
     // Update is called once per frame
     void Update()
     {
         if (State.Hp <= 0)//死亡→無狀態
         {
-            MubAnimator.SetTrigger("isTriggerDie");
-            capsule.radius = 0f;
+            m_NowState = currentState.Dead;
+            DeadStatus();
             return;
         }
         else if (State.Hp != hpTemporary)
@@ -50,29 +69,65 @@ public class SkeletonFSM : MonoBehaviour
         else
         {
             MubAnimator.SetBool("GetHit", false);
-            if (m_NowState == currentState.Idle)
+           
+            tracing = IsInRange_TraceRange(TraceRadius, MySelf, Target);
+            if (m_NowState == currentState.Trace && tracing == true)
             {
-                m_NowState = currentState.Trace;
-                tracing = IsInRange_TraceRange(TraceRadius, MySelf, Target);
-                if (m_NowState == currentState.Trace&& tracing ==true)
+                MySelf.transform.position -= Target.transform.position;
+                InATKrange = IsInRange_MeleeBattleRange(ATKRadius, MySelf, Target);
+                MubAnimator.SetBool("Trace", true);
+                if (InATKrange == true)
                 {
-                    MySelf.transform.position -= Target.transform.position;
-                    InATKrange = IsInRange_MeleeBattleRange(ATKRadius,MySelf,Target);
-                    MubAnimator.SetBool("Trace", true);
-                    if (InATKrange == true)
+                    m_NowState = currentState.Attack;
+                    MubAnimator.SetBool("Trace", false);
+                    if (m_NowState == currentState.Attack)
                     {
-                        m_NowState = currentState.Attack;
-                        MubAnimator.SetBool("Trace", false);
-                        if (m_NowState == currentState.Attack)
-                        {
-                            MubAnimator.SetBool("Attack", true);
-                        }
-                        else
-                        {
-                            MubAnimator.SetBool("Attack", false);
-                        }
+                        MubAnimator.SetBool("Attack", true);
+                    }
+                    else
+                    {
+                        MubAnimator.SetBool("Attack", false);
                     }
                 }
+            }
+
+
+            Get3 = (Object.transform.position - transform.position).normalized;
+            Get = (Object.transform.position - transform.position).magnitude;
+            //Get1 = Get - mSpeed;
+            transform.forward = Get3;
+            //c = new Vector3(Object.transform.position.x / Get1, Object.transform.position.y, Object.transform.position.z / Get1);
+            //move =transform.position * Get* Speed*Time.deltaTime;
+            //Self.transform.position -= move;
+            transform.position = Vector3.Lerp(transform.position, Object.transform.position, Speed);
+            if (Get <= radius)
+            {
+                Speed = 0f;
+            }
+            else
+            {
+                Speed = .01f;
+            }
+        }
+    }
+    public void DeadStatus()
+    {
+        if (m_NowState== currentState.Dead)
+        {
+            MubAnimator.SetTrigger("isTriggerDie");
+            capsule.radius = 0f;
+        }
+    }
+    public void TraceStatus()
+    {
+        tracing = IsInRange_TraceRange(TraceRadius, MySelf, Target);
+        if (tracing == true)
+        {
+            m_NowState = currentState.Trace;
+            if (m_NowState==currentState.Trace)
+            {
+                MySelf.transform.position -= Target.transform.position;            
+                MubAnimator.SetBool("Trace", true);            
             }           
         }
     }
@@ -88,5 +143,11 @@ public class SkeletonFSM : MonoBehaviour
         Vector3 direction = attacked.transform.position - attacker.transform.position;
 
         return direction.magnitude > Radius;
+    }
+    public void Move()
+    {
+        
+
+        
     }
 }
