@@ -33,6 +33,7 @@ public class MobBoXBorn : MonoBehaviour
             if (go != null)
             {
                 go.SetActive(true);
+                go.GetComponent<PlayerState>().Hp = 1000;//重生血量回滿
                 go.transform.position = startPos;
                 MobMain.Instance().pAliveObject.Add(go);
             }
@@ -41,6 +42,7 @@ public class MobBoXBorn : MonoBehaviour
             if (go1 != null)
             {
                 go1.SetActive(true);
+                go1.GetComponent<PlayerState>().Hp = 1000;//重生血量回滿
                 go1.transform.position = startPos1;
                 MobMain.Instance().pAliveObject.Add(go1);
             }
@@ -49,6 +51,7 @@ public class MobBoXBorn : MonoBehaviour
             if (go2 != null)
             {
                 go2.SetActive(true);
+                go2.GetComponent<PlayerState>().Hp = 1000;//重生血量回滿
                 go2.transform.position = startPos2;
                 MobMain.Instance().pAliveObject.Add(go2);
             }
@@ -57,6 +60,7 @@ public class MobBoXBorn : MonoBehaviour
             if (go3 != null)
             {
                 go3.SetActive(true);
+                go3.GetComponent<PlayerState>().Hp = 1000;//重生血量回滿
                 go3.transform.position = startPos3;
                 MobMain.Instance().pAliveObject.Add(go3);
             }
