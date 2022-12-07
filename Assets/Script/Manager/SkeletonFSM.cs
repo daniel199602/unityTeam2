@@ -20,13 +20,16 @@ public class SkeletonFSM : MonoBehaviour
     CapsuleCollider capsule;
     bool tracing;
     bool InATKrange;
+    bool OutATKrange;
     int TraceRadius;//之後要塞攻擊距離用
     int ATKRadius;
+    int LeaveATKRadius;
     public float Speed;
     float radius = 10f; 
     Vector3 Get3;
     float Get;   
     float mSpeed;
+    bool ATT;
     void Start()
     {
         m_NowState = currentState.Idle;
@@ -35,10 +38,10 @@ public class SkeletonFSM : MonoBehaviour
         State = GetComponent<PlayerState>();
         hpTemporary = State.Hp;
         capsule = GetComponent<CapsuleCollider>();
-        TraceRadius = 15 * 2;
-        ATKRadius = 15;
-        
-
+        TraceRadius = ATKRadius * 3;
+        ATKRadius = 30;
+        LeaveATKRadius = ATKRadius * 2;
+        ATT = false;
     }
 
     // Update is called once per frame
@@ -59,10 +62,19 @@ public class SkeletonFSM : MonoBehaviour
         {
             MubAnimator.SetBool("GetHit", false);
 
+            Get3 = (Target.transform.position - transform.position).normalized;
+
+            transform.forward = Get3;
+
             TraceStatus();
 
-            AttackStatus();   
-        }
+            AttackStatus();
+            
+            
+            
+                LeaveAttackStatus();
+            
+        }           
         Debug.Log(m_NowState);
     }
     public void DeadStatus()
@@ -75,9 +87,11 @@ public class SkeletonFSM : MonoBehaviour
     }
     public void TraceStatus()
     {
+        MubAnimator.speed = 1;
         tracing = IsInRange_TraceRange(ATKRadius, MySelf, Target);
         if (tracing == true)
         {
+            ATT = false;
             m_NowState = currentState.Trace;
             Debug.Log("NowInT");
             if (m_NowState==currentState.Trace)
@@ -93,21 +107,38 @@ public class SkeletonFSM : MonoBehaviour
         InATKrange = IsInRange_MeleeBattleRange(ATKRadius, MySelf, Target);
         if (InATKrange == true)
         {
+            ATT = true;
+            mSpeed = 0f;
             m_NowState = currentState.Attack;
             MubAnimator.SetBool("Trace", false);
             Attack();
             Debug.Log("NowInA");
-        }
-        if (InATKrange == false)
+        }          
+    }
+    public void LeaveAttackStatus()
+    {
+        if (ATT == true)
         {
-
-        }
+            OutATKrange = IsOutRange_MeleeBattleRange(LeaveATKRadius, ATKRadius, MySelf, Target);
+            if (OutATKrange == true)
+            {
+                m_NowState = currentState.Idle;
+                Idle();
+                Debug.LogError("L is active");
+            }
+        } 
     }
     public bool IsInRange_MeleeBattleRange(float Radius, GameObject attacker, GameObject attacked)
     {
         Vector3 direction = attacked.transform.position - attacker.transform.position;
 
         return direction.magnitude <= Radius;
+    }
+    public bool IsOutRange_MeleeBattleRange(float RadiusMax,float RadiusMin, GameObject attacker, GameObject attacked)
+    {
+        Vector3 direction = attacked.transform.position - attacker.transform.position;
+
+        return direction.magnitude < RadiusMax&& direction.magnitude>= RadiusMin;
     }
     /*範圍判定_追蹤*/
     public bool IsInRange_TraceRange(float RadiusMax, GameObject attacker, GameObject attacked)
@@ -124,6 +155,8 @@ public class SkeletonFSM : MonoBehaviour
 
         transform.forward = Get3;
 
+        Debug.Log("當前速度"+mSpeed);
+
         if (Get > TraceRadius)
         {
             int i = 0;
@@ -132,15 +165,15 @@ public class SkeletonFSM : MonoBehaviour
                 return;
             }
             else if (i == 0)
-            {
-                mSpeed *= 2;
+            {             
+                mSpeed *= 1.5f;
                 MubAnimator.SetFloat("Blend", 1);
                 i++;
             }
         }
         else
         {
-            mSpeed *= 1;
+            mSpeed *= 1f;
             MubAnimator.SetFloat("Blend", 0);
         }
 
@@ -159,23 +192,41 @@ public class SkeletonFSM : MonoBehaviour
             mSpeed = Speed * .01f;
         }
     }
-    public void Roar()
-    {
-        MubAnimator.SetBool("Roar",true);
-        mSpeed = Speed * 0f;
-        MubAnimator.SetBool("Roar", false);
-    }
+    //public void Roar()
+    //{
+    //    MubAnimator.SetBool("Roar",true);
+    //    mSpeed = Speed * 0f;
+    //    MubAnimator.SetBool("Roar", false);
+    //}
     public void Attack()
-    {
+    {       
         if (m_NowState == currentState.Attack)
-        {
+        {            
             MubAnimator.SetBool("Attack", true);
-            mSpeed = Speed * 0f;
+            MubAnimator.speed = 2;
         }
         else if (m_NowState == currentState.Trace)
         {
             MubAnimator.SetBool("Attack", false);
+            MubAnimator.speed = 1;
         }
        
+    }
+    public void Idle()
+    {
+        MubAnimator.SetBool("Attack", false);
+        MubAnimator.SetBool("Trace", false);        
+    }
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = InATKrange ? Color.red : Color.yellow;
+        Gizmos.DrawWireSphere(transform.position,ATKRadius);
+
+
+         Gizmos.color = OutATKrange ? Color.blue : Color.black;
+         Gizmos.DrawWireSphere(transform.position, LeaveATKRadius);
+        
+
+
     }
 }
