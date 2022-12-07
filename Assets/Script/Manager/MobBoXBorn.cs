@@ -10,16 +10,18 @@ public class MobBoXBorn : MonoBehaviour
     public Transform spawnPoint1;
     public Transform spawnPoint2;
     public Transform spawnPoint3;
-    public GameObject Door;
+    GameObject door;
     bool isInZone;
     public int GenerationTimes ;
     int killMobLast = 0;
     
     private void Start()
     {
+        door = this.gameObject.transform.GetChild(0).gameObject;
+        door.SetActive(false);
         GenerationTimes = 0;
         m_Collider = GetComponent<Collider>();
-        doorOpen_MobLast = Door.GetComponent<DoorOpen_MobLast>();
+        doorOpen_MobLast = GetComponent<DoorOpen_MobLast>();
         killMobLast = 0;
 
     }
@@ -76,6 +78,7 @@ public class MobBoXBorn : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
+            door.SetActive(!door.activeSelf);
             isInZone = true;
             born();
             //Debug.Log(isInZone);

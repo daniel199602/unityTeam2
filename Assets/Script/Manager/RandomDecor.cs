@@ -8,7 +8,7 @@ public class RandomDecor : MonoBehaviour
     [SerializeField] GameObject[] decorPrefabs;
     Random_room myGenerator;
     bool isCompleted;
-
+    public MobBoXBorn aa;
     void Awake()
     {
         //抓出Main_room物件底下的Script

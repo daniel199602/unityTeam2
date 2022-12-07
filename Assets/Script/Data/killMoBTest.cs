@@ -33,6 +33,7 @@ public class killMoBTest : MonoBehaviour
         MobMain.Instance().oPool.UnLoadObjectToPool(MobMain.Instance().pTestList, this.gameObject);
         MobMain.Instance().pAliveObject.Remove(this.gameObject);
         int count = MobMain.Instance().pAliveObject.Count;
+
         if(count<=0)
         {
             MobMain.Instance().MobBox.SendMessage("born");

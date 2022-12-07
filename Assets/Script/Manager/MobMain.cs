@@ -11,7 +11,7 @@ public class MobMain : MonoBehaviour
     private bool mobHave;
     //bool isInZone;
 
-
+    
 
     //public Transform spawnPoint;
     //public Transform spawnPoint1;
