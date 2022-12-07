@@ -40,8 +40,8 @@ public class PlayerState : MonoBehaviour
             Hp = currentHp;
         }
     }
-    private void FixedUpdate()
-    {
-        Debug.LogWarning("¦å¶q:" + currentHp);
-    }
+    //private void FixedUpdate()
+    //{
+    //    Debug.LogWarning("¦å¶q:" + currentHp);
+    //}
 }
