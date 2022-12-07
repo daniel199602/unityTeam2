@@ -5,18 +5,23 @@ using UnityEngine;
 public class MobBoXBorn : MonoBehaviour
 {
     Collider m_Collider;
+    DoorOpen_MobLast doorOpen_MobLast;
     public Transform spawnPoint;
     public Transform spawnPoint1;
     public Transform spawnPoint2;
     public Transform spawnPoint3;
-    
+    public GameObject Door;
     bool isInZone;
     public int GenerationTimes ;
+    int killMobLast = 0;
+    
     private void Start()
     {
         GenerationTimes = 0;
         m_Collider = GetComponent<Collider>();
-        
+        doorOpen_MobLast = Door.GetComponent<DoorOpen_MobLast>();
+        killMobLast = 0;
+
     }
     void MobBord()
     {
@@ -69,9 +74,9 @@ public class MobBoXBorn : MonoBehaviour
         {
             isInZone = true;
             born();
-            Debug.Log(isInZone);
+            //Debug.Log(isInZone);
             GenerationTimes = 0;
-            Debug.Log(GenerationTimes);
+            //Debug.Log(GenerationTimes);
             MobMain.Instance().MobBox = this;
             m_Collider.enabled = false;
         }
@@ -85,7 +90,8 @@ public class MobBoXBorn : MonoBehaviour
     void born()
     {
         int count = MobMain.Instance().pAliveObject.Count;
-        Debug.Log($"{isInZone} {count} {GenerationTimes}");
+        //Debug.Log($"{isInZone} {count} {GenerationTimes}");
+        killMobLast++;
         if (isInZone && count <= 0 && GenerationTimes < 1)
         {
             duration = 2;
@@ -93,7 +99,22 @@ public class MobBoXBorn : MonoBehaviour
 
             GenerationTimes++;
             
-            Debug.Log(GenerationTimes);
+            //Debug.Log(GenerationTimes);
+        }
+        //Debug.Log(killMobLast);
+        
+    }
+    bool killAll = true;
+    private void Update()
+    {
+        if(killMobLast>=3 && killAll==true)
+        {
+            for (int i = 0 ; i < 8;  i++)
+            {
+                Debug.Log("<8");
+                doorOpen_MobLast.killMob();
+            }
+            killAll = false;
         }
     }
 }

@@ -66,8 +66,8 @@ public class CharacterAttackManager : MonoBehaviour
         Weapondamage_Instant = weaponData.Weapon_Damage_Instant;
         Weapondamamge_Delay = weaponData.Weapon_Damamge_Delay;
         DMtype = 0;
-        Debug.Log("Target.Count:" + Target.Count);
-        Debug.Log("PlayerData.Count:" + PlayerData.Count);
+        //Debug.Log("Target.Count:" + Target.Count);
+        //Debug.Log("PlayerData.Count:" + PlayerData.Count);
     }
 
     /// <summary>

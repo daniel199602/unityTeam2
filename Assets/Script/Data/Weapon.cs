@@ -21,7 +21,7 @@ public class Weapon : MonoBehaviour
     public int WeaponType(int Type)
     {
         GetWeaponType(Type);
-        Debug.Log(Type);
+        //Debug.Log(Type);
         return Type;
     }
     public int GetWeaponType(int Type)
@@ -75,7 +75,7 @@ public class Weapon : MonoBehaviour
     }
     public void TorchData()
     {
-        Debug.Log("Torch");
+        //Debug.Log("Torch");
         Weapon_Type = 0;
         Weapon_Damage_Instant = 10;
         Weapon_Damamge_Delay = 5;
