@@ -107,6 +107,7 @@ GameObject:
   - component: {fileID: 95844267038306482}
   - component: {fileID: 114642546781802302}
   - component: {fileID: 813059538177002403}
+  - component: {fileID: 1554420665615678328}
   m_Layer: 0
   m_Name: Spider_Flower
   m_TagString: Untagged
@@ -179,6 +180,19 @@ CapsuleCollider:
   m_Height: 5.52
   m_Direction: 1
   m_Center: {x: 0, y: 2.21, z: 0}
+--- !u!114 &1554420665615678328
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1143180963066806}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7115c9c725dd2df4dbf732bd0afc60e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  thisMobItem: {fileID: 11400000, guid: 7df1add73ede8194ca813e090885f86d, type: 2}
 --- !u!1 &1149313386028478
 GameObject:
   m_ObjectHideFlags: 0
