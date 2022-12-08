@@ -1124,7 +1124,7 @@ MonoBehaviour:
   MaxHp: 1000
   Hp: 1000
   currentHp: 0
---- !u!114 &1880996005
+--- !u!114 &1880996014
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1136,7 +1136,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7115c9c725dd2df4dbf732bd0afc60e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  thisMobItem: {fileID: 11400000, guid: 9298f08ade71c6e46b0200171a201619, type: 2}
+  thisMobItem: {fileID: 11400000, guid: 05ab35d565443464f9a330c1a8b837be, type: 2}
 --- !u!1 &1914696423
 GameObject:
   m_ObjectHideFlags: 0

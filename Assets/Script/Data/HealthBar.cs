@@ -27,7 +27,7 @@ public class HealthBar : MonoBehaviour
     void Update()
     {
         Health = PlayerHp.Hp;
-        //StartCoroutine(HealthBarDelay());
+        StartCoroutine(HealthBarDelay());
     }
 
     public void BarFilter()
