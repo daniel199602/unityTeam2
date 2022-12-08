@@ -922,6 +922,11 @@ GameObject:
   - component: {fileID: 3244984096567057990}
   - component: {fileID: 3485271348948714616}
   - component: {fileID: 403543031348824484}
+<<<<<<< HEAD
+=======
+  - component: {fileID: 1354034309353821876}
+  - component: {fileID: 1748584699156965449}
+>>>>>>> 2399e77b5fac6d1f60042d11b76021c4d5d860ce
   m_Layer: 0
   m_Name: Skeleton@Skin_Fixed
   m_TagString: Untagged
@@ -995,6 +1000,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8889cc20c3fac041a511c9e2cfa83c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MaxHp: 1000
   Hp: 1000
   currentHp: 0
 --- !u!114 &3244984096567057990
@@ -1040,6 +1046,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f398d9a3569e144d8afc89d7600f7eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+<<<<<<< HEAD
+=======
+--- !u!114 &1354034309353821876
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8171539735143675359}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 777b924c59cda0e48a4c521996c81569, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1748584699156965449
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8171539735143675359}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7115c9c725dd2df4dbf732bd0afc60e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  thisMobItem: {fileID: 11400000, guid: 5cb287263cb4f6c4e993d3e736f89b22, type: 2}
+>>>>>>> 2399e77b5fac6d1f60042d11b76021c4d5d860ce
 --- !u!1 &8171539735143675361
 GameObject:
   m_ObjectHideFlags: 0
