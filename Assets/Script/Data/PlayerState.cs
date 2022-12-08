@@ -6,7 +6,7 @@ public class PlayerState : MonoBehaviour
 {
     ItemOnMob thisItemOnMob;
 
-    [SerializeField] private int MaxHp = 1000;
+    [HideInInspector] public int MaxHp = 1000;
     [SerializeField] public int Hp = 1000;
     [SerializeField] private int currentHp;
 
@@ -16,18 +16,20 @@ public class PlayerState : MonoBehaviour
     {
         thisItemOnMob = GetComponent<ItemOnMob>();
         Health = GetComponent<HealthBar>();
-    }
-
-    private void Start()
-    {
         MaxHp = thisItemOnMob.mobMaxHp;
         Hp = MaxHp;
         currentHp = Hp;
     }
 
+    private void Start()
+    {
+        
+    }
+
     private void Update()
     {
         HpCheck();
+        Health.BarFilter();
     }
 
 
@@ -50,7 +52,6 @@ public class PlayerState : MonoBehaviour
         {
             Debug.Log("¦©¦å");
             currentHp = Hp;
-            Health.BarFilter();
         }
         if (currentHp < 0)
         {
