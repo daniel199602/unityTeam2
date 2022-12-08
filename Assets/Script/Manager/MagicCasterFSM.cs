@@ -4,7 +4,7 @@ using UnityEngine;
 
 public enum MagicCasterState
 {
-    Idle, Trace,Back, Attack, GetHit, Dead,
+    Idle, Trace,Back, Attack, GetHit, Dead,Summon,
 }
 public class MagicCasterFSM : MonoBehaviour
 {
@@ -46,9 +46,11 @@ public class MagicCasterFSM : MonoBehaviour
         MubAnimator = GetComponent<Animator>();
         State = GetComponent<PlayerState>();
         hpTemporary = State.Hp;
-        FrameCount_Roar = 150;
+        FrameCount_Roar = 430;
         LeaveAttackRangeBool = false;
         InAttackRangeBool = false;
+
+        m_NowState = MagicCasterState.Idle;
 
         ATKRadius = 55;//WeaponÂÐ»\
 
@@ -94,9 +96,9 @@ public class MagicCasterFSM : MonoBehaviour
 
             transform.rotation = Quaternion.Slerp(transform.rotation, Look, 14f * Time.deltaTime);
 
-            StartCoroutine(SummonCooldown());
-
             BugSummon();
+
+            Debug.Log("CDs:"+Count);                                    
 
             TraceStatus();
 
@@ -108,7 +110,7 @@ public class MagicCasterFSM : MonoBehaviour
 
             BackStatus();
         }
-        Debug.Log(m_NowState);
+        Debug.Log(m_NowState);        
     }
     public void DeadStatus()
     {
@@ -121,7 +123,7 @@ public class MagicCasterFSM : MonoBehaviour
     //°lÀ»ª¬ºA
     public void TraceStatus()
     {
-        if (LeaveAttackRangeBool == false)
+        if (LeaveAttackRangeBool == false&&m_NowState != MagicCasterState.Summon)
         {
             tracing = IsInRange_TraceRange(ATKRadius, MySelf, Target);
             if (tracing == true)
@@ -275,18 +277,24 @@ public class MagicCasterFSM : MonoBehaviour
     public void BugSummon()
     {        
         if (Count ==0)
-        {            
-            MubAnimator.SetBool("Trace", false);
-            MubAnimator.SetBool("Attack", false);
-            MubAnimator.SetBool("Back", false);
-            MubAnimator.SetBool("GrenerateBug", true);
-            Instantiate(Bug, transform.forward, transform.rotation);
-            Count = 20;
-        }
-        else if (Count!=0)
         {
-            MubAnimator.SetBool("GrenerateBug", false);
-        }
+            m_NowState = MagicCasterState.Summon;
+            if (m_NowState == MagicCasterState.Summon)
+            {
+                MubAnimator.SetBool("GrenerateBug", true);
+
+                MubAnimator.SetBool("Trace", false);
+                MubAnimator.SetBool("Attack", false);
+                MubAnimator.SetBool("Back", false);
+                
+                Debug.Log("²£¥ÍÂÎÂÎ");               
+            }
+            else if (Count != 0)
+            {
+                MubAnimator.SetBool("GrenerateBug", false);
+                m_NowState = MagicCasterState.Idle;
+            }
+        }        
     }
     private void OnDrawGizmos()
     {
@@ -317,10 +325,16 @@ public class MagicCasterFSM : MonoBehaviour
     }
     IEnumerator SummonCooldown()
     {
-        while (Count >= 0)
+        while (Count > -1)
         {
             yield return new WaitForSeconds(1);            
             Count--;
         }
+    }
+    private void Summon()
+    {
+        Instantiate(Bug, transform.forward, transform.rotation);
+        Count = 20;
+        StartCoroutine(SummonCooldown());
     }
 }
