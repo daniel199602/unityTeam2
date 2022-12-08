@@ -220,6 +220,19 @@ CapsuleCollider:
   m_Height: 2.1
   m_Direction: 1
   m_Center: {x: 0.0075799557, y: 1.0046027, z: 0.14044517}
+--- !u!114 &-598495555683749130
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4292004830827175513}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7115c9c725dd2df4dbf732bd0afc60e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  thisMobItem: {fileID: 11400000, guid: 9298f08ade71c6e46b0200171a201619, type: 2}
 --- !u!114 &306180867
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -263,6 +276,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8889cc20c3fac041a511c9e2cfa83c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MaxHp: 1000
   Hp: 1000
   currentHp: 0
 --- !u!224 &8510088616971104976 stripped
