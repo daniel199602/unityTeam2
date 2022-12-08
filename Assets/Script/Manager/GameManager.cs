@@ -12,10 +12,11 @@ public class GameManager : MonoBehaviour
     {
         mInstance = this;
         DontDestroyOnLoad(this.gameObject);
+        mobPool = new List<GameObject>();
     }
     private void Start()
     {
-        mobPool = new List<GameObject>();
+       
     }
 
     private void Update()

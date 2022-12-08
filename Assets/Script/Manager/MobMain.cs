@@ -33,10 +33,9 @@ public class MobMain : MonoBehaviour
     {
         GameObject player = GameObject.FindWithTag("Player");
         mobHave = true;
-
-        
         oPool = gameObject.AddComponent<ObjectPool>();
         pTestList = oPool.InitObjectPoolData(npcObject, 8);
         
+
     }
 }

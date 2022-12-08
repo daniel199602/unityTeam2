@@ -27,28 +27,37 @@ public class HealthBar : MonoBehaviour
     void Update()
     {
         Health = PlayerHp.Hp;
-        
+        StartCoroutine(HealthBarDelay());
+
+
     }
     public void BarFilter()
     {
-        Healthbar.fillAmount = Mathf.Lerp(Healthbar.fillAmount, Health / Maxhealth, _lerpspeed);
-        Debug.Log("減少中"+Health / Maxhealth);    
+        Healthbar.fillAmount = Health/ Maxhealth;
+        Debug.Log("減少中"+Health / Maxhealth);
         //Debug.Log(Healthbar.fillAmount);
-        //StartCoroutine(HealthBarDelay());                
+        
     }
-    //IEnumerator HealthBarDelay()
-    //{
-    //    CountTime = 2;
-    //    while (CountTime >= 0)
-    //    {
-    //        yield return new WaitForSeconds(1);
-    //        if (CountTime < 0)
-    //        {
-    //            HealthbarLate.fillAmount = Mathf.Lerp(HealthbarLate.fillAmount, Health / Maxhealth, _lerpspeed);
-    //        }            
-    //        CountTime--;
-    //    }
-    //}
+    IEnumerator HealthBarDelay()
+    {
+        CountTime = 1;
+        while (CountTime >= 0)
+        {
+            yield return new WaitForSeconds(Time.deltaTime);
+            if (CountTime < 0)
+            {
+                if (HealthbarLate.fillAmount > Healthbar.fillAmount)
+                {
+                    HealthbarLate.fillAmount -= 0.01f;
+                }
+                else
+                {
+                    HealthbarLate.fillAmount = Healthbar.fillAmount;
+                }
+            }
+            CountTime--;
+        }
+    }
 
 
 }
