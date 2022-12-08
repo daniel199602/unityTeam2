@@ -9,8 +9,7 @@ public class FindMobMain : MonoBehaviour
 
     private void Awake()
     {
-        GameManager.Instance().mobPool.Add(this.gameObject);
-        
+        GameManager.Instance().mobPool.Add(this.gameObject); 
     }
     // Update is called once per frame
     void Update()

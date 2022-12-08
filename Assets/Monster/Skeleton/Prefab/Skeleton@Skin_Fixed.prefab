@@ -922,7 +922,6 @@ GameObject:
   - component: {fileID: 3244984096567057990}
   - component: {fileID: 3485271348948714616}
   - component: {fileID: 403543031348824484}
-  - component: {fileID: 1354034309353821876}
   m_Layer: 0
   m_Name: Skeleton@Skin_Fixed
   m_TagString: Untagged
@@ -1010,8 +1009,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52873382c4e699040bd02aff3f260024, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Healthbar: {fileID: 1617921843991885430}
-  HealthbarLate: {fileID: 0}
+  Healthbar: {fileID: 5587713390773676686}
+  HealthbarLate: {fileID: 1617921843991885430}
   Health: 0
   Maxhealth: 0
 --- !u!114 &3485271348948714616
@@ -1039,18 +1038,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6f398d9a3569e144d8afc89d7600f7eb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1354034309353821876
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8171539735143675359}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 777b924c59cda0e48a4c521996c81569, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &8171539735143675361
@@ -1680,6 +1667,17 @@ RectTransform:
 --- !u!114 &1617921843991885430 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5038550680175181988, guid: ed3ae93d0f7aa4948b113672d7a7adf8, type: 3}
+  m_PrefabInstance: {fileID: 6023710176763066066}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &5587713390773676686 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2167093184211721308, guid: ed3ae93d0f7aa4948b113672d7a7adf8, type: 3}
   m_PrefabInstance: {fileID: 6023710176763066066}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}

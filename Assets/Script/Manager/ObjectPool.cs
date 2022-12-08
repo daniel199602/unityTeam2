@@ -30,12 +30,15 @@ public class ObjectPool : MonoBehaviour
         for (int i = 0; i < iCount; i++)
         {
             GameObject go = Instantiate(o) as GameObject;
+            
             ObjectPoolData data = new ObjectPoolData();
             data.bUsing = false;
             data.go = go;
+            GameManager.Instance().mobPool.Add(go);
             go.SetActive(false);
             go.transform.SetParent(this.transform);
             pList.Add(data);
+            
         }
         return pList;
     }

@@ -2520,8 +2520,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52873382c4e699040bd02aff3f260024, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Healthbar: {fileID: 92118045550701079}
-  HealthbarLate: {fileID: 0}
+  Healthbar: {fileID: 6537199429358384879}
+  HealthbarLate: {fileID: 92118045550701079}
   Health: 0
   Maxhealth: 0
 --- !u!114 &1764858278061436294
@@ -3182,6 +3182,17 @@ RectTransform:
 --- !u!114 &92118045550701079 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5038550680175181988, guid: ed3ae93d0f7aa4948b113672d7a7adf8, type: 3}
+  m_PrefabInstance: {fileID: 4948264094723926707}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &6537199429358384879 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2167093184211721308, guid: ed3ae93d0f7aa4948b113672d7a7adf8, type: 3}
   m_PrefabInstance: {fileID: 4948264094723926707}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}

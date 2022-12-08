@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerState : MonoBehaviour
 {
+
+
     [SerializeField] public int Hp = 1000;
     [SerializeField] private int currentHp;
 
@@ -24,15 +26,21 @@ public class PlayerState : MonoBehaviour
 
     private void Update()
     {
+        
+        if (Input.GetKeyDown(KeyCode.U))
+        {
+            Hp -= 50;
+        }
         HpCheck();
+        Health.BarFilter();
     }
     public void HpCheck()
     {
         if (Hp != currentHp)
         {
             Debug.Log("¦©¦å");
+            
             currentHp = Hp;
-            Health.BarFilter();
         }
         if (currentHp < 0)
         {
