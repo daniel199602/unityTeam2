@@ -1949,6 +1949,7 @@ GameObject:
   - component: {fileID: -3933064489400172081}
   - component: {fileID: 3716577718639574146}
   - component: {fileID: 1070152119589441916}
+  - component: {fileID: 5233068973903805898}
   m_Layer: 0
   m_Name: Bear_4
   m_TagString: Untagged
@@ -2007,6 +2008,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8889cc20c3fac041a511c9e2cfa83c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MaxHp: 1000
   Hp: 1000
   currentHp: 0
 --- !u!114 &-3211659231050840349
@@ -2066,6 +2068,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 777b924c59cda0e48a4c521996c81569, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &5233068973903805898
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7962199819078159310}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7115c9c725dd2df4dbf732bd0afc60e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  thisMobItem: {fileID: 11400000, guid: 05ab35d565443464f9a330c1a8b837be, type: 2}
 --- !u!1 &8002475675295336084
 GameObject:
   m_ObjectHideFlags: 0

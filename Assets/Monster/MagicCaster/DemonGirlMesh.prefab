@@ -2427,6 +2427,7 @@ GameObject:
   - component: {fileID: 1764858278061436294}
   - component: {fileID: 796329680502127141}
   - component: {fileID: 4875957930652274703}
+  - component: {fileID: 5249844410737661589}
   m_Layer: 0
   m_Name: DemonGirlMesh
   m_TagString: Untagged
@@ -2506,6 +2507,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8889cc20c3fac041a511c9e2cfa83c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MaxHp: 1000
   Hp: 1000
   currentHp: 0
 --- !u!114 &2287063813628994175
@@ -2563,6 +2565,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0bcc366d136fe04b8f8c1e71ec3bb9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &5249844410737661589
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8557610552027109654}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7115c9c725dd2df4dbf732bd0afc60e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  thisMobItem: {fileID: 11400000, guid: a18de89d05cf49a4b9d45d380b4ac1b4, type: 2}
 --- !u!1 &8557626694189890328
 GameObject:
   m_ObjectHideFlags: 0
