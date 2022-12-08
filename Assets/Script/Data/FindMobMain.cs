@@ -7,10 +7,9 @@ public class FindMobMain : MonoBehaviour
 
     // Start is called before the first frame update
 
-    private void Start()
+    private void Awake()
     {
-        GameObject go = GameObject.Find("MobMain");
-        this.transform.SetParent(go.transform);
+        GameManager.Instance().mobPool.Add(this.gameObject);
         
     }
     // Update is called once per frame

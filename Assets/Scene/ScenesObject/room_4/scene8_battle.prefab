@@ -1529,6 +1529,7 @@ MonoBehaviour:
   - {fileID: 7913888484847442291, guid: 77b3339ff59b97d4ea54eec618195a8a, type: 3}
   - {fileID: 1813624008133311759, guid: 18d9e332fe834c647bd454e2f84effb5, type: 3}
   - {fileID: 2153456322629685819, guid: 151092dce0aa50042a224e70eb25fa12, type: 3}
+  aa: {fileID: 0}
 --- !u!1 &7952589243387462716
 GameObject:
   m_ObjectHideFlags: 0
@@ -5154,7 +5155,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 6572764536711356813}
+    m_TransformParent: {fileID: 77185883802565605}
     m_Modifications:
     - target: {fileID: 3716577718639574146, guid: f5b41ba4c79702547a89de7544b80656, type: 3}
       propertyPath: m_IsTrigger
@@ -5162,7 +5163,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7292658344771522932, guid: f5b41ba4c79702547a89de7544b80656, type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7292658344771522932, guid: f5b41ba4c79702547a89de7544b80656, type: 3}
       propertyPath: m_LocalScale.x

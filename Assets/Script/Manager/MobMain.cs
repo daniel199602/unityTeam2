@@ -37,5 +37,6 @@ public class MobMain : MonoBehaviour
         
         oPool = gameObject.AddComponent<ObjectPool>();
         pTestList = oPool.InitObjectPoolData(npcObject, 8);
+        
     }
 }
