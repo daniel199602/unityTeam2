@@ -684,7 +684,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &255366553
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3735,7 +3735,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3554710006498978605, guid: 843a687dd2b95bb4cb66922c432cf3f4, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4765728035046430749, guid: 843a687dd2b95bb4cb66922c432cf3f4, type: 3}
       propertyPath: Target
@@ -3797,8 +3797,7 @@ PrefabInstance:
       propertyPath: hitMask.m_Bits
       value: 512
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 3554710006498978605, guid: 843a687dd2b95bb4cb66922c432cf3f4, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 843a687dd2b95bb4cb66922c432cf3f4, type: 3}
 --- !u!1 &780852940 stripped
 GameObject:
