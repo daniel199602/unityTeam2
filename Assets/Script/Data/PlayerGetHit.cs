@@ -49,6 +49,7 @@ public class PlayerGetHit : MonoBehaviour
         Count = 5;
         while (Count >= 0)
         {
+            fooHp.fHp = 0;
             yield return new WaitForSeconds(1);
             fooHp.fHp -= Weapondamamge_Delay;
             Count--;
