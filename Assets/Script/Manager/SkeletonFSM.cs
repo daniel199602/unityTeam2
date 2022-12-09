@@ -169,11 +169,8 @@ public class SkeletonFSM : MonoBehaviour
     }
     public void Move()
     {
-       
 
         GetTargetMegnitude = (Target.transform.position - transform.position).magnitude;
-
-        
 
         Debug.Log("當前速度" + MoveSpeed);
 

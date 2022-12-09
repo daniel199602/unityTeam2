@@ -185,8 +185,7 @@ public class MagicCasterFSM : MonoBehaviour
             InATKrange_Close = CloseRange_RangedBattleRange(ATKRadius, Close_ATKRadius, MySelf, Target);
             if (InATKrange_Close == true)
             {
-                m_NowState = MagicCasterState.Idle;
-                Idle();
+                m_NowState = MagicCasterState.Attack;                
                 Debug.LogError("LI is active");
             }
             GetTargetMegnitude = (Target.transform.position - transform.position).magnitude;
