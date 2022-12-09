@@ -6,91 +6,36 @@ using System.Collections;
 
 public class CharacterAttackManager : MonoBehaviour
 {
-
+    //之後寫武器管理器，看要直接寫在 CharacterAttackManager這，還是另外寫一個新的Class管理，目前先保留
     [HideInInspector] public float angle = 80f;
-
     [HideInInspector] public float radius = 80f;
-
     [HideInInspector] public int Weapondamage_Instant;
-
     [HideInInspector] public int Weapondamamge_Delay;
 
-    [SerializeField] private List<GameObject> Target;
+    Weapon weaponData;//想想怎了改，串接後刪除
 
-    [SerializeField] List<PlayerState> PlayerData;
+    PlayerGetHit TargetGetHit_DamageDeal;//取用 PlayerGetHit，先留著想想怎麼改
 
-    Weapon weaponData;
+    public int fHp;//牽扯到 PlayerGetHit 之後必刪掉，但先想想流程怎麼改、怎麼串接口
 
-    private bool flag;
-
-    PlayerGetHit TargetGetHit_DamageDeal;
-
-    public int fHp;
-
-    int DMtype = 0;
-    int Type_weapon;
-
-    /*1206測試中*/
-    int mobsCount = 0;
-    GameObject mobMain;
-    Random_room randomRoom;
-
-    bool isCompleted = false;//只做一次，確認場景是否生成完畢
-    /**/
-
+    int DMtype = 0;//牽扯到 PlayerGetHit 應該由 PlayerGetHit自己做事，之後刪
+    int Type_weapon;//之後可能刪，想想怎麼接
 
     private void Awake()
     {
-        mobMain = GameObject.Find("MobMain");//抓出場上MobMain物件
-        randomRoom = GameObject.Find("Main_room").GetComponent<Random_room>();//抓出Main_room物件底下的Script
         TargetGetHit_DamageDeal = GetComponent<PlayerGetHit>();
         weaponData = GetComponent<Weapon>();
         Type_weapon = weaponData.Weapon_Type;
     }
 
-    /*1206測試中，先針對room場景*/
-    IEnumerator WaitAndGetTargetAgain()
-    {
-        yield return new WaitForSeconds(0.1f);
-    }
-    /**/
-
     private void Start()
     {
-        fHp = 0;
+        fHp = 0;//牽扯到 PlayerGetHit 之後必刪掉
 
-        /*1207 看Weapon數值測試用 之後刪除*/
+        /*1207 看Weapon數值測試用 之後武器管理寫好後會刪除*/
         Type_weapon = 2;
         weaponData.WeaponType(Type_weapon);
         /**/
-
-        /*1206測試中，先針對room場景*/
-
-        
-
-        mobsCount = mobMain.transform.childCount;
-        for (int i = 0; i < mobsCount; i++)
-        {
-            if (mobMain.transform.GetChild(0).gameObject)
-            {
-                Target.Add(mobMain.transform.GetChild(i).gameObject);
-            }
-            else
-            {
-                StartCoroutine(WaitAndGetTargetAgain());
-                i = 0;
-                continue;
-            }
-        }
-        Debug.LogWarning("Target.Count(Start):" + mobsCount);
-        Debug.LogWarning("PlayerData.Count(Start):" + PlayerData.Count);
-        /**/
-
-        //拿到所有怪的PlayerState類別，並存進去PlayerData
-        foreach (GameObject mob in Target)
-        {
-            PlayerData.Add(mob.GetComponent<PlayerState>());
-        }
 
         /*weaponData相關_暫時註解起來*/
         radius = weaponData.weaPonRadius;
@@ -105,40 +50,8 @@ public class CharacterAttackManager : MonoBehaviour
 
     private void Update()
     {
-        /*1206測試中，先針對room場景，解決抓不到剩餘菁英怪的問題*/
-        //如果地城生成已完成就執行
-        if (!isCompleted && randomRoom.dungeonState == DungeonState.completed)
-        {
-            isCompleted = true;//不重複執行
-
-            mobsCount = mobMain.transform.childCount;
-            Target.Clear();//清掉全部重新存一次
-            for (int i = 0; i < mobsCount; i++)
-            {
-                if (mobMain.transform.GetChild(0).gameObject)
-                {
-                    Target.Add(mobMain.transform.GetChild(i).gameObject);
-                }
-                else
-                {
-                    StartCoroutine(WaitAndGetTargetAgain());
-                    i = 0;
-                    continue;
-                }
-            }
-
-            //拿到所有怪的PlayerState類別，並存進去PlayerData
-            PlayerData.Clear();//清掉全部重新存一次
-            foreach (GameObject mob in Target)
-            {
-                PlayerData.Add(mob.GetComponent<PlayerState>());
-            }
-            Debug.LogWarning("Target.Count(SceneFinish):" + Target.Count);
-            Debug.LogWarning("PlayerData.Count(SceneFinish):" + PlayerData.Count);
-        }
-        /**/
-
         /*weaponData相關_暫時註解起來*/
+        //1209之後武器管理員寫完後，必刪除
         weaponData.WeaponType(Type_weapon);
         radius = weaponData.weaPonRadius;
         angle = weaponData.weaPonangle;
@@ -147,30 +60,28 @@ public class CharacterAttackManager : MonoBehaviour
         DMtype = 0;
     }
 
-
-
     /// <summary>
-    /// 綁在攻擊動畫事件
+    /// 攻擊事件，綁在攻擊動畫上
     /// </summary>
     private void AttackEvent()
     {
-        for (int i = 0; i <= Target.Count - 1; i++)
+        foreach(GameObject mob in GameManager.Instance().mobPool)
         {
             Debug.Log("attack");
-            if (IsInRange(angle, radius, gameObject.transform, Target[i].transform))
+            if (IsInRange(angle, radius, gameObject.transform, mob.transform))
             {
-                TargetGetHit_DamageDeal.GetHitByOther(DMtype);
-                PlayerData[i].Hp += fHp;
-                Debug.Log("我猜有抓到怪物Hp" + PlayerData[i].Hp);
-                Debug.Log("Hp減少:" + (PlayerData[i].Hp += fHp));
-                Debug.Log("傷害數值:" + fHp);
+                TargetGetHit_DamageDeal.GetHitByOther(DMtype);//這個必改，想一下怎麼改
+                /*mob.GetComponent<PlayerState>().Hp += fHp;*///這個牽扯 GetHitByOther 必改，想一下怎麼改
+
+                mob.GetComponent<PlayerState>().HpDeduction(-fHp);
+
+                Debug.LogWarning("我猜有抓到怪物Hp" + mob.GetComponent<PlayerState>().Hp); //測試用之後刪
+                Debug.LogWarning("Hp減少:" + (mob.GetComponent<PlayerState>().Hp += fHp)); //測試用之後刪
+                Debug.LogWarning("傷害數值:" + fHp); //這個牽扯 GetHitByOther，必改，測試用之後刪
                 Debug.LogWarning("Hit");
             }
         }
-
     }
- 
-
 
     /// <summary>
     /// 攻擊範圍判定
@@ -180,7 +91,7 @@ public class CharacterAttackManager : MonoBehaviour
     /// <param name="attacker">攻擊者</param>
     /// <param name="attacked">被攻擊者</param>
     /// <returns></returns>
-    public bool IsInRange(float sectorAngle, float sectorRadius, Transform attacker, Transform attacked)
+    public bool IsInRange(float sectorAngle, float sectorRadius, Transform attacker, Transform attacked)//1209稍微修整一下變數名稱
     {
         Vector3 direction = attacked.position - attacker.position;
         float dot = Vector3.Dot(direction.normalized, transform.forward);
@@ -190,7 +101,7 @@ public class CharacterAttackManager : MonoBehaviour
     }
 
 
-
+    //1209，OnDrawGizmos 這個先保留著好了
     //private void OnDrawGizmos()
     //{
     //    Handles.color = flag ? Color.cyan : Color.red;
