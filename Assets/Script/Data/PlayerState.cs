@@ -16,14 +16,13 @@ public class PlayerState : MonoBehaviour
     {
         thisItemOnMob = GetComponent<ItemOnMob>();
         Health = GetComponent<HealthBar>();
-        MaxHp = thisItemOnMob.mobMaxHp;
-        Hp = MaxHp;
-        currentHp = Hp;
     }
 
     private void Start()
     {
-        
+        MaxHp = thisItemOnMob.mobMaxHp;
+        Hp = MaxHp;
+        currentHp = Hp;
     }
 
     private void Update()
