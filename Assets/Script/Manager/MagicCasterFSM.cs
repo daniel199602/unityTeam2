@@ -4,12 +4,13 @@ using UnityEngine;
 
 public enum MagicCasterState
 {
-    Idle, Trace,Back, Attack, GetHit, Dead,Summon,
+    Idle, Trace, Back, Attack, GetHit, Dead, Summon,
 }
 public class MagicCasterFSM : MonoBehaviour
 {
     public GameObject Bug;
     public GameObject TestCube;
+    public Transform LaunchPort;
 
     private MagicCasterState m_NowState;
     public GameObject Target;
@@ -46,7 +47,7 @@ public class MagicCasterFSM : MonoBehaviour
         MubAnimator = GetComponent<Animator>();
         State = GetComponent<PlayerState>();
         hpTemporary = State.Hp;
-        FrameCount_Roar = 430;
+        FrameCount_Roar = 250;
         LeaveAttackRangeBool = false;
         InAttackRangeBool = false;
 
@@ -98,7 +99,7 @@ public class MagicCasterFSM : MonoBehaviour
 
             BugSummon();
 
-            Debug.Log("CDs:"+Count);                                    
+            Debug.Log("CDs:" + Count);
 
             TraceStatus();
 
@@ -110,7 +111,7 @@ public class MagicCasterFSM : MonoBehaviour
 
             BackStatus();
         }
-        Debug.Log(m_NowState);        
+        Debug.Log(m_NowState);
     }
     public void DeadStatus()
     {
@@ -123,7 +124,7 @@ public class MagicCasterFSM : MonoBehaviour
     //°lÀ»ª¬ºA
     public void TraceStatus()
     {
-        if (LeaveAttackRangeBool == false&&m_NowState != MagicCasterState.Summon)
+        if (LeaveAttackRangeBool == false && m_NowState != MagicCasterState.Summon)
         {
             tracing = IsInRange_TraceRange(ATKRadius, MySelf, Target);
             if (tracing == true)
@@ -131,7 +132,7 @@ public class MagicCasterFSM : MonoBehaviour
                 m_NowState = MagicCasterState.Trace;
                 Debug.Log("NowInT");
                 if (m_NowState == MagicCasterState.Trace)
-                { 
+                {
                     MubAnimator.SetBool("Trace", true);
                     MubAnimator.SetBool("Attack", false);
                 }
@@ -145,7 +146,7 @@ public class MagicCasterFSM : MonoBehaviour
     //§ðÀ»ª¬ºA
     public void AttackStatus()
     {
-        InATKrange = IsInRange_RangedBattleRange(ATKRadius,Close_ATKRadius, MySelf, Target);
+        InATKrange = IsInRange_RangedBattleRange(ATKRadius, Close_ATKRadius, MySelf, Target);
         if (InATKrange == true)
         {
             LeaveAttackRangeBool = true;
@@ -270,31 +271,29 @@ public class MagicCasterFSM : MonoBehaviour
     }
     public void Idle()
     {
-        
+
         MubAnimator.SetBool("Trace", false);
     }
 
     public void BugSummon()
-    {        
-        if (Count ==0)
+    {
+        if (Count <= 0)
         {
             m_NowState = MagicCasterState.Summon;
             if (m_NowState == MagicCasterState.Summon)
             {
                 MubAnimator.SetBool("GrenerateBug", true);
-
+                Debug.Log("²£¥ÍÂÎÂÎ");
                 MubAnimator.SetBool("Trace", false);
                 MubAnimator.SetBool("Attack", false);
                 MubAnimator.SetBool("Back", false);
-                
-                Debug.Log("²£¥ÍÂÎÂÎ");               
             }
-            else if (Count != 0)
-            {
-                MubAnimator.SetBool("GrenerateBug", false);
-                m_NowState = MagicCasterState.Idle;
-            }
-        }        
+        }
+        else if (Count != 0)
+        {
+            MubAnimator.SetBool("GrenerateBug", false);
+            m_NowState = MagicCasterState.Idle;
+        }
     }
     private void OnDrawGizmos()
     {
@@ -304,12 +303,13 @@ public class MagicCasterFSM : MonoBehaviour
         Gizmos.color = OutATKrange ? Color.blue : Color.black;
         Gizmos.DrawWireSphere(transform.position, LeaveATKRadius);
 
-        Gizmos.color = InATKrange_Close? Color.green : Color.cyan;
+        Gizmos.color = InATKrange_Close ? Color.green : Color.cyan;
         Gizmos.DrawWireSphere(transform.position, Close_ATKRadius);
-    }   
+    }
     private void AnimationSpeed_Attack()
     {
-        MubAnimator.speed = 0.1f;
+        MubAnimator.speed = 0.2f;        
+        Instantiate(TestCube,LaunchPort.position,MySelf.transform.rotation);
     }
     private void AnimationSpeed_AttackEnd()
     {
@@ -327,13 +327,13 @@ public class MagicCasterFSM : MonoBehaviour
     {
         while (Count > -1)
         {
-            yield return new WaitForSeconds(1);            
+            yield return new WaitForSeconds(1);
             Count--;
         }
     }
     private void Summon()
     {
-        Instantiate(Bug, transform.forward, transform.rotation);
+        Instantiate(Bug,(MySelf.transform.position+ MySelf.transform.forward*10), MySelf.transform.rotation);
         Count = 20;
         StartCoroutine(SummonCooldown());
     }
