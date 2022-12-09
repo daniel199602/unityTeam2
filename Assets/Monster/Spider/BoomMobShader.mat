@@ -31,7 +31,7 @@ Material:
     - _ObjectHeight: 1
     - _fall: 1
     - _hight: 1.83
-    - _offset: 5
+    - _offset: -3
     m_Colors:
     - _Color: {r: 2, g: 0.015686275, b: 0, a: 1}
   m_BuildTextureStacks: []

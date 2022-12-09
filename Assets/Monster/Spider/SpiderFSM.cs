@@ -39,7 +39,9 @@ public class SpiderFSM : MonoBehaviour
     float TraceRadius;
 
     float ATKRadius;
+
     float GizmoRa;
+
     public float Speed;
 
     Vector3 GetTargetNormalize;
@@ -49,6 +51,10 @@ public class SpiderFSM : MonoBehaviour
     float MoveSpeed;
 
     int FrameCount_Roar;
+
+    int ColorChange;
+
+    float ColorChangeTime;
     private void Start()
     {
         mesh = gameObject.GetComponent<SkinnedMeshRenderer>().sharedMesh;
@@ -190,21 +196,26 @@ public class SpiderFSM : MonoBehaviour
         return direction.magnitude + TargetCapsule.radius <= Radius;
     }
     IEnumerator changShader()
-    {        
-        for (int i = 10; i >= 0; i--)
-        {
-            Debug.Log("changing");
+    {
+        Debug.LogWarning("Changing");
+        while (ColorChange>0)
+        {            
             offset = -3;
             mat.SetFloat("_offset", offset);
-            yield return new WaitForSeconds(i*.1f);
+            yield return new WaitForSeconds(ColorChangeTime);
             offset = 5;
-            yield return new WaitForSeconds(i*.1f);
+            mat.SetFloat("_offset", offset);
+            yield return new WaitForSeconds(ColorChangeTime);
+            ColorChangeTime /= 1.5f;
+            ColorChange--;
         }
     }
     public void ZoneOpen()
     {
         ATKRadius *=6;
         Instantiate(DangerZone,MySelf.transform.position,Quaternion.identity,MySelf.transform);
+        ColorChangeTime = .4f;
+        ColorChange = 5;
         StartCoroutine(changShader());
     }
     private void Animation_AttackEventTest()

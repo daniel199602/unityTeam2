@@ -509,6 +509,14 @@ PrefabInstance:
       propertyPath: Target
       value: 
       objectReference: {fileID: 703821303}
+    - target: {fileID: 6414648306119578305, guid: 99ae7bdd379a96a43b8b110cb3d899f3, type: 3}
+      propertyPath: DangerZone
+      value: 
+      objectReference: {fileID: 4521084516676180123, guid: 672b860e8f47e48459caca8042d3aa90, type: 3}
+    - target: {fileID: 6414648306119578305, guid: 99ae7bdd379a96a43b8b110cb3d899f3, type: 3}
+      propertyPath: ExplosionZone
+      value: 
+      objectReference: {fileID: 4521084516676180123, guid: c44565c5cd44c3647a8bccc1eac84743, type: 3}
     - target: {fileID: 7143010690539542105, guid: 99ae7bdd379a96a43b8b110cb3d899f3, type: 3}
       propertyPath: m_Name
       value: Spider
@@ -867,7 +875,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7148835291769178171, guid: 99ae7bdd379a96a43b8b110cb3d899f3, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 417.33344
+      value: 529.7
       objectReference: {fileID: 0}
     - target: {fileID: 7148835291769178171, guid: 99ae7bdd379a96a43b8b110cb3d899f3, type: 3}
       propertyPath: m_LocalPosition.y
@@ -875,7 +883,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7148835291769178171, guid: 99ae7bdd379a96a43b8b110cb3d899f3, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 429.0254
+      value: 304.7
       objectReference: {fileID: 0}
     - target: {fileID: 7148835291769178171, guid: 99ae7bdd379a96a43b8b110cb3d899f3, type: 3}
       propertyPath: m_LocalRotation.w
