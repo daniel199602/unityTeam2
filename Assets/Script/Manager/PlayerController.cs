@@ -28,14 +28,6 @@ public class PlayerController : MonoBehaviour
     public GameObject torchL;//綁火把左手
     public GameObject weaponL;//左手
     public GameObject weaponR;//右手
-
-    /*武器，先暫時直接用，之後改抓武器Data*/
-    //盾牌
-    public GameObject Shield_Basic;
-    //單手武器
-    public GameObject w_Sword4_Yellow;
-    //雙手劍
-    public GameObject w_Sword_4;
     
 
     //keyCode.Alpha2 暫時切換 劍盾 與 雙手劍 bool變數，之後改再刪除
@@ -263,7 +255,7 @@ public class PlayerController : MonoBehaviour
 
 
     /// <summary>
-    /// 切換武器模式Key1,2,3,Tab
+    /// 切換武器模式Key1,2
     /// 同時切換currentLayerNum數值
     /// </summary>
     private void ControlSwitchWeapon()
@@ -289,26 +281,17 @@ public class PlayerController : MonoBehaviour
             //keyCode.Alpha2 暫時切換 劍盾 與 雙手劍 bool變數
             alpha2Switch = !alpha2Switch;
 
-            if (/*之後依據武器的type切換成 劍、盾*/alpha2Switch)
+            if (WeaponManager.Instance().CurrentWeaponR_weaponR.GetComponent<ItemOnWeapon>().weaponType == 2)
+            //if (/*之後依據武器的type切換成 劍、盾*/alpha2Switch)
             {
                 currentLayerNum = 1;
                 charaterAnimator.SetTrigger("isTriggerLayerChange");
-
-                //武器之後要想要怎麼存，這裡先硬寫
-                w_Sword4_Yellow.SetActive(true);
-                w_Sword_4.SetActive(false);
-                Shield_Basic.SetActive(true);//換盾牌
-
                 StartCoroutine(ShowWeaponLWeaponR());
             }
-            else /*之後依據武器的type切換成 雙手劍*/
+            else if(WeaponManager.Instance().CurrentWeaponR_weaponR.GetComponent<ItemOnWeapon>().weaponType == 3)
             {
                 currentLayerNum = 2;
                 charaterAnimator.SetTrigger("isTriggerLayerChange");
-                //武器之後要想要怎麼存，這裡先硬寫
-                w_Sword4_Yellow.SetActive(false);
-                w_Sword_4.SetActive(true);
-
                 StartCoroutine(ShowWeaponR());
             }
         }

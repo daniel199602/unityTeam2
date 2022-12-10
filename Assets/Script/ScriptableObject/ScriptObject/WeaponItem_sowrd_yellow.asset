@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponName: sword_yellow
   weaponType: 2
-  weaponID: 0
+  weaponID: 20
   weaponDamage_instant: 50
   weaponDamage_delay: 0
   weaponAngle: 60

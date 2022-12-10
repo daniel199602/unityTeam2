@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponName: shield_basic
   weaponType: 1
-  weaponID: 0
+  weaponID: 10
   weaponDamage_instant: 40
   weaponDamage_delay: 0
   weaponAngle: 60

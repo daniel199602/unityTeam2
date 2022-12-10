@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponName: bigSword_basic
   weaponType: 3
-  weaponID: 0
+  weaponID: 30
   weaponDamage_instant: 90
   weaponDamage_delay: 0
   weaponAngle: 95

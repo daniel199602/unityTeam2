@@ -15,6 +15,14 @@ public class WeaponManager : MonoBehaviour
     public List<GameObject> weaponPoolL;//左手武器池
     public List<GameObject> weaponPoolR;//右手武器池
 
+    /*非常非常重要的設定!!_會影響PlayerController的動畫Layer的切換*/
+    //左單火把_type 0, id 範圍 0~9 整數
+    //左單手盾_type 1, id 範圍 10~19 整數
+    //右單手劍_type 2, id 範圍 20~29 整數
+    //右雙手劍_type 3, id 範圍 30~39 整數
+    /**/
+
+
     /// <summary>
     /// 當前使用中的火把
     /// </summary>
@@ -25,6 +33,7 @@ public class WeaponManager : MonoBehaviour
     public GameObject CurrentWeaponL_weaponL { private set; get; }
     /// <summary>
     /// 當前使用中的右手武器
+    /// PlayerController判斷玩家當前Animator Layer的依據，右手武器type==2 or type==3
     /// </summary>
     public GameObject CurrentWeaponR_weaponR { private set; get; }
 
@@ -32,10 +41,7 @@ public class WeaponManager : MonoBehaviour
     {
         mInstance = this;
         DontDestroyOnLoad(this.gameObject);
-    }
 
-    void Start()
-    {
         //左手火把存進 火把池(L)
         if (torchL.transform.GetChild(0).gameObject)
         {
@@ -60,11 +66,16 @@ public class WeaponManager : MonoBehaviour
                 weaponPoolR.Add(weaponR.transform.GetChild(i).gameObject);
             }
         }
+    }
+
+    void Start()
+    {
+        
 
         //玩家初始武器設定
         ChooseAndUseWeapon(0, 0);//初始火把
-        ChooseAndUseWeapon(1, 0);//初始盾牌
-        ChooseAndUseWeapon(2, 0);//初始右手單手劍
+        ChooseAndUseWeapon(1, 10);//初始盾牌
+        ChooseAndUseWeapon(2, 20);//初始右手單手劍
     }
 
     /// <summary>
@@ -73,14 +84,19 @@ public class WeaponManager : MonoBehaviour
     /// </summary>
     /// <param name="type"></param>
     /// <param name="id"></param>
-    public GameObject ChooseAndUseWeapon(int type, int id)
+    public void ChooseAndUseWeapon(int type, int id)
     {
         WeaponSetActiveOpen(type, id);//開啟選擇的武器
 
-        if (type == 0) this.CurrentTorchL_torch = GetWeapon(type, id);//當前火把
-        if (type == 1) this.CurrentWeaponL_weaponL = GetWeapon(type, id);//當前左手武器
-        if (type == 2 || type == 3) this.CurrentWeaponR_weaponR = GetWeapon(type, id);//當前右手武器
-        return GetWeapon(type, id);//抓出該武器資料
+        if (type == 0)
+            this.CurrentTorchL_torch = GetWeapon(type, id);//當前火把
+        if (type == 1)
+            this.CurrentWeaponL_weaponL = GetWeapon(type, id);//當前左手武器
+        if (type == 2)
+            this.CurrentWeaponR_weaponR = GetWeapon(type, id);//當前右單手武器
+        if (type == 3)
+            this.CurrentWeaponR_weaponR = GetWeapon(type, id);//當前右雙手武器
+
     }
 
     /// <summary>
@@ -97,6 +113,7 @@ public class WeaponManager : MonoBehaviour
                 if (weapon.GetComponent<ItemOnWeapon>().weaponID == id)
                 {
                     weapon.SetActive(true);
+                    Debug.LogWarning("火把的type:" + type+"id:"+id);//debug
                 }
                 else
                 {
@@ -111,6 +128,7 @@ public class WeaponManager : MonoBehaviour
                 if (weapon.GetComponent<ItemOnWeapon>().weaponID == id)
                 {
                     weapon.SetActive(true);
+                    Debug.LogWarning("左單手盾type:" + type + "id:" + id);//debug
                 }
                 else
                 {
@@ -118,13 +136,29 @@ public class WeaponManager : MonoBehaviour
                 }
             }
         }
-        if (type == 2 || type == 3)//右單手劍_type2 or 右雙手劍_type3
+        if (type == 2)//右單手劍_type2
         {
             foreach (GameObject weapon in weaponPoolR)
             {
                 if (weapon.GetComponent<ItemOnWeapon>().weaponID == id)
                 {
                     weapon.SetActive(true);
+                    Debug.LogWarning("右單手劍 type:" + type + "id:" + id);//debug
+                }
+                else
+                {
+                    weapon.SetActive(false);
+                }
+            }
+        }
+        if (type == 3)//右雙手劍_type3
+        {
+            foreach (GameObject weapon in weaponPoolR)
+            {
+                if (weapon.GetComponent<ItemOnWeapon>().weaponID == id)
+                {
+                    weapon.SetActive(true);
+                    Debug.LogWarning("右雙手劍 type:" + type + "id:" + id);//debug
                 }
                 else
                 {
@@ -163,7 +197,17 @@ public class WeaponManager : MonoBehaviour
                 }
             }
         }
-        if (type == 2 || type == 3)//右單手劍_2 or 右雙手劍_3
+        if (type == 2)//右單手劍_2
+        {
+            foreach (GameObject weapon in weaponPoolR)
+            {
+                if (weapon.GetComponent<ItemOnWeapon>().weaponID == id)
+                {
+                    return weapon;
+                }
+            }
+        }
+        if(type == 3)//右雙手劍_3
         {
             foreach (GameObject weapon in weaponPoolR)
             {
