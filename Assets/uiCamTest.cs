@@ -10,13 +10,13 @@ public class uiCamTest : MonoBehaviour
     void Start()
     {
         //originalRotation = transform.rotation;
+        camHp = Camera.main.transform.forward;
+        camHp.y = 0;
     }
 
     // Update is called once per frame
-    void Update()
+    void LateUpdate()
     {
-        camHp = Camera.main.transform.forward;
-        camHp.y = 0;
         transform.rotation = Quaternion.LookRotation(camHp);
         transform.rotation = Camera.main.transform.rotation;
         //transform.rotation = Camera.main.transform.rotation * originalRotation;

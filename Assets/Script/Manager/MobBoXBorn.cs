@@ -118,7 +118,7 @@ public class MobBoXBorn : MonoBehaviour
         {
             for (int i = 0 ; i < 8;  i++)
             {
-                Debug.Log("<8");
+                Debug.Log(killMobLast);
                 doorOpen_MobLast.killMob();
             }
             killAll = false;

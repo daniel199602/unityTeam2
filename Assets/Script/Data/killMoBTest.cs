@@ -4,7 +4,25 @@ using UnityEngine;
 
 public class killMoBTest : MonoBehaviour
 {
+    PlayerState PlayerHp;
+
     private float duration;
+
+    private void Awake()
+    {
+        PlayerHp = GetComponent<PlayerState>();
+    }
+
+    private void Update()
+    {
+        
+        if (PlayerHp.Hp<=0)
+        {
+            killMob();
+        }
+    }
+
+    
     public void killMob()
     {
         
@@ -15,10 +33,9 @@ public class killMoBTest : MonoBehaviour
         if(count<=0)
         {
             MobMain.Instance().MobBox.SendMessage("born");
-            //GameObject.Find("MobBoxBorn").SendMessage("born");
-
         }
 
     }
+   
 
 }

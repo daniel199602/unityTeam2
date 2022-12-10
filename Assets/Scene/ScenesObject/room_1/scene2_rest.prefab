@@ -1296,6 +1296,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 509430328337694083}
     m_Modifications:
+    - target: {fileID: 876861475078646595, guid: 2bb1994d6e68d234e8e3facd590ce6eb, type: 3}
+      propertyPath: m_Size.x
+      value: 78.57
+      objectReference: {fileID: 0}
+    - target: {fileID: 876861475078646595, guid: 2bb1994d6e68d234e8e3facd590ce6eb, type: 3}
+      propertyPath: m_Center.x
+      value: -4.5
+      objectReference: {fileID: 0}
     - target: {fileID: 3589567636346672280, guid: 2bb1994d6e68d234e8e3facd590ce6eb, type: 3}
       propertyPath: m_Name
       value: MobBorn_Room

@@ -4168,6 +4168,7 @@ MonoBehaviour:
   HealthbarLate: {fileID: 2138224032}
   Health: 0
   Maxhealth: 10
+  hpBar: {fileID: 0}
 --- !u!114 &1055768222
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4183,18 +4184,6 @@ MonoBehaviour:
   MaxHp: 1000
   Hp: 1000
   currentHp: 0
---- !u!114 &1055768223
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1055768209}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 777b924c59cda0e48a4c521996c81569, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1089245290
 PrefabInstance:
   m_ObjectHideFlags: 0
