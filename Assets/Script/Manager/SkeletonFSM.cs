@@ -2,63 +2,65 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum currentState
+public enum SkeletonState
 {
     Idle, Trace, Attack, GetHit, Dead,
 }
 public class SkeletonFSM : MonoBehaviour
 {
-    private currentState m_NowState;
+    private SkeletonState m_NowState;
     public GameObject Target;
     public GameObject MySelf;
-    float DisRange;
-    bool InRange;
-    float AttackRangeMiddle;
     PlayerState State;
     Animator MubAnimator;
     int hpTemporary;
     CapsuleCollider capsule;
+    bool LeaveAttackRangeBool;
+    bool RoarBool = false;
     bool tracing;
     bool InATKrange;
     bool OutATKrange;
-    int TraceRadius;//之後要塞攻擊距離用
-    int ATKRadius;
-    int LeaveATKRadius;
-    public float Speed;
-    float radius = 10f;
-    Vector3 Get3;
-    float Get;
-    float mSpeed;
-    bool ATT;
-    bool RRRR = false;
-    int F ;
+    float TraceRadius;
+    float ATKRadius;
+    float LeaveATKRadius;
+    public float Speed;    
+    Vector3 GetTargetNormalize;
+    float GetTargetMegnitude;
+    float MoveSpeed;
+
+    int CDs;
+
+    int FrameCount_Roar;
     void Start()
     {
-        m_NowState = currentState.Idle;
-        InRange = IsInRange_MeleeBattleRange(DisRange, MySelf, Target);
+        m_NowState = SkeletonState.Idle;
+        capsule = GetComponent<CapsuleCollider>();
         MubAnimator = GetComponent<Animator>();
         State = GetComponent<PlayerState>();
         hpTemporary = State.Hp;
-        capsule = GetComponent<CapsuleCollider>();
+        FrameCount_Roar = 160;
+        LeaveAttackRangeBool = false;
+        
+        ATKRadius = 30;//Weapon覆蓋
+
         TraceRadius = ATKRadius * 3;
-        ATKRadius = 30;
-        LeaveATKRadius = ATKRadius * 2;
-        ATT = false;
-        F = 160;
+        LeaveATKRadius = ATKRadius * 1.5f;
     }
     // Update is called once per frame
     void Update()
     {
-        F--;
-        
-        if (RRRR==false)
+        if (FrameCount_Roar>0)
+        {
+            FrameCount_Roar--;
+        }   
+        if (RoarBool==false)
         {
             Roar();
-            RRRR = true;            
+            RoarBool = true;            
         }
         if (State.Hp <= 0)//死亡→無狀態
         {
-            m_NowState = currentState.Dead;
+            m_NowState = SkeletonState.Dead;
             DeadStatus();
             return;
         }
@@ -67,17 +69,17 @@ public class SkeletonFSM : MonoBehaviour
             hpTemporary = State.Hp;
             MubAnimator.SetBool("GetHit", true);
         }        
-        else if (F<=0)
+        else if (FrameCount_Roar<=0)
         {
             MubAnimator.SetBool("GetHit", false);
 
-            Debug.LogError("f:" + F);
+            Debug.LogError("f:" + FrameCount_Roar);
 
             MubAnimator.SetBool("Roar", false);
 
-            Get3 = (Target.transform.position - transform.position).normalized;
+            GetTargetNormalize = (Target.transform.position - transform.position).normalized;
 
-            Quaternion Look = Quaternion.LookRotation(Get3);
+            Quaternion Look = Quaternion.LookRotation(GetTargetNormalize);
 
             transform.rotation = Quaternion.Slerp(transform.rotation, Look, Speed * Time.deltaTime);
 
@@ -91,7 +93,7 @@ public class SkeletonFSM : MonoBehaviour
     }
     public void DeadStatus()
     {
-        if (m_NowState == currentState.Dead)
+        if (m_NowState == SkeletonState.Dead)
         {
             MubAnimator.SetTrigger("isTriggerDie");
             capsule.radius = 0f;
@@ -99,16 +101,16 @@ public class SkeletonFSM : MonoBehaviour
     }
     public void TraceStatus()
     {
-        if (ATT == false)
+        if (LeaveAttackRangeBool == false)
         {
             MubAnimator.speed = 1;
 
             tracing = IsInRange_TraceRange(ATKRadius, MySelf, Target);
             if (tracing == true)
             {
-                m_NowState = currentState.Trace;
+                m_NowState = SkeletonState.Trace;
                 Debug.Log("NowInT");
-                if (m_NowState == currentState.Trace)
+                if (m_NowState == SkeletonState.Trace)
                 {
                     Move();
                     MubAnimator.SetBool("Trace", true);
@@ -122,9 +124,9 @@ public class SkeletonFSM : MonoBehaviour
         InATKrange = IsInRange_MeleeBattleRange(ATKRadius, MySelf, Target);
         if (InATKrange == true)
         {
-            ATT = true;
-            mSpeed = 0f;
-            m_NowState = currentState.Attack;
+            LeaveAttackRangeBool = true;
+            MoveSpeed = 0f;
+            m_NowState = SkeletonState.Attack;
             MubAnimator.SetBool("Trace", false);
             Attack();
             Debug.Log("NowInA");
@@ -132,19 +134,19 @@ public class SkeletonFSM : MonoBehaviour
     }
     public void LeaveAttackStatus()
     {
-        if (ATT == true)
+        if (LeaveAttackRangeBool == true)
         {
             OutATKrange = IsOutRange_MeleeBattleRange(LeaveATKRadius, ATKRadius, MySelf, Target);
             if (OutATKrange == true)
             {
-                m_NowState = currentState.Idle;
+                m_NowState = SkeletonState.Idle;
                 Idle();
                 Debug.LogError("L is active");
             }
-            Get = (Target.transform.position - transform.position).magnitude;
-            if (Get > LeaveATKRadius)
+            GetTargetMegnitude = (Target.transform.position - transform.position).magnitude;
+            if (GetTargetMegnitude > LeaveATKRadius)
             {
-                ATT = false;
+                LeaveAttackRangeBool = false;
             }
         }
     }
@@ -169,15 +171,12 @@ public class SkeletonFSM : MonoBehaviour
     }
     public void Move()
     {
-       
 
-        Get = (Target.transform.position - transform.position).magnitude;
+        GetTargetMegnitude = (Target.transform.position - transform.position).magnitude;
 
-        
+        Debug.Log("當前速度" + MoveSpeed);
 
-        Debug.Log("當前速度" + mSpeed);
-
-        if (Get > TraceRadius)
+        if (GetTargetMegnitude > TraceRadius)
         {
             int i = 0;
             if (i != 0)
@@ -186,46 +185,46 @@ public class SkeletonFSM : MonoBehaviour
             }
             else if (i == 0)
             {
-                mSpeed *= 1.5f;
+                MoveSpeed *= 1.5f;
                 MubAnimator.SetFloat("Blend", 1);
                 i++;
             }
         }
         else
         {
-            mSpeed *= 1f;
+            MoveSpeed *= 1f;
             MubAnimator.SetFloat("Blend", 0);
         }
 
-        Vector3 m = Vector3.MoveTowards(transform.position, Target.transform.position, mSpeed);
+        Vector3 m = Vector3.MoveTowards(transform.position, Target.transform.position, MoveSpeed);
 
         transform.position = m;
 
-        Debug.Log(mSpeed);
+        Debug.Log(MoveSpeed);
 
-        if (Get == ATKRadius)
+        if (GetTargetMegnitude == ATKRadius)
         {
-            mSpeed = Speed * 0f;
+            MoveSpeed = Speed * 0f;
         }
         else
         {
-            mSpeed = Speed * .01f;
+            MoveSpeed = Speed * .01f;
         }
     }
     public void Roar()
     {
 
         MubAnimator.SetBool("Roar", true);
-        mSpeed = Speed * 0f;
+        MoveSpeed = Speed * 0f;
 
     }
     public void Attack()
     {
-        if (m_NowState == currentState.Attack)
+        if (m_NowState == SkeletonState.Attack&&CDs==0)
         {
             MubAnimator.SetBool("Attack", true);
         }
-        else if (m_NowState == currentState.Trace)
+        else if (CDs != 0)
         {
             MubAnimator.SetBool("Attack", false);
         }
@@ -255,10 +254,20 @@ public class SkeletonFSM : MonoBehaviour
     private void AnimationSpeed_AttackEnd()
     {
         MubAnimator.speed = 1f;
-        LeaveATKRadius = ATKRadius * 2;
+        LeaveATKRadius = ATKRadius * 1.5f;
+        CDs = 3;
+        StartCoroutine(AttackCooldown());
     }
     public void ZoneOpen()
     {
-        LeaveATKRadius = ATKRadius * 5;
+        LeaveATKRadius = ATKRadius * 6;
+    }
+    IEnumerator AttackCooldown()
+    {
+        while (CDs > 0)
+        {
+            yield return new WaitForSeconds(1);
+            CDs--;
+        }
     }
 }
