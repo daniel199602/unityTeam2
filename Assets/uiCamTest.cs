@@ -18,7 +18,8 @@ public class uiCamTest : MonoBehaviour
         camHp = Camera.main.transform.forward;
         camHp.y = 0;
         transform.rotation = Quaternion.LookRotation(camHp);
-        
-        
+        transform.rotation = Camera.main.transform.rotation;
+
+
     }
 }
