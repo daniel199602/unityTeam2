@@ -9,10 +9,7 @@ public class FogOfWarPlayer : MonoBehaviour
     public Transform FogOfWarPlane;
     [SerializeField] int Number = 1;
 
-    void Start()
-    {
-       
-    }
+
 
     
     void Update()

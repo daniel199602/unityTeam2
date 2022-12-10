@@ -23,19 +23,24 @@ public class MobMain : MonoBehaviour
     public GameObject npcObject;
     public List<GameObject> pAliveObject = new List<GameObject>();
     public MobBoXBorn MobBox ;
+    public GameObject PlayerStart;
+
 
     private void Awake()
     {
         mInstance = this;
+        PlayerStart.SetActive(false);
+        
     }
 
     void Start()
     {
+        PlayerStart.SetActive(!PlayerStart.activeSelf);
         GameObject player = GameObject.FindWithTag("Player");
         mobHave = true;
         oPool = gameObject.AddComponent<ObjectPool>();
         pTestList = oPool.InitObjectPoolData(npcObject, 8);
-        
 
+        
     }
 }

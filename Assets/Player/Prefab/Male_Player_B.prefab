@@ -4782,6 +4782,7 @@ GameObject:
   - component: {fileID: 4765728035046430749}
   - component: {fileID: 7409894506743250130}
   - component: {fileID: 3554710006498978605}
+  - component: {fileID: 707197541644771798}
   m_Layer: 6
   m_Name: Male_Player_B
   m_TagString: Player
@@ -4979,6 +4980,18 @@ MonoBehaviour:
   Weapon_Damamge_Delay: 0
   weaPonangle: 0
   weaPonRadius: 0
+--- !u!114 &707197541644771798
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2631163319326334126}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 777b924c59cda0e48a4c521996c81569, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2631163493861753916
 GameObject:
   m_ObjectHideFlags: 0
