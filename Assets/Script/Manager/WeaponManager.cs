@@ -127,8 +127,4 @@ public class WeaponManager : MonoBehaviour
         }
     }
 
-    void Update()
-    {
-
-    }
 }
