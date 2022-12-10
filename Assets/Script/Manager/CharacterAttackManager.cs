@@ -14,8 +14,6 @@ public class CharacterAttackManager : MonoBehaviour
 
     Weapon weaponData;//想想怎了改，串接後刪除
 
-    PlayerGetHit TargetGetHit_DamageDeal;//取用 PlayerGetHit，先留著想想怎麼改
-
     public int fHp;//牽扯到 PlayerGetHit 之後必刪掉，但先想想流程怎麼改、怎麼串接口
 
     int DMtype = 0;//牽扯到 PlayerGetHit 應該由 PlayerGetHit自己做事，之後刪
@@ -23,7 +21,6 @@ public class CharacterAttackManager : MonoBehaviour
 
     private void Awake()
     {
-        TargetGetHit_DamageDeal = GetComponent<PlayerGetHit>();
         weaponData = GetComponent<Weapon>();
         Type_weapon = weaponData.Weapon_Type;
     }
@@ -70,8 +67,7 @@ public class CharacterAttackManager : MonoBehaviour
             Debug.Log("attack");
             if (IsInRange(angle, radius, gameObject.transform, mob.transform))
             {
-                TargetGetHit_DamageDeal.GetHitByOther(DMtype);//這個必改，想一下怎麼改
-                /*mob.GetComponent<PlayerState>().Hp += fHp;*///這個牽扯 GetHitByOther 必改，想一下怎麼改
+                GetHitType_Damage(DMtype);
 
                 mob.GetComponent<PlayerState>().HpDeduction(-fHp);
 
@@ -99,6 +95,51 @@ public class CharacterAttackManager : MonoBehaviour
         float xRadius = attacked.GetComponent<CapsuleCollider>().radius;
         return offsetAngle < sectorAngle * .7f && direction.magnitude - xRadius < sectorRadius;
     }
+
+    /*1210 將原PlayerGetHit的傷害機制，合併寫進這裡*/
+    //武器管理員寫好後，面對有 立即+延遲的傷害 要寫如何同時判斷1210
+    public int GetHitType_Damage(int Type)
+    {
+        switch (Type)
+        {
+            case 0:
+                AttackWithoutDebuff();
+                break;
+            case 1:
+                AttackWithDebuff();
+                break;
+        }
+        return Type;
+    }
+
+    public void AttackWithoutDebuff()
+    {
+        fHp = 0;
+        fHp -= Weapondamage_Instant;
+        Debug.Log("應造成傷害量:" + (fHp -= Weapondamage_Instant));
+    }
+
+    public void AttackWithDebuff()
+    {
+        fHp -= Weapondamage_Instant;
+        StartCoroutine(DamageDelay());
+        //Debug.Log("HP減少量" + fooHp.fHp);
+        //Debug.Log("傷害量" + Weapondamage_Instant);
+    }
+
+
+    IEnumerator DamageDelay()
+    {
+        int Count = 5;
+        while (Count >= 0)
+        {
+            fHp = 0;
+            yield return new WaitForSeconds(1);
+            fHp -= Weapondamamge_Delay;
+            Count--;
+        }
+    }
+    /**/
 
 
     //1209，OnDrawGizmos 這個先保留著好了
