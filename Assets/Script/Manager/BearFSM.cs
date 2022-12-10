@@ -64,7 +64,7 @@ public class BearFSM : MonoBehaviour
         Close_ATKRadius = ATKRadius * 0.5f;
         TraceRadius = ATKRadius * 2.5f;
         LeaveATKRadius = ATKRadius * 1.3f;
-        RunRadius = ATKRadius * 3.5f;
+        RunRadius = ATKRadius * 2.7f;
         AttackCBool = false;
         Count = 0;
     }
@@ -102,7 +102,7 @@ public class BearFSM : MonoBehaviour
 
             Quaternion Look = Quaternion.LookRotation(GetTargetNormalize);
 
-            transform.rotation = Quaternion.Slerp(transform.rotation, Look, 14f * Time.deltaTime);
+            transform.rotation = Quaternion.Slerp(transform.rotation, Look, 7f * Time.deltaTime);
 
 
             Debug.Log("CDs:" + Count);
@@ -116,10 +116,7 @@ public class BearFSM : MonoBehaviour
             TooCloseAttackStatus_York();
 
             BackStatus();
-            if (Count==1)
-            {
-                i = 0;
-            }
+           
         }
         Debug.Log(m_NowState);
     }
@@ -384,7 +381,7 @@ public class BearFSM : MonoBehaviour
     private void Animation_Attack()
     {
         MoveSpeed = Speed * .01f;
-        Vector3 m = Vector3.MoveTowards(transform.position, Target.transform.position, MoveSpeed*2);
+        Vector3 m = Vector3.MoveTowards(transform.position, Target.transform.position, MoveSpeed*5);
         transform.position = m;
         MubAnimator.speed = 2f;
         
@@ -412,14 +409,14 @@ public class BearFSM : MonoBehaviour
     {
         LeaveATKRadius = ATKRadius * 6;
         Close_ATKRadius = ATKRadius * .1f;
-        Count = 3;
+        Count = 2;
         StartCoroutine(SummonCooldown());
     }
     public void ZoneOpen01()
     {
         LeaveATKRadius = ATKRadius * 6;
         Close_ATKRadius = ATKRadius * .1f;
-        Count = 6;
+        Count = 4;
         Instantiate(TempPoint, transform.position, Quaternion.identity, MySelf.transform);
     }
 
@@ -427,7 +424,7 @@ public class BearFSM : MonoBehaviour
     {
         LeaveATKRadius = ATKRadius * 6;
         Close_ATKRadius = ATKRadius * .1f;
-        Count = 10;
+        Count = 4;
         Instantiate(TempPoint, transform.position, Quaternion.identity, MySelf.transform);
     }
     IEnumerator SummonCooldown()
@@ -436,6 +433,10 @@ public class BearFSM : MonoBehaviour
         {
             yield return new WaitForSeconds(1);
             Count--;
+            if (Count == 1)
+            {
+                i = 0;
+            }
         }
     }
 }

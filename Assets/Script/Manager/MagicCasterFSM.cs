@@ -29,12 +29,10 @@ public class MagicCasterFSM : MonoBehaviour
     float LeaveATKRadius;
     float Close_ATKRadius;
 
-    float CDs;
-
     Vector3 GetTargetNormalize;
     float GetTargetMegnitude;
     int Count;
-
+    int CDs;
     bool LeaveAttackRangeBool;
     bool InAttackRangeBool;
     bool RoarBool = false;
@@ -259,11 +257,11 @@ public class MagicCasterFSM : MonoBehaviour
     }
     public void Attack()
     {
-        if (m_NowState == MagicCasterState.Attack)
+        if (m_NowState == MagicCasterState.Attack&&CDs==0)
         {
             MubAnimator.SetBool("Attack", true);
         }
-        else if (m_NowState == MagicCasterState.Trace)
+        else if (Count != 0)
         {
             MubAnimator.SetBool("Attack", false);
         }
@@ -315,6 +313,8 @@ public class MagicCasterFSM : MonoBehaviour
         MubAnimator.speed = 1f;
         LeaveATKRadius = ATKRadius * 1.2f;
         Close_ATKRadius = ATKRadius * .8f;
+        CDs = 6;
+        StartCoroutine(AttackCooldown());
     }
     public void ZoneOpen()
     {
@@ -324,7 +324,7 @@ public class MagicCasterFSM : MonoBehaviour
     }
     IEnumerator SummonCooldown()
     {
-        while (Count > -1)
+        while (Count > 0)
         {
             yield return new WaitForSeconds(1);
             Count--;
@@ -335,5 +335,13 @@ public class MagicCasterFSM : MonoBehaviour
         Instantiate(Bug,(MySelf.transform.position+ MySelf.transform.forward*10), MySelf.transform.rotation);
         Count = 20;
         StartCoroutine(SummonCooldown());
+    }
+    IEnumerator AttackCooldown()
+    {
+        while (CDs > 0)
+        {
+            yield return new WaitForSeconds(1);
+            CDs--;
+        }
     }
 }

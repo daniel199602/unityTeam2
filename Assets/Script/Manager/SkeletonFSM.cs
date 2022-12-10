@@ -27,7 +27,9 @@ public class SkeletonFSM : MonoBehaviour
     Vector3 GetTargetNormalize;
     float GetTargetMegnitude;
     float MoveSpeed;
-    
+
+    int CDs;
+
     int FrameCount_Roar;
     void Start()
     {
@@ -218,11 +220,11 @@ public class SkeletonFSM : MonoBehaviour
     }
     public void Attack()
     {
-        if (m_NowState == SkeletonState.Attack)
+        if (m_NowState == SkeletonState.Attack&&CDs==0)
         {
             MubAnimator.SetBool("Attack", true);
         }
-        else if (m_NowState == SkeletonState.Trace)
+        else if (CDs != 0)
         {
             MubAnimator.SetBool("Attack", false);
         }
@@ -253,9 +255,19 @@ public class SkeletonFSM : MonoBehaviour
     {
         MubAnimator.speed = 1f;
         LeaveATKRadius = ATKRadius * 1.5f;
+        CDs = 3;
+        StartCoroutine(AttackCooldown());
     }
     public void ZoneOpen()
     {
         LeaveATKRadius = ATKRadius * 6;
+    }
+    IEnumerator AttackCooldown()
+    {
+        while (CDs > 0)
+        {
+            yield return new WaitForSeconds(1);
+            CDs--;
+        }
     }
 }

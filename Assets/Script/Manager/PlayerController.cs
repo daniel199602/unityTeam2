@@ -19,6 +19,7 @@ public class PlayerController : MonoBehaviour
     private float attackMoveSpeed = 0;//攻擊位移速度
     bool isOpenAttackMove = false;//攻擊位移開關
     bool isUseMouseChangeForward = true;//滑鼠人物轉向開關
+    bool invincible = false;
     [HideInInspector] public int currentLayerNum = 0;//當前Layer預設第0層
     //各層Layer的當前狀態
     AnimatorStateInfo animStateInfo;
@@ -436,5 +437,13 @@ public class PlayerController : MonoBehaviour
     private void AnimSpeedPlus()
     {
         charaterAnimator.SetFloat("animSpeed", 5f);
+    }
+    private void invincibleRoll_Start()
+    {
+        invincible = true;
+    }
+    private void invincibleRoll_End()
+    {
+        invincible = false;
     }
 }

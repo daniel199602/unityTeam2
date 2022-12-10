@@ -454,10 +454,10 @@ MonoBehaviour:
   mat: {fileID: 2100000, guid: 9fd61f0de86dc4f47beeb6ed49966c59, type: 2}
   matIndex: 1
   offset: 0
-  Target: {fileID: 0}
-  MySelf: {fileID: 0}
-  DangerZone: {fileID: 0}
-  ExplosionZone: {fileID: 0}
+  Target: {fileID: 2631163319326334126, guid: 843a687dd2b95bb4cb66922c432cf3f4, type: 3}
+  MySelf: {fileID: 7143010690539542105}
+  DangerZone: {fileID: 4521084516676180123, guid: 672b860e8f47e48459caca8042d3aa90, type: 3}
+  ExplosionZone: {fileID: 4521084516676180123, guid: c44565c5cd44c3647a8bccc1eac84743, type: 3}
   Speed: 0
 --- !u!95 &6265975674839720854
 Animator:
