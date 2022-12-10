@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class HealthBar : MonoBehaviour
 {
     public Image Healthbar;
-    public Image HealthbarLate;//不知為何抓不到1208
+    public Image HealthbarLate;
     public float Health, Maxhealth=10;
     private float _lerpspeed = 8f;
     PlayerState PlayerHp;

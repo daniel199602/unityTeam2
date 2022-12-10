@@ -1118,6 +1118,18 @@ PrefabInstance:
       propertyPath: fog
       value: 
       objectReference: {fileID: 1488681588}
+    - target: {fileID: 1836944002567213721, guid: 0aef3d455cda74b40bc7496d1d122744, type: 3}
+      propertyPath: bloodTransform
+      value: 
+      objectReference: {fileID: 928820337}
+    - target: {fileID: 1836944002567213721, guid: 0aef3d455cda74b40bc7496d1d122744, type: 3}
+      propertyPath: frameTransform
+      value: 
+      objectReference: {fileID: 139296613}
+    - target: {fileID: 1836944002567213721, guid: 0aef3d455cda74b40bc7496d1d122744, type: 3}
+      propertyPath: bloodDelayTransform
+      value: 
+      objectReference: {fileID: 1225803052}
     - target: {fileID: 2051803374764402486, guid: 0aef3d455cda74b40bc7496d1d122744, type: 3}
       propertyPath: m_RootOrder
       value: 14
@@ -3394,7 +3406,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3520569212546745571, guid: 052b0736fab5eee4eaa4ea766d127ef3, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -33.38707
+      value: -126.3
       objectReference: {fileID: 0}
     - target: {fileID: 3520569212546745571, guid: 052b0736fab5eee4eaa4ea766d127ef3, type: 3}
       propertyPath: m_LocalRotation.w

@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class doorOpen_Boss : MonoBehaviour
 {
+    public RectTransform bloodTransform;
+    public RectTransform bloodDelayTransform;
+    public RectTransform frameTransform;
+
     Animator myAnim;
     bool isInZone;
     public GameObject fog;
@@ -11,6 +15,9 @@ public class doorOpen_Boss : MonoBehaviour
     void Start()
     {
         myAnim = GetComponent<Animator>();
+        bloodTransform.gameObject.SetActive(false);
+        bloodDelayTransform.gameObject.SetActive(false);
+        frameTransform.gameObject.SetActive(false);
     }
 
     // Update is called once per frame
@@ -18,10 +25,13 @@ public class doorOpen_Boss : MonoBehaviour
     {
         if(isInZone&&Input.GetKeyDown(KeyCode.E))
         {
-            //Debug.Log("e");
+            
             bool isOpen = myAnim.GetBool("isOpen");
             myAnim.SetBool("isOpen", !isOpen);
-            //Debug.Log(isOpen);
+            
+            bloodTransform.gameObject.SetActive(true);
+            bloodDelayTransform.gameObject.SetActive(true);
+            frameTransform.gameObject.SetActive(true);
         }
     }
 
@@ -29,7 +39,7 @@ public class doorOpen_Boss : MonoBehaviour
     {
         if(other.gameObject.tag=="Player")
         {
-            //Debug.Log("in");
+            
             isInZone = true;
         }
     }
@@ -38,7 +48,7 @@ public class doorOpen_Boss : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            //Debug.Log("out");
+            
             isInZone = false;
             fog.SetActive(false);
         }
