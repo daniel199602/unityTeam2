@@ -19,7 +19,7 @@ public class PlayerController : MonoBehaviour
     private float attackMoveSpeed = 0;//攻擊位移速度
     bool isOpenAttackMove = false;//攻擊位移開關
     bool isUseMouseChangeForward = true;//滑鼠人物轉向開關
-    bool invincible = false;
+    bool invincible = false;//無敵
     [HideInInspector] public int currentLayerNum = 0;//當前Layer預設第0層
     //各層Layer的當前狀態
     AnimatorStateInfo animStateInfo;
@@ -41,6 +41,11 @@ public class PlayerController : MonoBehaviour
     //keyCode.Alpha2 暫時切換 劍盾 與 雙手劍 bool變數，之後改再刪除
     bool alpha2Switch = false;
 
+    //玩家數值(挖洞)
+    PlayerState State;
+    int hpTemporary;
+    int RandomNum;
+    int i;
 
     public enum pAnimLayerState
     {
@@ -56,7 +61,8 @@ public class PlayerController : MonoBehaviour
         MoveTree,
         Roll,
         Attack,
-        Dead
+        Dead,
+        GetHit,
     }
     private pFSMState m_pCurrentState;
 
@@ -73,10 +79,12 @@ public class PlayerController : MonoBehaviour
         torchL.SetActive(true);
         weaponL.SetActive(false);
         weaponR.SetActive(false);
+
+        State = GetComponent<PlayerState>();
+        hpTemporary = State.Hp;
+        i = 0;
+
     }
-
-    
-
     // Update is called once per frame
     void Update()
     {
@@ -115,31 +123,61 @@ public class PlayerController : MonoBehaviour
         }
 
         //玩家狀態機
-        if (m_pCurrentState==pFSMState.MoveTree)
+        if (State.Hp<=0f)
         {
-            isUseFire1 = true;
-            isUseJump = true;
-            isOpenAttackMove = false;//攻擊位移關閉，防呆
-            charaterAnimator.SetFloat("animSpeed", 1.5f);
+            m_pCurrentState = pFSMState.Dead;
+            DeadStatus();
+            return;
         }
-        else if(m_pCurrentState==pFSMState.Roll)
+        else if (State.Hp != hpTemporary)
         {
-            isUseFire1 = false;//禁用滑鼠左鍵，禁止攻擊
+            if (invincible==false)
+            {
+                if (i == 0)
+                {
+                    RandomNum = Random.Range(1, 2);
+                    i++;
+                }
+                hpTemporary = State.Hp;
+                if (RandomNum == 1)
+                {
+                    charaterAnimator.SetBool("GetHit01", true);
+                }
+                else if (RandomNum == 2)
+                {
+                    charaterAnimator.SetBool("GetHit02", true);
+                }                
+            }
+            else
+            {
+                charaterAnimator.SetBool("GetHit01", false);
+                charaterAnimator.SetBool("GetHit02", false);
+            }
         }
-        else if(m_pCurrentState==pFSMState.Attack)
-        {
-            isUseJump = false;//禁用空白鍵，禁止翻滾
-        }
-        else if(m_pCurrentState==pFSMState.Dead)
-        {
-            //死亡
-        }
+        else
+        {           
+            if (m_pCurrentState == pFSMState.MoveTree)
+            {
+                isUseFire1 = true;
+                isUseJump = true;
+                isOpenAttackMove = false;//攻擊位移關閉，防呆
+                charaterAnimator.SetFloat("animSpeed", 1.5f);
+            }
+            else if (m_pCurrentState == pFSMState.Roll)
+            {
+                isUseFire1 = false;//禁用滑鼠左鍵，禁止攻擊
+            }
+            else if (m_pCurrentState == pFSMState.Attack)
+            {
+                isUseJump = false;//禁用空白鍵，禁止翻滾
+            }
 
-        SwitchLayer(currentLayerNum);
-        ControlSwitchWeapon();
-        MousePosChangeForward(isUseMouseChangeForward);
-        ControlMove(isUseJump);
-        ControlAttack(isUseFire1);
+            SwitchLayer(currentLayerNum);
+            ControlSwitchWeapon();
+            MousePosChangeForward(isUseMouseChangeForward);
+            ControlMove(isUseJump);
+            ControlAttack(isUseFire1);
+        }        
     }
 
     
@@ -445,5 +483,17 @@ public class PlayerController : MonoBehaviour
     private void invincibleRoll_End()
     {
         invincible = false;
+    }
+    public void DeadStatus()
+    {
+        if (m_pCurrentState == pFSMState.Dead)
+        {
+            charaterAnimator.SetTrigger("isTriggerDie");
+            cc.radius = 0f;
+        }
+    }
+    private void iReset()
+    {
+        i = 0;
     }
 }
