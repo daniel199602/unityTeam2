@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Weapon 已棄用(之後刪除)
+/// </summary>
 public class Weapon : MonoBehaviour
 {
     public int Weapon_Type;
@@ -9,15 +12,11 @@ public class Weapon : MonoBehaviour
     [HideInInspector] public int Weapon_Damamge_Delay;
     [HideInInspector] public float weaPonangle;
     [HideInInspector] public float weaPonRadius;
-    CharacterAttackManager CharacterAttackManager_w;
+
     private void Start()
     {
-        CharacterAttackManager_w = GetComponent<CharacterAttackManager>();
-        Weapon_Damage_Instant = CharacterAttackManager_w.Weapondamage_Instant;
-        Weapon_Damamge_Delay = CharacterAttackManager_w.Weapondamamge_Delay;
-        weaPonangle = CharacterAttackManager_w.angle;
-        weaPonRadius = CharacterAttackManager_w.radius;
     }
+
     public int WeaponType(int Type)
     {
         GetWeaponType(Type);
@@ -225,7 +224,7 @@ public class Weapon : MonoBehaviour
     public void Cystalsv_IncreaseBlood()
     {
         Weapon_Damage_Instant = -200;
-        Debug.Log("-200-----------------------------------------------");
+        Debug.Log("-200---------------------");
     }
 }
 

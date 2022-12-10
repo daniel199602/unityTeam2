@@ -16,8 +16,7 @@ public class Crystals : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            characterM.fHp = -200;
-
+            characterM.GetComponent<PlayerState>().HpDeduction(-200);
 
             this.gameObject.SetActive(false);
         }

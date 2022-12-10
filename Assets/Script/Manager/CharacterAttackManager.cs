@@ -6,78 +6,90 @@ using System.Collections;
 
 public class CharacterAttackManager : MonoBehaviour
 {
-    //之後寫武器管理器，看要直接寫在 CharacterAttackManager這，還是另外寫一個新的Class管理，目前先保留
-    [HideInInspector] public float angle = 80f;
-    [HideInInspector] public float radius = 80f;
-    [HideInInspector] public int Weapondamage_Instant;
-    [HideInInspector] public int Weapondamamge_Delay;
+    //當前函式直接抓WeaponManager的當前武器判斷，這裡目前不會用到，先註解掉
+    //[HideInInspector] public GameObject usingTorchL_torch;//當前左手火把
+    //[HideInInspector] public GameObject usingWeaponL_weapon;//當前左手武器
+    //[HideInInspector] public GameObject usingWeaponR_weapon;//當前右手武器
 
-    Weapon weaponData;//想想怎了改，串接後刪除
-
-    public int fHp;//牽扯到 PlayerGetHit 之後必刪掉，但先想想流程怎麼改、怎麼串接口
-
-    int DMtype = 0;//牽扯到 PlayerGetHit 應該由 PlayerGetHit自己做事，之後刪
-    int Type_weapon;//之後可能刪，想想怎麼接
-
-    private void Awake()
-    {
-        weaponData = GetComponent<Weapon>();
-        Type_weapon = weaponData.Weapon_Type;
-    }
+    public int fHp = 0;//1211目前PlayerGetHit有用到它刪掉會報錯，然後怪物有用PlayerGetHit，所以PlayerGetHit目前還不能刪
 
     private void Start()
     {
-        fHp = 0;//牽扯到 PlayerGetHit 之後必刪掉
 
-        /*1207 看Weapon數值測試用 之後武器管理寫好後會刪除*/
-        Type_weapon = 2;
-        weaponData.WeaponType(Type_weapon);
-        /**/
-
-        /*weaponData相關_暫時註解起來*/
-        radius = weaponData.weaPonRadius;
-        Debug.LogWarning("radius" + radius);
-        angle = weaponData.weaPonangle;
-        Debug.LogWarning(angle);
-        Weapondamage_Instant = weaponData.Weapon_Damage_Instant;
-        Debug.LogWarning(Weapondamage_Instant);
-        Weapondamamge_Delay = weaponData.Weapon_Damamge_Delay;
-        Debug.LogWarning(Weapondamamge_Delay);
     }
 
     private void Update()
     {
-        /*weaponData相關_暫時註解起來*/
-        //1209之後武器管理員寫完後，必刪除
-        weaponData.WeaponType(Type_weapon);
-        radius = weaponData.weaPonRadius;
-        angle = weaponData.weaPonangle;
-        Weapondamage_Instant = weaponData.Weapon_Damage_Instant;
-        Weapondamamge_Delay = weaponData.Weapon_Damamge_Delay;
-        DMtype = 0;
+       
     }
 
+
     /// <summary>
-    /// 攻擊事件，綁在攻擊動畫上
+    /// 左手火把攻擊事件，綁在左手火把攻擊動畫上
     /// </summary>
-    private void AttackEvent()
+    private void AttackEvent_left_torch()
     {
-        foreach(GameObject mob in GameManager.Instance().mobPool)
+        int weaponDamage_instant = WeaponManager.Instance().CurrentTorchL_torch.GetComponent<ItemOnWeapon>().weaponDamage_instant;
+        int weaponDamamge_delay = WeaponManager.Instance().CurrentTorchL_torch.GetComponent<ItemOnWeapon>().weaponDamage_delay;
+        float angle = WeaponManager.Instance().CurrentTorchL_torch.GetComponent<ItemOnWeapon>().weaponAngle;
+        float radius = WeaponManager.Instance().CurrentTorchL_torch.GetComponent<ItemOnWeapon>().weaponRadius;
+
+        foreach (GameObject mob in GameManager.Instance().mobPool)
         {
             Debug.Log("attack");
             if (IsInRange(angle, radius, gameObject.transform, mob.transform))
             {
-                GetHitType_Damage(DMtype);
-
-                mob.GetComponent<PlayerState>().HpDeduction(-fHp);
-
-                Debug.LogWarning("我猜有抓到怪物Hp" + mob.GetComponent<PlayerState>().Hp); //測試用之後刪
-                Debug.LogWarning("Hp減少:" + (mob.GetComponent<PlayerState>().Hp += fHp)); //測試用之後刪
-                Debug.LogWarning("傷害數值:" + fHp); //這個牽扯 GetHitByOther，必改，測試用之後刪
-                Debug.LogWarning("Hit");
+                DeductMobHpInstant(mob, weaponDamage_instant);
+                DeductMobHpDelay(mob, weaponDamamge_delay);
+                Debug.LogWarning("Hit : " + mob.GetComponent<ItemOnMob>().mobName + "Hp : " + mob.GetComponent<PlayerState>().Hp);
             }
         }
     }
+
+    /// <summary>
+    /// 左手攻擊事件，綁在左手攻擊動畫上
+    /// </summary>
+    private void AttackEvent_left()
+    {
+        int weaponDamage_instant = WeaponManager.Instance().CurrentWeaponL_weaponL.GetComponent<ItemOnWeapon>().weaponDamage_instant;
+        int weaponDamamge_delay = WeaponManager.Instance().CurrentWeaponL_weaponL.GetComponent<ItemOnWeapon>().weaponDamage_delay;
+        float angle = WeaponManager.Instance().CurrentWeaponL_weaponL.GetComponent<ItemOnWeapon>().weaponAngle;
+        float radius = WeaponManager.Instance().CurrentWeaponL_weaponL.GetComponent<ItemOnWeapon>().weaponRadius;
+
+        foreach (GameObject mob in GameManager.Instance().mobPool)
+        {
+            Debug.Log("attack");
+            if (IsInRange(angle, radius, gameObject.transform, mob.transform))
+            {
+                DeductMobHpInstant(mob, weaponDamage_instant);
+                DeductMobHpDelay(mob, weaponDamamge_delay);
+                Debug.LogWarning("Hit : " + mob.GetComponent<ItemOnMob>().mobName + "Hp : " + mob.GetComponent<PlayerState>().Hp);
+            }
+        }
+    }
+
+    /// <summary>
+    /// 右手攻擊事件，綁在右手攻擊動畫上
+    /// </summary>
+    private void AttackEvent()
+    {
+        int weaponDamage_instant = WeaponManager.Instance().CurrentWeaponR_weaponR.GetComponent<ItemOnWeapon>().weaponDamage_instant;
+        int weaponDamamge_delay = WeaponManager.Instance().CurrentWeaponR_weaponR.GetComponent<ItemOnWeapon>().weaponDamage_delay;
+        float angle = WeaponManager.Instance().CurrentWeaponR_weaponR.GetComponent<ItemOnWeapon>().weaponAngle;
+        float radius = WeaponManager.Instance().CurrentWeaponR_weaponR.GetComponent<ItemOnWeapon>().weaponRadius;
+
+        foreach (GameObject mob in GameManager.Instance().mobPool)
+        {
+            Debug.Log("attack");
+            if (IsInRange(angle, radius, gameObject.transform, mob.transform))
+            {
+                DeductMobHpInstant(mob, weaponDamage_instant);
+                DeductMobHpDelay(mob, weaponDamamge_delay);
+                Debug.LogWarning("Hit : " + mob.GetComponent<ItemOnMob>().mobName + "Hp : " + mob.GetComponent<PlayerState>().Hp);
+            }
+        }
+    }
+
 
     /// <summary>
     /// 攻擊範圍判定
@@ -92,54 +104,47 @@ public class CharacterAttackManager : MonoBehaviour
         Vector3 direction = attacked.position - attacker.position;
         float dot = Vector3.Dot(direction.normalized, transform.forward);
         float offsetAngle = Mathf.Acos(dot) * Mathf.Rad2Deg;
-        float xRadius = attacked.GetComponent<CapsuleCollider>().radius;
-        return offsetAngle < sectorAngle * .7f && direction.magnitude - xRadius < sectorRadius;
+        float mobRadius = attacked.GetComponent<CapsuleCollider>().radius;
+        return offsetAngle < sectorAngle * .7f && direction.magnitude - mobRadius < sectorRadius;
     }
 
-    /*1210 將原PlayerGetHit的傷害機制，合併寫進這裡*/
-    //武器管理員寫好後，面對有 立即+延遲的傷害 要寫如何同時判斷1210
-    public int GetHitType_Damage(int Type)
+    /// <summary>
+    /// 扣怪物血_只算立即傷害
+    /// </summary>
+    /// <param name="mob">怪物</param>
+    /// <param name="demage_instant">立即傷害</param>
+    public void DeductMobHpInstant(GameObject mob, int demage_instant)
     {
-        switch (Type)
-        {
-            case 0:
-                AttackWithoutDebuff();
-                break;
-            case 1:
-                AttackWithDebuff();
-                break;
-        }
-        return Type;
+        mob.GetComponent<PlayerState>().HpDeduction(demage_instant);
     }
 
-    public void AttackWithoutDebuff()
+
+    /// <summary>
+    /// 扣怪物血_只算Debuff造成延遲傷害
+    /// </summary>
+    /// <param name="mob"></param>
+    /// <param name="demage_delay"></param>
+    public void DeductMobHpDelay(GameObject mob, int demage_delay)
     {
-        fHp = 0;
-        fHp -= Weapondamage_Instant;
-        Debug.Log("應造成傷害量:" + (fHp -= Weapondamage_Instant));
+        StartCoroutine(DamageDelay(mob,demage_delay));
+        Debug.LogWarning("持續扣血結束");
     }
-
-    public void AttackWithDebuff()
-    {
-        fHp -= Weapondamage_Instant;
-        StartCoroutine(DamageDelay());
-        //Debug.Log("HP減少量" + fooHp.fHp);
-        //Debug.Log("傷害量" + Weapondamage_Instant);
-    }
-
-
-    IEnumerator DamageDelay()
+    /// <summary>
+    /// 延遲傷害_Debuff持續扣血
+    /// </summary>
+    /// <param name="mob"></param>
+    /// <param name="demage_delay"></param>
+    /// <returns></returns>
+    IEnumerator DamageDelay(GameObject mob, int demage_delay)
     {
         int Count = 5;
         while (Count >= 0)
         {
-            fHp = 0;
             yield return new WaitForSeconds(1);
-            fHp -= Weapondamamge_Delay;
+            mob.GetComponent<PlayerState>().HpDeduction(demage_delay);
             Count--;
         }
     }
-    /**/
 
 
     //1209，OnDrawGizmos 這個先保留著好了

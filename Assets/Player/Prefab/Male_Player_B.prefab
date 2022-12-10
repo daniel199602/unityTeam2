@@ -4780,8 +4780,6 @@ GameObject:
   - component: {fileID: 10199059806689093}
   - component: {fileID: 8251171311221856198}
   - component: {fileID: 4765728035046430749}
-  - component: {fileID: 7409894506743250130}
-  - component: {fileID: 3554710006498978605}
   m_Layer: 6
   m_Name: Male_Player_B
   m_TagString: Player
@@ -4945,40 +4943,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2274833a1053481478e019d26a7952d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentTorchL_torch: {fileID: 0}
+  currentWeaponL_weapon: {fileID: 0}
+  currentWeaponR_weapon: {fileID: 0}
+  weaponDamageL_instant: 0
+  weaponDamamgeL_delay: 0
+  angleL: 90
+  radiusL: 40
+  weaponDamage_instant: 0
+  weaponDamamge_delay: 0
   angle: 80
   radius: 80
-  Weapondamage_Instant: 0
-  Weapondamamge_Delay: 0
   fHp: 0
---- !u!114 &7409894506743250130
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2631163319326334126}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f69408661c7bf442b3bf8deee43ef3d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &3554710006498978605
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2631163319326334126}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b16a4359fc1dfa94a84e3882c0718c93, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Weapon_Type: 0
-  Weapon_Damage_Instant: 0
-  Weapon_Damamge_Delay: 0
-  weaPonangle: 0
-  weaPonRadius: 0
 --- !u!1 &2631163493861753916
 GameObject:
   m_ObjectHideFlags: 0
