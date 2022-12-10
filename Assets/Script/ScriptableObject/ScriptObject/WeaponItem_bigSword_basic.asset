@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: WeaponItem_bigSword_basic
   m_EditorClassIdentifier: 
   weaponName: bigSword_basic
-  weaponType: 2
+  weaponType: 3
   weaponID: 0
   weaponDamage_instant: 90
   weaponDamage_delay: 0

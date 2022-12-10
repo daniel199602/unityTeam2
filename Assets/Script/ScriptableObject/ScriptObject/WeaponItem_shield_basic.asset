@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: WeaponItem_shield_basic
   m_EditorClassIdentifier: 
   weaponName: shield_basic
-  weaponType: 3
+  weaponType: 1
   weaponID: 0
   weaponDamage_instant: 40
   weaponDamage_delay: 0
