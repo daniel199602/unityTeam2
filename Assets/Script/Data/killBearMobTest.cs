@@ -12,13 +12,13 @@ public class killBearMobTest : MonoBehaviour
         doorOpen_MobLast = this.gameObject.transform.parent.gameObject.GetComponent<DoorOpen_MobLast>();
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.tag == "Player")
-        {
-            doorOpen_MobLast.killMob();
-            this.gameObject.SetActive(false);
+    //private void OnTriggerEnter(Collider other)
+    //{
+    //    if (other.gameObject.tag == "Player")
+    //    {
+    //        doorOpen_MobLast.killMob();
+    //        //this.gameObject.SetActive(false);
 
-        }
-    }
+    //    }
+    //}
 }

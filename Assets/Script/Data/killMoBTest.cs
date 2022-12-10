@@ -4,30 +4,8 @@ using UnityEngine;
 
 public class killMoBTest : MonoBehaviour
 {
-
-    
-   
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-
-    }
-
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.tag == "Player")
-        {
-            Eat();
-            
-
-        }
-    }
-    
     private float duration;
-    public void Eat()
+    public void killMob()
     {
         
         MobMain.Instance().oPool.UnLoadObjectToPool(MobMain.Instance().pTestList, this.gameObject);

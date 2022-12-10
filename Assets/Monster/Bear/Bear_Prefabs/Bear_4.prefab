@@ -2027,6 +2027,7 @@ MonoBehaviour:
   HealthbarLate: {fileID: 3639000981957654598}
   Health: 0
   Maxhealth: 0
+  hpBar: {fileID: 3639000982259212305}
 --- !u!114 &-3933064489400172081
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2475,6 +2476,10 @@ PrefabInstance:
     - target: {fileID: 2926747657238067581, guid: ed2c2552b2431354890b8a2e05faff6e, type: 3}
       propertyPath: m_Name
       value: CanvasBlood_Mob
+      objectReference: {fileID: 0}
+    - target: {fileID: 2926747657238067581, guid: ed2c2552b2431354890b8a2e05faff6e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ed2c2552b2431354890b8a2e05faff6e, type: 3}

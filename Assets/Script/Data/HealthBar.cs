@@ -11,6 +11,7 @@ public class HealthBar : MonoBehaviour
     private float _lerpspeed = 8f;
     PlayerState PlayerHp;
     int CountTime;
+    public RectTransform hpBar;
 
     // Start is called before the first frame update
     private void Awake()
@@ -21,6 +22,7 @@ public class HealthBar : MonoBehaviour
     {
         Maxhealth = PlayerHp.MaxHp;
         Health = PlayerHp.Hp;
+        //hpBar.SetActive(false);
     }
 
     // Update is called once per frame
@@ -28,6 +30,14 @@ public class HealthBar : MonoBehaviour
     {
         Health = PlayerHp.Hp;
         StartCoroutine(HealthBarDelay());
+        if(Maxhealth != Health&& Health>0)
+        {
+            hpBar.gameObject.SetActive(true);
+        }
+        else if(Health<=0)
+        {
+            hpBar.gameObject.SetActive(false);
+        }
     }
 
     public void BarFilter()

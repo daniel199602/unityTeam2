@@ -978,7 +978,7 @@ CapsuleCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8171539735143675359}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.05
   m_Height: 0.2
@@ -1015,6 +1015,7 @@ MonoBehaviour:
   HealthbarLate: {fileID: 7930037456481421577}
   Health: 0
   Maxhealth: 0
+  hpBar: {fileID: 7930037456314274142}
 --- !u!114 &3485271348948714616
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1662,6 +1663,10 @@ PrefabInstance:
     - target: {fileID: 2926747657238067581, guid: ed2c2552b2431354890b8a2e05faff6e, type: 3}
       propertyPath: m_Name
       value: CanvasBlood_Mob
+      objectReference: {fileID: 0}
+    - target: {fileID: 2926747657238067581, guid: ed2c2552b2431354890b8a2e05faff6e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ed2c2552b2431354890b8a2e05faff6e, type: 3}

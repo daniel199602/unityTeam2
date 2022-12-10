@@ -38,9 +38,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3207726151260402246, guid: 9349fc6c44ecdab4daea1ed464bd7c38, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3875252265080190310, guid: 9349fc6c44ecdab4daea1ed464bd7c38, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8557610552027109654, guid: 9349fc6c44ecdab4daea1ed464bd7c38, type: 3}
       propertyPath: m_Name
-      value: DemonGirlMesh_C
+      value: DemonGirlMesh_C Variant
       objectReference: {fileID: 0}
     - target: {fileID: 8559658806296912734, guid: 9349fc6c44ecdab4daea1ed464bd7c38, type: 3}
       propertyPath: m_RootOrder
