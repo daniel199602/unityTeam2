@@ -2,13 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum BearState
+public enum BossState
 {
     Idle, Trace, Back, Attack, GetHit, Dead,
 }
-public class BearFSM : MonoBehaviour
+public class BossFSM : MonoBehaviour
 {
-    private BearState m_NowState;
+    private BossState m_NowState;
     public GameObject Target;
     public GameObject MySelf;
     public GameObject TempPoint;
@@ -36,7 +36,7 @@ public class BearFSM : MonoBehaviour
     Vector3 GetTargetNormalize;
     float GetTargetMegnitude;
     int Count;
-    bool AttackCBool=false;
+    bool AttackCBool = false;
 
     bool LeaveAttackRangeBool;
     bool InAttackRangeBool;
@@ -48,7 +48,7 @@ public class BearFSM : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        m_NowState = BearState.Idle;
+        m_NowState = BossState.Idle;
         capsule = GetComponent<CapsuleCollider>();
         MubAnimator = GetComponent<Animator>();
         State = GetComponent<PlayerState>();
@@ -57,7 +57,7 @@ public class BearFSM : MonoBehaviour
         LeaveAttackRangeBool = false;
         InAttackRangeBool = false;
 
-        m_NowState = BearState.Idle;
+        m_NowState = BossState.Idle;
 
         ATKRadius = 40;//Weapon覆蓋
 
@@ -83,7 +83,7 @@ public class BearFSM : MonoBehaviour
         }
         if (State.Hp <= 0)//死亡→無狀態
         {
-            m_NowState = BearState.Dead;
+            m_NowState = BossState.Dead;
             DeadStatus();
             return;
         }
@@ -109,20 +109,20 @@ public class BearFSM : MonoBehaviour
 
             TraceStatus();
 
-             AttackStatus();
-            
+            AttackStatus();
+
             LeaveAttackStatus();
 
             TooCloseAttackStatus_York();
 
             BackStatus();
-           
+
         }
         Debug.Log(m_NowState);
     }
     public void DeadStatus()
     {
-        if (m_NowState == BearState.Dead)
+        if (m_NowState == BossState.Dead)
         {
             MubAnimator.SetTrigger("Die");
             capsule.radius = 0f;
@@ -136,11 +136,10 @@ public class BearFSM : MonoBehaviour
             tracing = IsInRange_TraceRange(ATKRadius, MySelf, Target);
             if (tracing == true)
             {
-                m_NowState = BearState.Trace;
+                m_NowState = BossState.Trace;
                 Debug.Log("NowInT");
-                if (m_NowState == BearState.Trace)
+                if (m_NowState == BossState.Trace)
                 {
-                    Move();
                     MubAnimator.SetBool("Trace", true);
                     MubAnimator.SetBool("Attack01", false);
                     MubAnimator.SetBool("Attack02", false);
@@ -164,7 +163,7 @@ public class BearFSM : MonoBehaviour
             LeaveAttackRangeBool = true;
             InAttackRangeBool = true;
             MoveSpeed = 0f;
-            m_NowState = BearState.Attack;
+            m_NowState = BossState.Attack;
             MubAnimator.SetBool("Trace", false);
             MubAnimator.SetBool("Back", false);
             Attack();
@@ -179,7 +178,7 @@ public class BearFSM : MonoBehaviour
             OutATKrange = IsOutRange_RangedBattleRange(LeaveATKRadius, ATKRadius, MySelf, Target);
             if (OutATKrange == true)
             {
-                m_NowState = BearState.Idle;
+                m_NowState = BossState.Idle;
                 Idle();
                 Debug.LogError("L is active");
             }
@@ -198,7 +197,7 @@ public class BearFSM : MonoBehaviour
             InATKrange_Close = CloseRange_RangedBattleRange(ATKRadius, Close_ATKRadius, MySelf, Target);
             if (InATKrange_Close == true)
             {
-                m_NowState = BearState.Attack;                
+                m_NowState = BossState.Attack;
                 Debug.LogError("LI is active");
             }
             GetTargetMegnitude = (Target.transform.position - transform.position).magnitude;
@@ -213,18 +212,17 @@ public class BearFSM : MonoBehaviour
     {
         if (InAttackRangeBool == false)
         {
-            if (AttackCBool ==false)
+            if (AttackCBool == false)
             {
                 backing = TooCloseRange_RangedBattleRange(Close_ATKRadius, MySelf, Target);
                 AttackCBool = true;
-            }                        
+            }
             if (backing == true)
             {
-                m_NowState = BearState.Back;
+                m_NowState = BossState.Back;
                 Debug.Log("NowInB");
-                if (m_NowState == BearState.Back)
+                if (m_NowState == BossState.Back)
                 {
-                    Back();
                     MubAnimator.SetBool("Back", true);
                     MubAnimator.SetBool("Attack01", false);
                     MubAnimator.SetBool("Attack02", false);
@@ -235,7 +233,7 @@ public class BearFSM : MonoBehaviour
             {
                 MubAnimator.SetBool("Attack01", false);
                 MubAnimator.SetBool("Attack02", false);
-                MubAnimator.SetBool("Attack03", false); 
+                MubAnimator.SetBool("Attack03", false);
             }
         }
     }
@@ -281,15 +279,15 @@ public class BearFSM : MonoBehaviour
     }
     public void Attack()
     {
-        if (m_NowState == BearState.Attack&& Count == 0)
+        if (m_NowState == BossState.Attack && Count == 0)
         {
-            if (i==0)
+            if (i == 0)
             {
-                RandomChoose = UnityEngine.Random.Range(1, 3);
+                RandomChoose = UnityEngine.Random.Range(1, 4);
                 i++;
-            }                       
-            Debug.Log("隨機數:"+RandomChoose);
-            if (RandomChoose ==1)
+            }
+            Debug.Log("隨機數:" + RandomChoose);
+            if (RandomChoose == 1)
             {
                 MubAnimator.SetBool("Attack01", true);
             }
@@ -301,72 +299,24 @@ public class BearFSM : MonoBehaviour
             {
                 MubAnimator.SetBool("Attack03", true);
             }
+            else if (RandomChoose == 4)
+            {
+                MubAnimator.SetBool("Attack04", true);
+            }
         }
-        else if (Count!=0)
+        else if (Count != 0)
         {
             MubAnimator.SetBool("Attack01", false);
             MubAnimator.SetBool("Attack02", false);
             MubAnimator.SetBool("Attack03", false);
+            MubAnimator.SetBool("Attack04", false);
         }
     }
     public void Idle()
     {
         MubAnimator.SetBool("Trace", false);
     }
-    public void Move()
-    {
-        GetTargetMegnitude = (Target.transform.position - transform.position).magnitude;
-
-        Debug.Log("當前速度" + MoveSpeed);
-
-        if (GetTargetMegnitude > RunRadius)
-        {
-            MoveSpeed *= 1.5f;
-            MubAnimator.SetBool("Run",true);
-        }
-        else
-        {
-            MoveSpeed *= 1f;
-            MubAnimator.SetBool("Run", false);
-            MubAnimator.SetBool("Trace", true);
-        }
-
-        Vector3 m = Vector3.MoveTowards(transform.position, Target.transform.position, MoveSpeed);
-
-        transform.position = m;
-
-        Debug.Log(MoveSpeed);
-
-        if (GetTargetMegnitude == ATKRadius)
-        {
-            MoveSpeed = Speed * 0f;
-        }
-        else
-        {
-            MoveSpeed = Speed * .01f;
-        }
-    }
-    public void Back()
-    {
-        GetTargetMegnitude = (Target.transform.position - transform.position).magnitude;
-
-        Debug.Log("當前速度" + MoveSpeed);
-      
-        Vector3 m = Vector3.MoveTowards(transform.position, TempPoint.transform.position, BackSpeed);
-
-        transform.position = m;
-
-        Debug.Log(MoveSpeed);
-
-        if (GetTargetMegnitude == ATKRadius)
-        {
-            BackSpeed = Speed * 0f;
-        }
-        else
-        {
-            BackSpeed = Speed * .003f;
-        }
-    }
+    
     private void OnDrawGizmos()
     {
         Gizmos.color = InATKrange ? Color.red : Color.yellow;
@@ -381,10 +331,10 @@ public class BearFSM : MonoBehaviour
     private void Animation_Attack()
     {
         MoveSpeed = Speed * .01f;
-        Vector3 m = Vector3.MoveTowards(transform.position, Target.transform.position, MoveSpeed*5);
+        Vector3 m = Vector3.MoveTowards(transform.position, Target.transform.position, MoveSpeed * 5);
         transform.position = m;
         MubAnimator.speed = 2f;
-        
+
     }
 
     private void AnimationSpeed_AttackEnd01()
