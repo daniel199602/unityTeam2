@@ -17,5 +17,6 @@ public class bossTeleport : MonoBehaviour
     {
         fadeOut.Play("FadeOut");
         Debug.Log("boss");
+        GameManager.Instance().mobPool.Clear();
     }
 }

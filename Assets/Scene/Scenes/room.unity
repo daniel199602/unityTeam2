@@ -708,7 +708,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2631163319326334126, guid: 843a687dd2b95bb4cb66922c432cf3f4, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2636002069994985650, guid: 843a687dd2b95bb4cb66922c432cf3f4, type: 3}
       propertyPath: m_RootOrder
@@ -790,7 +790,8 @@ PrefabInstance:
       propertyPath: hitMask.m_Bits
       value: 512
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 707197541644771798, guid: 843a687dd2b95bb4cb66922c432cf3f4, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 843a687dd2b95bb4cb66922c432cf3f4, type: 3}
 --- !u!4 &1880995979 stripped
 Transform:
