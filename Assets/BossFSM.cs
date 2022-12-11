@@ -51,7 +51,7 @@ public class BossFSM : MonoBehaviour
     {
         Target = GameManager.Instance().PlayerStart;//抓出玩家
         MySelf = this.transform.gameObject;//抓出自己
-
+        Debug.LogWarning(Target);
         m_NowState = BossState.Idle;
         capsule = GetComponent<CapsuleCollider>();
         MubAnimator = GetComponent<Animator>();
@@ -149,7 +149,7 @@ public class BossFSM : MonoBehaviour
 
         Quaternion Look = Quaternion.LookRotation(GetTargetNormalize);
 
-        transform.rotation = Quaternion.Slerp(transform.rotation, Look, 7f * Time.deltaTime);
+        transform.rotation = Quaternion.Slerp(this.transform.rotation, Look, 7f * Time.deltaTime);
     }
     public void DeadStatus()
     {
