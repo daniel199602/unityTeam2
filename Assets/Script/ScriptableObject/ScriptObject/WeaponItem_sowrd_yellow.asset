@@ -15,7 +15,7 @@ MonoBehaviour:
   weaponName: sword_yellow
   weaponType: 2
   weaponID: 20
-  weaponDamage_instant: 80
+  weaponDamage_instant: 300
   weaponDamage_delay: 0
   weaponAngle: 60
-  weaponRadius: 40
+  weaponRadius: 55

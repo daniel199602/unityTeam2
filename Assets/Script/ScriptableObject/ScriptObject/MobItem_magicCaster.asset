@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mobName: magicCaster
   mobType: 2
-  mobMaxHp: 1500
+  mobMaxHp: 2000
   mobDamage_instant: 50
   mobDamage_delay: 10
   mobAngle: 20

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mobName: bear
   mobType: 1
-  mobMaxHp: 2000
+  mobMaxHp: 3000
   mobDamage_instant: 150
   mobDamage_delay: 0
   mobAngle: 60
