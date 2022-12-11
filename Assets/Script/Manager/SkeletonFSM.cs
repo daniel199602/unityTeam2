@@ -9,8 +9,10 @@ public enum SkeletonState
 public class SkeletonFSM : MonoBehaviour
 {
     private SkeletonState m_NowState;
-    public GameObject Target;
-    public GameObject MySelf;
+
+    private GameObject Target;//存玩家
+    private GameObject MySelf;//存自己
+
     PlayerState State;
     Animator MubAnimator;
     int hpTemporary;
@@ -23,7 +25,7 @@ public class SkeletonFSM : MonoBehaviour
     float TraceRadius;
     float ATKRadius;
     float LeaveATKRadius;
-    public float Speed;    
+    public float Speed = 15f;    
     Vector3 GetTargetNormalize;
     float GetTargetMegnitude;
     float MoveSpeed;
@@ -33,6 +35,9 @@ public class SkeletonFSM : MonoBehaviour
     int FrameCount_Roar;
     void Start()
     {
+        Target = GameManager.Instance().PlayerStart;//抓出玩家
+        MySelf = this.transform.gameObject;//抓出自己
+
         m_NowState = SkeletonState.Idle;
         capsule = GetComponent<CapsuleCollider>();
         MubAnimator = GetComponent<Animator>();

@@ -7,7 +7,7 @@ public class GameManager : MonoBehaviour
 {
     private static GameManager mInstance;
     public static GameManager Instance() { return mInstance; }
-    GameObject PlayerStart;
+    public GameObject PlayerStart;
     public List<GameObject> mobPool;
     private void Awake()
     {

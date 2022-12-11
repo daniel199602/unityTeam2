@@ -6,6 +6,8 @@ using Unity.VisualScripting;
 public class MubAttackManager : MonoBehaviour
 {
 
+    ItemOnMob thisItemOnMob;
+
     [HideInInspector] public float angle;
 
     [HideInInspector] public float radius;
@@ -34,6 +36,8 @@ public class MubAttackManager : MonoBehaviour
 
     private void Start()
     {
+
+
         TargetSize = Target.GetComponent<CapsuleCollider>();
         PlayerData = Target.GetComponent<PlayerState>();
 
