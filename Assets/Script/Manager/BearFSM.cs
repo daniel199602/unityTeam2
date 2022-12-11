@@ -9,9 +9,12 @@ public enum BearState
 public class BearFSM : MonoBehaviour
 {
     private BearState m_NowState;
-    public GameObject Target;
-    public GameObject MySelf;
-    public GameObject TempPoint;
+
+    private GameObject Target;//存玩家
+    private GameObject MySelf;//存自己
+
+    public GameObject TempPoint;//後退用，目前沒有用到
+
     PlayerState State;
     Animator MubAnimator;
     int hpTemporary;
@@ -27,7 +30,7 @@ public class BearFSM : MonoBehaviour
     float LeaveATKRadius;
     float Close_ATKRadius;
 
-    public float Speed;
+    public float Speed=20f;
     float MoveSpeed;
     float BackSpeed;
 
@@ -48,6 +51,9 @@ public class BearFSM : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Target = GameManager.Instance().PlayerStart;//抓出玩家
+        MySelf = this.transform.gameObject;//抓出自己
+
         m_NowState = BearState.Idle;
         capsule = GetComponent<CapsuleCollider>();
         MubAnimator = GetComponent<Animator>();

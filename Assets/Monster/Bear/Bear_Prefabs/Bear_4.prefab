@@ -1950,6 +1950,7 @@ GameObject:
   - component: {fileID: 3716577718639574146}
   - component: {fileID: 1070152119589441916}
   - component: {fileID: 5233068973903805898}
+  - component: {fileID: 6357271770518249647}
   m_Layer: 0
   m_Name: Bear_4
   m_TagString: Untagged
@@ -2040,9 +2041,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8b6680b85b09494aa6b7723887c3c24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bloodTransform: {fileID: 0}
-  bloodDelayTransform: {fileID: 0}
-  frameTransform: {fileID: 0}
+  bloodTransform: {fileID: 3639000982259212305}
+  bloodDelayTransform: {fileID: 3639000981957654597}
+  frameTransform: {fileID: 3639000980406545075}
   Head: {fileID: 3979362087637544056}
 --- !u!136 &3716577718639574146
 CapsuleCollider:
@@ -2083,6 +2084,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   thisMobItem: {fileID: 11400000, guid: 05ab35d565443464f9a330c1a8b837be, type: 2}
+--- !u!114 &6357271770518249647
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7962199819078159310}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65e2f4870af0283439ae7caaa1ffd27c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TempPoint: {fileID: 3734313751103569802, guid: 75aba98cc0042664db3a2eaa4a04025b, type: 3}
+  Speed: 20
 --- !u!1 &8002475675295336084
 GameObject:
   m_ObjectHideFlags: 0
@@ -2483,6 +2498,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ed2c2552b2431354890b8a2e05faff6e, type: 3}
+--- !u!224 &3639000980406545075 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 2926747656457040867, guid: ed2c2552b2431354890b8a2e05faff6e, type: 3}
+  m_PrefabInstance: {fileID: 1881855245927717200}
+  m_PrefabAsset: {fileID: 0}
+--- !u!224 &3639000981957654597 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 2926747657069666581, guid: ed2c2552b2431354890b8a2e05faff6e, type: 3}
+  m_PrefabInstance: {fileID: 1881855245927717200}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &3639000981957654598 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2926747657069666582, guid: ed2c2552b2431354890b8a2e05faff6e, type: 3}
