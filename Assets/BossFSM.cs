@@ -10,8 +10,8 @@ public class BossFSM : MonoBehaviour
 {
     private BossState m_NowState;
 
-    public GameObject Target;
-    public GameObject MySelf;
+    private GameObject Target;//存玩家
+    private GameObject MySelf;//存自己
 
     PlayerState State;
     Animator MubAnimator;
@@ -49,6 +49,9 @@ public class BossFSM : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Target = GameManager.Instance().PlayerStart;//抓出玩家
+        MySelf = this.transform.gameObject;//抓出自己
+
         m_NowState = BossState.Idle;
         capsule = GetComponent<CapsuleCollider>();
         MubAnimator = GetComponent<Animator>();
