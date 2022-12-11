@@ -15,7 +15,7 @@ MonoBehaviour:
   weaponName: Torch
   weaponType: 0
   weaponID: 0
-  weaponDamage_instant: 10
-  weaponDamage_delay: 5
+  weaponDamage_instant: 30
+  weaponDamage_delay: 20
   weaponAngle: 30
-  weaponRadius: 5
+  weaponRadius: 40
