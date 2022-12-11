@@ -26,10 +26,13 @@ public class MagicCasterFSM : MonoBehaviour
     bool InATKrange;
     bool InATKrange_Close;
     bool OutATKrange;
+    bool AwakeBool = false;
+    bool Awake;
     float TraceRadius;
     float ATKRadius;
     float LeaveATKRadius;
     float Close_ATKRadius;
+    float AwakeRadius;
 
     Vector3 GetTargetNormalize;
     float GetTargetMegnitude;
@@ -61,60 +64,78 @@ public class MagicCasterFSM : MonoBehaviour
         Close_ATKRadius = ATKRadius * 0.8f;
         TraceRadius = ATKRadius * 2;
         LeaveATKRadius = ATKRadius * 1.2f;
-
+        AwakeRadius = ATKRadius * 1.5f;
         Count = 0;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (FrameCount_Roar > 0)
+        AwakeSensor();
+        if (AwakeBool == true)
         {
-            FrameCount_Roar--;
+            if (FrameCount_Roar > 0)
+            {
+                FrameCount_Roar--;
+            }
+            if (RoarBool == false)
+            {
+                Roar();
+                RoarBool = true;
+            }
+            if (State.Hp <= 0)//死亡→無狀態
+            {
+                m_NowState = MagicCasterState.Dead;
+                DeadStatus();
+                return;
+            }
+            else if (State.Hp != hpTemporary)
+            {
+                hpTemporary = State.Hp;
+                MubAnimator.SetBool("GetHit", true);
+            }
+            else if (FrameCount_Roar <= 0)
+            {
+                MubAnimator.SetBool("GetHit", false);
+
+                MubAnimator.SetBool("Warn", false);
+
+                GetTargetNormalize = (Target.transform.position - transform.position).normalized;
+
+                Quaternion Look = Quaternion.LookRotation(GetTargetNormalize);
+
+                transform.rotation = Quaternion.Slerp(transform.rotation, Look, 14f * Time.deltaTime);
+
+                BugSummon();
+
+                Debug.Log("CDs:" + Count);
+
+                TraceStatus();
+
+                AttackStatus();
+
+                LeaveAttackStatus();
+
+                TooCloseAttackStatus_York();
+
+                BackStatus();
+            }
+            Debug.Log(m_NowState);
         }
-        if (RoarBool == false)
+       
+    }
+    public void AwakeSensor()
+    {
         {
-            Roar();
-            RoarBool = true;
+            if (AwakeBool == false)
+            {
+                Awake = IsInRange_AwakeRange(AwakeRadius, MySelf, Target);
+                if (Awake == true)
+                {
+                    AwakeBool = true;
+                }
+            }
         }
-        if (State.Hp <= 0)//死亡→無狀態
-        {
-            m_NowState = MagicCasterState.Dead;
-            DeadStatus();
-            return;
-        }
-        else if (State.Hp != hpTemporary)
-        {
-            hpTemporary = State.Hp;
-            MubAnimator.SetBool("GetHit", true);
-        }
-        else if (FrameCount_Roar <= 0)
-        {
-            MubAnimator.SetBool("GetHit", false);
-
-            MubAnimator.SetBool("Warn", false);
-
-            GetTargetNormalize = (Target.transform.position - transform.position).normalized;
-
-            Quaternion Look = Quaternion.LookRotation(GetTargetNormalize);
-
-            transform.rotation = Quaternion.Slerp(transform.rotation, Look, 14f * Time.deltaTime);
-
-            BugSummon();
-
-            Debug.Log("CDs:" + Count);
-
-            TraceStatus();
-
-            AttackStatus();
-
-            LeaveAttackStatus();
-
-            TooCloseAttackStatus_York();
-
-            BackStatus();
-        }
-        Debug.Log(m_NowState);
     }
     public void DeadStatus()
     {
@@ -219,6 +240,12 @@ public class MagicCasterFSM : MonoBehaviour
                 MubAnimator.SetBool("Attack", false);
             }
         }
+    }
+    public bool IsInRange_AwakeRange(float Radius, GameObject attacker, GameObject attacked)
+    {
+        Vector3 direction = attacked.transform.position - attacker.transform.position;
+
+        return direction.magnitude <= Radius;
     }
     //在遠程攻擊範圍內 
     public bool IsInRange_RangedBattleRange(float RadiusMax, float RadiusMin, GameObject attacker, GameObject attacked)

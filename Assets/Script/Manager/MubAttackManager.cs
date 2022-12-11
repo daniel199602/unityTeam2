@@ -112,41 +112,41 @@ public class MubAttackManager : MonoBehaviour
 
 
 
-    private void OnDrawGizmos()
-    {
-        Handles.color = flag ? Color.cyan : Color.red;
+    //private void OnDrawGizmos()
+    //{
+    //    Handles.color = flag ? Color.cyan : Color.red;
 
-        float x = mobRadius * Mathf.Sin(mobAngle / 2f * Mathf.Deg2Rad);
-        float z = Mathf.Sqrt(Mathf.Pow(mobRadius, 2f) - Mathf.Pow(x, 2f));
+    //    float x = mobRadius * Mathf.Sin(mobAngle / 2f * Mathf.Deg2Rad);
+    //    float z = Mathf.Sqrt(Mathf.Pow(mobRadius, 2f) - Mathf.Pow(x, 2f));
 
-        Vector3 a = new Vector3(transform.position.x - x, transform.position.y, transform.position.z + z);
-        Vector3 b = new Vector3(transform.position.x + x, transform.position.y, transform.position.z + z);
+    //    Vector3 a = new Vector3(transform.position.x - x, transform.position.y, transform.position.z + z);
+    //    Vector3 b = new Vector3(transform.position.x + x, transform.position.y, transform.position.z + z);
 
-        Handles.DrawLine(transform.position, a);
-        Handles.DrawLine(transform.position, b);
+    //    Handles.DrawLine(transform.position, a);
+    //    Handles.DrawLine(transform.position, b);
 
-        float half = mobAngle / 2;
+    //    float half = mobAngle / 2;
 
-        for (int i = 0; i < half; i++)
-        {
-            x = mobRadius * Mathf.Sin((half - i) * Mathf.Deg2Rad);
-            z = Mathf.Sqrt(Mathf.Pow(mobRadius, 2f) - Mathf.Pow(x, 2f));
-            a = new Vector3(transform.position.x - x, transform.position.y, transform.position.z + z);
-            x = mobRadius * Mathf.Sin((half - i - 1) * Mathf.Deg2Rad);
-            z = Mathf.Sqrt(Mathf.Pow(mobRadius, 2f) - Mathf.Pow(x, 2f));
-            b = new Vector3(transform.position.x - x, transform.position.y, transform.position.z + z);
-            Handles.DrawLine(a, b);
-        }
+    //    for (int i = 0; i < half; i++)
+    //    {
+    //        x = mobRadius * Mathf.Sin((half - i) * Mathf.Deg2Rad);
+    //        z = Mathf.Sqrt(Mathf.Pow(mobRadius, 2f) - Mathf.Pow(x, 2f));
+    //        a = new Vector3(transform.position.x - x, transform.position.y, transform.position.z + z);
+    //        x = mobRadius * Mathf.Sin((half - i - 1) * Mathf.Deg2Rad);
+    //        z = Mathf.Sqrt(Mathf.Pow(mobRadius, 2f) - Mathf.Pow(x, 2f));
+    //        b = new Vector3(transform.position.x - x, transform.position.y, transform.position.z + z);
+    //        Handles.DrawLine(a, b);
+    //    }
 
-        for (int i = 0; i < half; i++)
-        {
-            x = mobRadius * Mathf.Sin((half - i) * Mathf.Deg2Rad);
-            z = Mathf.Sqrt(Mathf.Pow(mobRadius, 2f) - Mathf.Pow(x, 2f));
-            a = new Vector3(transform.position.x + x, transform.position.y, transform.position.z + z);
-            x = mobRadius * Mathf.Sin((half - i - 1) * Mathf.Deg2Rad);
-            z = Mathf.Sqrt(Mathf.Pow(mobRadius, 2f) - Mathf.Pow(x, 2f));
-            b = new Vector3(transform.position.x + x, transform.position.y, transform.position.z + z);
-            Handles.DrawLine(a, b);
-        }
-    }
+    //    for (int i = 0; i < half; i++)
+    //    {
+    //        x = mobRadius * Mathf.Sin((half - i) * Mathf.Deg2Rad);
+    //        z = Mathf.Sqrt(Mathf.Pow(mobRadius, 2f) - Mathf.Pow(x, 2f));
+    //        a = new Vector3(transform.position.x + x, transform.position.y, transform.position.z + z);
+    //        x = mobRadius * Mathf.Sin((half - i - 1) * Mathf.Deg2Rad);
+    //        z = Mathf.Sqrt(Mathf.Pow(mobRadius, 2f) - Mathf.Pow(x, 2f));
+    //        b = new Vector3(transform.position.x + x, transform.position.y, transform.position.z + z);
+    //        Handles.DrawLine(a, b);
+    //    }
+    //}
 }

@@ -461,7 +461,7 @@ MonoBehaviour:
   MySelf: {fileID: 7143010690539542105}
   DangerZone: {fileID: 4521084516676180123, guid: 672b860e8f47e48459caca8042d3aa90, type: 3}
   ExplosionZone: {fileID: 4521084516676180123, guid: c44565c5cd44c3647a8bccc1eac84743, type: 3}
-  Speed: 0
+  Speed: 30
 --- !u!95 &6265975674839720854
 Animator:
   serializedVersion: 4

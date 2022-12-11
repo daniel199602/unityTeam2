@@ -1020,7 +1020,7 @@ AnimatorStateTransition:
   m_HasFixedDuration: 1
   m_InterruptionSource: 0
   m_OrderedInterruption: 1
-  m_CanTransitionToSelf: 1
+  m_CanTransitionToSelf: 0
 --- !u!1101 &8359773704005243219
 AnimatorStateTransition:
   m_ObjectHideFlags: 1

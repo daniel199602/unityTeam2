@@ -22,9 +22,14 @@ public class SkeletonFSM : MonoBehaviour
     bool tracing;
     bool InATKrange;
     bool OutATKrange;
+    bool AwakeBool = false;
+    bool Awake;
+
     float TraceRadius;
     float ATKRadius;
     float LeaveATKRadius;
+    float AwakeRadius;
+
     public float Speed = 15f;    
     Vector3 GetTargetNormalize;
     float GetTargetMegnitude;
@@ -48,53 +53,74 @@ public class SkeletonFSM : MonoBehaviour
         
         ATKRadius = 30;//WeaponÂÐ»\
 
-        TraceRadius = ATKRadius * 3;
+        TraceRadius = ATKRadius * 2;
+
+        AwakeRadius = ATKRadius * 1.5f;
+
         LeaveATKRadius = ATKRadius * 1.5f;
+        
     }
     // Update is called once per frame
     void Update()
     {
-        if (FrameCount_Roar>0)
+        AwakeSensor();
+        if (AwakeBool ==true)
         {
-            FrameCount_Roar--;
-        }   
-        if (RoarBool==false)
-        {
-            Roar();
-            RoarBool = true;            
-        }
-        if (State.Hp <= 0)//¦º¤`¡÷µLª¬ºA
-        {
-            m_NowState = SkeletonState.Dead;
-            DeadStatus();
-            return;
-        }
-        else if (State.Hp != hpTemporary)
-        {
-            hpTemporary = State.Hp;
-            MubAnimator.SetBool("GetHit", true);
+            if (FrameCount_Roar > 0)
+            {
+                FrameCount_Roar--;
+            }
+            if (RoarBool == false)
+            {
+                Roar();
+                RoarBool = true;
+            }
+            if (State.Hp <= 0)//¦º¤`¡÷µLª¬ºA
+            {
+                m_NowState = SkeletonState.Dead;
+                DeadStatus();
+                return;
+            }
+            else if (State.Hp != hpTemporary)
+            {
+                hpTemporary = State.Hp;
+                MubAnimator.SetBool("GetHit", true);
+            }
+            else if (FrameCount_Roar <= 0)
+            {
+                MubAnimator.SetBool("GetHit", false);
+
+                Debug.LogError("f:" + FrameCount_Roar);
+
+                MubAnimator.SetBool("Roar", false);
+
+                GetTargetNormalize = (Target.transform.position - transform.position).normalized;
+
+                Quaternion Look = Quaternion.LookRotation(GetTargetNormalize);
+
+                transform.rotation = Quaternion.Slerp(transform.rotation, Look, Speed * Time.deltaTime);
+
+                TraceStatus();
+
+                AttackStatus();
+
+                LeaveAttackStatus();
+            }
         }        
-        else if (FrameCount_Roar<=0)
-        {
-            MubAnimator.SetBool("GetHit", false);
-
-            Debug.LogError("f:" + FrameCount_Roar);
-
-            MubAnimator.SetBool("Roar", false);
-
-            GetTargetNormalize = (Target.transform.position - transform.position).normalized;
-
-            Quaternion Look = Quaternion.LookRotation(GetTargetNormalize);
-
-            transform.rotation = Quaternion.Slerp(transform.rotation, Look, Speed * Time.deltaTime);
-
-            TraceStatus();
-
-            AttackStatus();
-
-            LeaveAttackStatus();
-        }
         Debug.Log(m_NowState);
+    }
+    public void AwakeSensor()
+    {
+        {
+            if (AwakeBool==false)
+            {
+                Awake = IsInRange_AwakeRange(AwakeRadius, MySelf, Target);
+                if (Awake == true)
+                {
+                    AwakeBool = true;
+                }
+            }            
+        }
     }
     public void DeadStatus()
     {
@@ -154,6 +180,12 @@ public class SkeletonFSM : MonoBehaviour
                 LeaveAttackRangeBool = false;
             }
         }
+    }
+    public bool IsInRange_AwakeRange(float Radius, GameObject attacker, GameObject attacked)
+    {
+        Vector3 direction = attacked.transform.position - attacker.transform.position;
+
+        return direction.magnitude <= Radius;
     }
     public bool IsInRange_MeleeBattleRange(float Radius, GameObject attacker, GameObject attacked)
     {

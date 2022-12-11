@@ -24,11 +24,14 @@ public class BearFSM : MonoBehaviour
     bool InATKrange;
     bool InATKrange_Close;
     bool OutATKrange;
+    bool AwakeBool = false;
+    bool Awake;
     float TraceRadius;
     float RunRadius;
     float ATKRadius;
     float LeaveATKRadius;
     float Close_ATKRadius;
+    float AwakeRadius;
 
     public float Speed=20f;
     float MoveSpeed;
@@ -71,6 +74,7 @@ public class BearFSM : MonoBehaviour
         TraceRadius = ATKRadius * 2.5f;
         LeaveATKRadius = ATKRadius * 1.3f;
         RunRadius = ATKRadius * 2.7f;
+        AwakeRadius = ATKRadius * 1.5f;
         AttackCBool = false;
         Count = 0;
     }
@@ -78,53 +82,71 @@ public class BearFSM : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (FrameCount_Roar > 0)
+        AwakeSensor();
+        if (AwakeBool == true)
         {
-            FrameCount_Roar--;
+            if (FrameCount_Roar > 0)
+            {
+                FrameCount_Roar--;
+            }
+            if (RoarBool == false)
+            {
+                Roar();
+                RoarBool = true;
+            }
+            if (State.Hp <= 0)//死亡→無狀態
+            {
+                m_NowState = BearState.Dead;
+                DeadStatus();
+                return;
+            }
+            else if (State.Hp != hpTemporary)
+            {
+                hpTemporary = State.Hp;
+                MubAnimator.SetBool("GetHit", true);
+            }
+            else if (FrameCount_Roar <= 0)
+            {
+                MubAnimator.SetBool("GetHit", false);
+
+                MubAnimator.SetBool("Warn", false);
+
+                GetTargetNormalize = (Target.transform.position - transform.position).normalized;
+
+                Quaternion Look = Quaternion.LookRotation(GetTargetNormalize);
+
+                transform.rotation = Quaternion.Slerp(transform.rotation, Look, 7f * Time.deltaTime);
+
+
+                Debug.Log("CDs:" + Count);
+
+                TraceStatus();
+
+                AttackStatus();
+
+                LeaveAttackStatus();
+
+                TooCloseAttackStatus_York();
+
+                BackStatus();
+
+            }
         }
-        if (RoarBool == false)
-        {
-            Roar();
-            RoarBool = true;
-        }
-        if (State.Hp <= 0)//死亡→無狀態
-        {
-            m_NowState = BearState.Dead;
-            DeadStatus();
-            return;
-        }
-        else if (State.Hp != hpTemporary)
-        {
-            hpTemporary = State.Hp;
-            MubAnimator.SetBool("GetHit", true);
-        }
-        else if (FrameCount_Roar <= 0)
-        {
-            MubAnimator.SetBool("GetHit", false);
-
-            MubAnimator.SetBool("Warn", false);
-
-            GetTargetNormalize = (Target.transform.position - transform.position).normalized;
-
-            Quaternion Look = Quaternion.LookRotation(GetTargetNormalize);
-
-            transform.rotation = Quaternion.Slerp(transform.rotation, Look, 7f * Time.deltaTime);
-
-
-            Debug.Log("CDs:" + Count);
-
-            TraceStatus();
-
-             AttackStatus();
-            
-            LeaveAttackStatus();
-
-            TooCloseAttackStatus_York();
-
-            BackStatus();
-           
-        }
+        
         Debug.Log(m_NowState);
+    }
+    public void AwakeSensor()
+    {
+        {
+            if (AwakeBool == false)
+            {
+                Awake = IsInRange_AwakeRange(AwakeRadius, MySelf, Target);
+                if (Awake == true)
+                {
+                    AwakeBool = true;
+                }
+            }
+        }
     }
     public void DeadStatus()
     {
@@ -244,6 +266,12 @@ public class BearFSM : MonoBehaviour
                 MubAnimator.SetBool("Attack03", false); 
             }
         }
+    }
+    public bool IsInRange_AwakeRange(float Radius, GameObject attacker, GameObject attacked)
+    {
+        Vector3 direction = attacked.transform.position - attacker.transform.position;
+
+        return direction.magnitude <= Radius;
     }
     //在遠程攻擊範圍內 
     public bool IsInRange_RangedBattleRange(float RadiusMax, float RadiusMin, GameObject attacker, GameObject attacked)
@@ -383,6 +411,9 @@ public class BearFSM : MonoBehaviour
 
         Gizmos.color = InATKrange_Close ? Color.green : Color.cyan;
         Gizmos.DrawWireSphere(transform.position, Close_ATKRadius);
+
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireSphere(transform.position, AwakeRadius);
     }
     private void Animation_Attack()
     {
