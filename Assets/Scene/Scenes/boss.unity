@@ -3367,6 +3367,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: LavaCharater Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 4292004830827175513, guid: 052b0736fab5eee4eaa4ea766d127ef3, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8510088616971104976, guid: 052b0736fab5eee4eaa4ea766d127ef3, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: -24.900024
