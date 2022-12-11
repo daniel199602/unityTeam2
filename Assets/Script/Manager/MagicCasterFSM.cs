@@ -13,8 +13,10 @@ public class MagicCasterFSM : MonoBehaviour
     public Transform LaunchPort;
 
     private MagicCasterState m_NowState;
-    public GameObject Target;
-    public GameObject MySelf;
+
+    private GameObject Target;
+    private GameObject MySelf;
+
     PlayerState State;
     Animator MubAnimator;
     int hpTemporary;
@@ -40,6 +42,9 @@ public class MagicCasterFSM : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Target = GameManager.Instance().PlayerStart;//抓出玩家
+        MySelf = this.transform.gameObject;//抓出自己
+
         m_NowState = MagicCasterState.Idle;
         capsule = GetComponent<CapsuleCollider>();
         MubAnimator = GetComponent<Animator>();

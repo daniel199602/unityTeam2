@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3496456542428790784
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 448228632050446070}
+  m_Layer: 0
+  m_Name: ShootObject
+  m_TagString: LaunchPort
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &448228632050446070
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3496456542428790784}
+  m_LocalRotation: {x: -0.45649046, y: -0.6242043, z: 0.42674378, w: -0.4689086}
+  m_LocalPosition: {x: 0.033, y: 0.39, z: 0}
+  m_LocalScale: {x: 1, y: 1.0000217, z: 0.9999748}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8560029133112398078}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7940442615431678518
 GameObject:
   m_ObjectHideFlags: 0
@@ -2408,6 +2439,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8559816643414163862}
+  - {fileID: 448228632050446070}
   m_Father: {fileID: 8562896298177439710}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2428,6 +2460,7 @@ GameObject:
   - component: {fileID: 796329680502127141}
   - component: {fileID: 4875957930652274703}
   - component: {fileID: 5249844410737661589}
+  - component: {fileID: 854260066922550017}
   m_Layer: 0
   m_Name: DemonGirlMesh
   m_TagString: Untagged
@@ -2580,6 +2613,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   thisMobItem: {fileID: 11400000, guid: a18de89d05cf49a4b9d45d380b4ac1b4, type: 2}
+--- !u!114 &854260066922550017
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8557610552027109654}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f886370eb8fc02b4498e0c7189a2e3f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Bug: {fileID: 1143180963066806, guid: f7769b1fc067cae44b63ccdcc8288127, type: 3}
+  TestCube: {fileID: 5908830022544453823, guid: 52cd825b0bbcb2040bbccceec87f536b, type: 3}
+  LaunchPort: {fileID: 0}
 --- !u!1 &8557626694189890328
 GameObject:
   m_ObjectHideFlags: 0

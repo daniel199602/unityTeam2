@@ -3296,6 +3296,10 @@ PrefabInstance:
       propertyPath: bloodDelayTransform
       value: 
       objectReference: {fileID: 24451028}
+    - target: {fileID: 3668290559282468413, guid: b115e60b742ffac43af5a949b71b4bc5, type: 3}
+      propertyPath: Bug
+      value: 
+      objectReference: {fileID: 7143010690539542105, guid: 99ae7bdd379a96a43b8b110cb3d899f3, type: 3}
     - target: {fileID: 5760155195853954090, guid: b115e60b742ffac43af5a949b71b4bc5, type: 3}
       propertyPath: m_Name
       value: DemonGirlMesh_C
