@@ -12,6 +12,7 @@ public class HealthBar : MonoBehaviour
     MubHpData PlayerHp;
     int CountTime;
     public RectTransform hpBar;
+    public bool bossHpOpen;
 
     // Start is called before the first frame update
     private void Awake()
@@ -30,11 +31,11 @@ public class HealthBar : MonoBehaviour
     {
         Health = PlayerHp.Hp;
         StartCoroutine(HealthBarDelay());
-        if(Maxhealth != Health&& Health>0)
+        if(Maxhealth != Health&& Health>0 && bossHpOpen==false)
         {
             hpBar.gameObject.SetActive(true);
         }
-        else if(Health<=0)
+        else if(Health<=0 && bossHpOpen == false)
         {
             hpBar.gameObject.SetActive(false);
         }

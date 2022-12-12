@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class doorOpen_Boss : MonoBehaviour
 {
-    public RectTransform bloodTransform;
-    public RectTransform bloodDelayTransform;
+
     public RectTransform frameTransform;
 
     Animator myAnim;
@@ -15,8 +14,7 @@ public class doorOpen_Boss : MonoBehaviour
     void Start()
     {
         myAnim = GetComponent<Animator>();
-        bloodTransform.gameObject.SetActive(false);
-        bloodDelayTransform.gameObject.SetActive(false);
+        fog = GameObject.Find("FogOfWarPlane");
         frameTransform.gameObject.SetActive(false);
     }
 
@@ -29,8 +27,7 @@ public class doorOpen_Boss : MonoBehaviour
             bool isOpen = myAnim.GetBool("isOpen");
             myAnim.SetBool("isOpen", !isOpen);
             
-            bloodTransform.gameObject.SetActive(true);
-            bloodDelayTransform.gameObject.SetActive(true);
+
             frameTransform.gameObject.SetActive(true);
         }
     }
@@ -48,7 +45,7 @@ public class doorOpen_Boss : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            
+            myAnim.SetBool("isOpen", false);
             isInZone = false;
             fog.SetActive(false);
         }
