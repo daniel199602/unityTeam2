@@ -24,7 +24,7 @@ public class SpiderFSM : MonoBehaviour
 
     Animator MubAnimator;
 
-    CapsuleCollider Selfcapsule;
+    CharacterController Selfcapsule;
 
     CharacterController TargetCapsule;
 
@@ -63,7 +63,7 @@ public class SpiderFSM : MonoBehaviour
 
         m_NowState = SpiderState.Idle;
 
-        Selfcapsule = GetComponent<CapsuleCollider>();
+        Selfcapsule = GetComponent<CharacterController>();
 
         TargetCapsule = Target.GetComponent<CharacterController>();
 

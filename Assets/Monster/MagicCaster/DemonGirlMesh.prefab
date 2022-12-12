@@ -2453,7 +2453,6 @@ GameObject:
   m_Component:
   - component: {fileID: 8559658806296912734}
   - component: {fileID: 8617459445911992714}
-  - component: {fileID: 3875252265080190310}
   - component: {fileID: 4051324754958994056}
   - component: {fileID: 2287063813628994175}
   - component: {fileID: 1764858278061436294}
@@ -2461,6 +2460,7 @@ GameObject:
   - component: {fileID: 4875957930652274703}
   - component: {fileID: 5249844410737661589}
   - component: {fileID: 854260066922550017}
+  - component: {fileID: 7019348681000112901}
   m_Layer: 0
   m_Name: DemonGirlMesh
   m_TagString: Untagged
@@ -2514,20 +2514,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!136 &3875252265080190310
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8557610552027109654}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.42
-  m_Height: 2.05
-  m_Direction: 1
-  m_Center: {x: 0, y: 0.9, z: 0}
 --- !u!114 &4051324754958994056
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2628,6 +2614,24 @@ MonoBehaviour:
   Bug: {fileID: 1143180963066806, guid: f7769b1fc067cae44b63ccdcc8288127, type: 3}
   TestCube: {fileID: 5908830022544453823, guid: 52cd825b0bbcb2040bbccceec87f536b, type: 3}
   LaunchPort: {fileID: 0}
+--- !u!143 &7019348681000112901
+CharacterController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8557610552027109654}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Height: 2
+  m_Radius: 0.5
+  m_SlopeLimit: 45
+  m_StepOffset: 0.3
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0.001
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!1 &8557626694189890328
 GameObject:
   m_ObjectHideFlags: 0

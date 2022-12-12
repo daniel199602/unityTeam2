@@ -18,7 +18,7 @@ public class RangeSensorFSM
     float DisRange;
     bool InRange;
     float AttackRangeMiddle;
-    PlayerState State;
+    MubHpData State;
     Animator MubAnimator;
     int hpTemporary;
     CapsuleCollider capsule;

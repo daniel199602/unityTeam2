@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerState : MonoBehaviour
+public class MubHpData : MonoBehaviour
 {
     ItemOnMob thisItemOnMob;
 

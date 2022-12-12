@@ -13,7 +13,7 @@ public class BossFSM : MonoBehaviour
     private GameObject Target;//存玩家
     private GameObject MySelf;//存自己
 
-    PlayerState State;
+    MubHpData State;
     Animator MubAnimator;
     int hpTemporary;
     int hpTemporaryMax;
@@ -55,7 +55,7 @@ public class BossFSM : MonoBehaviour
         m_NowState = BossState.Idle;
         capsule = GetComponent<CapsuleCollider>();
         MubAnimator = GetComponent<Animator>();
-        State = GetComponent<PlayerState>();
+        State = GetComponent<MubHpData>();
         hpTemporary = State.Hp;
         hpTemporaryMax = State.Hp;
 

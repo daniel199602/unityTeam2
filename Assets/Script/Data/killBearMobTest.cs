@@ -5,12 +5,12 @@ using UnityEngine;
 public class killBearMobTest : MonoBehaviour
 {
     DoorOpen_MobLast doorOpen_MobLast;
-    PlayerState PlayerHp;
+    MubHpData PlayerHp;
     private float duration;
 
     private void Awake()
     {
-        PlayerHp = GetComponent<PlayerState>();
+        PlayerHp = GetComponent<MubHpData>();
     }
 
     private void Start()

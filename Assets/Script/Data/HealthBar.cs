@@ -9,14 +9,14 @@ public class HealthBar : MonoBehaviour
     public Image HealthbarLate;
     public float Health, Maxhealth=10;
     private float _lerpspeed = 8f;
-    PlayerState PlayerHp;
+    MubHpData PlayerHp;
     int CountTime;
     public RectTransform hpBar;
 
     // Start is called before the first frame update
     private void Awake()
     {
-        PlayerHp = GetComponent<PlayerState>();       
+        PlayerHp = GetComponent<MubHpData>();       
     }
     void Start()
     {

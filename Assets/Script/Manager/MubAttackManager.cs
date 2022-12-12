@@ -13,7 +13,7 @@ public class MubAttackManager : MonoBehaviour
     
     [SerializeField] private GameObject Target;//存玩家
 
-    PlayerState PlayerData;//玩家血量狀態
+    PlayerHpData PlayerData;//玩家血量狀態
     CharacterController TargetSize;//玩家用CharacterController
 
     //Weapon weaponData;
@@ -39,7 +39,7 @@ public class MubAttackManager : MonoBehaviour
         /**/
 
         TargetSize = Target.GetComponent<CharacterController>();
-        PlayerData = Target.GetComponent<PlayerState>();
+        PlayerData = Target.GetComponent<PlayerHpData>();
     }
 
     /// <summary>
@@ -77,7 +77,7 @@ public class MubAttackManager : MonoBehaviour
     /// <param name="demage_instant">立即傷害</param>
     public void DeductMobHpInstant(GameObject mob, int demage_instant)
     {
-        mob.GetComponent<PlayerState>().HpDeduction(demage_instant);
+        mob.GetComponent<PlayerHpData>().HpDeduction(demage_instant);
     }
 
 
@@ -103,7 +103,7 @@ public class MubAttackManager : MonoBehaviour
         while (Count >= 0)
         {
             yield return new WaitForSeconds(1);
-            mob.GetComponent<PlayerState>().HpDeduction(demage_delay);
+            mob.GetComponent<PlayerHpData>().HpDeduction(demage_delay);
             Count--;
         }
     }

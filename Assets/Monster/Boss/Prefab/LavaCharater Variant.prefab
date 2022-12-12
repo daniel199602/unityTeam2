@@ -234,8 +234,8 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1287092949503891138, guid: 693eee48e53fa1542812fc3b0f773541, type: 3}
   m_PrefabInstance: {fileID: 3048074452590921883}
   m_PrefabAsset: {fileID: 0}
---- !u!136 &306180870
-CapsuleCollider:
+--- !u!143 &4904561674457691654
+CharacterController:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -244,10 +244,14 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.5362325
-  m_Height: 2.1
-  m_Direction: 1
-  m_Center: {x: -0.0042453003, y: 1.0046027, z: 0.09659805}
+  serializedVersion: 2
+  m_Height: 2.15
+  m_Radius: 0.68
+  m_SlopeLimit: 45
+  m_StepOffset: 0.3
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0.001
+  m_Center: {x: 0, y: 1.08, z: 0}
 --- !u!114 &306180867
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -281,21 +285,6 @@ MonoBehaviour:
   Health: 0
   Maxhealth: 0
   hpBar: {fileID: 0}
---- !u!114 &306180869
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4292004830827175513}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b8889cc20c3fac041a511c9e2cfa83c2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MaxHp: 1000
-  Hp: 1000
-  currentHp: 0
 --- !u!114 &470085693560655214
 MonoBehaviour:
   m_ObjectHideFlags: 0

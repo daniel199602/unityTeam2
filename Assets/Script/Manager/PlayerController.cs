@@ -28,14 +28,14 @@ public class PlayerController : MonoBehaviour
     public GameObject torchL;//綁火把左手
     public GameObject weaponL;//左手
     public GameObject weaponR;//右手
-    
+
 
     //keyCode.Alpha2 暫時切換 劍盾 與 雙手劍 bool變數，之後改再刪除
     bool alpha2Switch = false;
 
     //玩家數值(挖洞)
-    PlayerState State;
-    int hpTemporary;
+    MubHpData State;
+    [SerializeField]int hpTemporary;
     int RandomNum;
     int i;
 
@@ -49,7 +49,7 @@ public class PlayerController : MonoBehaviour
 
     public enum pFSMState
     {
-        NONE=-1,
+        NONE = -1,
         MoveTree,
         Roll,
         Attack,
@@ -72,18 +72,29 @@ public class PlayerController : MonoBehaviour
         weaponL.SetActive(false);
         weaponR.SetActive(false);
 
-        State = GetComponent<PlayerState>();
+        State = GetComponent<MubHpData>();
         hpTemporary = State.Hp;
         i = 0;
 
+    }
+    public void Incuvusuble()
+    {
+        if (Input.GetKey(KeyCode.F1))
+        {
+            invincible = true;
+        }
+        if (Input.GetKey(KeyCode.F2))
+        {
+            invincible = false;
+        }
     }
     // Update is called once per frame
     void Update()
     {
         animStateInfo = charaterAnimator.GetCurrentAnimatorStateInfo(currentLayerNum);//當前Layer第Num層的當前動畫狀態
-
+        Incuvusuble();
         //玩家Animator Layer狀態機
-        if (m_pCurrentAnimLayer==pAnimLayerState.Layer0)
+        if (m_pCurrentAnimLayer == pAnimLayerState.Layer0)
         {
             if (animStateInfo.IsName("BlendMove"))
             {
@@ -93,7 +104,7 @@ public class PlayerController : MonoBehaviour
             charaterAnimator.SetLayerWeight(1, 0);
             charaterAnimator.SetLayerWeight(2, 0);
         }
-        if(m_pCurrentAnimLayer==pAnimLayerState.Layer1)
+        if (m_pCurrentAnimLayer == pAnimLayerState.Layer1)
         {
             if (animStateInfo.IsName("BlendMoveSingleHand"))
             {
@@ -103,7 +114,7 @@ public class PlayerController : MonoBehaviour
             charaterAnimator.SetLayerWeight(1, 1);
             charaterAnimator.SetLayerWeight(2, 0);
         }
-        if(m_pCurrentAnimLayer==pAnimLayerState.Layer2)
+        if (m_pCurrentAnimLayer == pAnimLayerState.Layer2)
         {
             if (animStateInfo.IsName("BlendMove2Hands"))
             {
@@ -115,39 +126,33 @@ public class PlayerController : MonoBehaviour
         }
 
         //玩家狀態機
-        if (State.Hp<=0f)
+        if (State.Hp <= 0f)
         {
             m_pCurrentState = pFSMState.Dead;
             DeadStatus();
             return;
         }
-        else if (State.Hp != hpTemporary)
+        else if (State.Hp != hpTemporary && invincible == false)
         {
-            if (invincible==false)
+            if (i == 0)
             {
-                if (i == 0)
-                {
-                    RandomNum = Random.Range(1, 2);
-                    i++;
-                }
-                hpTemporary = State.Hp;
-                if (RandomNum == 1)
-                {
-                    charaterAnimator.SetBool("GetHit01", true);
-                }
-                else if (RandomNum == 2)
-                {
-                    charaterAnimator.SetBool("GetHit02", true);
-                }                
+                RandomNum = Random.Range(1, 2);
+                i++;
             }
-            else
+            hpTemporary = State.Hp;
+            if (RandomNum == 1)
             {
-                charaterAnimator.SetBool("GetHit01", false);
-                charaterAnimator.SetBool("GetHit02", false);
+                charaterAnimator.SetBool("GetHit01", true);
             }
-        }
+            else if (RandomNum == 2)
+            {
+                charaterAnimator.SetBool("GetHit02", true);
+            }           
+        }       
         else
-        {           
+        {
+            charaterAnimator.SetBool("GetHit01", false);
+            charaterAnimator.SetBool("GetHit02", false);
             if (m_pCurrentState == pFSMState.MoveTree)
             {
                 isUseFire1 = true;
@@ -169,10 +174,10 @@ public class PlayerController : MonoBehaviour
             MousePosChangeForward(isUseMouseChangeForward);
             ControlMove(isUseJump);
             ControlAttack(isUseFire1);
-        }        
+        }
     }
 
-    
+
     /// <summary>
     /// 玩家角色的攻擊操控，目前暫定雙手武器Layer(1)
     /// </summary>
@@ -209,7 +214,7 @@ public class PlayerController : MonoBehaviour
 
 
 
-        if (isMouseClickDown&& isUseFire1)
+        if (isMouseClickDown && isUseFire1)
         {
             m_pCurrentState = pFSMState.Attack;//進入攻擊狀態***
             charaterAnimator.SetInteger("intAttackID", 1);
@@ -219,7 +224,7 @@ public class PlayerController : MonoBehaviour
                 charaterAnimator.SetTrigger("isTriggerAttack");
             }
         }
-        else if (isMouseClickDownR && currentLayerNum==1&& animStateInfo.IsName("BlendMoveSingleHand"))//滑鼠右鍵
+        else if (isMouseClickDownR && currentLayerNum == 1 && animStateInfo.IsName("BlendMoveSingleHand"))//滑鼠右鍵
         {
             m_pCurrentState = pFSMState.Attack;
             if (!charaterAnimator.IsInTransition(1))
@@ -276,7 +281,7 @@ public class PlayerController : MonoBehaviour
 
             StartCoroutine(ShowTorchL());
         }
-        else if(Input.GetKeyDown(KeyCode.Alpha2))
+        else if (Input.GetKeyDown(KeyCode.Alpha2))
         {
             //keyCode.Alpha2 暫時切換 劍盾 與 雙手劍 bool變數
             alpha2Switch = !alpha2Switch;
@@ -288,7 +293,7 @@ public class PlayerController : MonoBehaviour
                 charaterAnimator.SetTrigger("isTriggerLayerChange");
                 StartCoroutine(ShowWeaponLWeaponR());
             }
-            else if(WeaponManager.Instance().CurrentWeaponR_weaponR.GetComponent<ItemOnWeapon>().weaponType == 3)
+            else if (WeaponManager.Instance().CurrentWeaponR_weaponR.GetComponent<ItemOnWeapon>().weaponType == 3)
             {
                 currentLayerNum = 2;
                 charaterAnimator.SetTrigger("isTriggerLayerChange");
@@ -351,7 +356,7 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSeconds(0.3f);
         weaponR.SetActive(true);
     }
-    
+
 
     /// <summary>
     /// 玩家角色的移動操控
@@ -387,7 +392,7 @@ public class PlayerController : MonoBehaviour
             charaterAnimator.SetFloat("velocityH", sin);
             var aSI = charaterAnimator.GetCurrentAnimatorStateInfo(0);
 
-            if (isJump&& isUseJump)
+            if (isJump && isUseJump)
             {
                 m_pCurrentState = pFSMState.Roll;//進入翻滾狀態***
                 isUseMouseChangeForward = false;
@@ -399,7 +404,7 @@ public class PlayerController : MonoBehaviour
         {
             charaterAnimator.SetFloat("velocityV", 0.0f);
             charaterAnimator.SetFloat("velocityH", 0.0f);
-            if (isJump&& isUseJump)
+            if (isJump && isUseJump)
             {
                 m_pCurrentState = pFSMState.Roll;//進入翻滾狀態***
                 charaterAnimator.SetTrigger("isTriggerJump");
@@ -411,7 +416,7 @@ public class PlayerController : MonoBehaviour
     /// 滑鼠座標改變玩家forward方向
     /// </summary>
     /// <param name="isUseMouseChangeForward">是否開啟人物轉向</param>
-     public void MousePosChangeForward(bool isUseMouseChangeForward)
+    public void MousePosChangeForward(bool isUseMouseChangeForward)
     {
         if (isUseMouseChangeForward)
         {
@@ -427,7 +432,7 @@ public class PlayerController : MonoBehaviour
                 transform.rotation = Quaternion.Slerp(transform.rotation, charaterRotaion, rotateSpeed * Time.deltaTime);
             }
         }
-     }
+    }
 
     /// <summary>
     /// 翻滾完成後，開啟人物轉向
@@ -454,7 +459,7 @@ public class PlayerController : MonoBehaviour
         isOpenAttackMove = false;
         attackMoveSpeed = 0f;
     }
-    
+
     private void AnimSpeedPlus()
     {
         charaterAnimator.SetFloat("animSpeed", 5f);
