@@ -90,7 +90,7 @@ public class SkeletonFSM : MonoBehaviour
             {
                 MubAnimator.SetBool("GetHit", false);
 
-                Debug.LogError("f:" + FrameCount_Roar);
+                //Debug.LogError("f:" + FrameCount_Roar);
 
                 MubAnimator.SetBool("Roar", false);
 

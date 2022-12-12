@@ -100,7 +100,7 @@ public class SpiderFSM : MonoBehaviour
         }
         else if (FrameCount_Roar <= 0)
         {
-            Debug.LogError("f:" + FrameCount_Roar);
+            //Debug.LogWarning("f:" + FrameCount_Roar);
 
             MubAnimator.SetBool("Roar", false);
 

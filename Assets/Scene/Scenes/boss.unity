@@ -3299,6 +3299,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 306180868, guid: 052b0736fab5eee4eaa4ea766d127ef3, type: 3}
+      propertyPath: hpBar
+      value: 
+      objectReference: {fileID: 139296613}
+    - target: {fileID: 306180868, guid: 052b0736fab5eee4eaa4ea766d127ef3, type: 3}
       propertyPath: Healthbar
       value: 
       objectReference: {fileID: 928820338}
@@ -3364,14 +3368,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4292004830827175513, guid: 052b0736fab5eee4eaa4ea766d127ef3, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8510088616971104976, guid: 052b0736fab5eee4eaa4ea766d127ef3, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: -24.900024
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 306180867, guid: 052b0736fab5eee4eaa4ea766d127ef3, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 052b0736fab5eee4eaa4ea766d127ef3, type: 3}
 --- !u!1 &481266334
 GameObject:

@@ -226,7 +226,7 @@ public class BearFSM : MonoBehaviour
             if (InATKrange_Close == true)
             {
                 m_NowState = BearState.Attack;                
-                Debug.LogError("LI is active");
+                //Debug.LogError("LI is active");
             }
             GetTargetMegnitude = (Target.transform.position - transform.position).magnitude;
             if (GetTargetMegnitude < Close_ATKRadius)
