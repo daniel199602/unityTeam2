@@ -20,7 +20,7 @@ public class MagicCasterFSM : MonoBehaviour
     MubHpData State;
     Animator MubAnimator;
     int hpTemporary;
-    CapsuleCollider capsule;
+    CharacterController capsule;
 
     bool backing;
     bool tracing;
@@ -55,7 +55,7 @@ public class MagicCasterFSM : MonoBehaviour
         MySelf = this.transform.gameObject;//§ì¥X¦Û¤v
 
         m_NowState = MagicCasterState.Idle;
-        capsule = GetComponent<CapsuleCollider>();
+        capsule = GetComponent<CharacterController>();
         MubAnimator = GetComponent<Animator>();
         State = GetComponent<MubHpData>();
         hpTemporary = State.Hp;
@@ -198,7 +198,7 @@ public class MagicCasterFSM : MonoBehaviour
             {
                 m_NowState = MagicCasterState.Idle;
                 Idle();
-                Debug.LogError("L is active");
+                //Debug.LogError("L is active");
             }
             GetTargetMegnitude = (Target.transform.position - transform.position).magnitude;
             if (GetTargetMegnitude > LeaveATKRadius)
@@ -216,7 +216,7 @@ public class MagicCasterFSM : MonoBehaviour
             if (InATKrange_Close == true)
             {
                 m_NowState = MagicCasterState.Attack;                
-                Debug.LogError("LI is active");
+                //Debug.LogWarning("LI is active");
             }
             GetTargetMegnitude = (Target.transform.position - transform.position).magnitude;
             if (GetTargetMegnitude < Close_ATKRadius)

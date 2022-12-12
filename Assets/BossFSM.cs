@@ -17,7 +17,7 @@ public class BossFSM : MonoBehaviour
     Animator MubAnimator;
     int hpTemporary;
     int hpTemporaryMax;
-    CapsuleCollider capsule;
+    CharacterController capsule;
 
     bool backing;
     bool tracing;
@@ -53,7 +53,7 @@ public class BossFSM : MonoBehaviour
         MySelf = this.transform.gameObject;//§ì¥X¦Û¤v
         Debug.LogWarning(Target);
         m_NowState = BossState.Idle;
-        capsule = GetComponent<CapsuleCollider>();
+        capsule = GetComponent<CharacterController>();
         MubAnimator = GetComponent<Animator>();
         State = GetComponent<MubHpData>();
         hpTemporary = State.Hp;

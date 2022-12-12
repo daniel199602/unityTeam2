@@ -978,6 +978,18 @@ PrefabInstance:
       propertyPath: PlayerData.Array.size
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4807207299345733460, guid: 843a687dd2b95bb4cb66922c432cf3f4, type: 3}
+      propertyPath: hpBar
+      value: 
+      objectReference: {fileID: 652045616}
+    - target: {fileID: 4807207299345733460, guid: 843a687dd2b95bb4cb66922c432cf3f4, type: 3}
+      propertyPath: Healthbar
+      value: 
+      objectReference: {fileID: 1190642024}
+    - target: {fileID: 4807207299345733460, guid: 843a687dd2b95bb4cb66922c432cf3f4, type: 3}
+      propertyPath: HealthbarLate
+      value: 
+      objectReference: {fileID: 2016879624}
     - target: {fileID: 5403848983689204431, guid: 843a687dd2b95bb4cb66922c432cf3f4, type: 3}
       propertyPath: m_Flare
       value: 
@@ -1055,36 +1067,6 @@ MonoBehaviour:
   m_ShadowLayerMask: 1
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
---- !u!114 &1880995995
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1880995981}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 52873382c4e699040bd02aff3f260024, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Healthbar: {fileID: 1190642024}
-  HealthbarLate: {fileID: 2016879624}
-  Health: 0
-  Maxhealth: 0
-  hpBar: {fileID: 0}
---- !u!114 &1880996014
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1880995981}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7115c9c725dd2df4dbf732bd0afc60e4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  thisMobItem: {fileID: 11400000, guid: 5cb287263cb4f6c4e993d3e736f89b22, type: 2}
 --- !u!114 &1880996021
 MonoBehaviour:
   m_ObjectHideFlags: 0

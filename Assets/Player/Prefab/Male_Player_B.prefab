@@ -4781,6 +4781,8 @@ GameObject:
   - component: {fileID: 8251171311221856198}
   - component: {fileID: 4765728035046430749}
   - component: {fileID: 821133959739569995}
+  - component: {fileID: 4807207299345733460}
+  - component: {fileID: 5241660354305267708}
   m_Layer: 6
   m_Name: Male_Player_B
   m_TagString: Player
@@ -4908,7 +4910,7 @@ MonoBehaviour:
   dropRayDistance: 1
   hitMask:
     serializedVersion: 2
-    m_Bits: 384
+    m_Bits: 896
 --- !u!114 &8251171311221856198
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4958,6 +4960,36 @@ MonoBehaviour:
   MaxHp: 1000
   Hp: 1000
   currentHp: 0
+--- !u!114 &4807207299345733460
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2631163319326334126}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90a5b3375af869945a8a7355822fa57c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Healthbar: {fileID: 0}
+  HealthbarLate: {fileID: 0}
+  Health: 0
+  Maxhealth: 10
+  hpBar: {fileID: 0}
+--- !u!114 &5241660354305267708
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2631163319326334126}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7115c9c725dd2df4dbf732bd0afc60e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  thisMobItem: {fileID: 11400000, guid: 5cb287263cb4f6c4e993d3e736f89b22, type: 2}
 --- !u!1 &2631163493861753916
 GameObject:
   m_ObjectHideFlags: 0

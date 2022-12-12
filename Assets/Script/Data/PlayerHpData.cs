@@ -11,12 +11,12 @@ public class PlayerHpData : MonoBehaviour
     [SerializeField] public int Hp = 1000;
     [SerializeField] private int currentHp;
 
-    HealthBar Health;
+    HealthPlayerBar Health;
 
     private void Awake()
     {
         thisItemOnMob = GetComponent<ItemOnMob>();
-        Health = GetComponent<HealthBar>();
+        Health = GetComponent<HealthPlayerBar>();
     }
 
     private void Start()

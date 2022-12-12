@@ -18,7 +18,7 @@ public class BearFSM : MonoBehaviour
     MubHpData State;
     Animator MubAnimator;
     int hpTemporary;
-    CapsuleCollider capsule;
+    CharacterController capsule;
     bool backing;
     bool tracing;
     bool InATKrange;
@@ -58,7 +58,7 @@ public class BearFSM : MonoBehaviour
         MySelf = this.transform.gameObject;//§ì¥X¦Û¤v
 
         m_NowState = BearState.Idle;
-        capsule = GetComponent<CapsuleCollider>();
+        capsule = GetComponent<CharacterController>();
         MubAnimator = GetComponent<Animator>();
         State = GetComponent<MubHpData>();
         hpTemporary = State.Hp;
@@ -226,7 +226,7 @@ public class BearFSM : MonoBehaviour
             if (InATKrange_Close == true)
             {
                 m_NowState = BearState.Attack;                
-                Debug.LogError("LI is active");
+                //Debug.LogError("LI is active");
             }
             GetTargetMegnitude = (Target.transform.position - transform.position).magnitude;
             if (GetTargetMegnitude < Close_ATKRadius)

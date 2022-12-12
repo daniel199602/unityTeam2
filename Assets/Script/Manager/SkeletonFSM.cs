@@ -16,7 +16,7 @@ public class SkeletonFSM : MonoBehaviour
     MubHpData State;
     Animator MubAnimator;
     int hpTemporary;
-    CapsuleCollider capsule;
+    CharacterController capsule;
     bool LeaveAttackRangeBool;
     bool RoarBool = false;
     bool tracing;
@@ -44,7 +44,7 @@ public class SkeletonFSM : MonoBehaviour
         MySelf = this.transform.gameObject;//§ì¥X¦Û¤v
 
         m_NowState = SkeletonState.Idle;
-        capsule = GetComponent<CapsuleCollider>();
+        capsule = GetComponent<CharacterController>();
         MubAnimator = GetComponent<Animator>();
         State = GetComponent<MubHpData>();
         hpTemporary = State.Hp;
@@ -90,7 +90,7 @@ public class SkeletonFSM : MonoBehaviour
             {
                 MubAnimator.SetBool("GetHit", false);
 
-                Debug.LogError("f:" + FrameCount_Roar);
+                //Debug.LogError("f:" + FrameCount_Roar);
 
                 MubAnimator.SetBool("Roar", false);
 
