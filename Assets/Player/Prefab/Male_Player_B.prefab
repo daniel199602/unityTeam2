@@ -4910,7 +4910,7 @@ MonoBehaviour:
   dropRayDistance: 1
   hitMask:
     serializedVersion: 2
-    m_Bits: 384
+    m_Bits: 896
 --- !u!114 &8251171311221856198
 MonoBehaviour:
   m_ObjectHideFlags: 0
