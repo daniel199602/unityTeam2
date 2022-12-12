@@ -1,19 +1,16 @@
+using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class RecoilShake : MonoBehaviour
 {
-    //[SerializeField] CinemachineImpulseSource screenShake;
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] CinemachineImpulseSource screenShake;
+    [SerializeField] float powerAmount;
+    
+    public void ScreenShake(Vector3 dir)
     {
-        
+        screenShake.GenerateImpulseWithVelocity(dir);
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+   
 }
