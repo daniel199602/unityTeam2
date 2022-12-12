@@ -14,6 +14,7 @@ public class MobBoXBorn : MonoBehaviour
     bool isInZone;
     public int GenerationTimes ;
     int killMobLast = 0;
+    
     public GameObject mob1,mob2;
 
 

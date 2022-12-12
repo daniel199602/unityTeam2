@@ -25,7 +25,7 @@ public class GameManager : MonoBehaviour
         
         mobPool = new List<GameObject>();
         PlayerStart = GameObject.FindWithTag("Player");
-        DontDestroyOnLoad(PlayerStart);
+        
 
         //mobPool.Add(PlayerStart);
     }
