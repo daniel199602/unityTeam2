@@ -34,7 +34,7 @@ public class PlayerController : MonoBehaviour
     bool alpha2Switch = false;
 
     //玩家數值(挖洞)
-    MubHpData State;
+    PlayerHpData State;
     [SerializeField]int hpTemporary;
     int RandomNum;
     int i;
@@ -72,7 +72,7 @@ public class PlayerController : MonoBehaviour
         weaponL.SetActive(false);
         weaponR.SetActive(false);
 
-        State = GetComponent<MubHpData>();
+        State = GetComponent<PlayerHpData>();
         hpTemporary = State.Hp;
         i = 0;
 
