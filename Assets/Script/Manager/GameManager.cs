@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance() { return mInstance; }
     public GameObject PlayerStart;
     public List<GameObject> mobPool;
-
+    
     private float duration;
 
     private void Awake()
@@ -41,6 +41,7 @@ public class GameManager : MonoBehaviour
             Debug.Log(PlayerStart.transform.position);
             PlayerStart.transform.position = new Vector3(-195, 2, -330);
             Debug.Log(PlayerStart.transform.position);
+            PlayerStart.SetActive(true);
         }
     }
 

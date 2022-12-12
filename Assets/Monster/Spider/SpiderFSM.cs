@@ -15,8 +15,8 @@ public class SpiderFSM : MonoBehaviour
     public int matIndex;//跑︹把计
     public float offset;//跑︹把计
 
-    public GameObject Target;
-    public GameObject MySelf;
+    private GameObject Target;//產
+    private GameObject MySelf;//
 
     //TestUse
     public GameObject DangerZone;
@@ -57,6 +57,9 @@ public class SpiderFSM : MonoBehaviour
     float ColorChangeTime;
     private void Start()
     {
+        Target = GameManager.Instance().PlayerStart;//ъ產
+        MySelf = this.transform.gameObject;//ъ
+
         mesh = gameObject.GetComponent<SkinnedMeshRenderer>().sharedMesh;
 
         mat = gameObject.GetComponent<SkinnedMeshRenderer>().materials[matIndex];
@@ -97,7 +100,7 @@ public class SpiderFSM : MonoBehaviour
         }
         else if (FrameCount_Roar <= 0)
         {
-            Debug.LogError("f:" + FrameCount_Roar);
+            //Debug.LogWarning("f:" + FrameCount_Roar);
 
             MubAnimator.SetBool("Roar", false);
 

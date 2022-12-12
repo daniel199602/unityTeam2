@@ -6,11 +6,17 @@ using UnityEngine;
 public class RecoilShake : MonoBehaviour
 {
     [SerializeField] CinemachineImpulseSource screenShake;
-    [SerializeField] float powerAmount;
-    
-    public void ScreenShake(Vector3 dir)
+    private void Start()
     {
-        screenShake.GenerateImpulseWithVelocity(dir);
+        screenShake = GetComponent<CinemachineImpulseSource>();
     }
-   
+
+    void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.P))
+        {
+            Debug.Log("shake");
+            screenShake.GenerateImpulse();
+        }
+    }
 }

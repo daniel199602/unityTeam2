@@ -47,8 +47,10 @@ Shader "Custom/FogOfWar"
 
 			void surf(Input IN, inout SurfaceOutput o) {
 				fixed4 baseColor = tex2D(_MainTex, IN.uv_MainTex) * _Color;
-
-				float alpha = (1.0 - (baseColor.a + powerForPos(_Player1_Pos+(100,0,100,1), IN.location)));// +powerForPos(_Player2_Pos, IN.location) + powerForPos(_Player3_Pos, IN.location)));
+				float player1 = powerForPos(_Player1_Pos, IN.location);
+				float player2 = powerForPos(_Player2_Pos, IN.location);
+				float player3 = powerForPos(_Player3_Pos, IN.location);
+				float alpha = (1.0 - (baseColor.a + player2+ player1+ player3));//powerForPos(_Player1_Pos+(100,0,100,1), IN.location)));//+powerForPos(_Player2_Pos, IN.location) + powerForPos(_Player3_Pos, IN.location)));
 				o.Albedo = baseColor.rgb;
 				o.Alpha = alpha;
 			}

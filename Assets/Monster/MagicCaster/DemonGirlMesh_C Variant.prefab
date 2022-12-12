@@ -12,6 +12,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 7143010690539542105, guid: 99ae7bdd379a96a43b8b110cb3d899f3, type: 3}
     - target: {fileID: 854260066922550017, guid: 9349fc6c44ecdab4daea1ed464bd7c38, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 854260066922550017, guid: 9349fc6c44ecdab4daea1ed464bd7c38, type: 3}
       propertyPath: LaunchPort
       value: 
       objectReference: {fileID: 4542722750150454218}

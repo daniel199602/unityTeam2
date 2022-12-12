@@ -205,7 +205,7 @@ public class MagicCasterFSM : MonoBehaviour
             {
                 m_NowState = MagicCasterState.Idle;
                 Idle();
-                Debug.LogError("L is active");
+                //Debug.LogError("L is active");
             }
             GetTargetMegnitude = (Target.transform.position - transform.position).magnitude;
             if (GetTargetMegnitude > LeaveATKRadius)
@@ -223,7 +223,7 @@ public class MagicCasterFSM : MonoBehaviour
             if (InATKrange_Close == true)
             {
                 m_NowState = MagicCasterState.Attack;                
-                Debug.LogError("LI is active");
+                //Debug.LogWarning("LI is active");
             }
             GetTargetMegnitude = (Target.transform.position - transform.position).magnitude;
             if (GetTargetMegnitude < Close_ATKRadius)
