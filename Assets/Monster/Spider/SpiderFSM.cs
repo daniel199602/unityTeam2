@@ -157,17 +157,17 @@ public class SpiderFSM : MonoBehaviour
     public void Move()
     {
         GetTargetMegnitude = (Target.transform.position - transform.position).magnitude;
-        Debug.Log("當前速度" + MoveSpeed);        
+        Debug.Log("當前速度" + MoveSpeed);
 
-        Vector3 m = Vector3.MoveTowards(transform.position, Target.transform.position, MoveSpeed);
+        GetTargetNormalize = (Target.transform.position - transform.position).normalized;
 
-        transform.position = m;
+        Selfcapsule.SimpleMove(GetTargetNormalize * MoveSpeed);
 
         Debug.Log(MoveSpeed);
 
         if (GetTargetMegnitude == ATKRadius+Selfcapsule.radius){MoveSpeed = Speed * 0f;}
 
-        else{ MoveSpeed = Speed * .01f;}
+        else{ MoveSpeed = Speed;}
     }
     public void Roar()
     {

@@ -23,7 +23,7 @@ public class SkeletonFSM : MonoBehaviour
     bool InATKrange;
     bool OutATKrange;
     bool AwakeBool = false;
-    bool Awake;
+    bool Awaken;
 
     float TraceRadius;
     float ATKRadius;
@@ -37,7 +37,13 @@ public class SkeletonFSM : MonoBehaviour
 
     int CDs;
 
+    ItemOnMob ThisItemOnMob_State;
+
     int FrameCount_Roar;
+    private void Awake()
+    {
+        ThisItemOnMob_State = GetComponent<ItemOnMob>();
+    }
     void Start()
     {
         Target = GameManager.Instance().PlayerStart;//§ì¥Xª±®a
@@ -50,14 +56,14 @@ public class SkeletonFSM : MonoBehaviour
         hpTemporary = State.Hp;
         FrameCount_Roar = 160;
         LeaveAttackRangeBool = false;
-        
-        ATKRadius = 30;//WeaponÂÐ»\
+
+        ATKRadius = ThisItemOnMob_State.mobRadius;//WeaponÂÐ»\
 
         TraceRadius = ATKRadius * 2;
 
         AwakeRadius = ATKRadius * 1.5f;
 
-        LeaveATKRadius = ATKRadius * 1.5f;
+        LeaveATKRadius = ATKRadius * 1.2f;
         
     }
     // Update is called once per frame
@@ -114,8 +120,8 @@ public class SkeletonFSM : MonoBehaviour
         {
             if (AwakeBool==false)
             {
-                Awake = IsInRange_AwakeRange(AwakeRadius, MySelf, Target);
-                if (Awake == true)
+                Awaken = IsInRange_AwakeRange(AwakeRadius, MySelf, Target);
+                if (Awaken == true)
                 {
                     AwakeBool = true;
                 }
@@ -232,20 +238,17 @@ public class SkeletonFSM : MonoBehaviour
             MoveSpeed *= 1f;
             MubAnimator.SetFloat("Blend", 0);
         }
+        GetTargetNormalize = (Target.transform.position - transform.position).normalized;
 
-        Vector3 m = Vector3.MoveTowards(transform.position, Target.transform.position, MoveSpeed);
-
-        transform.position = m;
-
-        Debug.Log(MoveSpeed);
+        capsule.SimpleMove(GetTargetNormalize*MoveSpeed);
 
         if (GetTargetMegnitude == ATKRadius)
         {
-            MoveSpeed = Speed * 0f;
+            MoveSpeed = 0;
         }
         else
         {
-            MoveSpeed = Speed * .01f;
+            MoveSpeed = Speed;
         }
     }
     public void Roar()

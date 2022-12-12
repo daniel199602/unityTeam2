@@ -28,19 +28,21 @@ public class MagicCasterFSM : MonoBehaviour
     bool InATKrange_Close;
     bool OutATKrange;
     bool AwakeBool = false;
-    bool Awake;
+    bool Awaken;
 
     float TraceRadius;
     float ATKRadius;
     float LeaveATKRadius;
     float Close_ATKRadius;
     float AwakeRadius;
+    [SerializeField]float RotateSpeed;
 
     Vector3 GetTargetNormalize;
     float GetTargetMegnitude;
 
     int Count;
     int CDs;
+    ItemOnMob ThisItemOnMob_State;
 
     bool LeaveAttackRangeBool;
     bool InAttackRangeBool;
@@ -49,6 +51,10 @@ public class MagicCasterFSM : MonoBehaviour
     int FrameCount_Roar;
 
     // Start is called before the first frame update
+    private void Awake()
+    {
+        ThisItemOnMob_State = GetComponent<ItemOnMob>();
+    }
     void Start()
     {
         Target = GameManager.Instance().PlayerStart;//§ì¥Xª±®a
@@ -65,13 +71,14 @@ public class MagicCasterFSM : MonoBehaviour
 
         m_NowState = MagicCasterState.Idle;
 
-        ATKRadius = 55;//WeaponÂÐ»\
+        ATKRadius = ThisItemOnMob_State.mobRadius;//WeaponÂÐ»\
 
         Close_ATKRadius = ATKRadius * 0.8f;
         TraceRadius = ATKRadius * 2;
         LeaveATKRadius = ATKRadius * 1.2f;
         AwakeRadius = ATKRadius * 1.5f;
         Count = 0;
+        RotateSpeed = 10f;
     }
 
     // Update is called once per frame
@@ -110,7 +117,7 @@ public class MagicCasterFSM : MonoBehaviour
 
                 Quaternion Look = Quaternion.LookRotation(GetTargetNormalize);
 
-                transform.rotation = Quaternion.Slerp(transform.rotation, Look, 14f * Time.deltaTime);
+                transform.rotation = Quaternion.Slerp(transform.rotation, Look, RotateSpeed * Time.deltaTime);
 
                 BugSummon();
 
@@ -135,8 +142,8 @@ public class MagicCasterFSM : MonoBehaviour
         {
             if (AwakeBool == false)
             {
-                Awake = IsInRange_AwakeRange(AwakeRadius, MySelf, Target);
-                if (Awake == true)
+                Awaken = IsInRange_AwakeRange(AwakeRadius, MySelf, Target);
+                if (Awaken == true)
                 {
                     AwakeBool = true;
                 }
@@ -345,6 +352,7 @@ public class MagicCasterFSM : MonoBehaviour
     {
         MubAnimator.speed = 0.2f;        
         Instantiate(TestCube,LaunchPort.position,MySelf.transform.rotation);
+        RotateSpeed = RotateSpeed * .1f;
     }
     private void AnimationSpeed_AttackEnd()
     {
@@ -352,13 +360,14 @@ public class MagicCasterFSM : MonoBehaviour
         LeaveATKRadius = ATKRadius * 1.2f;
         Close_ATKRadius = ATKRadius * .8f;
         CDs = 6;
+        RotateSpeed = RotateSpeed * 10f;
         StartCoroutine(AttackCooldown());
     }
     public void ZoneOpen()
     {
         LeaveATKRadius = ATKRadius * 6;
         Close_ATKRadius = ATKRadius * .1f;
-
+        
     }
     IEnumerator SummonCooldown()
     {

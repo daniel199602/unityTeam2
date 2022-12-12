@@ -47,6 +47,8 @@ public class BearFSM : MonoBehaviour
     bool LeaveAttackRangeBool;
     bool InAttackRangeBool;
     bool RoarBool = false;
+    bool isAttacking = false;
+
     int FrameCount_Roar;
 
     int RandomChoose;
@@ -70,7 +72,7 @@ public class BearFSM : MonoBehaviour
 
         ATKRadius = 40;//WeaponÂÐ»\
 
-        Close_ATKRadius = ATKRadius * 0.5f;        
+        Close_ATKRadius = ATKRadius * 0.7f;        
         LeaveATKRadius = ATKRadius * 1.3f;
         RunRadius = ATKRadius * 2.3f;
         AwakeRadius = ATKRadius * 2f;
@@ -110,14 +112,9 @@ public class BearFSM : MonoBehaviour
 
                 MubAnimator.SetBool("Warn", false);
 
-                GetTargetNormalize = (Target.transform.position - transform.position).normalized;
+                //Debug.Log("CDs:" + Count);
 
-                Quaternion Look = Quaternion.LookRotation(GetTargetNormalize);
-
-                transform.rotation = Quaternion.Slerp(transform.rotation, Look, 7f * Time.deltaTime);
-
-
-                Debug.Log("CDs:" + Count);
+                LookTarget();
 
                 TraceStatus();
 
@@ -133,6 +130,28 @@ public class BearFSM : MonoBehaviour
         }
         
         //Debug.Log(m_NowState);
+    }
+    public void LookTarget()
+    {
+        GetTargetNormalize = (Target.transform.position - transform.position).normalized;
+
+        Quaternion Look = Quaternion.LookRotation(GetTargetNormalize);
+
+        Quaternion R = Quaternion.Slerp(transform.rotation, Look, 7f * Time.deltaTime);
+
+        if (isAttacking==false)
+        {
+            transform.rotation = R;
+        }
+        
+        if (GetTargetNormalize != transform.forward&& m_NowState != BearState.Attack)
+        {
+            MubAnimator.SetBool("Rotate", true);
+        }
+        else if (GetTargetNormalize == transform.forward && m_NowState != BearState.Attack)
+        {
+            MubAnimator.SetBool("Rotate", false);
+        }
     }
     public void AwakeSensor()
     {
@@ -172,6 +191,7 @@ public class BearFSM : MonoBehaviour
                     MubAnimator.SetBool("Attack01", false);
                     MubAnimator.SetBool("Attack02", false);
                     MubAnimator.SetBool("Attack03", false);
+                    MubAnimator.SetBool("Rotate", false);
                 }
             }
             else
@@ -179,6 +199,7 @@ public class BearFSM : MonoBehaviour
                 MubAnimator.SetBool("Attack01", false);
                 MubAnimator.SetBool("Attack02", false);
                 MubAnimator.SetBool("Attack03", false);
+                MubAnimator.SetBool("Rotate", false);
             }
         }
     }
@@ -194,6 +215,7 @@ public class BearFSM : MonoBehaviour
             m_NowState = BearState.Attack;
             MubAnimator.SetBool("Trace", false);
             MubAnimator.SetBool("Back", false);
+            MubAnimator.SetBool("Rotate", false);
             Attack();
             Debug.Log("NowInA");
         }
@@ -256,13 +278,15 @@ public class BearFSM : MonoBehaviour
                     MubAnimator.SetBool("Attack01", false);
                     MubAnimator.SetBool("Attack02", false);
                     MubAnimator.SetBool("Attack03", false);
+                    MubAnimator.SetBool("Rotate", false);
                 }
             }
             else
             {
                 MubAnimator.SetBool("Attack01", false);
                 MubAnimator.SetBool("Attack02", false);
-                MubAnimator.SetBool("Attack03", false); 
+                MubAnimator.SetBool("Attack03", false);
+                MubAnimator.SetBool("Rotate", false);
             }
         }
     }
@@ -316,6 +340,7 @@ public class BearFSM : MonoBehaviour
     {
         if (m_NowState == BearState.Attack&& Count == 0)
         {
+            isAttacking = true;
             if (i==0)
             {
                 RandomChoose = UnityEngine.Random.Range(1, 3);
@@ -340,6 +365,7 @@ public class BearFSM : MonoBehaviour
             MubAnimator.SetBool("Attack01", false);
             MubAnimator.SetBool("Attack02", false);
             MubAnimator.SetBool("Attack03", false);
+            isAttacking = false;
         }
     }
     public void Idle()
@@ -364,9 +390,9 @@ public class BearFSM : MonoBehaviour
             MubAnimator.SetBool("Trace", true);
         }
 
-        Vector3 m = Vector3.MoveTowards(transform.position, Target.transform.position, MoveSpeed);
+        GetTargetNormalize = (Target.transform.position - transform.position).normalized;
 
-        transform.position = m;
+        capsule.SimpleMove(GetTargetNormalize * MoveSpeed);
 
         Debug.Log(MoveSpeed);
 
@@ -376,7 +402,7 @@ public class BearFSM : MonoBehaviour
         }
         else
         {
-            MoveSpeed = Speed * .01f;
+            MoveSpeed = Speed * 1f;
         }
     }
     public void Back()
@@ -416,9 +442,10 @@ public class BearFSM : MonoBehaviour
     }
     private void Animation_Attack()
     {
-        MoveSpeed = Speed * .01f;
-        Vector3 m = Vector3.MoveTowards(transform.position, Target.transform.position, MoveSpeed*5);
-        transform.position = m;
+        MoveSpeed = Speed;
+        GetTargetNormalize = (Target.transform.position - transform.position).normalized;
+
+        capsule.SimpleMove(GetTargetNormalize * MoveSpeed*2);
         MubAnimator.speed = 2f;
         
     }

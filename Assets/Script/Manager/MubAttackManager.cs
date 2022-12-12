@@ -45,7 +45,7 @@ public class MubAttackManager : MonoBehaviour
     /// <summary>
     /// 怪物攻擊事件
     /// </summary>
-    private void Attack()
+    private void AttackEvent()
     {
         //OnDrawGizmos判斷是否在範圍用
         flag = IsInRange(mobAngle, mobRadius, gameObject.transform, Target.transform);

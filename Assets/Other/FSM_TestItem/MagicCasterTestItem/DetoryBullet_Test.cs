@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class DetoryBullet_Test : MonoBehaviour
 {
-    public GameObject gg;
+     GameObject gg;
     // Start is called before the first frame update
     void Start()
     {
+        gg = GameObject.Find("DemonGirlMesh_C");
         Destroy(this.gameObject,2.5f);   
     }
     private void Update()
