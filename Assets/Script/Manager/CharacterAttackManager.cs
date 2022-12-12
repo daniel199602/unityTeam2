@@ -104,7 +104,7 @@ public class CharacterAttackManager : MonoBehaviour
         Vector3 direction = attacked.position - attacker.position;
         float dot = Vector3.Dot(direction.normalized, transform.forward);
         float offsetAngle = Mathf.Acos(dot) * Mathf.Rad2Deg;
-        float mobRadius = attacked.GetComponent<CapsuleCollider>().radius;
+        float mobRadius = attacked.GetComponent<CharacterController>().radius;
         return offsetAngle < sectorAngle * .7f && direction.magnitude - mobRadius < sectorRadius;
     }
 
