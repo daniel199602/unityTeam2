@@ -14,7 +14,10 @@ public class MobBoXBorn : MonoBehaviour
     bool isInZone;
     public int GenerationTimes ;
     int killMobLast = 0;
-    
+    public GameObject mob1,mob2;
+
+
+
     private void Start()
     {
         door = this.gameObject.transform.GetChild(0).gameObject;
@@ -39,36 +42,36 @@ public class MobBoXBorn : MonoBehaviour
             GameObject go = MobMain.Instance().oPool.LoadObjectFromPool(MobMain.Instance().pTestList);
             if (go != null)
             {
+                go.transform.position = startPos;
                 go.SetActive(true);
                 go.GetComponent<MubHpData>().Hp = 1000;//重生血量回滿
-                go.transform.position = startPos;
                 MobMain.Instance().pAliveObject.Add(go);
             }
 
             GameObject go1 = MobMain.Instance().oPool.LoadObjectFromPool(MobMain.Instance().pTestList);
             if (go1 != null)
             {
+                go1.transform.position = startPos1;
                 go1.SetActive(true);
                 go1.GetComponent<MubHpData>().Hp = 1000;//重生血量回滿
-                go1.transform.position = startPos1;
                 MobMain.Instance().pAliveObject.Add(go1);
             }
 
             GameObject go2 = MobMain.Instance().oPool.LoadObjectFromPool(MobMain.Instance().pTestList);
             if (go2 != null)
             {
+                go2.transform.position = startPos2;
                 go2.SetActive(true);
                 go2.GetComponent<MubHpData>().Hp = 1000;//重生血量回滿
-                go2.transform.position = startPos2;
                 MobMain.Instance().pAliveObject.Add(go2);
             }
 
             GameObject go3 = MobMain.Instance().oPool.LoadObjectFromPool(MobMain.Instance().pTestList);
             if (go3 != null)
             {
+                go3.transform.position = startPos3;
                 go3.SetActive(true);
                 go3.GetComponent<MubHpData>().Hp = 1000;//重生血量回滿
-                go3.transform.position = startPos3;
                 MobMain.Instance().pAliveObject.Add(go3);
             }
         }
@@ -86,6 +89,8 @@ public class MobBoXBorn : MonoBehaviour
             //Debug.Log(GenerationTimes);
             MobMain.Instance().MobBox = this;
             m_Collider.enabled = false;
+            mob1.SetActive(true);
+            mob2.SetActive(true);
         }
 
     }

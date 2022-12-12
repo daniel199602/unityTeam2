@@ -17743,6 +17743,14 @@ PrefabInstance:
       propertyPath: door
       value: 
       objectReference: {fileID: 8974521515921732225}
+    - target: {fileID: 7811038284130773104, guid: 2bb1994d6e68d234e8e3facd590ce6eb, type: 3}
+      propertyPath: mob1
+      value: 
+      objectReference: {fileID: 3301655184808259892}
+    - target: {fileID: 7811038284130773104, guid: 2bb1994d6e68d234e8e3facd590ce6eb, type: 3}
+      propertyPath: mob2
+      value: 
+      objectReference: {fileID: 1257800937099678075}
     - target: {fileID: 8318121688266428423, guid: 2bb1994d6e68d234e8e3facd590ce6eb, type: 3}
       propertyPath: m_LocalPosition.x
       value: 31.2
@@ -17914,6 +17922,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: DemonGirlMesh_C Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 5760155195853954090, guid: b115e60b742ffac43af5a949b71b4bc5, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5762522301104137826, guid: b115e60b742ffac43af5a949b71b4bc5, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -17960,6 +17972,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b115e60b742ffac43af5a949b71b4bc5, type: 3}
+--- !u!1 &1257800937099678075 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5760155195853954090, guid: b115e60b742ffac43af5a949b71b4bc5, type: 3}
+  m_PrefabInstance: {fileID: 6810768544763219281}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6848858102950714393
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -18181,6 +18198,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: DemonGirlMesh_C Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 5760155195853954090, guid: b115e60b742ffac43af5a949b71b4bc5, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5762522301104137826, guid: b115e60b742ffac43af5a949b71b4bc5, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -18227,6 +18248,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b115e60b742ffac43af5a949b71b4bc5, type: 3}
+--- !u!1 &3301655184808259892 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5760155195853954090, guid: b115e60b742ffac43af5a949b71b4bc5, type: 3}
+  m_PrefabInstance: {fileID: 7071209159536700702}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7826829949098141257
 PrefabInstance:
   m_ObjectHideFlags: 0

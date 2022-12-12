@@ -5626,9 +5626,33 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8605437750270656361}
     m_Modifications:
+    - target: {fileID: -7687972060916791538, guid: b115e60b742ffac43af5a949b71b4bc5, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2399462670157310138, guid: b115e60b742ffac43af5a949b71b4bc5, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2778681108266133315, guid: b115e60b742ffac43af5a949b71b4bc5, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3620808841784393497, guid: b115e60b742ffac43af5a949b71b4bc5, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3668290559282468413, guid: b115e60b742ffac43af5a949b71b4bc5, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5760155195853954090, guid: b115e60b742ffac43af5a949b71b4bc5, type: 3}
       propertyPath: m_Name
       value: DemonGirlMesh_C Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 5760155195853954090, guid: b115e60b742ffac43af5a949b71b4bc5, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5762522301104137826, guid: b115e60b742ffac43af5a949b71b4bc5, type: 3}
       propertyPath: m_RootOrder
@@ -5636,7 +5660,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5762522301104137826, guid: b115e60b742ffac43af5a949b71b4bc5, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -78.70092
+      value: -84.7
       objectReference: {fileID: 0}
     - target: {fileID: 5762522301104137826, guid: b115e60b742ffac43af5a949b71b4bc5, type: 3}
       propertyPath: m_LocalPosition.y
@@ -5674,8 +5698,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6024994156794912173, guid: b115e60b742ffac43af5a949b71b4bc5, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8833936229504128307, guid: b115e60b742ffac43af5a949b71b4bc5, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b115e60b742ffac43af5a949b71b4bc5, type: 3}
+--- !u!1 &4819655639083563035 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5760155195853954090, guid: b115e60b742ffac43af5a949b71b4bc5, type: 3}
+  m_PrefabInstance: {fileID: 942085637726954545}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1310894979247111662
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6009,9 +6046,33 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8605437750270656361}
     m_Modifications:
+    - target: {fileID: -7687972060916791538, guid: b115e60b742ffac43af5a949b71b4bc5, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2399462670157310138, guid: b115e60b742ffac43af5a949b71b4bc5, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2778681108266133315, guid: b115e60b742ffac43af5a949b71b4bc5, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3620808841784393497, guid: b115e60b742ffac43af5a949b71b4bc5, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3668290559282468413, guid: b115e60b742ffac43af5a949b71b4bc5, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5760155195853954090, guid: b115e60b742ffac43af5a949b71b4bc5, type: 3}
       propertyPath: m_Name
       value: DemonGirlMesh_C Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 5760155195853954090, guid: b115e60b742ffac43af5a949b71b4bc5, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5762522301104137826, guid: b115e60b742ffac43af5a949b71b4bc5, type: 3}
       propertyPath: m_RootOrder
@@ -6057,8 +6118,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6024994156794912173, guid: b115e60b742ffac43af5a949b71b4bc5, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8833936229504128307, guid: b115e60b742ffac43af5a949b71b4bc5, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b115e60b742ffac43af5a949b71b4bc5, type: 3}
+--- !u!1 &7419031404953191378 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5760155195853954090, guid: b115e60b742ffac43af5a949b71b4bc5, type: 3}
+  m_PrefabInstance: {fileID: 2955943967357476856}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &3029770767858322504
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6546,6 +6620,14 @@ PrefabInstance:
       propertyPath: door
       value: 
       objectReference: {fileID: 5835599869034163685}
+    - target: {fileID: 7811038284130773104, guid: 2bb1994d6e68d234e8e3facd590ce6eb, type: 3}
+      propertyPath: mob1
+      value: 
+      objectReference: {fileID: 7419031404953191378}
+    - target: {fileID: 7811038284130773104, guid: 2bb1994d6e68d234e8e3facd590ce6eb, type: 3}
+      propertyPath: mob2
+      value: 
+      objectReference: {fileID: 4819655639083563035}
     - target: {fileID: 8318121688266428423, guid: 2bb1994d6e68d234e8e3facd590ce6eb, type: 3}
       propertyPath: m_LocalPosition.x
       value: -64
