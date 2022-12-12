@@ -20,7 +20,7 @@ public class MagicCasterFSM : MonoBehaviour
     MubHpData State;
     Animator MubAnimator;
     int hpTemporary;
-    CapsuleCollider capsule;
+    CharacterController capsule;
 
     bool backing;
     bool tracing;
@@ -55,7 +55,7 @@ public class MagicCasterFSM : MonoBehaviour
         MySelf = this.transform.gameObject;//§ì¥X¦Û¤v
 
         m_NowState = MagicCasterState.Idle;
-        capsule = GetComponent<CapsuleCollider>();
+        capsule = GetComponent<CharacterController>();
         MubAnimator = GetComponent<Animator>();
         State = GetComponent<MubHpData>();
         hpTemporary = State.Hp;
