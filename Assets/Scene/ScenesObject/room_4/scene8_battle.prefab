@@ -5014,6 +5014,24 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 400006, guid: f31a5d90425a25d41ba533ed233b25ff, type: 3}
   m_PrefabInstance: {fileID: 3976296815001460805}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &3976296815001364199 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100002, guid: f31a5d90425a25d41ba533ed233b25ff, type: 3}
+  m_PrefabInstance: {fileID: 3976296815001460805}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &4723663495297454053
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3976296815001364199}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9fbd6adac28152744904be3a31c889e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FogOfWarPlane: {fileID: 0}
 --- !u!1001 &4452618640899893732
 PrefabInstance:
   m_ObjectHideFlags: 0
