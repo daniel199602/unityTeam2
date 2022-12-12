@@ -107,7 +107,7 @@ public class SkeletonFSM : MonoBehaviour
                 LeaveAttackStatus();
             }
         }        
-        Debug.Log(m_NowState);
+        //Debug.Log(m_NowState);
     }
     public void AwakeSensor()
     {

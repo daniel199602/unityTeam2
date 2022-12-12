@@ -108,7 +108,7 @@ public class MagicCasterFSM : MonoBehaviour
 
                 BugSummon();
 
-                Debug.Log("CDs:" + Count);
+                //Debug.Log("CDs:" + Count);
 
                 TraceStatus();
 

@@ -39,6 +39,12 @@ public class WeaponManager : MonoBehaviour
 
     private void Awake()
     {
+        if (mInstance != null)
+        {
+            Debug.LogErrorFormat(gameObject, "Multiple instances of {0} is not allow", GetType().Name);
+            DestroyImmediate(gameObject);
+            return;
+        }
         mInstance = this;
         DontDestroyOnLoad(this.gameObject);
 

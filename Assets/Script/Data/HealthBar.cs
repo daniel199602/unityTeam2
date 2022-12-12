@@ -43,7 +43,7 @@ public class HealthBar : MonoBehaviour
     public void BarFilter()
     {
         Healthbar.fillAmount = Health/ Maxhealth;
-        Debug.Log("減少中"+Health / Maxhealth);
+        //Debug.Log("減少中"+Health / Maxhealth);
         //Debug.Log(Healthbar.fillAmount);
         
     }
