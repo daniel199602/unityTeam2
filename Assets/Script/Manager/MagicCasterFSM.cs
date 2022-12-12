@@ -17,10 +17,11 @@ public class MagicCasterFSM : MonoBehaviour
     private GameObject Target;
     private GameObject MySelf;
 
-    PlayerState State;
+    MubHpData State;
     Animator MubAnimator;
     int hpTemporary;
     CapsuleCollider capsule;
+
     bool backing;
     bool tracing;
     bool InATKrange;
@@ -28,6 +29,7 @@ public class MagicCasterFSM : MonoBehaviour
     bool OutATKrange;
     bool AwakeBool = false;
     bool Awake;
+
     float TraceRadius;
     float ATKRadius;
     float LeaveATKRadius;
@@ -36,12 +38,16 @@ public class MagicCasterFSM : MonoBehaviour
 
     Vector3 GetTargetNormalize;
     float GetTargetMegnitude;
+
     int Count;
     int CDs;
+
     bool LeaveAttackRangeBool;
     bool InAttackRangeBool;
     bool RoarBool = false;
+
     int FrameCount_Roar;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -51,7 +57,7 @@ public class MagicCasterFSM : MonoBehaviour
         m_NowState = MagicCasterState.Idle;
         capsule = GetComponent<CapsuleCollider>();
         MubAnimator = GetComponent<Animator>();
-        State = GetComponent<PlayerState>();
+        State = GetComponent<MubHpData>();
         hpTemporary = State.Hp;
         FrameCount_Roar = 250;
         LeaveAttackRangeBool = false;

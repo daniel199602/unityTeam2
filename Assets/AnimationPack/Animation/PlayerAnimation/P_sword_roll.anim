@@ -43386,7 +43386,7 @@ AnimationClip:
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
   m_Events:
-  - time: 0
+  - time: 0.16666667
     functionName: invincibleRoll_Start
     data: 
     objectReferenceParameter: {fileID: 0}
@@ -43394,14 +43394,14 @@ AnimationClip:
     intParameter: 0
     messageOptions: 0
   - time: 1
-    functionName: AfterRollEvent
+    functionName: invincibleRoll_End
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 1
-    functionName: invincibleRoll_End
+    functionName: AfterRollEvent
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0

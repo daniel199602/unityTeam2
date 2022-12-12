@@ -1947,11 +1947,11 @@ GameObject:
   - component: {fileID: 339337938069763331}
   - component: {fileID: -3211659231050840349}
   - component: {fileID: -3933064489400172081}
-  - component: {fileID: 3716577718639574146}
   - component: {fileID: 1070152119589441916}
   - component: {fileID: 5233068973903805898}
   - component: {fileID: 6357271770518249647}
   - component: {fileID: 2221672134910444502}
+  - component: {fileID: 3868364056014940813}
   m_Layer: 0
   m_Name: Bear_4
   m_TagString: Untagged
@@ -1967,7 +1967,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7962199819078159310}
   m_LocalRotation: {x: -0, y: -0.97865236, z: -0, w: -0.20552275}
-  m_LocalPosition: {x: -3.882, y: 0.5, z: -2.343}
+  m_LocalPosition: {x: -3.28, y: 0.5, z: -3.71}
   m_LocalScale: {x: 12, y: 12, z: 12}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -1991,7 +1991,7 @@ Animator:
   m_Controller: {fileID: 9100000, guid: 6b74c0471f91af34f8e98a4d46810410, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
-  m_ApplyRootMotion: 0
+  m_ApplyRootMotion: 1
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
   m_WarningMessage: 
@@ -2007,7 +2007,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7962199819078159310}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b8889cc20c3fac041a511c9e2cfa83c2, type: 3}
+  m_Script: {fileID: 11500000, guid: fd9f5d4f0c298274383e18d0feeefbe3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   MaxHp: 1000
@@ -2046,20 +2046,6 @@ MonoBehaviour:
   bloodDelayTransform: {fileID: 3639000981957654597}
   frameTransform: {fileID: 3639000980406545075}
   Head: {fileID: 3979362087637544056}
---- !u!136 &3716577718639574146
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7962199819078159310}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.85
-  m_Height: 1
-  m_Direction: 1
-  m_Center: {x: 0, y: 0.64, z: 0}
 --- !u!114 &1070152119589441916
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2117,6 +2103,24 @@ MonoBehaviour:
   mobRadius: 0
   Target: {fileID: 0}
   fHp: 0
+--- !u!143 &3868364056014940813
+CharacterController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7962199819078159310}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Height: 2.49
+  m_Radius: 1.48
+  m_SlopeLimit: 45
+  m_StepOffset: 0.3
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0.001
+  m_Center: {x: 0, y: 1.18, z: 0.12}
 --- !u!1 &8002475675295336084
 GameObject:
   m_ObjectHideFlags: 0

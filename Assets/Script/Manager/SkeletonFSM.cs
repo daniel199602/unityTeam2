@@ -13,7 +13,7 @@ public class SkeletonFSM : MonoBehaviour
     private GameObject Target;//存玩家
     private GameObject MySelf;//存自己
 
-    PlayerState State;
+    MubHpData State;
     Animator MubAnimator;
     int hpTemporary;
     CapsuleCollider capsule;
@@ -46,7 +46,7 @@ public class SkeletonFSM : MonoBehaviour
         m_NowState = SkeletonState.Idle;
         capsule = GetComponent<CapsuleCollider>();
         MubAnimator = GetComponent<Animator>();
-        State = GetComponent<PlayerState>();
+        State = GetComponent<MubHpData>();
         hpTemporary = State.Hp;
         FrameCount_Roar = 160;
         LeaveAttackRangeBool = false;

@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class killMoBTest : MonoBehaviour
 {
-    PlayerState PlayerHp;
+    MubHpData PlayerHp;
 
     private float duration;
 
     private void Awake()
     {
-        PlayerHp = GetComponent<PlayerState>();
+        PlayerHp = GetComponent<MubHpData>();
     }
 
     private void Update()

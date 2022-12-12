@@ -329,10 +329,9 @@ GameObject:
   - component: {fileID: 7116475121461561201}
   - component: {fileID: 6414648306119578305}
   - component: {fileID: 6265975674839720854}
-  - component: {fileID: 1539322965495740519}
   - component: {fileID: -4050296469615269024}
   - component: {fileID: 8183334619908018436}
-  - component: {fileID: -1837077759950562815}
+  - component: {fileID: 185334941104344136}
   m_Layer: 0
   m_Name: Spider
   m_TagString: Untagged
@@ -457,7 +456,7 @@ MonoBehaviour:
   mat: {fileID: 2100000, guid: 9fd61f0de86dc4f47beeb6ed49966c59, type: 2}
   matIndex: 1
   offset: 0
-  Target: {fileID: 2631163319326334126, guid: 843a687dd2b95bb4cb66922c432cf3f4, type: 3}
+  Target: {fileID: 0}
   MySelf: {fileID: 7143010690539542105}
   DangerZone: {fileID: 4521084516676180123, guid: 672b860e8f47e48459caca8042d3aa90, type: 3}
   ExplosionZone: {fileID: 4521084516676180123, guid: c44565c5cd44c3647a8bccc1eac84743, type: 3}
@@ -475,27 +474,13 @@ Animator:
   m_Controller: {fileID: 9100000, guid: d9f33e1258c590344a39e00906afd4ae, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
-  m_ApplyRootMotion: 0
+  m_ApplyRootMotion: 1
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!136 &1539322965495740519
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7143010690539542105}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 1.24
-  m_Height: 2.48
-  m_Direction: 1
-  m_Center: {x: 0, y: 0.6899986, z: 0}
 --- !u!114 &-4050296469615269024
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -527,24 +512,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   thisMobItem: {fileID: 11400000, guid: 7df1add73ede8194ca813e090885f86d, type: 2}
---- !u!114 &-1837077759950562815
-MonoBehaviour:
+--- !u!143 &185334941104344136
+CharacterController:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7143010690539542105}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 967979ad88d07814a8f398d634688c0e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mobDamage_instant: 0
-  mobDamamge_delay: 0
-  mobAngle: 0
-  mobRadius: 0
-  Target: {fileID: 0}
-  fHp: 0
+  serializedVersion: 2
+  m_Height: 1
+  m_Radius: 1.34
+  m_SlopeLimit: 45
+  m_StepOffset: 0.3
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0.001
+  m_Center: {x: 0, y: 1.15, z: 0.33}
 --- !u!1 &7143022656568738497
 GameObject:
   m_ObjectHideFlags: 0

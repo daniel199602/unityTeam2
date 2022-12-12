@@ -15,7 +15,7 @@ public class BearFSM : MonoBehaviour
 
     public GameObject TempPoint;//後退用，目前沒有用到
 
-    PlayerState State;
+    MubHpData State;
     Animator MubAnimator;
     int hpTemporary;
     CapsuleCollider capsule;
@@ -26,7 +26,7 @@ public class BearFSM : MonoBehaviour
     bool OutATKrange;
     bool AwakeBool = false;
     bool Awake;
-    float TraceRadius;
+
     float RunRadius;
     float ATKRadius;
     float LeaveATKRadius;
@@ -60,7 +60,7 @@ public class BearFSM : MonoBehaviour
         m_NowState = BearState.Idle;
         capsule = GetComponent<CapsuleCollider>();
         MubAnimator = GetComponent<Animator>();
-        State = GetComponent<PlayerState>();
+        State = GetComponent<MubHpData>();
         hpTemporary = State.Hp;
         FrameCount_Roar = 400;
         LeaveAttackRangeBool = false;
@@ -70,11 +70,10 @@ public class BearFSM : MonoBehaviour
 
         ATKRadius = 40;//Weapon覆蓋
 
-        Close_ATKRadius = ATKRadius * 0.5f;
-        TraceRadius = ATKRadius * 2.5f;
+        Close_ATKRadius = ATKRadius * 0.5f;        
         LeaveATKRadius = ATKRadius * 1.3f;
-        RunRadius = ATKRadius * 2.7f;
-        AwakeRadius = ATKRadius * 1.5f;
+        RunRadius = ATKRadius * 2.3f;
+        AwakeRadius = ATKRadius * 2f;
         AttackCBool = false;
         Count = 0;
     }

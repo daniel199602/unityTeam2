@@ -41,7 +41,7 @@ public class CharacterAttackManager : MonoBehaviour
             {
                 DeductMobHpInstant(mob, weaponDamage_instant);
                 DeductMobHpDelay(mob, weaponDamamge_delay);
-                Debug.LogWarning("Hit : " + mob.GetComponent<ItemOnMob>().mobName + "Hp : " + mob.GetComponent<PlayerState>().Hp);
+                Debug.LogWarning("Hit : " + mob.GetComponent<ItemOnMob>().mobName + "Hp : " + mob.GetComponent<MubHpData>().Hp);
             }
         }
     }
@@ -63,7 +63,7 @@ public class CharacterAttackManager : MonoBehaviour
             {
                 DeductMobHpInstant(mob, weaponDamage_instant);
                 DeductMobHpDelay(mob, weaponDamamge_delay);
-                Debug.LogWarning("Hit : " + mob.GetComponent<ItemOnMob>().mobName + "Hp : " + mob.GetComponent<PlayerState>().Hp);
+                Debug.LogWarning("Hit : " + mob.GetComponent<ItemOnMob>().mobName + "Hp : " + mob.GetComponent<MubHpData>().Hp);
             }
         }
     }
@@ -85,7 +85,7 @@ public class CharacterAttackManager : MonoBehaviour
             {
                 DeductMobHpInstant(mob, weaponDamage_instant);
                 DeductMobHpDelay(mob, weaponDamamge_delay);
-                Debug.LogWarning("Hit : " + mob.GetComponent<ItemOnMob>().mobName + "Hp : " + mob.GetComponent<PlayerState>().Hp);
+                Debug.LogWarning("Hit : " + mob.GetComponent<ItemOnMob>().mobName + "Hp : " + mob.GetComponent<MubHpData>().Hp);
             }
         }
     }
@@ -115,7 +115,7 @@ public class CharacterAttackManager : MonoBehaviour
     /// <param name="demage_instant">¥ß§Y¶Ë®`</param>
     public void DeductMobHpInstant(GameObject mob, int demage_instant)
     {
-        mob.GetComponent<PlayerState>().HpDeduction(demage_instant);
+        mob.GetComponent<MubHpData>().HpDeduction(demage_instant);
     }
 
 
@@ -141,7 +141,7 @@ public class CharacterAttackManager : MonoBehaviour
         while (Count >= 0)
         {
             yield return new WaitForSeconds(1);
-            mob.GetComponent<PlayerState>().HpDeduction(demage_delay);
+            mob.GetComponent<MubHpData>().HpDeduction(demage_delay);
             Count--;
         }
     }
