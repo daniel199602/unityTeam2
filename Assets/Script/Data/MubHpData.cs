@@ -21,6 +21,7 @@ public class MubHpData : MonoBehaviour
     private void Start()
     {
         MaxHp = thisItemOnMob.mobMaxHp;
+        Health.Maxhealth = MaxHp;
         Hp = MaxHp;
         currentHp = Hp;
     }
