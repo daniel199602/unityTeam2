@@ -125,9 +125,7 @@ public class MagicCasterFSM : MonoBehaviour
 
                 AttackStatus();
             }
-            Debug.Log(m_NowState);
         }
-       
     }
     public void AwakeSensor()
     {
@@ -159,7 +157,7 @@ public class MagicCasterFSM : MonoBehaviour
             if (tracing == true)
             {
                 m_NowState = MagicCasterState.Trace;
-                Debug.Log("NowInT");
+
                 if (m_NowState == MagicCasterState.Trace)
                 {
                     MubAnimator.SetBool("Trace", true);
@@ -184,7 +182,6 @@ public class MagicCasterFSM : MonoBehaviour
             MubAnimator.SetBool("Trace", false);
             MubAnimator.SetBool("Back", false);
             Attack();
-            Debug.Log("NowInA");
         }
     }
     //«á°hª¬ºA
@@ -232,7 +229,6 @@ public class MagicCasterFSM : MonoBehaviour
             if (backing == true)
             {
                 m_NowState = MagicCasterState.Back;
-                Debug.Log("NowInB");
                 if (m_NowState == MagicCasterState.Back)
                 {
                     MubAnimator.SetBool("Back", true);
@@ -276,11 +272,14 @@ public class MagicCasterFSM : MonoBehaviour
 
         Gizmos.color = InATKrange_Close ? Color.green : Color.cyan;
         Gizmos.DrawWireSphere(transform.position, Close_ATKRadius);
+
+        Gizmos.color = Color.white;
+        Gizmos.DrawLine(MySelf.transform.position, MySelf.transform.forward*ATKRadius);
     }
     private void AnimationSpeed_Attack()
     {
         MubAnimator.speed = 0.2f;        
-        Instantiate(TestCube,LaunchPort.position,MySelf.transform.rotation);
+        Instantiate(TestCube,LaunchPort.position,MySelf.transform.rotation,MySelf.transform);
         RotateSpeed = RotateSpeed * .1f;
     }
     private void AnimationSpeed_AttackEnd()
@@ -290,7 +289,7 @@ public class MagicCasterFSM : MonoBehaviour
         Close_ATKRadius = ATKRadius * .8f;
         CDs = 4;
         RotateSpeed = RotateSpeed * 10f;
-        StartCoroutine(AttackCooldown());
+        StartCoroutine(AttackCooldown());        
     }
     public void ZoneOpen()
     {

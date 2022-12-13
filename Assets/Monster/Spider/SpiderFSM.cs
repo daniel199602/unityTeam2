@@ -111,9 +111,7 @@ public class SpiderFSM : MonoBehaviour
 
                 TraceStatus();
             }
-
         }
-        Debug.Log(m_NowState);
     }
     public void DeadStatus()
     {
@@ -131,7 +129,6 @@ public class SpiderFSM : MonoBehaviour
         if (tracing == true)
         {
             m_NowState = SpiderState.Trace;
-            Debug.Log("NowInT");
             if (m_NowState == SpiderState.Trace)
             {
                 Move();
@@ -149,19 +146,15 @@ public class SpiderFSM : MonoBehaviour
             m_NowState = SpiderState.Attack;
             MubAnimator.SetBool("Trace", false);
             Attack();            
-            Debug.Log("NowInA");
         }
     }
     public void Move()
     {
         GetTargetMegnitude = (Target.transform.position - transform.position).magnitude;
-        Debug.Log("當前速度" + MoveSpeed);
 
         GetTargetNormalize = (Target.transform.position - transform.position).normalized;
 
         Selfcapsule.SimpleMove(GetTargetNormalize * MoveSpeed);
-
-        Debug.Log(MoveSpeed);
 
         if (GetTargetMegnitude == ATKRadius+Selfcapsule.radius){MoveSpeed = Speed * 0f;}
 
@@ -194,7 +187,6 @@ public class SpiderFSM : MonoBehaviour
     }
     IEnumerator changShader()
     {
-        Debug.LogWarning("Changing");
         while (ColorChange>0)
         {            
             offset = -3;
@@ -230,6 +222,6 @@ public class SpiderFSM : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.color = InATKrange ? Color.red : Color.yellow;
-        Gizmos.DrawWireSphere(transform.position, ATKRadius);
+        Gizmos.DrawWireSphere(transform.position, ATKRadius);       
     }
 }
