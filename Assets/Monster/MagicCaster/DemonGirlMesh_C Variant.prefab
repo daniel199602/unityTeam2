@@ -148,3 +148,77 @@ MonoBehaviour:
   MaxHp: 1000
   Hp: 1000
   currentHp: 0
+--- !u!4 &5762522301104137826 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8559658806296912734, guid: 9349fc6c44ecdab4daea1ed464bd7c38, type: 3}
+  m_PrefabInstance: {fileID: 4121519153046291772}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &8365363453247618125
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 5762522301104137826}
+    m_Modifications:
+    - target: {fileID: 100004, guid: 784190dcb0c7afb42bb24fa5770e6016, type: 3}
+      propertyPath: m_Name
+      value: CFXM_ElectricityBolt
+      objectReference: {fileID: 0}
+    - target: {fileID: 400004, guid: 784190dcb0c7afb42bb24fa5770e6016, type: 3}
+      propertyPath: m_RootOrder
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 400004, guid: 784190dcb0c7afb42bb24fa5770e6016, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400004, guid: 784190dcb0c7afb42bb24fa5770e6016, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.29
+      objectReference: {fileID: 0}
+    - target: {fileID: 400004, guid: 784190dcb0c7afb42bb24fa5770e6016, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 400004, guid: 784190dcb0c7afb42bb24fa5770e6016, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400004, guid: 784190dcb0c7afb42bb24fa5770e6016, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400004, guid: 784190dcb0c7afb42bb24fa5770e6016, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 400004, guid: 784190dcb0c7afb42bb24fa5770e6016, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400004, guid: 784190dcb0c7afb42bb24fa5770e6016, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400004, guid: 784190dcb0c7afb42bb24fa5770e6016, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: 400004, guid: 784190dcb0c7afb42bb24fa5770e6016, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 19800004, guid: 784190dcb0c7afb42bb24fa5770e6016, type: 3}
+      propertyPath: lengthInSec
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 19800004, guid: 784190dcb0c7afb42bb24fa5770e6016, type: 3}
+      propertyPath: simulationSpeed
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 19800004, guid: 784190dcb0c7afb42bb24fa5770e6016, type: 3}
+      propertyPath: InitialModule.startLifetime.scalar
+      value: 2
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 784190dcb0c7afb42bb24fa5770e6016, type: 3}

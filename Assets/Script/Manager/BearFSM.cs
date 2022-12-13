@@ -35,8 +35,6 @@ public class BearFSM : MonoBehaviour
     float MoveSpeed;
     float BackSpeed;
 
-    float CDs;
-
     Vector3 GetTargetNormalize;
     float GetTargetMegnitude;
     int Count;
@@ -50,10 +48,10 @@ public class BearFSM : MonoBehaviour
     int FrameCount_Roar;
 
     int RandomChoose;
-    int i = 0;
+    bool RandomChooseCoolDown = false;
     // Start is called before the first frame update
     void Start()
-    {
+    {        
         Target = GameManager.Instance().PlayerStart;//抓出玩家
         MySelf = this.transform.gameObject;//抓出自己
 
@@ -70,8 +68,8 @@ public class BearFSM : MonoBehaviour
 
         ATKRadius = 40;//Weapon覆蓋
 
-        Close_ATKRadius = ATKRadius * 0.7f;        
-        LeaveATKRadius = ATKRadius * 1.3f;
+        Close_ATKRadius = ATKRadius * 0.6f;        
+        LeaveATKRadius = ATKRadius * 1.07f;
         RunRadius = ATKRadius * 2.3f;
         AwakeRadius = ATKRadius * 2f;
         AttackCBool = false;
@@ -81,9 +79,11 @@ public class BearFSM : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //玩家死亡TODO()還沒寫
         Quaternion c = new Quaternion(0, transform.rotation.y, 0,transform.rotation.w);
         transform.rotation = c;
         AwakeSensor();
+        Debug.Log(Count);
         if (AwakeBool == true)
         {
             if (FrameCount_Roar > 0)
@@ -92,6 +92,7 @@ public class BearFSM : MonoBehaviour
             }
             if (RoarBool == false)
             {
+                LookTarget();
                 Roar();
                 RoarBool = true;
             }
@@ -134,20 +135,18 @@ public class BearFSM : MonoBehaviour
         Quaternion Look = Quaternion.LookRotation(GetTargetNormalize);
 
         Quaternion R = Quaternion.Slerp(transform.rotation, Look, 7f * Time.deltaTime);
-
-        if (isAttacking==false)
+        if (isAttacking == false)
         {
-            transform.rotation = R;
-        }
-        
-        if (GetTargetNormalize != transform.forward&& m_NowState != BearState.Attack)
-        {
-            MubAnimator.SetBool("Rotate", true);
-        }
-        else if (GetTargetNormalize == transform.forward && m_NowState != BearState.Attack)
-        {
-            MubAnimator.SetBool("Rotate", false);
-        }
+            if (GetTargetNormalize != transform.forward)
+            {
+                MubAnimator.SetBool("Rotate", true);
+                transform.rotation = R;
+            }
+            else if (GetTargetNormalize == transform.forward)
+            {
+                MubAnimator.SetBool("Rotate", false);
+            }
+        }       
     }
     public void AwakeSensor()
     {
@@ -292,7 +291,7 @@ public class BearFSM : MonoBehaviour
     {
         Vector3 direction = attacked.transform.position - attacker.transform.position;
 
-        return direction.magnitude <= RadiusMax && direction.magnitude > RadiusMin;
+        return direction.magnitude <= RadiusMax && direction.magnitude >= RadiusMin;
     }
     //在遠程攻擊蛋黃區範圍(外圈) 
     public bool IsOutRange_RangedBattleRange(float RadiusMax, float RadiusMin, GameObject attacker, GameObject attacked)
@@ -332,10 +331,10 @@ public class BearFSM : MonoBehaviour
         if (m_NowState == BearState.Attack&& Count == 0)
         {
             isAttacking = true;
-            if (i==0)
+            if (RandomChooseCoolDown==false)
             {
-                RandomChoose = UnityEngine.Random.Range(1, 3);
-                i++;
+                RandomChoose = UnityEngine.Random.Range(1, 4);
+                RandomChooseCoolDown= true;
             }                       
             if (RandomChoose ==1)
             {
@@ -357,8 +356,7 @@ public class BearFSM : MonoBehaviour
         {
             MubAnimator.SetBool("Attack01", false);
             MubAnimator.SetBool("Attack02", false);
-            MubAnimator.SetBool("Attack03", false);
-            
+            MubAnimator.SetBool("Attack03", false);            
             isAttacking = false;
         }
     }
@@ -437,44 +435,61 @@ public class BearFSM : MonoBehaviour
     private void AnimationSpeed_AttackEnd01()
     {
         MubAnimator.speed = 1f;
-        LeaveATKRadius = ATKRadius * 1.3f;
+        LeaveATKRadius = ATKRadius * 1.07f;
         Close_ATKRadius = ATKRadius * .5f;
         MubAnimator.applyRootMotion = false;
+        Count = 2;
+        StartCoroutine(SummonCooldown());
+    }
+    private void AnimationSpeed_AttackEnd01P()
+    {
+        MubAnimator.speed = 1f;
+        LeaveATKRadius = ATKRadius * 1.07f;
+        Close_ATKRadius = ATKRadius * .5f;
+        MubAnimator.applyRootMotion = false;
+
     }
     private void AnimationSpeed_AttackEnd02()
     {
         MubAnimator.speed = 1f;
-        LeaveATKRadius = ATKRadius * 1.3f;
+        LeaveATKRadius = ATKRadius * 1.07f;
         Close_ATKRadius = ATKRadius * .5f;
         MubAnimator.applyRootMotion = false;
+        Count = 4;
+        StartCoroutine(SummonCooldown());
+    }
+    private void AnimationSpeed_AttackEnd02P()
+    {
+        MubAnimator.speed = 1f;
+        LeaveATKRadius = ATKRadius * 1.07f;
+        Close_ATKRadius = ATKRadius * .5f;
+        MubAnimator.applyRootMotion = false;
+
     }
     private void AnimationSpeed_AttackEnd03()
     {
         MubAnimator.speed = 1f;
-        LeaveATKRadius = ATKRadius * 1.3f;
+        LeaveATKRadius = ATKRadius * 1.07f;
         Close_ATKRadius = ATKRadius * .5f;
         MubAnimator.applyRootMotion = false;
+        Count = 4;
+        StartCoroutine(SummonCooldown());
     }
     public void ZoneOpen()
     {
         LeaveATKRadius = ATKRadius * 6;
-        Close_ATKRadius = ATKRadius * .1f;
-        Count = 2;
-        StartCoroutine(SummonCooldown());
+        Close_ATKRadius = ATKRadius * .1f;       
     }
     public void ZoneOpen01()
     {
         LeaveATKRadius = ATKRadius * 6;
-        Close_ATKRadius = ATKRadius * .1f;
-        Count = 4;
-        
+        Close_ATKRadius = ATKRadius * .1f;      
     }
 
     public void ZoneOpen02()
     {
         LeaveATKRadius = ATKRadius * 6;
-        Close_ATKRadius = ATKRadius * .1f;
-        Count = 4;
+        Close_ATKRadius = ATKRadius * .1f;      
     }
     IEnumerator SummonCooldown()
     {
@@ -484,7 +499,7 @@ public class BearFSM : MonoBehaviour
             Count--;
             if (Count == 1)
             {
-                i = 0;
+                RandomChooseCoolDown = false;
             }
         }
     }
