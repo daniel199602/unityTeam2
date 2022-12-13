@@ -16,6 +16,10 @@ public class MubHpData : MonoBehaviour
     {
         thisItemOnMob = GetComponent<ItemOnMob>();
         Health = GetComponent<HealthBar>();
+        MaxHp = thisItemOnMob.mobMaxHp;
+        Health.Maxhealth = MaxHp;
+        Hp = MaxHp;
+        currentHp = Hp;
     }
 
     private void Start()

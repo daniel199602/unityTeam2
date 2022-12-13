@@ -15,7 +15,7 @@ MonoBehaviour:
   mobName: boss_ranged
   mobType: 12
   mobMaxHp: 10000
-  mobDamage_instant: 40
+  mobDamage_instant: 70
   mobDamage_delay: 20
   mobAngle: 25
-  mobRadius: 55
+  mobRadius: 150

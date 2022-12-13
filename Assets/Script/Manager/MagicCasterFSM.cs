@@ -121,17 +121,9 @@ public class MagicCasterFSM : MonoBehaviour
 
                 BugSummon();
 
-                //Debug.Log("CDs:" + Count);
-
                 TraceStatus();
 
                 AttackStatus();
-
-                LeaveAttackStatus();
-
-                TooCloseAttackStatus_York();
-
-                BackStatus();
             }
             Debug.Log(m_NowState);
         }
@@ -183,10 +175,10 @@ public class MagicCasterFSM : MonoBehaviour
     //攻擊狀態
     public void AttackStatus()
     {
-        InATKrange = IsInRange_RangedBattleRange(ATKRadius, Close_ATKRadius, MySelf, Target);
+        InATKrange = IsInRange_RangedBattleRange(ATKRadius, MySelf, Target);
         if (InATKrange == true)
         {
-            LeaveAttackRangeBool = true;
+            //LeaveAttackRangeBool = true;
             InAttackRangeBool = true;
             m_NowState = MagicCasterState.Attack;
             MubAnimator.SetBool("Trace", false);
@@ -195,65 +187,7 @@ public class MagicCasterFSM : MonoBehaviour
             Debug.Log("NowInA");
         }
     }
-    //在攻擊蛋黃區(外圈)狀態
-    public void LeaveAttackStatus()
-    {
-        if (LeaveAttackRangeBool == true)
-        {
-            OutATKrange = IsOutRange_RangedBattleRange(LeaveATKRadius, ATKRadius, MySelf, Target);
-            if (OutATKrange == true)
-            {
-                m_NowState = MagicCasterState.Idle;
-                Idle();
-                //Debug.LogError("L is active");
-            }
-            GetTargetMegnitude = (Target.transform.position - transform.position).magnitude;
-            if (GetTargetMegnitude > LeaveATKRadius)
-            {
-                LeaveAttackRangeBool = false;
-            }
-        }
-    }
-    //在攻擊蛋黃區(內圈)狀態
-    public void TooCloseAttackStatus_York()
-    {
-        if (InAttackRangeBool == true)
-        {
-            InATKrange_Close = CloseRange_RangedBattleRange(ATKRadius, Close_ATKRadius, MySelf, Target);
-            if (InATKrange_Close == true)
-            {
-                m_NowState = MagicCasterState.Attack;                
-                //Debug.LogWarning("LI is active");
-            }
-            GetTargetMegnitude = (Target.transform.position - transform.position).magnitude;
-            if (GetTargetMegnitude < Close_ATKRadius)
-            {
-                InAttackRangeBool = false;
-            }
-        }
-    }
     //後退狀態
-    public void BackStatus()
-    {
-        if (InAttackRangeBool == false)
-        {
-            backing = TooCloseRange_RangedBattleRange(Close_ATKRadius, MySelf, Target);
-            if (backing == true)
-            {
-                m_NowState = MagicCasterState.Back;
-                Debug.Log("NowInB");
-                if (m_NowState == MagicCasterState.Back)
-                {
-                    MubAnimator.SetBool("Back", true);
-                    MubAnimator.SetBool("Attack", false);
-                }
-            }
-            else
-            {
-                MubAnimator.SetBool("Attack", false);
-            }
-        }
-    }
     public bool IsInRange_AwakeRange(float Radius, GameObject attacker, GameObject attacked)
     {
         Vector3 direction = attacked.transform.position - attacker.transform.position;
@@ -261,25 +195,11 @@ public class MagicCasterFSM : MonoBehaviour
         return direction.magnitude <= Radius;
     }
     //在遠程攻擊範圍內 
-    public bool IsInRange_RangedBattleRange(float RadiusMax, float RadiusMin, GameObject attacker, GameObject attacked)
+    public bool IsInRange_RangedBattleRange(float RadiusMax, GameObject attacker, GameObject attacked)
     {
         Vector3 direction = attacked.transform.position - attacker.transform.position;
 
-        return direction.magnitude <= RadiusMax && direction.magnitude > RadiusMin;
-    }
-    //在遠程攻擊蛋黃區範圍(外圈) 
-    public bool IsOutRange_RangedBattleRange(float RadiusMax, float RadiusMin, GameObject attacker, GameObject attacked)
-    {
-        Vector3 direction = attacked.transform.position - attacker.transform.position;
-
-        return direction.magnitude <= RadiusMax && direction.magnitude > RadiusMin;
-    }
-    //在遠程攻擊蛋黃區範圍(內圈) 
-    public bool CloseRange_RangedBattleRange(float RadiusMax, float RadiusMin, GameObject attacker, GameObject attacked)
-    {
-        Vector3 direction = attacked.transform.position - attacker.transform.position;
-
-        return direction.magnitude <= RadiusMax && direction.magnitude >= RadiusMin;
+        return direction.magnitude <= RadiusMax;
     }
     //範圍判定_後退
     public bool TooCloseRange_RangedBattleRange(float Radius, GameObject attacker, GameObject attacked)
@@ -308,12 +228,21 @@ public class MagicCasterFSM : MonoBehaviour
         }
         else if (Count != 0)
         {
-            MubAnimator.SetBool("Attack", false);
+            backing = TooCloseRange_RangedBattleRange(Close_ATKRadius, MySelf, Target);
+            if (backing == true)
+            {
+                m_NowState = MagicCasterState.Back;
+                Debug.Log("NowInB");
+                if (m_NowState == MagicCasterState.Back)
+                {
+                    MubAnimator.SetBool("Back", true);
+                    MubAnimator.SetBool("Attack", false);
+                }
+            }            
         }
     }
     public void Idle()
     {
-
         MubAnimator.SetBool("Trace", false);
     }
 
@@ -359,7 +288,7 @@ public class MagicCasterFSM : MonoBehaviour
         MubAnimator.speed = 1f;
         LeaveATKRadius = ATKRadius * 1.2f;
         Close_ATKRadius = ATKRadius * .8f;
-        CDs = 6;
+        CDs = 4;
         RotateSpeed = RotateSpeed * 10f;
         StartCoroutine(AttackCooldown());
     }
