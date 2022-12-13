@@ -86,6 +86,8 @@ public class MagicCasterFSM : MonoBehaviour
     {
         //玩家死亡TODO()還沒寫
         AwakeSensor();
+        Quaternion c = new Quaternion(0, transform.rotation.y, 0, transform.rotation.w);
+        transform.rotation = c;
         if (AwakeBool == true)
         {
             if (FrameCount_Roar > 0)

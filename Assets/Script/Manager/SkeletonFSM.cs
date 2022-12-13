@@ -24,6 +24,7 @@ public class SkeletonFSM : MonoBehaviour
     bool OutATKrange;
     bool AwakeBool = false;
     bool Awaken;
+    bool LookBool;
 
     float TraceRadius;
     float ATKRadius;
@@ -63,14 +64,18 @@ public class SkeletonFSM : MonoBehaviour
 
         AwakeRadius = ATKRadius * 1.5f;
 
-        LeaveATKRadius = ATKRadius * 1.2f;
-        
+        LeaveATKRadius = ATKRadius * 1.05f;
+
+        LookBool = true;
+
     }
     // Update is called once per frame
     void Update()
     {
         //玩家死亡TODO()還沒寫
         AwakeSensor();
+        Quaternion c = new Quaternion(0, transform.rotation.y, 0, transform.rotation.w);
+        transform.rotation = c;
         if (AwakeBool ==true)
         {
             if (FrameCount_Roar > 0)
@@ -99,11 +104,7 @@ public class SkeletonFSM : MonoBehaviour
 
                 MubAnimator.SetBool("Roar", false);
 
-                GetTargetNormalize = (Target.transform.position - transform.position).normalized;
-
-                Quaternion Look = Quaternion.LookRotation(GetTargetNormalize);
-
-                transform.rotation = Quaternion.Slerp(transform.rotation, Look, Speed * Time.deltaTime);
+                LookForward();
 
                 TraceStatus();
 
@@ -112,6 +113,19 @@ public class SkeletonFSM : MonoBehaviour
                 LeaveAttackStatus();
             }
         }        
+    }
+    public void LookForward()
+    {
+        GetTargetNormalize = (Target.transform.position - transform.position).normalized;
+
+        Quaternion Look = Quaternion.LookRotation(GetTargetNormalize);
+
+        Quaternion m = Quaternion.Slerp(transform.rotation, Look, 4f * Time.deltaTime);
+
+        if (LookBool == true)
+        {
+            transform.rotation = m;
+        }
     }
     public void AwakeSensor()
     {
@@ -256,6 +270,7 @@ public class SkeletonFSM : MonoBehaviour
         if (m_NowState == SkeletonState.Attack&&CDs==0)
         {
             MubAnimator.SetBool("Attack", true);
+            LookBool = false;
         }
         else if (CDs != 0)
         {
@@ -289,6 +304,7 @@ public class SkeletonFSM : MonoBehaviour
         MubAnimator.speed = 1f;
         LeaveATKRadius = ATKRadius * 1.5f;
         CDs = 3;
+        LookBool = true;
         StartCoroutine(AttackCooldown());
     }
     public void ZoneOpen()
