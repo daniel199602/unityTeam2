@@ -2,6 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
+public enum pFSMState
+{
+    NONE = -1,
+    MoveTree,
+    Roll,
+    Attack,
+    Dead,
+    GetHit,
+}
+
 public class PlayerController : MonoBehaviour
 {
     //攝影機
@@ -19,7 +30,7 @@ public class PlayerController : MonoBehaviour
     private float attackMoveSpeed = 0;//攻擊位移速度
     bool isOpenAttackMove = false;//攻擊位移開關
     bool isUseMouseChangeForward = true;//滑鼠人物轉向開關
-    bool invincible = false;//無敵
+    bool isInvincible = false;//無敵
     [HideInInspector] public int currentLayerNum = 0;//當前Layer預設第0層
     //各層Layer的當前狀態
     AnimatorStateInfo animStateInfo;
@@ -29,15 +40,11 @@ public class PlayerController : MonoBehaviour
     public GameObject weaponL;//左手
     public GameObject weaponR;//右手
 
-
-    //keyCode.Alpha2 暫時切換 劍盾 與 雙手劍 bool變數，之後改再刪除
-    bool alpha2Switch = false;
-
     //玩家數值(挖洞)
     PlayerHpData State;
     [SerializeField]int hpTemporary;
     int RandomNum;
-    int i;
+    bool isOpenBeHit = true;
 
     public enum pAnimLayerState
     {
@@ -47,15 +54,7 @@ public class PlayerController : MonoBehaviour
     }
     private pAnimLayerState m_pCurrentAnimLayer;
 
-    public enum pFSMState
-    {
-        NONE = -1,
-        MoveTree,
-        Roll,
-        Attack,
-        Dead,
-        GetHit,
-    }
+    
     private pFSMState m_pCurrentState;
 
     private void Awake()
@@ -74,20 +73,20 @@ public class PlayerController : MonoBehaviour
 
         State = GetComponent<PlayerHpData>();
         hpTemporary = State.Hp;
-        i = 0;
-
     }
+
     public void Incuvusuble()
     {
         if (Input.GetKey(KeyCode.F1))
         {
-            invincible = true;
+            isInvincible = true;
         }
         if (Input.GetKey(KeyCode.F2))
         {
-            invincible = false;
+            isInvincible = false;
         }
     }
+
     // Update is called once per frame
     void Update()
     {
@@ -132,12 +131,12 @@ public class PlayerController : MonoBehaviour
             DeadStatus();
             return;
         }
-        else if (State.Hp != hpTemporary && invincible == false)
+        else if (State.Hp != hpTemporary && isInvincible == false)
         {
-            if (i == 0)
+            if (isOpenBeHit)
             {
                 RandomNum = Random.Range(1, 2);
-                i++;
+                isOpenBeHit = false;
             }
             hpTemporary = State.Hp;
             if (RandomNum == 1)
@@ -258,6 +257,27 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 判斷WeaponManager當前的右手武器類型，切換玩家Animator Layer狀態
+    /// 1213施工中
+    /// </summary>
+    public void AutoSwitchWeaponR(GameObject currentWeaponR)
+    {
+        if(currentWeaponR.GetComponent<ItemOnWeapon>().weaponType == 2)
+        {
+            currentLayerNum = 1;
+            charaterAnimator.SetTrigger("isTriggerLayerChange");
+            StartCoroutine(ShowWeaponLWeaponR());
+        }
+        else if(currentWeaponR.GetComponent<ItemOnWeapon>().weaponType == 3)
+        {
+            currentLayerNum = 2;
+            charaterAnimator.SetTrigger("isTriggerLayerChange");
+            StartCoroutine(ShowWeaponR());
+        }
+    }
+
+
 
     /// <summary>
     /// 切換武器模式Key1,2
@@ -265,15 +285,6 @@ public class PlayerController : MonoBehaviour
     /// </summary>
     private void ControlSwitchWeapon()
     {
-        //if(Input.GetKeyDown(KeyCode.Tab))
-        //{
-        //    currentLayerNum++;
-        //    if(currentLayerNum>2)currentLayerNum = 0;
-        //    charaterAnimator.SetTrigger("isTriggerLayerChange");
-
-        //    JudegShowWeapon();//暫時使用之後武器儲存方式再改
-        //}
-
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             currentLayerNum = 0;
@@ -283,8 +294,6 @@ public class PlayerController : MonoBehaviour
         }
         else if (Input.GetKeyDown(KeyCode.Alpha2))
         {
-            //keyCode.Alpha2 暫時切換 劍盾 與 雙手劍 bool變數
-            alpha2Switch = !alpha2Switch;
 
             if (WeaponManager.Instance().CurrentWeaponR_weaponR.GetComponent<ItemOnWeapon>().weaponType == 2)
             //if (/*之後依據武器的type切換成 劍、盾*/alpha2Switch)
@@ -300,28 +309,7 @@ public class PlayerController : MonoBehaviour
                 StartCoroutine(ShowWeaponR());
             }
         }
-
     }
-
-
-    /// <summary>
-    /// 暫時使用，之後武器儲存方式再改
-    /// </summary>
-    //void JudegShowWeapon()
-    //{
-    //    if (currentLayerNum == 0)
-    //    {
-    //        StartCoroutine(ShowTorchL());
-    //    }
-    //    else if(currentLayerNum == 1)
-    //    {
-    //        StartCoroutine(ShowWeaponLWeaponR());
-    //    }
-    //    else if(currentLayerNum == 2)
-    //    {
-    //        StartCoroutine(ShowWeaponR());
-    //    }
-    //}
 
     /// <summary>
     /// 顯示左手torchL
@@ -466,11 +454,11 @@ public class PlayerController : MonoBehaviour
     }
     private void invincibleRoll_Start()
     {
-        invincible = true;
+        isInvincible = true;
     }
     private void invincibleRoll_End()
     {
-        invincible = false;
+        isInvincible = false;
     }
     public void DeadStatus()
     {
@@ -480,8 +468,12 @@ public class PlayerController : MonoBehaviour
             cc.radius = 0f;
         }
     }
-    private void iReset()
+
+    /// <summary>
+    /// 開啟觸發人物受擊事件
+    /// </summary>
+    private void BeHitResetEvent()
     {
-        i = 0;
+        isOpenBeHit = true;
     }
 }
