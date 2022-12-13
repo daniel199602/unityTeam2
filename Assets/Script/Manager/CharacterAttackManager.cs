@@ -12,6 +12,7 @@ public class CharacterAttackManager : MonoBehaviour
     //[HideInInspector] public GameObject usingWeaponR_weapon;//當前右手武器
 
     public int fHp = 0;//1211目前PlayerGetHit有用到它刪掉會報錯，然後怪物有用PlayerGetHit，所以PlayerGetHit目前還不能刪
+    public GameObject hitVFX;
 
     private void Start()
     {
@@ -116,6 +117,8 @@ public class CharacterAttackManager : MonoBehaviour
     public void DeductMobHpInstant(GameObject mob, int demage_instant)
     {
         mob.GetComponent<MubHpData>().HpDeduction(demage_instant);
+        ParticleSystem ps = hitVFX.GetComponent<ParticleSystem>();
+        ps.Play();
     }
 
 

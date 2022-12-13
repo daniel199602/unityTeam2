@@ -112,8 +112,6 @@ public class BearFSM : MonoBehaviour
 
                 MubAnimator.SetBool("Warn", false);
 
-                //Debug.Log("CDs:" + Count);
-
                 LookTarget();
 
                 TraceStatus();
@@ -128,8 +126,6 @@ public class BearFSM : MonoBehaviour
 
             }
         }
-        
-        //Debug.Log(m_NowState);
     }
     public void LookTarget()
     {
@@ -183,7 +179,6 @@ public class BearFSM : MonoBehaviour
             if (tracing == true)
             {
                 m_NowState = BearState.Trace;
-                Debug.Log("NowInT");
                 if (m_NowState == BearState.Trace)
                 {
                     Move();
@@ -217,7 +212,6 @@ public class BearFSM : MonoBehaviour
             MubAnimator.SetBool("Back", false);
             MubAnimator.SetBool("Rotate", false);
             Attack();
-            Debug.Log("NowInA");
         }
     }
     //在攻擊蛋黃區(外圈)狀態
@@ -230,7 +224,6 @@ public class BearFSM : MonoBehaviour
             {
                 m_NowState = BearState.Idle;
                 Idle();
-                Debug.LogError("L is active");
             }
             GetTargetMegnitude = (Target.transform.position - transform.position).magnitude;
             if (GetTargetMegnitude > LeaveATKRadius)
@@ -248,7 +241,6 @@ public class BearFSM : MonoBehaviour
             if (InATKrange_Close == true)
             {
                 m_NowState = BearState.Attack;                
-                //Debug.LogError("LI is active");
             }
             GetTargetMegnitude = (Target.transform.position - transform.position).magnitude;
             if (GetTargetMegnitude < Close_ATKRadius)
@@ -270,7 +262,6 @@ public class BearFSM : MonoBehaviour
             if (backing == true)
             {
                 m_NowState = BearState.Back;
-                Debug.Log("NowInB");
                 if (m_NowState == BearState.Back)
                 {
                     Back();
@@ -346,7 +337,6 @@ public class BearFSM : MonoBehaviour
                 RandomChoose = UnityEngine.Random.Range(1, 3);
                 i++;
             }                       
-            Debug.Log("隨機數:"+RandomChoose);
             if (RandomChoose ==1)
             {
                 MubAnimator.SetBool("Attack01", true);
@@ -380,8 +370,6 @@ public class BearFSM : MonoBehaviour
     {
         GetTargetMegnitude = (Target.transform.position - transform.position).magnitude;
 
-        Debug.Log("當前速度" + MoveSpeed);
-
         if (GetTargetMegnitude > RunRadius)
         {
             MoveSpeed *= 1.5f;
@@ -398,8 +386,6 @@ public class BearFSM : MonoBehaviour
 
         capsule.SimpleMove(GetTargetNormalize * MoveSpeed);
 
-        Debug.Log(MoveSpeed);
-
         if (GetTargetMegnitude == ATKRadius)
         {
             MoveSpeed = Speed * 0f;
@@ -413,11 +399,7 @@ public class BearFSM : MonoBehaviour
     {
         GetTargetMegnitude = (Target.transform.position - transform.position).magnitude;
 
-        Debug.Log("當前速度" + MoveSpeed);
-
         capsule.SimpleMove(-(transform.forward*5));
-
-        Debug.Log(MoveSpeed);
 
         if (GetTargetMegnitude == ATKRadius)
         {

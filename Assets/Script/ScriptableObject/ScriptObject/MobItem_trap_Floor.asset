@@ -15,7 +15,7 @@ MonoBehaviour:
   mobName: trap_floor
   mobType: 9
   mobMaxHp: 0
-  mobDamage_instant: 30
-  mobDamage_delay: 10
+  mobDamage_instant: 50
+  mobDamage_delay: 0
   mobAngle: 360
-  mobRadius: 5
+  mobRadius: 15
