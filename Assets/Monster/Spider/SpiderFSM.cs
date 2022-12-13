@@ -15,8 +15,10 @@ public class SpiderFSM : MonoBehaviour
     public int matIndex;//跑︹把计
     public float offset;//跑︹把计
 
-    private GameObject Target;//產
+    [SerializeField]private GameObject Target;//產
     private GameObject MySelf;//
+
+    ItemOnMob ThisItemOnMob_State;
 
     //TestUse
     public GameObject DangerZone;
@@ -36,11 +38,7 @@ public class SpiderFSM : MonoBehaviour
 
     bool InATKrange;
 
-    float TraceRadius;
-
     float ATKRadius;
-
-    float GizmoRa;
 
     public float Speed;
 
@@ -55,6 +53,10 @@ public class SpiderFSM : MonoBehaviour
     int ColorChange;
 
     float ColorChangeTime;
+    private void Awake()
+    {
+        ThisItemOnMob_State = GetComponent<ItemOnMob>();
+    }
     private void Start()
     {
         Target = GameManager.Instance().PlayerStart;//ъ產
@@ -72,13 +74,9 @@ public class SpiderFSM : MonoBehaviour
 
         MubAnimator = GetComponent<Animator>();
 
-        FrameCount_Roar = 150;
+        FrameCount_Roar = 220;
 
-        ATKRadius = 50;//Weapon滦籠
-
-        GizmoRa = 50+ TargetCapsule.radius*10;
-
-        TraceRadius = ATKRadius;
+        ATKRadius = ThisItemOnMob_State.mobRadius;//Weapon滦籠
 
         StartExplosive = false;
     }
@@ -100,10 +98,9 @@ public class SpiderFSM : MonoBehaviour
         }
         else if (FrameCount_Roar <= 0)
         {
-            //Debug.LogWarning("f:" + FrameCount_Roar);
-
             MubAnimator.SetBool("Roar", false);
 
+            AttackStatus();
             if (m_NowState!= SpiderState.Attack)
             {
                 GetTargetNormalize = (Target.transform.position - transform.position).normalized;
@@ -114,7 +111,7 @@ public class SpiderFSM : MonoBehaviour
 
                 TraceStatus();
             }
-            AttackStatus();
+
         }
         Debug.Log(m_NowState);
     }
@@ -130,7 +127,7 @@ public class SpiderFSM : MonoBehaviour
     }
     public void TraceStatus()
     {
-        tracing = IsInRange_TraceRange(TraceRadius, MySelf, Target);
+        tracing = IsInRange_TraceRange(ATKRadius, MySelf, Target);
         if (tracing == true)
         {
             m_NowState = SpiderState.Trace;
@@ -149,11 +146,9 @@ public class SpiderFSM : MonoBehaviour
         if (InATKrange == true)
         {           
             MoveSpeed = 0f;
-            TraceRadius = ATKRadius * 3f;
             m_NowState = SpiderState.Attack;
             MubAnimator.SetBool("Trace", false);
-            Attack();
-            
+            Attack();            
             Debug.Log("NowInA");
         }
     }
@@ -182,7 +177,6 @@ public class SpiderFSM : MonoBehaviour
         if (m_NowState == SpiderState.Attack)
         {
             MubAnimator.SetBool("Attack", true);
-            MubAnimator.speed = .3f;
         }        
     }
 
@@ -216,6 +210,7 @@ public class SpiderFSM : MonoBehaviour
     public void ZoneOpen()
     {
         ATKRadius *=6;
+        MubAnimator.speed = .5f;
         Instantiate(DangerZone,MySelf.transform.position,Quaternion.identity,MySelf.transform);
         ColorChangeTime = .4f;
         ColorChange = 5;
@@ -223,9 +218,7 @@ public class SpiderFSM : MonoBehaviour
     }
     private void Animation_AttackEventTest()
     {
-
         Instantiate(ExplosionZone, MySelf.transform.position, Quaternion.identity, MySelf.transform);
-
     }
     private void AnimationSpeed_AttackEnd()
     {
@@ -238,8 +231,5 @@ public class SpiderFSM : MonoBehaviour
     {
         Gizmos.color = InATKrange ? Color.red : Color.yellow;
         Gizmos.DrawWireSphere(transform.position, ATKRadius);
-
-        Gizmos.color =  Color.cyan;
-        Gizmos.DrawWireSphere(transform.position, GizmoRa);
     }
 }

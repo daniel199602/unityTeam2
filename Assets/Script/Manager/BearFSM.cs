@@ -13,11 +13,9 @@ public class BearFSM : MonoBehaviour
     private GameObject Target;//存玩家
     private GameObject MySelf;//存自己
 
-    public GameObject TempPoint;//後退用，目前沒有用到
-
     MubHpData State;
     Animator MubAnimator;
-    int hpTemporary;
+    [SerializeField]int hpTemporary;
     CharacterController capsule;
     bool backing;
     bool tracing;
@@ -83,6 +81,8 @@ public class BearFSM : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Quaternion c = new Quaternion(0, transform.rotation.y, 0,transform.rotation.w);
+        transform.rotation = c;
         AwakeSensor();
         if (AwakeBool == true)
         {
@@ -350,14 +350,17 @@ public class BearFSM : MonoBehaviour
             if (RandomChoose ==1)
             {
                 MubAnimator.SetBool("Attack01", true);
+                MubAnimator.applyRootMotion = true;
             }
             else if (RandomChoose == 2)
             {
                 MubAnimator.SetBool("Attack02", true);
+                MubAnimator.applyRootMotion = true;
             }
             else if (RandomChoose == 3)
             {
                 MubAnimator.SetBool("Attack03", true);
+                MubAnimator.applyRootMotion = true;
             }
         }
         else if (Count!=0)
@@ -365,6 +368,7 @@ public class BearFSM : MonoBehaviour
             MubAnimator.SetBool("Attack01", false);
             MubAnimator.SetBool("Attack02", false);
             MubAnimator.SetBool("Attack03", false);
+            
             isAttacking = false;
         }
     }
@@ -410,10 +414,8 @@ public class BearFSM : MonoBehaviour
         GetTargetMegnitude = (Target.transform.position - transform.position).magnitude;
 
         Debug.Log("當前速度" + MoveSpeed);
-      
-        Vector3 m = Vector3.MoveTowards(transform.position, TempPoint.transform.position, BackSpeed);
 
-        transform.position = m;
+        capsule.SimpleMove(-(transform.forward*5));
 
         Debug.Log(MoveSpeed);
 
@@ -455,18 +457,21 @@ public class BearFSM : MonoBehaviour
         MubAnimator.speed = 1f;
         LeaveATKRadius = ATKRadius * 1.3f;
         Close_ATKRadius = ATKRadius * .5f;
+        MubAnimator.applyRootMotion = false;
     }
     private void AnimationSpeed_AttackEnd02()
     {
         MubAnimator.speed = 1f;
         LeaveATKRadius = ATKRadius * 1.3f;
         Close_ATKRadius = ATKRadius * .5f;
+        MubAnimator.applyRootMotion = false;
     }
     private void AnimationSpeed_AttackEnd03()
     {
         MubAnimator.speed = 1f;
         LeaveATKRadius = ATKRadius * 1.3f;
         Close_ATKRadius = ATKRadius * .5f;
+        MubAnimator.applyRootMotion = false;
     }
     public void ZoneOpen()
     {
@@ -480,7 +485,7 @@ public class BearFSM : MonoBehaviour
         LeaveATKRadius = ATKRadius * 6;
         Close_ATKRadius = ATKRadius * .1f;
         Count = 4;
-        Instantiate(TempPoint, transform.position, Quaternion.identity, MySelf.transform);
+        
     }
 
     public void ZoneOpen02()
@@ -488,7 +493,6 @@ public class BearFSM : MonoBehaviour
         LeaveATKRadius = ATKRadius * 6;
         Close_ATKRadius = ATKRadius * .1f;
         Count = 4;
-        Instantiate(TempPoint, transform.position, Quaternion.identity, MySelf.transform);
     }
     IEnumerator SummonCooldown()
     {
