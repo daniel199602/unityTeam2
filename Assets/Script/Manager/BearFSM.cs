@@ -83,7 +83,7 @@ public class BearFSM : MonoBehaviour
         Quaternion c = new Quaternion(0, transform.rotation.y, 0,transform.rotation.w);
         transform.rotation = c;
         AwakeSensor();
-        Debug.Log(Count);
+
         if (AwakeBool == true)
         {
             if (FrameCount_Roar > 0)
@@ -106,6 +106,7 @@ public class BearFSM : MonoBehaviour
             {
                 hpTemporary = State.Hp;
                 MubAnimator.SetBool("GetHit", true);
+                capsule.SimpleMove(-(transform.forward*(MoveSpeed/5)));
             }
             else if (FrameCount_Roar <= 0)
             {

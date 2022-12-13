@@ -142,10 +142,12 @@ public class PlayerController : MonoBehaviour
             if (RandomNum == 1)
             {
                 charaterAnimator.SetBool("GetHit01", true);
+                cc.SimpleMove(-(transform.forward * 500));
             }
             else if (RandomNum == 2)
             {
                 charaterAnimator.SetBool("GetHit02", true);
+                cc.SimpleMove(-(transform.forward * 500));
             }           
         }       
         else
