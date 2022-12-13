@@ -69,6 +69,7 @@ public class SkeletonFSM : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //玩家死亡TODO()還沒寫
         AwakeSensor();
         if (AwakeBool ==true)
         {

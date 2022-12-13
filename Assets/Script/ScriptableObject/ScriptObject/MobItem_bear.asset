@@ -15,7 +15,7 @@ MonoBehaviour:
   mobName: bear
   mobType: 1
   mobMaxHp: 3000
-  mobDamage_instant: 120
+  mobDamage_instant: 70
   mobDamage_delay: 0
-  mobAngle: 120
+  mobAngle: 90
   mobRadius: 55
