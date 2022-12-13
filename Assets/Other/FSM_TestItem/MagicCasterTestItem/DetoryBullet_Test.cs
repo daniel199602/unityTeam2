@@ -9,7 +9,7 @@ public class DetoryBullet_Test : MonoBehaviour
     void Start()
     {
         gg = GameObject.Find("DemonGirlMesh_C");
-        Destroy(this.gameObject,2.5f);   
+        Destroy(gameObject,2f);
     }
     private void Update()
     {

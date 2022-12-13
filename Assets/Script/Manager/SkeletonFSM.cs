@@ -96,8 +96,6 @@ public class SkeletonFSM : MonoBehaviour
             {
                 MubAnimator.SetBool("GetHit", false);
 
-                //Debug.LogError("f:" + FrameCount_Roar);
-
                 MubAnimator.SetBool("Roar", false);
 
                 GetTargetNormalize = (Target.transform.position - transform.position).normalized;
@@ -113,7 +111,6 @@ public class SkeletonFSM : MonoBehaviour
                 LeaveAttackStatus();
             }
         }        
-        //Debug.Log(m_NowState);
     }
     public void AwakeSensor()
     {
@@ -146,7 +143,6 @@ public class SkeletonFSM : MonoBehaviour
             if (tracing == true)
             {
                 m_NowState = SkeletonState.Trace;
-                Debug.Log("NowInT");
                 if (m_NowState == SkeletonState.Trace)
                 {
                     Move();
@@ -166,7 +162,6 @@ public class SkeletonFSM : MonoBehaviour
             m_NowState = SkeletonState.Attack;
             MubAnimator.SetBool("Trace", false);
             Attack();
-            Debug.Log("NowInA");
         }
     }
     public void LeaveAttackStatus()
@@ -178,7 +173,6 @@ public class SkeletonFSM : MonoBehaviour
             {
                 m_NowState = SkeletonState.Idle;
                 Idle();
-                Debug.LogError("L is active");
             }
             GetTargetMegnitude = (Target.transform.position - transform.position).magnitude;
             if (GetTargetMegnitude > LeaveATKRadius)
@@ -216,8 +210,6 @@ public class SkeletonFSM : MonoBehaviour
     {
 
         GetTargetMegnitude = (Target.transform.position - transform.position).magnitude;
-
-        Debug.Log("當前速度" + MoveSpeed);
 
         if (GetTargetMegnitude > TraceRadius)
         {
