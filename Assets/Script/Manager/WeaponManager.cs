@@ -37,6 +37,7 @@ public class WeaponManager : MonoBehaviour
     /// </summary>
     public GameObject CurrentWeaponR_weaponR { private set; get; }
 
+
     private void Awake()
     {
         if (mInstance != null)
@@ -76,13 +77,55 @@ public class WeaponManager : MonoBehaviour
 
     void Start()
     {
-        
-
         //玩家初始武器設定
         ChooseAndUseWeapon(0, 0);//初始火把
         ChooseAndUseWeapon(1, 10);//初始盾牌
         ChooseAndUseWeapon(2, 20);//初始右手單手劍
     }
+
+
+
+
+
+
+
+
+
+    /*1213測試用，之後刪-------------------------------*/
+    [HeaderAttribute("Test_WeaponSwitch")]
+    public int test_type1_id = 10;
+    [Range(2, 3)] public int test_type23 = 2;
+    public int test_type2_id = 20;
+    public int test_type3_id = 30;
+
+    /// <summary>
+    /// 測試用函式，專門用於武器切換用的測試
+    /// </summary>
+    private void Test_ChooseAndUseWeapon(int type1_id, int type2or3, int type2_id,int type3_id)
+    {
+        
+        ChooseAndUseWeapon(1, type1_id);//右手_盾牌
+        if (type2or3 == 2)
+        {
+            ChooseAndUseWeapon(2, type2_id);//左手_單手劍
+        }
+        else if(type2or3 == 3)
+        {
+            ChooseAndUseWeapon(3, type3_id);//左手_雙手劍
+        }
+
+    }
+    
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.L))
+        {
+            Test_ChooseAndUseWeapon(test_type1_id, test_type23, test_type2_id, test_type3_id);
+        }
+    }
+    /*-------------------------------*/
+
+
 
     /// <summary>
     /// 選擇並使用該武器

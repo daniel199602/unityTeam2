@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e9fecbaf6227624459173a292215c6d1, type: 3}
-  m_Name: WeaponItem_sowrd_yellow
+  m_Name: WeaponItem_sword_bastard
   m_EditorClassIdentifier: 
-  weaponName: sword_yellow
+  weaponName: sword_bastard
   weaponType: 2
-  weaponID: 20
-  weaponDamage_instant: 200
+  weaponID: 21
+  weaponDamage_instant: 180
   weaponDamage_delay: 0
   weaponAngle: 90
   weaponRadius: 40

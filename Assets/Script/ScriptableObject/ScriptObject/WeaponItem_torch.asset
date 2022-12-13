@@ -16,6 +16,6 @@ MonoBehaviour:
   weaponType: 0
   weaponID: 0
   weaponDamage_instant: 30
-  weaponDamage_delay: 20
-  weaponAngle: 30
+  weaponDamage_delay: 10
+  weaponAngle: 60
   weaponRadius: 40
