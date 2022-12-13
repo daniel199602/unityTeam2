@@ -147,42 +147,31 @@ public class CharacterAttackManager : MonoBehaviour
     }
 
 
-    //1209，OnDrawGizmos 這個先保留著好了
-    //private void OnDrawGizmos()
-    //{
-    //    Handles.color = flag ? Color.cyan : Color.red;
+    private void OnDrawGizmos()
+    {
+        //右手武器攻擊半徑
+        Gizmos.color = Color.red;
+        float angleR = WeaponManager.Instance().CurrentWeaponR_weaponR.GetComponent<ItemOnWeapon>().weaponAngle;
+        float radiusR = WeaponManager.Instance().CurrentWeaponR_weaponR.GetComponent<ItemOnWeapon>().weaponRadius;
+        int segments = 100;
+        float deltaAngle = angleR / segments;
+        Vector3 forward = transform.forward;
 
-    //    float x = radius * Mathf.Sin(angle / 2f * Mathf.Deg2Rad);
-    //    float z = Mathf.Sqrt(Mathf.Pow(radius, 2f) - Mathf.Pow(x, 2f));
 
-    //    Vector3 a = new Vector3(transform.position.x - x, transform.position.y, transform.position.z + z);
-    //    Vector3 b = new Vector3(transform.position.x + x, transform.position.y, transform.position.z + z);
+        Vector3[] vertices = new Vector3[segments + 2];
+        vertices[0] = transform.position;
+        for (int i = 1; i < vertices.Length; i++)
+        {
+            Vector3 pos = Quaternion.Euler(0f, -angleR / 2 + deltaAngle * (i - 1), 0f) * forward * radiusR + transform.position;
+            vertices[i] = pos;
+        }
+        for (int i = 1; i < vertices.Length - 1; i++)
+        {
+            Gizmos.DrawLine(vertices[i], vertices[i + 1]);
+        }
+        Gizmos.DrawLine(vertices[0], vertices[vertices.Length - 1]);
+        Gizmos.DrawLine(vertices[0], vertices[1]);
+        
+    }
 
-    //    Handles.DrawLine(transform.position, a);
-    //    Handles.DrawLine(transform.position, b);
-
-    //    float half = angle / 2;
-
-    //    for (int i = 0; i < half; i++)
-    //    {
-    //        x = radius * Mathf.Sin((half - i) * Mathf.Deg2Rad);
-    //        z = Mathf.Sqrt(Mathf.Pow(radius, 2f) - Mathf.Pow(x, 2f));
-    //        a = new Vector3(transform.position.x - x, transform.position.y, transform.position.z + z);
-    //        x = radius * Mathf.Sin((half - i - 1) * Mathf.Deg2Rad);
-    //        z = Mathf.Sqrt(Mathf.Pow(radius, 2f) - Mathf.Pow(x, 2f));
-    //        b = new Vector3(transform.position.x - x, transform.position.y, transform.position.z + z);
-    //        Handles.DrawLine(a, b);
-    //    }
-
-    //    for (int i = 0; i < half; i++)
-    //    {
-    //        x = radius * Mathf.Sin((half - i) * Mathf.Deg2Rad);
-    //        z = Mathf.Sqrt(Mathf.Pow(radius, 2f) - Mathf.Pow(x, 2f));
-    //        a = new Vector3(transform.position.x + x, transform.position.y, transform.position.z + z);
-    //        x = radius * Mathf.Sin((half - i - 1) * Mathf.Deg2Rad);
-    //        z = Mathf.Sqrt(Mathf.Pow(radius, 2f) - Mathf.Pow(x, 2f));
-    //        b = new Vector3(transform.position.x + x, transform.position.y, transform.position.z + z);
-    //        Handles.DrawLine(a, b);
-    //    }
-    //}
 }
