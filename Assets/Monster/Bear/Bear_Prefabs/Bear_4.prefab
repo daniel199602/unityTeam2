@@ -2030,6 +2030,7 @@ MonoBehaviour:
   Health: 0
   Maxhealth: 0
   hpBar: {fileID: 3639000982259212305}
+  bossHpOpen: 0
 --- !u!114 &-3933064489400172081
 MonoBehaviour:
   m_ObjectHideFlags: 0
