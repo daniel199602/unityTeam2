@@ -105,9 +105,9 @@ public class MobBoXBorn : MonoBehaviour
         int count = MobMain.Instance().pAliveObject.Count;
         //Debug.Log($"{isInZone} {count} {GenerationTimes}");
         killMobLast++;
-        if (isInZone && count <= 0 && GenerationTimes < 1)
+        if (isInZone && count <= 0 && GenerationTimes < 2)
         {
-            duration = 2;
+            duration = 1;
             Invoke(nameof(MobBord), duration);
 
             GenerationTimes++;
@@ -120,9 +120,9 @@ public class MobBoXBorn : MonoBehaviour
     bool killAll = true;
     private void Update()
     {
-        if(killMobLast>=3 && killAll==true)
+        if(killMobLast>=4 && killAll==true)
         {
-            for (int i = 0 ; i < 8;  i++)
+            for (int i = 0 ; i < 12;  i++)
             {
                 Debug.Log(killMobLast);
                 doorOpen_MobLast.killMob();

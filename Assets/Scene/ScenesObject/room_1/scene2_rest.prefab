@@ -1379,7 +1379,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd98d5815ff0ab443a64c043a34cb852, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mobLast: 8
+  mobLast: 12
 --- !u!4 &2456977755838155875 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2824278810529718928, guid: 2bb1994d6e68d234e8e3facd590ce6eb, type: 3}
