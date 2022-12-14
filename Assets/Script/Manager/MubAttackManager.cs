@@ -22,7 +22,7 @@ public class MubAttackManager : MonoBehaviour
     //PlayerGetHit playerGetHit;
     private bool flag = false; //OnDrawGizmos判斷是否在範圍用
     public int fHp = 0; //1211目前PlayerGetHit有用到它刪掉會報錯，然後怪物有用PlayerGetHit，所以PlayerGetHit目前還不能刪
-
+    Vector3 TargetN;//自己跟對方的向量
     //int DMtype = 0;
 
 
@@ -40,6 +40,7 @@ public class MubAttackManager : MonoBehaviour
 
         TargetSize = Target.GetComponent<CharacterController>();
         PlayerData = Target.GetComponent<PlayerHpData>();
+        TargetN = (Target.transform.position - transform.position).normalized;
     }
 
     /// <summary>
@@ -54,6 +55,8 @@ public class MubAttackManager : MonoBehaviour
         {
             DeductMobHpInstant(Target, mobDamage_instant);
             DeductMobHpDelay(Target, mobDamamge_delay);
+
+            TargetSize.SimpleMove(TargetN * 500);
             Debug.LogWarning("Hit");
         }
 

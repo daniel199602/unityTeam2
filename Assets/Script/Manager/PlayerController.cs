@@ -47,6 +47,7 @@ public class PlayerController : MonoBehaviour
     int hpTemporaryMax;
     int RandomNum;
     bool isOpenBeHit = true;
+    bool Reviving = false;
 
     public enum pAnimLayerState
     {
@@ -136,10 +137,16 @@ public class PlayerController : MonoBehaviour
                 if (hpTemporary != hpTemporaryMax)
                 {
                     hpTemporary++;
+                    Reviving = true;
                 }
-                if (hpTemporary == hpTemporaryMax)
+                if (hpTemporary == hpTemporaryMax&&Reviving == true)
                 {
                     charaterAnimator.SetTrigger("Revive");
+                    Reviving = false; 
+                    if (Reviving == false)
+                    {
+                        charaterAnimator.ResetTrigger("Revive");
+                    }
                 }
             }            
             if (m_pCurrentState == pFSMState.MoveTree)
@@ -190,12 +197,12 @@ public class PlayerController : MonoBehaviour
                     if (RandomNum == 1)
                     {
                         charaterAnimator.SetBool("GetHit01", true);
-                        cc.SimpleMove(-(transform.forward * 500));
+                        //cc.SimpleMove(-(transform.forward * 500));
                     }
                     else if (RandomNum == 2)
                     {
                         charaterAnimator.SetBool("GetHit02", true);
-                        cc.SimpleMove(-(transform.forward * 500));
+                        //cc.SimpleMove(-(transform.forward * 500));
                     }
                 }                               
             }

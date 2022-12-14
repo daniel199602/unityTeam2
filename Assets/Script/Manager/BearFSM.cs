@@ -65,7 +65,7 @@ public class BearFSM : MonoBehaviour
         MubAnimator = GetComponent<Animator>();
         State = GetComponent<MubHpData>();
         hpTemporary = State.Hp;
-        FrameCount_Roar = 400;
+        FrameCount_Roar = 310;//鎖住起始位移
         LeaveAttackRangeBool = false;
         InAttackRangeBool = false;
 
@@ -94,10 +94,11 @@ public class BearFSM : MonoBehaviour
             if (FrameCount_Roar > 0)
             {
                 FrameCount_Roar--;
+                LookTarget();
             }
             if (RoarBool == false)
             {
-                LookTarget();
+                
                 Roar();
                 RoarBool = true;
             }
@@ -140,7 +141,7 @@ public class BearFSM : MonoBehaviour
 
         Quaternion Look = Quaternion.LookRotation(GetTargetNormalize);
 
-        Quaternion R = Quaternion.Slerp(transform.rotation, Look, 2f * Time.deltaTime);
+        Quaternion R = Quaternion.Slerp(transform.rotation, Look, 1.2f * Time.deltaTime);
         if (isAttacking == false)
         {
             if (GetTargetNormalize != transform.forward)

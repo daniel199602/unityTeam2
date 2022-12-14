@@ -43,6 +43,8 @@ public class SpiderFSM : MonoBehaviour
 
     float ATKRadius;
 
+    float StartExplosionRadius;
+
     public float Speed;
 
     Vector3 GetTargetNormalize;
@@ -80,6 +82,8 @@ public class SpiderFSM : MonoBehaviour
         FrameCount_Roar = 220;
 
         ATKRadius = ThisItemOnMob_State.mobRadius;//WeaponÂÐ»\
+
+        StartExplosionRadius = ATKRadius * 0.2f;
 
         StartExplosive = false;
     }
@@ -130,7 +134,7 @@ public class SpiderFSM : MonoBehaviour
     }
     public void TraceStatus()
     {
-        tracing = IsInRange_TraceRange(ATKRadius, MySelf, Target);
+        tracing = IsInRange_TraceRange(StartExplosionRadius, MySelf, Target);
         if (tracing == true)
         {
             m_NowState = SpiderState.Trace;
@@ -144,7 +148,7 @@ public class SpiderFSM : MonoBehaviour
     }
     public void AttackStatus()
     {
-        InATKrange = IsInRange_MeleeBattleRange(ATKRadius, MySelf, Target);
+        InATKrange = IsInRange_MeleeBattleRange(StartExplosionRadius, MySelf, Target);
         if (InATKrange == true)
         {           
             MoveSpeed = 0f;
