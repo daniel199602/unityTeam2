@@ -6,6 +6,8 @@ using System.Collections;
 
 public class CharacterAttackManager : MonoBehaviour
 {
+    RecoilShake recoilShake;
+
     //當前函式直接抓WeaponManager的當前武器判斷，這裡目前不會用到，先註解掉
     //[HideInInspector] public GameObject usingTorchL_torch;//當前左手火把
     //[HideInInspector] public GameObject usingWeaponL_weapon;//當前左手武器
@@ -16,7 +18,7 @@ public class CharacterAttackManager : MonoBehaviour
 
     private void Start()
     {
-
+        recoilShake = GetComponent<RecoilShake>();
     }
 
     private void Update()
@@ -64,6 +66,7 @@ public class CharacterAttackManager : MonoBehaviour
             {
                 DeductMobHpInstant(mob, weaponDamage_instant);
                 DeductMobHpDelay(mob, weaponDamamge_delay);
+                recoilShake.camraPlayerSake();
                 Debug.LogWarning("Hit : " + mob.GetComponent<ItemOnMob>().mobName + "Hp : " + mob.GetComponent<MubHpData>().Hp);
             }
         }
@@ -86,6 +89,8 @@ public class CharacterAttackManager : MonoBehaviour
             {
                 DeductMobHpInstant(mob, weaponDamage_instant);
                 DeductMobHpDelay(mob, weaponDamamge_delay);
+                ParticleSystem ps = hitVFX.GetComponent<ParticleSystem>();
+                ps.Play();
                 Debug.LogWarning("Hit : " + mob.GetComponent<ItemOnMob>().mobName + "Hp : " + mob.GetComponent<MubHpData>().Hp);
             }
         }
@@ -117,8 +122,6 @@ public class CharacterAttackManager : MonoBehaviour
     public void DeductMobHpInstant(GameObject mob, int demage_instant)
     {
         mob.GetComponent<MubHpData>().HpDeduction(demage_instant);
-        ParticleSystem ps = hitVFX.GetComponent<ParticleSystem>();
-        ps.Play();
     }
 
 

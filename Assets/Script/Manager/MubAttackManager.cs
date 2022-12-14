@@ -10,9 +10,14 @@ public class MubAttackManager : MonoBehaviour
     [HideInInspector] public int mobDamamge_delay;
     [HideInInspector] public float mobAngle;
     [HideInInspector] public float mobRadius;
-    
-    [SerializeField] private GameObject Target;//存玩家
 
+    public GameObject hitVFX_Bear;
+    
+    RecoilShake recoilShake;
+
+
+    [SerializeField] private GameObject Target;//存玩家
+    
     PlayerHpData PlayerData;//玩家血量狀態
     CharacterController TargetSize;//玩家用CharacterController
 
@@ -30,6 +35,7 @@ public class MubAttackManager : MonoBehaviour
     private void Start()
     {
         Target = GameManager.Instance().PlayerStart;
+        recoilShake = GetComponent<RecoilShake>();
 
         /*1211抓出該怪物資料*/
         mobDamage_instant = GetComponent<ItemOnMob>().mobDamage_instant;
@@ -56,7 +62,27 @@ public class MubAttackManager : MonoBehaviour
             DeductMobHpInstant(Target, mobDamage_instant);
             DeductMobHpDelay(Target, mobDamamge_delay);
 
-            TargetSize.SimpleMove(TargetN * 500);
+            TargetSize.SimpleMove(TargetN * 20000*Time.deltaTime);
+            Debug.LogWarning("Hit");
+        }
+
+    }
+    /// <summary>
+    /// 怪物攻擊事件_Bear用
+    /// </summary>
+    private void AttackEvent_Bear()
+    {
+        //OnDrawGizmos判斷是否在範圍用
+        flag = IsInRange(mobAngle, mobRadius, gameObject.transform, Target.transform);
+
+        if (IsInRange(mobAngle, mobRadius, gameObject.transform, Target.transform))
+        {
+            DeductMobHpInstant(Target, mobDamage_instant);
+            DeductMobHpDelay(Target, mobDamamge_delay);
+            ParticleSystem ps = hitVFX_Bear.GetComponent<ParticleSystem>();
+            ps.Play();
+            recoilShake.camraBearSake();
+            TargetSize.SimpleMove(TargetN * 20000 * Time.deltaTime);
             Debug.LogWarning("Hit");
         }
 

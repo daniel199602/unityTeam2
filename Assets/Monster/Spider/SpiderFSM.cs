@@ -79,7 +79,7 @@ public class SpiderFSM : MonoBehaviour
 
         MubAnimator = GetComponent<Animator>();
 
-        FrameCount_Roar = 220;
+        FrameCount_Roar = 420;
 
         ATKRadius = ThisItemOnMob_State.mobRadius;//WeaponÂÐ»\
 
