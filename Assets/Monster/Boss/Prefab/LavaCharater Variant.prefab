@@ -218,10 +218,30 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: -0.039
       objectReference: {fileID: 0}
+    - target: {fileID: 7395832358293759783, guid: 693eee48e53fa1542812fc3b0f773541, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7919745922882354589, guid: 693eee48e53fa1542812fc3b0f773541, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.159
+      objectReference: {fileID: 0}
+    - target: {fileID: 7919745922882354589, guid: 693eee48e53fa1542812fc3b0f773541, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.082
+      objectReference: {fileID: 0}
+    - target: {fileID: 7919745922882354589, guid: 693eee48e53fa1542812fc3b0f773541, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.066
+      objectReference: {fileID: 0}
     - target: {fileID: 8819710216207838314, guid: 693eee48e53fa1542812fc3b0f773541, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9053284358531565298, guid: 693eee48e53fa1542812fc3b0f773541, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 0e6ec7f0493959344b75b97f9feb10b6, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 693eee48e53fa1542812fc3b0f773541, type: 3}
 --- !u!4 &3520569212546745571 stripped
@@ -269,6 +289,7 @@ MonoBehaviour:
   Health: 0
   Maxhealth: 0
   hpBar: {fileID: 0}
+  bossHpOpen: 0
 --- !u!114 &470085693560655214
 MonoBehaviour:
   m_ObjectHideFlags: 0

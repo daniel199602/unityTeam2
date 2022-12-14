@@ -14,6 +14,8 @@ public class MagicCasterFSM : MonoBehaviour
 
     private MagicCasterState m_NowState;
 
+    ParticleSystem ps;
+
     private GameObject Target;
     private GameObject MySelf;
 
@@ -61,6 +63,7 @@ public class MagicCasterFSM : MonoBehaviour
         hpTemporary = State.Hp;
         FrameCount_Roar = 200;
 
+        ParticleSystem ps = LightRays.GetComponent<ParticleSystem>();
         m_NowState = MagicCasterState.Idle;
 
         ATKRadius = ThisItemOnMob_State.mobRadius;//WeaponÂÐ»\
@@ -259,9 +262,7 @@ public class MagicCasterFSM : MonoBehaviour
     private void AnimationSpeed_Attack()
     {
         MubAnimator.speed = 0.2f;
-        ParticleSystem ps = LightRays.GetComponent<ParticleSystem>();
         ps.Play();
-        //Instantiate(TestCube,LaunchPort.position,MySelf.transform.rotation,MySelf.transform);
         RotateSpeed = RotateSpeed * .1f;
     }
     private void AnimationSpeed_AttackEnd()
@@ -270,8 +271,7 @@ public class MagicCasterFSM : MonoBehaviour
         Close_ATKRadius = ATKRadius * .8f;
         CDs = 4;
         RotateSpeed = RotateSpeed * 10f;
-        StartCoroutine(AttackCooldown());
-        ParticleSystem ps = LightRays.GetComponent<ParticleSystem>();
+        StartCoroutine(AttackCooldown());      
         ps.Stop();
     }
     public void ZoneOpen()
