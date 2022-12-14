@@ -29,6 +29,8 @@ public class SpiderFSM : MonoBehaviour
 
     Animator MubAnimator;
 
+    RecoilShake recoilShake;
+
     CharacterController Selfcapsule;
 
     CharacterController TargetCapsule;
@@ -66,6 +68,8 @@ public class SpiderFSM : MonoBehaviour
     {
         Target = GameManager.Instance().PlayerStart;//抓出玩家
         MySelf = this.transform.gameObject;//抓出自己
+
+        recoilShake = GetComponent<RecoilShake>();
 
         mesh = gameObject.GetComponent<SkinnedMeshRenderer>().sharedMesh;
 
@@ -220,6 +224,7 @@ public class SpiderFSM : MonoBehaviour
     private void Animation_AttackEventTest()
     {
         //Instantiate(ExplosionZone, MySelf.transform.position, Quaternion.identity, MySelf.transform);
+        recoilShake.camraBearSake();
         ParticleSystem ps = Boon.GetComponent<ParticleSystem>();
         ps.Play();
     }
