@@ -27,6 +27,7 @@ public class BossFSM : MonoBehaviour
     int hpTemporaryMax;
     CharacterController capsule;
 
+    bool InATKrangeSwitch;
     bool backing;
     bool tracing;
     bool InRangeATKrange;
@@ -78,11 +79,12 @@ public class BossFSM : MonoBehaviour
         m_NowState = BossState.Idle;
 
         //½d³ò³]©w
-        ATKRadius = ThisItemOnMob_State.mobRadius; ;//WeaponÂÐ»\
+        ATKRadius = ThisItemOnMob_State.mobRadius;//WeaponÂÐ»\
         RangedRadius = ATKRadius * 1.8f;
         TraceRadius = ATKRadius * 2f;
 
         GetHit = false;
+        InATKrangeSwitch = false;//ªñ¶ZÂ÷&»·¶ZÂ÷¤Á´«§P©w
 
         //ªì©l§N«o³]©w
         Count = 0;
@@ -186,13 +188,16 @@ public class BossFSM : MonoBehaviour
     }
     public void RangedAttackStatus()
     {
-        InRangeATKrange = IsInRange_RangedBattleRange(RangedRadius, MySelf, Target);
-        if (InRangeATKrange == true)
-        {          
-            m_NowState = BossState.RangeAttack;
-            MubAnimator.SetBool("Trace", false);
-            RangeAttack();
-        }
+        if (InATKrangeSwitch == false)
+        {
+            InRangeATKrange = IsInRange_RangedBattleRange(RangedRadius, MySelf, Target);
+            if (InRangeATKrange == true)
+            {
+                m_NowState = BossState.RangeAttack;
+                MubAnimator.SetBool("Trace", false);
+                RangeAttack();
+            }
+        }        
     }
     //§ðÀ»ª¬ºA
     public void AttackStatus()
@@ -200,10 +205,15 @@ public class BossFSM : MonoBehaviour
         InATKrange = IsInRange_BattleRange(ATKRadius, MySelf, Target);
         if (InATKrange == true)
         {
+            InATKrangeSwitch = true;
             m_NowState = BossState.Attack;
             MubAnimator.SetBool("Trace", false);
             MubAnimator.SetBool("Back", false);
             Attack();
+        }
+        else
+        {
+            InATKrangeSwitch = false;
         }
     }
    
@@ -267,7 +277,7 @@ public class BossFSM : MonoBehaviour
                     MubAnimator.SetBool("Attack01", false);
                     MubAnimator.SetBool("Attack02", false);
                     MubAnimator.SetBool("Attack03", false);
-                    MubAnimator.SetBool("Attack04", false);
+                    MubAnimator.SetBool("Attack04", false);                    
                 }
             }
         }
