@@ -15,7 +15,7 @@ MonoBehaviour:
   mobName: spider
   mobType: 3
   mobMaxHp: 10000
-  mobDamage_instant: 250
-  mobDamage_delay: 0
+  mobDamage_instant: 150
+  mobDamage_delay: 40
   mobAngle: 360
   mobRadius: 50

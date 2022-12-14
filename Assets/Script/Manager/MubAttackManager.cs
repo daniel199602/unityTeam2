@@ -21,16 +21,9 @@ public class MubAttackManager : MonoBehaviour
     PlayerHpData PlayerData;//玩家血量狀態
     CharacterController TargetSize;//玩家用CharacterController
 
-    //Weapon weaponData;
-
-
-    //PlayerGetHit playerGetHit;
     private bool flag = false; //OnDrawGizmos判斷是否在範圍用
     public int fHp = 0; //1211目前PlayerGetHit有用到它刪掉會報錯，然後怪物有用PlayerGetHit，所以PlayerGetHit目前還不能刪
     Vector3 TargetN;//自己跟對方的向量
-    //int DMtype = 0;
-
-
 
     private void Start()
     {
