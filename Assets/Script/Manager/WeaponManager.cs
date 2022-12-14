@@ -22,7 +22,6 @@ public class WeaponManager : MonoBehaviour
     //右雙手劍_type 3, id 範圍 30~39 整數
     /**/
 
-
     /// <summary>
     /// 當前使用中的火把
     /// </summary>
@@ -37,6 +36,7 @@ public class WeaponManager : MonoBehaviour
     /// </summary>
     public GameObject CurrentWeaponR_weaponR { private set; get; }
 
+    GameObject player;//存玩家
 
     private void Awake()
     {
@@ -73,6 +73,8 @@ public class WeaponManager : MonoBehaviour
                 weaponPoolR.Add(weaponR.transform.GetChild(i).gameObject);
             }
         }
+
+        player = GameManager.Instance().PlayerStart;//抓到玩家
     }
 
     void Start()
@@ -84,20 +86,12 @@ public class WeaponManager : MonoBehaviour
     }
 
 
-
-
-
-
-
-
-
     /*1213測試用，之後刪-------------------------------*/
     [HeaderAttribute("Test_WeaponSwitch")]
     public int test_type1_id = 10;
     [Range(2, 3)] public int test_type23 = 2;
     public int test_type2_id = 20;
     public int test_type3_id = 30;
-
     /// <summary>
     /// 測試用函式，專門用於武器切換用的測試
     /// </summary>
@@ -115,7 +109,6 @@ public class WeaponManager : MonoBehaviour
         }
 
     }
-    
     private void Update()
     {
         if(Input.GetKeyDown(KeyCode.L))
@@ -124,7 +117,6 @@ public class WeaponManager : MonoBehaviour
         }
     }
     /*-------------------------------*/
-
 
 
     /// <summary>
@@ -142,17 +134,22 @@ public class WeaponManager : MonoBehaviour
         if (type == 1)
             this.CurrentWeaponL_weaponL = GetWeapon(type, id);//當前左手武器
         if (type == 2)
+        {
             this.CurrentWeaponR_weaponR = GetWeapon(type, id);//當前右單手武器
+            player.GetComponent<PlayerController>().AutoSwitchWeaponR(this.CurrentWeaponR_weaponR);
+        }
         if (type == 3)
+        {
             this.CurrentWeaponR_weaponR = GetWeapon(type, id);//當前右雙手武器
-
+            player.GetComponent<PlayerController>().AutoSwitchWeaponR(this.CurrentWeaponR_weaponR);
+        }
     }
 
     /// <summary>
-    /// 控制所有武器的開啟關閉
+    /// 開啟選擇的武器，並關閉其他同類型的武器
     /// </summary>
-    /// <param name="type"></param>
-    /// <param name="id"></param>
+    /// <param name="type">武器類型</param>
+    /// <param name="id">武器id</param>
     public void WeaponSetActiveOpen(int type, int id)
     {
         if (type == 0)//左單火把_type0
@@ -219,10 +216,10 @@ public class WeaponManager : MonoBehaviour
 
 
     /// <summary>
-    /// 抓出該武器物件
+    /// 抓出該武器物件(不會切換)
     /// </summary>
     /// <param name="type">武器類型</param>
-    /// <param name="id"></param>
+    /// <param name="id">武器id</param>
     /// <returns></returns>
     public GameObject GetWeapon(int type, int id)
     {
