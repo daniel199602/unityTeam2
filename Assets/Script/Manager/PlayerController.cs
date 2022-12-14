@@ -318,22 +318,27 @@ public class PlayerController : MonoBehaviour
     }
 
     /// <summary>
-    /// 判斷WeaponManager當前的右手武器類型，切換玩家Animator Layer狀態
+    /// 給WeaponManage用
+    /// 判斷當前的右手武器類型
+    /// 若玩家當前 layer==1 or layer==2，才去切換玩家Animator Layer狀態
     /// 1213施工中
     /// </summary>
     public void AutoSwitchWeaponR(GameObject currentWeaponR)
     {
-        if(currentWeaponR.GetComponent<ItemOnWeapon>().weaponType == 2)
+        if (currentLayerNum == 1 || currentLayerNum == 2)
         {
-            currentLayerNum = 1;
-            charaterAnimator.SetTrigger("isTriggerLayerChange");
-            StartCoroutine(ShowWeaponLWeaponR());
-        }
-        else if(currentWeaponR.GetComponent<ItemOnWeapon>().weaponType == 3)
-        {
-            currentLayerNum = 2;
-            charaterAnimator.SetTrigger("isTriggerLayerChange");
-            StartCoroutine(ShowWeaponR());
+            if (currentWeaponR.GetComponent<ItemOnWeapon>().weaponType == 2)
+            {
+                currentLayerNum = 1;
+                charaterAnimator.SetTrigger("isTriggerLayerChange");
+                StartCoroutine(ShowWeaponLWeaponR());
+            }
+            else if (currentWeaponR.GetComponent<ItemOnWeapon>().weaponType == 3)
+            {
+                currentLayerNum = 2;
+                charaterAnimator.SetTrigger("isTriggerLayerChange");
+                StartCoroutine(ShowWeaponR());
+            }
         }
     }
 
