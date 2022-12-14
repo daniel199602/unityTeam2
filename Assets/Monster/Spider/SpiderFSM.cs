@@ -23,6 +23,9 @@ public class SpiderFSM : MonoBehaviour
     //TestUse
     public GameObject DangerZone;
     public GameObject ExplosionZone;
+    public GameObject Boon;
+    public GameObject SpiderSelf;
+    
 
     Animator MubAnimator;
 
@@ -116,6 +119,8 @@ public class SpiderFSM : MonoBehaviour
                 TraceStatus();
             }
         }
+
+        Boon.transform.position = SpiderSelf.transform.position;
     }
     public void DeadStatus()
     {
@@ -207,21 +212,23 @@ public class SpiderFSM : MonoBehaviour
     {
         ATKRadius *=6;
         MubAnimator.speed = .5f;
-        Instantiate(DangerZone,MySelf.transform.position,Quaternion.identity,MySelf.transform);
+        //Instantiate(DangerZone,MySelf.transform.position,Quaternion.identity,MySelf.transform);
         ColorChangeTime = .4f;
         ColorChange = 5;
         StartCoroutine(changShader());
     }
     private void Animation_AttackEventTest()
     {
-        Instantiate(ExplosionZone, MySelf.transform.position, Quaternion.identity, MySelf.transform);
+        //Instantiate(ExplosionZone, MySelf.transform.position, Quaternion.identity, MySelf.transform);
+        ParticleSystem ps = Boon.GetComponent<ParticleSystem>();
+        ps.Play();
     }
     private void AnimationSpeed_AttackEnd()
     {
         m_NowState = SpiderState.Dead;
         
         ATKRadius *=1f;       
-        Destroy(gameObject);
+        Destroy(SpiderSelf);
     }
     private void OnDrawGizmos()
     {
