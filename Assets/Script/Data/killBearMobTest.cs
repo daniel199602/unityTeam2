@@ -21,13 +21,9 @@ public class killBearMobTest : MonoBehaviour
     private void Update()
     {
 
-        if (PlayerHp.Hp <= 0)
-        {
-            killEliteMob();
-        }
     }
 
-    void killEliteMob()
+    void killEliteMobEvent()
     {
         doorOpen_MobLast.killMob();
         this.gameObject.SetActive(false);

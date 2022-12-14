@@ -7,6 +7,7 @@ public class killMoBTest : MonoBehaviour
     MubHpData PlayerHp;
 
     private float duration;
+    public GameObject mobDeathFVX;
 
     private void Awake()
     {
@@ -15,15 +16,16 @@ public class killMoBTest : MonoBehaviour
 
     private void Update()
     {
-        
-        if (PlayerHp.Hp<=0)
-        {
-            killMob();
-        }
+
+    }
+    public void killMobEvent_VFX()
+    {
+        ParticleSystem ps = mobDeathFVX.GetComponent<ParticleSystem>();
+        ps.Play();
     }
 
-    
-    public void killMob()
+
+    public void killMobEvent()
     {
         
         MobMain.Instance().oPool.UnLoadObjectToPool(MobMain.Instance().pTestList, this.gameObject);
