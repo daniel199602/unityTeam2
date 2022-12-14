@@ -9,6 +9,7 @@ public enum BearState
 public class BearFSM : MonoBehaviour
 {
     private BearState m_NowState;
+    ItemOnMob ThisItemOnMob_State;
 
     private GameObject Target;//存玩家
     private GameObject MySelf;//存自己
@@ -23,7 +24,7 @@ public class BearFSM : MonoBehaviour
     bool InATKrange_Close;
     bool OutATKrange;
     bool AwakeBool = false;
-    bool Awake;
+    bool Awaken;
 
     float RunRadius;
     float ATKRadius;
@@ -49,6 +50,10 @@ public class BearFSM : MonoBehaviour
 
     int RandomChoose;
     bool RandomChooseCoolDown = false;
+    private void Awake()
+    {
+        ThisItemOnMob_State = GetComponent<ItemOnMob>();
+    }
     // Start is called before the first frame update
     void Start()
     {        
@@ -66,7 +71,7 @@ public class BearFSM : MonoBehaviour
 
         m_NowState = BearState.Idle;
 
-        ATKRadius = 40;//Weapon覆蓋
+        ATKRadius = ThisItemOnMob_State.mobRadius;//Weapon覆蓋
 
         Close_ATKRadius = ATKRadius * 0.4f;        
         LeaveATKRadius = ATKRadius * 1.02f;
@@ -154,8 +159,8 @@ public class BearFSM : MonoBehaviour
         {
             if (AwakeBool == false)
             {
-                Awake = IsInRange_AwakeRange(AwakeRadius, MySelf, Target);
-                if (Awake == true)
+                Awaken = IsInRange_AwakeRange(AwakeRadius, MySelf, Target);
+                if (Awaken == true)
                 {
                     AwakeBool = true;
                 }

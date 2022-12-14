@@ -80,12 +80,12 @@ public class PlayerController : MonoBehaviour
 
     public void InvincibleMode()
     {
-        if (Input.GetKey(KeyCode.F1))
+        if (Input.GetKey(KeyCode.F11))
         {
             isInvincible = true;
             isInvincibleModeSwitch = true;
         }
-        if (Input.GetKey(KeyCode.F2))
+        if (Input.GetKey(KeyCode.F12))
         {
             isInvincible = false;
             isInvincibleModeSwitch = false;
@@ -175,22 +175,29 @@ public class PlayerController : MonoBehaviour
             }
             else if (State.Hp != hpTemporary && isInvincible == false)
             {
-                if (isOpenBeHit)
+                if (hpTemporary - State.Hp < 50)
                 {
-                    RandomNum = Random.Range(1, 2);
-                    isOpenBeHit = false;
+                    hpTemporary = State.Hp;
                 }
-                hpTemporary = State.Hp;
-                if (RandomNum == 1)
+                else if (hpTemporary - State.Hp >= 50)
                 {
-                    charaterAnimator.SetBool("GetHit01", true);
-                    cc.SimpleMove(-(transform.forward * 500));
-                }
-                else if (RandomNum == 2)
-                {
-                    charaterAnimator.SetBool("GetHit02", true);
-                    cc.SimpleMove(-(transform.forward * 500));
-                }
+                    if (isOpenBeHit == true)
+                    {
+                        RandomNum = Random.Range(1, 2);
+                        isOpenBeHit = false;
+                    }
+                    hpTemporary = State.Hp;
+                    if (RandomNum == 1)
+                    {
+                        charaterAnimator.SetBool("GetHit01", true);
+                        cc.SimpleMove(-(transform.forward * 500));
+                    }
+                    else if (RandomNum == 2)
+                    {
+                        charaterAnimator.SetBool("GetHit02", true);
+                        cc.SimpleMove(-(transform.forward * 500));
+                    }
+                }                               
             }
             else
             {
