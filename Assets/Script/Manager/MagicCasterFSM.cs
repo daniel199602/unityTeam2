@@ -9,7 +9,6 @@ public enum MagicCasterState
 public class MagicCasterFSM : MonoBehaviour
 {
     public GameObject Bug;
-    public GameObject TestCube;
     public GameObject LightRays;
     public Transform LaunchPort;
 
@@ -26,27 +25,21 @@ public class MagicCasterFSM : MonoBehaviour
     bool backing;
     bool tracing;
     bool InATKrange;
-    bool InATKrange_Close;
-    bool OutATKrange;
+
     bool AwakeBool = false;
     bool Awaken;
 
-    float TraceRadius;
     float ATKRadius;
-    float LeaveATKRadius;
     float Close_ATKRadius;
     float AwakeRadius;
     [SerializeField]float RotateSpeed;
 
     Vector3 GetTargetNormalize;
-    float GetTargetMegnitude;
 
     int Count;
     int CDs;
     ItemOnMob ThisItemOnMob_State;
 
-    bool LeaveAttackRangeBool;
-    bool InAttackRangeBool;
     bool RoarBool = false;
 
     int FrameCount_Roar;
@@ -66,17 +59,13 @@ public class MagicCasterFSM : MonoBehaviour
         MubAnimator = GetComponent<Animator>();
         State = GetComponent<MubHpData>();
         hpTemporary = State.Hp;
-        FrameCount_Roar = 250;
-        LeaveAttackRangeBool = false;
-        InAttackRangeBool = false;
+        FrameCount_Roar = 200;
 
         m_NowState = MagicCasterState.Idle;
 
         ATKRadius = ThisItemOnMob_State.mobRadius;//WeaponÂÐ»\
 
         Close_ATKRadius = ATKRadius * 0.8f;
-        TraceRadius = ATKRadius * 2;
-        LeaveATKRadius = ATKRadius * 1.2f;
         AwakeRadius = ATKRadius * 1.5f;
         Count = 0;
         RotateSpeed = 10f;
@@ -155,7 +144,7 @@ public class MagicCasterFSM : MonoBehaviour
     //°lÀ»ª¬ºA
     public void TraceStatus()
     {
-        if (LeaveAttackRangeBool == false && m_NowState != MagicCasterState.Summon)
+        if (m_NowState != MagicCasterState.Summon)
         {
             tracing = IsInRange_TraceRange(ATKRadius, MySelf, Target);
             if (tracing == true)
@@ -180,15 +169,13 @@ public class MagicCasterFSM : MonoBehaviour
         InATKrange = IsInRange_RangedBattleRange(ATKRadius, MySelf, Target);
         if (InATKrange == true)
         {
-            //LeaveAttackRangeBool = true;
-            InAttackRangeBool = true;
             m_NowState = MagicCasterState.Attack;
             MubAnimator.SetBool("Trace", false);
             MubAnimator.SetBool("Back", false);
             Attack();
         }
     }
-    //«á°hª¬ºA
+    //µd¿ôª¬ºA
     public bool IsInRange_AwakeRange(float Radius, GameObject attacker, GameObject attacked)
     {
         Vector3 direction = attacked.transform.position - attacker.transform.position;
@@ -196,11 +183,11 @@ public class MagicCasterFSM : MonoBehaviour
         return direction.magnitude <= Radius;
     }
     //¦b»·µ{§ðÀ»½d³ò¤º 
-    public bool IsInRange_RangedBattleRange(float RadiusMax, GameObject attacker, GameObject attacked)
+    public bool IsInRange_RangedBattleRange(float Radius, GameObject attacker, GameObject attacked)
     {
         Vector3 direction = attacked.transform.position - attacker.transform.position;
 
-        return direction.magnitude <= RadiusMax;
+        return direction.magnitude <= Radius;
     }
     //½d³ò§P©w_«á°h
     public bool TooCloseRange_RangedBattleRange(float Radius, GameObject attacker, GameObject attacked)
@@ -241,11 +228,6 @@ public class MagicCasterFSM : MonoBehaviour
             }            
         }
     }
-    public void Idle()
-    {
-        MubAnimator.SetBool("Trace", false);
-    }
-
     public void BugSummon()
     {
         if (Count <= 0)
@@ -271,12 +253,6 @@ public class MagicCasterFSM : MonoBehaviour
         Gizmos.color = InATKrange ? Color.red : Color.yellow;
         Gizmos.DrawWireSphere(transform.position, ATKRadius);
 
-        Gizmos.color = OutATKrange ? Color.blue : Color.black;
-        Gizmos.DrawWireSphere(transform.position, LeaveATKRadius);
-
-        Gizmos.color = InATKrange_Close ? Color.green : Color.cyan;
-        Gizmos.DrawWireSphere(transform.position, Close_ATKRadius);
-
         Gizmos.color = Color.white;
         Gizmos.DrawLine(MySelf.transform.position, MySelf.transform.forward*ATKRadius);
     }
@@ -291,7 +267,6 @@ public class MagicCasterFSM : MonoBehaviour
     private void AnimationSpeed_AttackEnd()
     {
         MubAnimator.speed = 1f;
-        LeaveATKRadius = ATKRadius * 1.2f;
         Close_ATKRadius = ATKRadius * .8f;
         CDs = 4;
         RotateSpeed = RotateSpeed * 10f;
@@ -301,7 +276,6 @@ public class MagicCasterFSM : MonoBehaviour
     }
     public void ZoneOpen()
     {
-        LeaveATKRadius = ATKRadius * 6;
         Close_ATKRadius = ATKRadius * .1f;
         
     }
