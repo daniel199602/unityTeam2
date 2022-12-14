@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,6 +7,8 @@ public class WeaponManager : MonoBehaviour
 {
     private static WeaponManager mInstance;
     public static WeaponManager Instance() { return mInstance; }
+
+    private GameObject player;//存玩家
 
     public GameObject torchL;//綁火把的左手
     public GameObject weaponL;//左手
@@ -36,7 +39,71 @@ public class WeaponManager : MonoBehaviour
     /// </summary>
     public GameObject CurrentWeaponR_weaponR { private set; get; }
 
-    GameObject player;//存玩家
+
+    /*1213測試用，之後刪-------------------------------*/
+    [HeaderAttribute("Test_WeaponSwitch( Press keyCode.L )")]
+    public int test_type1_id = 10;
+    [Range(2, 3)] public int test_type23 = 2;
+    public int test_type2_id = 20;
+    public int test_type3_id = 30;
+
+    /// <summary>
+    /// 測試用函式，專門用於武器切換用的測試
+    /// </summary>
+    private void Test_ChooseAndUseWeapon(int type1_id, int type2or3, int type2_id, int type3_id)
+    {
+        ChooseAndUseWeapon(1, type1_id);//右手_盾牌
+        if (type2or3 == 2)
+        {
+            ChooseAndUseWeapon(2, type2_id);//左手_單手劍
+        }
+        else if (type2or3 == 3)
+        {
+            ChooseAndUseWeapon(3, type3_id);//左手_雙手劍
+        }
+    }
+    /*-----------------------------------------------------*/
+
+
+    /*1214武器三選一，施工中-----------*/
+
+    //執行順位: 要在武器池抓完所有武器之後
+    //組合規則: 雙手劍(type==3)、單手劍+盾(type==2 + type==1)
+    //將武器依照組合規則，存成一個個組合(不能重復)
+    //創一個三選一用的list 存好幾個組合
+
+    //從list中隨機拿出三組(隨機機制想一下，要不要固定某些類型必出現)
+    //如果不夠三組就拿2組(防呆)
+
+    ////UI分別抓出三組武器的type,id，將對應的武器圖抓出，數值顯示在UI上
+    ////玩家選擇後，將該武器組合顯示在武器格中
+    ////如果是雙手劍 雙手劍第0格，第1格鎖起來效果圖
+    ////如果是單手劍+盾 單手劍第0格，盾第1格
+
+    //玩家選擇後，回傳該組合的type,id
+    //將該組合從list中移除
+
+    //如果是雙手劍 call一次 ChooseAndUseWeapon(傳入type,傳入id)
+    //如果是單手劍+盾 分別call一次 ChooseAndUseWeapon(傳入type,傳入id)
+    
+    public List<(GameObject, GameObject)> ee;//元祖
+
+    //可以參考ObjectPool去寫
+    public List<GameObject> weaponOneOfThreePool;//存每一組武器組合
+    public List<GameObject> weaponCombination;//存一組武器組合的武器(雙手劍 or 單手劍+盾)
+
+    
+    /// <summary>
+    /// 將武器池的武器，存成組合後，存入武器三選一池
+    /// </summary>
+    public void AddWeaponPoolWeaponsToOneOfTreePool()
+    {
+        ee.Add((this.CurrentWeaponL_weaponL, this.CurrentWeaponR_weaponR));//元祖無法使用list.add
+        Debug.LogWarning("weaponL Name: " + ee[0].Item1.GetComponent<ItemOnWeapon>().weaponName);
+    }
+    /*---------------------------------*/
+
+    
 
     private void Awake()
     {
@@ -49,6 +116,34 @@ public class WeaponManager : MonoBehaviour
         mInstance = this;
         DontDestroyOnLoad(this.gameObject);
 
+        player = GameManager.Instance().PlayerStart;//抓到玩家
+
+        AddAllWeaponsInTheirWeaponPool();//將所有武器，分別加入他們各自的武器池
+    }
+
+    void Start()
+    {
+        //玩家初始武器設定
+        ChooseAndUseWeapon(0, 0);//初始火把
+
+        //寫完三選一後，這邊就由三選一來設定，之後刪
+        ChooseAndUseWeapon(1, 10);//初始盾牌
+        ChooseAndUseWeapon(2, 20);//初始右手單手劍 
+    }
+
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.L))
+        {
+            Test_ChooseAndUseWeapon(test_type1_id, test_type23, test_type2_id, test_type3_id);
+        }
+    }
+
+    /// <summary>
+    /// 將所有武器，分別加入他們各自的武器池
+    /// </summary>
+    private void AddAllWeaponsInTheirWeaponPool()
+    {
         //左手火把存進 火把池(L)
         if (torchL.transform.GetChild(0).gameObject)
         {
@@ -73,51 +168,7 @@ public class WeaponManager : MonoBehaviour
                 weaponPoolR.Add(weaponR.transform.GetChild(i).gameObject);
             }
         }
-
-        player = GameManager.Instance().PlayerStart;//抓到玩家
     }
-
-    void Start()
-    {
-        //玩家初始武器設定
-        ChooseAndUseWeapon(0, 0);//初始火把
-        ChooseAndUseWeapon(1, 10);//初始盾牌
-        ChooseAndUseWeapon(2, 20);//初始右手單手劍
-    }
-
-
-    /*1213測試用，之後刪-------------------------------*/
-    [HeaderAttribute("Test_WeaponSwitch")]
-    public int test_type1_id = 10;
-    [Range(2, 3)] public int test_type23 = 2;
-    public int test_type2_id = 20;
-    public int test_type3_id = 30;
-    /// <summary>
-    /// 測試用函式，專門用於武器切換用的測試
-    /// </summary>
-    private void Test_ChooseAndUseWeapon(int type1_id, int type2or3, int type2_id,int type3_id)
-    {
-        
-        ChooseAndUseWeapon(1, type1_id);//右手_盾牌
-        if (type2or3 == 2)
-        {
-            ChooseAndUseWeapon(2, type2_id);//左手_單手劍
-        }
-        else if(type2or3 == 3)
-        {
-            ChooseAndUseWeapon(3, type3_id);//左手_雙手劍
-        }
-
-    }
-    private void Update()
-    {
-        if(Input.GetKeyDown(KeyCode.L))
-        {
-            Test_ChooseAndUseWeapon(test_type1_id, test_type23, test_type2_id, test_type3_id);
-        }
-    }
-    /*-------------------------------*/
-
 
     /// <summary>
     /// 選擇並使用該武器
