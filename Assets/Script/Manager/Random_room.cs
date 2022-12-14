@@ -223,11 +223,5 @@ public class Random_room : MonoBehaviour
         return goTile.transform;
     }
 
-    void Update()
-    {
-        if(Input.GetKeyDown(KeyCode.F1))
-        {
-            SceneManager.LoadScene("room");
-        }
-    }
+
 }

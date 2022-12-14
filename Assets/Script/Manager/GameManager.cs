@@ -45,9 +45,15 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void Update()
+    void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.F1))
+        {
+            PlayerStart.SetActive(false);
+            SceneManager.LoadScene("room");
+            PlayerStart.transform.position = new Vector3(0,2,-160);
+            PlayerStart.SetActive(true);
+        }
     }
 
 }
