@@ -9,6 +9,7 @@ public enum BearState
 public class BearFSM : MonoBehaviour
 {
     private BearState m_NowState;
+    ItemOnMob ThisItemOnMob_State;
 
     private GameObject Target;//存玩家
     private GameObject MySelf;//存自己
@@ -23,7 +24,7 @@ public class BearFSM : MonoBehaviour
     bool InATKrange_Close;
     bool OutATKrange;
     bool AwakeBool = false;
-    bool Awake;
+    bool Awaken;
 
     float RunRadius;
     float ATKRadius;
@@ -49,6 +50,10 @@ public class BearFSM : MonoBehaviour
 
     int RandomChoose;
     bool RandomChooseCoolDown = false;
+    private void Awake()
+    {
+        ThisItemOnMob_State = GetComponent<ItemOnMob>();
+    }
     // Start is called before the first frame update
     void Start()
     {        
@@ -66,10 +71,10 @@ public class BearFSM : MonoBehaviour
 
         m_NowState = BearState.Idle;
 
-        ATKRadius = 40;//Weapon覆蓋
+        ATKRadius = ThisItemOnMob_State.mobRadius;//Weapon覆蓋
 
-        Close_ATKRadius = ATKRadius * 0.6f;        
-        LeaveATKRadius = ATKRadius * 1.07f;
+        Close_ATKRadius = ATKRadius * 0.4f;        
+        LeaveATKRadius = ATKRadius * 1.02f;
         RunRadius = ATKRadius * 2.3f;
         AwakeRadius = ATKRadius * 2f;
         AttackCBool = false;
@@ -135,7 +140,7 @@ public class BearFSM : MonoBehaviour
 
         Quaternion Look = Quaternion.LookRotation(GetTargetNormalize);
 
-        Quaternion R = Quaternion.Slerp(transform.rotation, Look, 7f * Time.deltaTime);
+        Quaternion R = Quaternion.Slerp(transform.rotation, Look, 2f * Time.deltaTime);
         if (isAttacking == false)
         {
             if (GetTargetNormalize != transform.forward)
@@ -154,8 +159,8 @@ public class BearFSM : MonoBehaviour
         {
             if (AwakeBool == false)
             {
-                Awake = IsInRange_AwakeRange(AwakeRadius, MySelf, Target);
-                if (Awake == true)
+                Awaken = IsInRange_AwakeRange(AwakeRadius, MySelf, Target);
+                if (Awaken == true)
                 {
                     AwakeBool = true;
                 }
@@ -330,8 +335,7 @@ public class BearFSM : MonoBehaviour
     public void Attack()
     {
         if (m_NowState == BearState.Attack&& Count == 0)
-        {
-            isAttacking = true;
+        {            
             if (RandomChooseCoolDown==false)
             {
                 RandomChoose = UnityEngine.Random.Range(1, 4);
@@ -357,7 +361,7 @@ public class BearFSM : MonoBehaviour
         {
             MubAnimator.SetBool("Attack01", false);
             MubAnimator.SetBool("Attack02", false);
-            MubAnimator.SetBool("Attack03", false);            
+            MubAnimator.SetBool("Attack03", false);
             isAttacking = false;
         }
     }
@@ -426,54 +430,58 @@ public class BearFSM : MonoBehaviour
     private void Animation_Attack()
     {
         MoveSpeed = Speed;
+
+        isAttacking = true;
         GetTargetNormalize = (Target.transform.position - transform.position).normalized;
 
-        capsule.SimpleMove(GetTargetNormalize * MoveSpeed*2);
-        MubAnimator.speed = 2f;
-        
+        capsule.SimpleMove(GetTargetNormalize * MoveSpeed*3);
+        MubAnimator.speed = 2f;        
     }
 
     private void AnimationSpeed_AttackEnd01()
     {
         MubAnimator.speed = 1f;
-        LeaveATKRadius = ATKRadius * 1.07f;
-        Close_ATKRadius = ATKRadius * .5f;
+        LeaveATKRadius = ATKRadius * 1.02f;
+        Close_ATKRadius = ATKRadius * 0.4f;
         MubAnimator.applyRootMotion = false;
+        isAttacking = false;
         Count = 2;
         StartCoroutine(SummonCooldown());
     }
     private void AnimationSpeed_AttackEnd01P()
     {
         MubAnimator.speed = 1f;
-        LeaveATKRadius = ATKRadius * 1.07f;
-        Close_ATKRadius = ATKRadius * .5f;
+        LeaveATKRadius = ATKRadius * 1.02f;
+        Close_ATKRadius = ATKRadius * 0.4f;
         MubAnimator.applyRootMotion = false;
-
+        isAttacking = false;
     }
     private void AnimationSpeed_AttackEnd02()
     {
         MubAnimator.speed = 1f;
-        LeaveATKRadius = ATKRadius * 1.07f;
-        Close_ATKRadius = ATKRadius * .5f;
+        LeaveATKRadius = ATKRadius * 1.02f;
+        Close_ATKRadius = ATKRadius * 0.4f;
         MubAnimator.applyRootMotion = false;
-        Count = 4;
+        isAttacking = false;
+        Count = 2;
         StartCoroutine(SummonCooldown());
     }
     private void AnimationSpeed_AttackEnd02P()
     {
         MubAnimator.speed = 1f;
-        LeaveATKRadius = ATKRadius * 1.07f;
-        Close_ATKRadius = ATKRadius * .5f;
+        LeaveATKRadius = ATKRadius * 1.02f;
+        Close_ATKRadius = ATKRadius * 0.4f;
         MubAnimator.applyRootMotion = false;
-
+        isAttacking = false;
     }
     private void AnimationSpeed_AttackEnd03()
     {
         MubAnimator.speed = 1f;
-        LeaveATKRadius = ATKRadius * 1.07f;
-        Close_ATKRadius = ATKRadius * .5f;
+        LeaveATKRadius = ATKRadius * 1.02f;
+        Close_ATKRadius = ATKRadius * 0.4f;
         MubAnimator.applyRootMotion = false;
-        Count = 4;
+        isAttacking = false;
+        Count = 3;
         StartCoroutine(SummonCooldown());
     }
     public void ZoneOpen()
