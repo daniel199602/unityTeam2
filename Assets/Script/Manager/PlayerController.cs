@@ -30,7 +30,8 @@ public class PlayerController : MonoBehaviour
     private float attackMoveSpeed = 0;//攻擊位移速度
     bool isOpenAttackMove = false;//攻擊位移開關
     bool isUseMouseChangeForward = true;//滑鼠人物轉向開關
-    bool isInvincible = false;//無敵
+    bool isInvincible = false;//翻滾無敵
+    bool isInvincibleModeSwitch = false;
     [HideInInspector] public int currentLayerNum = 0;//當前Layer預設第0層
     //各層Layer的當前狀態
     AnimatorStateInfo animStateInfo;
@@ -43,6 +44,7 @@ public class PlayerController : MonoBehaviour
     //玩家數值(挖洞)
     PlayerHpData State;
     [SerializeField]int hpTemporary;
+    int hpTemporaryMax;
     int RandomNum;
     bool isOpenBeHit = true;
 
@@ -73,17 +75,20 @@ public class PlayerController : MonoBehaviour
 
         State = GetComponent<PlayerHpData>();
         hpTemporary = State.Hp;
+        hpTemporaryMax = State.Hp;
     }
 
-    public void Incuvusuble()
+    public void InvincibleMode()
     {
         if (Input.GetKey(KeyCode.F1))
         {
             isInvincible = true;
+            isInvincibleModeSwitch = true;
         }
         if (Input.GetKey(KeyCode.F2))
         {
             isInvincible = false;
+            isInvincibleModeSwitch = false;
         }
     }
 
@@ -91,7 +96,7 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         animStateInfo = charaterAnimator.GetCurrentAnimatorStateInfo(currentLayerNum);//當前Layer第Num層的當前動畫狀態
-        Incuvusuble();
+        InvincibleMode();
         //玩家Animator Layer狀態機
         if (m_pCurrentAnimLayer == pAnimLayerState.Layer0)
         {
@@ -123,37 +128,20 @@ public class PlayerController : MonoBehaviour
             charaterAnimator.SetLayerWeight(1, 0);
             charaterAnimator.SetLayerWeight(2, 1);
         }
-
-        //玩家狀態機
-        if (State.Hp <= 0f)
+        if (isInvincible == true)
         {
-            m_pCurrentState = pFSMState.Dead;
-            DeadStatus();
-            return;
-        }
-        else if (State.Hp != hpTemporary && isInvincible == false)
-        {
-            if (isOpenBeHit)
+            State.Hp = hpTemporary;
+            if (isInvincibleModeSwitch == true)
             {
-                RandomNum = Random.Range(1, 2);
-                isOpenBeHit = false;
-            }
-            hpTemporary = State.Hp;
-            if (RandomNum == 1)
-            {
-                charaterAnimator.SetBool("GetHit01", true);
-                cc.SimpleMove(-(transform.forward * 500));
-            }
-            else if (RandomNum == 2)
-            {
-                charaterAnimator.SetBool("GetHit02", true);
-                cc.SimpleMove(-(transform.forward * 500));
-            }           
-        }       
-        else
-        {
-            charaterAnimator.SetBool("GetHit01", false);
-            charaterAnimator.SetBool("GetHit02", false);
+                if (hpTemporary != hpTemporaryMax)
+                {
+                    hpTemporary++;
+                }
+                if (hpTemporary == hpTemporaryMax)
+                {
+                    charaterAnimator.SetTrigger("Revive");
+                }
+            }            
             if (m_pCurrentState == pFSMState.MoveTree)
             {
                 isUseFire1 = true;
@@ -176,6 +164,62 @@ public class PlayerController : MonoBehaviour
             ControlMove(isUseJump);
             ControlAttack(isUseFire1);
         }
+        else
+        {
+            //玩家狀態機
+            if (State.Hp <= 0f)
+            {
+                m_pCurrentState = pFSMState.Dead;
+                DeadStatus();
+                return;
+            }
+            else if (State.Hp != hpTemporary && isInvincible == false)
+            {
+                if (isOpenBeHit)
+                {
+                    RandomNum = Random.Range(1, 2);
+                    isOpenBeHit = false;
+                }
+                hpTemporary = State.Hp;
+                if (RandomNum == 1)
+                {
+                    charaterAnimator.SetBool("GetHit01", true);
+                    cc.SimpleMove(-(transform.forward * 500));
+                }
+                else if (RandomNum == 2)
+                {
+                    charaterAnimator.SetBool("GetHit02", true);
+                    cc.SimpleMove(-(transform.forward * 500));
+                }
+            }
+            else
+            {
+                charaterAnimator.SetBool("GetHit01", false);
+                charaterAnimator.SetBool("GetHit02", false);
+                if (m_pCurrentState == pFSMState.MoveTree)
+                {
+                    isUseFire1 = true;
+                    isUseJump = true;
+                    isOpenAttackMove = false;//攻擊位移關閉，防呆
+                    charaterAnimator.SetFloat("animSpeed", 1.5f);
+                }
+                else if (m_pCurrentState == pFSMState.Roll)
+                {
+                    isUseFire1 = false;//禁用滑鼠左鍵，禁止攻擊
+                }
+                else if (m_pCurrentState == pFSMState.Attack)
+                {
+                    isUseJump = false;//禁用空白鍵，禁止翻滾
+                }
+
+                SwitchLayer(currentLayerNum);
+                ControlSwitchWeapon();
+                MousePosChangeForward(isUseMouseChangeForward);
+                ControlMove(isUseJump);
+                ControlAttack(isUseFire1);
+            }
+        }
+        
     }
 
 
