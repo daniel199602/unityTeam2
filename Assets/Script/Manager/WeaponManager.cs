@@ -91,42 +91,73 @@ public class WeaponManager : MonoBehaviour
     //public List<GameObject> weaponOneOfThreePool;//存每一組武器組合
     //public List<GameObject> weaponCombination;//存一組武器組合的武器(雙手劍 or 單手劍+盾)
 
-    public List<(int aWeapon_r, int aWeapon_l)> weapon_card;//元祖
-
-
-    
     /// <summary>
-    /// 1215 測試中
+    /// 右手武器卡池，存 Tuple (右手武器, 是否可裝左手)
     /// </summary>
-    public void TestValueTuple()
+    public List<(GameObject aWeaponR, bool isCanSetWeaponL)> weaponRCardPool;
+    /// <summary>
+    /// 武器三選一卡池，存 Tuple (單右武器, 左武器) or (雙右武器, 雙右武器)
+    /// </summary>
+    public List<(GameObject aWeaponR, GameObject aWeaponL)> WeaponOneOfThreePool;
+
+    /// <summary>
+    /// 將weaponPoolR武器，分類成 Tuple(右手武器, 是否能裝左手武器) 存進weaponRCardPool內
+    /// </summary>
+    public void AddWeaponRCardPool()
     {
-        weapon_card.Add((20, 10));
-        weapon_card.Add((30, 10));
+        foreach (GameObject weaponR in weaponPoolR)
+        {
+            if (weaponR.GetComponent<ItemOnWeapon>().weaponType == 2)//單手劍
+            {
+                weaponRCardPool.Add((weaponR, true));
+            }
+            else if(weaponR.GetComponent<ItemOnWeapon>().weaponType == 3)//雙手劍
+            {
+                weaponRCardPool.Add((weaponR, false));
+            }
+        }
 
-        Debug.LogWarning(weapon_card[0].aWeapon_r);
-
-        //(GameObject aWeaponR, GameObject aWeaponL) weaponCard;
-        
-        //foreach (GameObject weaponR in weaponPoolR)
-        //{
-        //    weaponCard.aWeaponR = this.CurrentWeaponR_weaponR;
-        //    weaponCard.aWeaponL = this.CurrentWeaponL_weaponL;
-        //}
+        //debug專用
+        foreach(var card in weaponRCardPool)
+        {
+            Debug.LogWarning("weaponR id: " + card.aWeaponR.GetComponent<ItemOnWeapon>().weaponID + "是否可裝備左手武器: " + card.isCanSetWeaponL);
+        }
     }
 
     /// <summary>
-    /// 將武器池的武器，存成組合後，存入武器三選一池
+    /// 將weaponRCardPool武器，分類成 Tuple(右單劍,左盾)or(右雙手劍,右雙手劍)
+    /// 左盾隨機從weaponPoolL取，存進weaponRCardPool內
     /// </summary>
-    public void AddWeaponPoolWeaponsToOneOfTreePool()
+    public void AddWeaponOneOfTreePool()
     {
-        var b = Tuple.Create(this.CurrentWeaponL_weaponL, this.CurrentWeaponL_weaponL);
-        var c = ValueTuple.Create(this.CurrentWeaponL_weaponL, this.CurrentWeaponL_weaponL);
+        foreach (var card in weaponRCardPool)
+        {
+            if (card.isCanSetWeaponL)//可裝備左手盾，單手劍
+            {
+                int randomIndex = UnityEngine.Random.Range(0, weaponPoolL.Count);
+                WeaponOneOfThreePool.Add((card.aWeaponR, weaponPoolL[randomIndex]));
+            }
+            else if(!card.isCanSetWeaponL)//不可裝備左手盾，雙手劍
+            {
+                WeaponOneOfThreePool.Add((card.aWeaponR, card.aWeaponR));//好像不能存空值，先都存同一把雙手劍
+            }
+        }
 
-        //Debug.LogWarning("weaponL Name: " + ee[0].Item1.GetComponent<ItemOnWeapon>().weaponName);
+        //debug專用
+        foreach (var weaponCombine in WeaponOneOfThreePool)
+        {
+            if(weaponCombine.aWeaponR.GetComponent<ItemOnWeapon>().weaponType==2)
+            {
+                Debug.LogWarning("單手劍id: " + weaponCombine.aWeaponR.GetComponent<ItemOnWeapon>().weaponID + ",盾id: " + weaponCombine.aWeaponL.GetComponent<ItemOnWeapon>().weaponID);
+            }
+            else if(weaponCombine.aWeaponR.GetComponent<ItemOnWeapon>().weaponType == 3)
+            {
+                Debug.LogWarning("雙手劍id: " + weaponCombine.aWeaponR.GetComponent<ItemOnWeapon>().weaponID + ", " + weaponCombine.aWeaponL.GetComponent<ItemOnWeapon>().weaponID);
+            }
+        }
     }
+
     /*---------------------------------*/
-
-    
 
     private void Awake()
     {
@@ -139,9 +170,10 @@ public class WeaponManager : MonoBehaviour
         mInstance = this;
         DontDestroyOnLoad(this.gameObject);
 
-        player = GameManager.Instance().PlayerStart;//抓到玩家
-
         AddAllWeaponsInTheirWeaponPool();//將所有武器，分別加入他們各自的武器池
+        player = GameManager.Instance().PlayerStart;//抓到玩家
+        weaponRCardPool = new List<(GameObject aWeapon_r, bool isCanSetWeaponL)>();
+        WeaponOneOfThreePool = new List<(GameObject aWeaponR, GameObject aWeaponL)>();
     }
 
     void Start()
@@ -152,6 +184,9 @@ public class WeaponManager : MonoBehaviour
         //寫完三選一後，這邊就由三選一來設定，之後刪
         ChooseAndUseWeapon(1, 10);//初始盾牌
         ChooseAndUseWeapon(2, 20);//初始右手單手劍 
+
+        AddWeaponRCardPool();//測試用1215
+        AddWeaponOneOfTreePool();
     }
 
     private void Update()
