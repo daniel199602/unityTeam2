@@ -85,21 +85,44 @@ public class WeaponManager : MonoBehaviour
 
     //如果是雙手劍 call一次 ChooseAndUseWeapon(傳入type,傳入id)
     //如果是單手劍+盾 分別call一次 ChooseAndUseWeapon(傳入type,傳入id)
-    
-    public List<(GameObject, GameObject)> ee;//元祖
 
-    //可以參考ObjectPool去寫
-    public List<GameObject> weaponOneOfThreePool;//存每一組武器組合
-    public List<GameObject> weaponCombination;//存一組武器組合的武器(雙手劍 or 單手劍+盾)
+
+    //可以參考ObjectPool去寫，這裡的不能這樣寫
+    //public List<GameObject> weaponOneOfThreePool;//存每一組武器組合
+    //public List<GameObject> weaponCombination;//存一組武器組合的武器(雙手劍 or 單手劍+盾)
+
+    public List<(int aWeapon_r, int aWeapon_l)> weapon_card;//元祖
+
 
     
+    /// <summary>
+    /// 1215 測試中
+    /// </summary>
+    public void TestValueTuple()
+    {
+        weapon_card.Add((20, 10));
+        weapon_card.Add((30, 10));
+
+        Debug.LogWarning(weapon_card[0].aWeapon_r);
+
+        //(GameObject aWeaponR, GameObject aWeaponL) weaponCard;
+        
+        //foreach (GameObject weaponR in weaponPoolR)
+        //{
+        //    weaponCard.aWeaponR = this.CurrentWeaponR_weaponR;
+        //    weaponCard.aWeaponL = this.CurrentWeaponL_weaponL;
+        //}
+    }
+
     /// <summary>
     /// 將武器池的武器，存成組合後，存入武器三選一池
     /// </summary>
     public void AddWeaponPoolWeaponsToOneOfTreePool()
     {
-        ee.Add((this.CurrentWeaponL_weaponL, this.CurrentWeaponR_weaponR));//元祖無法使用list.add
-        Debug.LogWarning("weaponL Name: " + ee[0].Item1.GetComponent<ItemOnWeapon>().weaponName);
+        var b = Tuple.Create(this.CurrentWeaponL_weaponL, this.CurrentWeaponL_weaponL);
+        var c = ValueTuple.Create(this.CurrentWeaponL_weaponL, this.CurrentWeaponL_weaponL);
+
+        //Debug.LogWarning("weaponL Name: " + ee[0].Item1.GetComponent<ItemOnWeapon>().weaponName);
     }
     /*---------------------------------*/
 
@@ -133,6 +156,7 @@ public class WeaponManager : MonoBehaviour
 
     private void Update()
     {
+        //按L切換成測試inspector當前的type,id武器
         if(Input.GetKeyDown(KeyCode.L))
         {
             Test_ChooseAndUseWeapon(test_type1_id, test_type23, test_type2_id, test_type3_id);
