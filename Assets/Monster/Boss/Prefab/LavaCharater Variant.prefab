@@ -48,11 +48,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 881683889231256919, guid: 693eee48e53fa1542812fc3b0f773541, type: 3}
       propertyPath: InitialModule.startSize.scalar
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 883767192071455437, guid: 693eee48e53fa1542812fc3b0f773541, type: 3}
+      propertyPath: InitialModule.startSize.scalar
       value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 883767192071455437, guid: 693eee48e53fa1542812fc3b0f773541, type: 3}
       propertyPath: InitialModule.startSize.minScalar
-      value: 10
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 971130606071440660, guid: 693eee48e53fa1542812fc3b0f773541, type: 3}
       propertyPath: m_IsActive
@@ -199,12 +203,16 @@ PrefabInstance:
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7029655407352894464, guid: 693eee48e53fa1542812fc3b0f773541, type: 3}
-      propertyPath: InitialModule.startSize.minScalar
+      propertyPath: InitialModule.startSize.scalar
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7029655407352894464, guid: 693eee48e53fa1542812fc3b0f773541, type: 3}
+      propertyPath: InitialModule.startSize.minScalar
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 7057634427520437146, guid: 693eee48e53fa1542812fc3b0f773541, type: 3}
       propertyPath: InitialModule.startSize.scalar
-      value: 15
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 7160608460066240250, guid: 693eee48e53fa1542812fc3b0f773541, type: 3}
       propertyPath: m_LocalPosition.x
@@ -315,3 +323,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0d53bdc15d14b54cb34152d0b9793f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  AxeOnHand: {fileID: 0}
+  BigSwordOnHand: {fileID: 0}
+  AxeOnBack: {fileID: 0}
+  BigSwordOnBack: {fileID: 0}
