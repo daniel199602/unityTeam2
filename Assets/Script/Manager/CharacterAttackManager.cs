@@ -7,23 +7,13 @@ using System.Collections;
 public class CharacterAttackManager : MonoBehaviour
 {
     RecoilShake recoilShake;
-
-    //當前函式直接抓WeaponManager的當前武器判斷，這裡目前不會用到，先註解掉
-    //[HideInInspector] public GameObject usingTorchL_torch;//當前左手火把
-    //[HideInInspector] public GameObject usingWeaponL_weapon;//當前左手武器
-    //[HideInInspector] public GameObject usingWeaponR_weapon;//當前右手武器
-
-    public int fHp = 0;//1211目前PlayerGetHit有用到它刪掉會報錯，然後怪物有用PlayerGetHit，所以PlayerGetHit目前還不能刪
     public GameObject hitVFX;
+    private bool isOpenOnDrawGizmos = false;//是否打開OnDrawGizmos
 
     private void Start()
     {
         recoilShake = GetComponent<RecoilShake>();
-    }
-
-    private void Update()
-    {
-       
+        isOpenOnDrawGizmos = true;
     }
 
 
@@ -31,7 +21,7 @@ public class CharacterAttackManager : MonoBehaviour
     /// 左手火把攻擊事件，綁在左手火把攻擊動畫上
     /// </summary>
     private void AttackEvent_left_torch()
-    {
+        {
         int weaponDamage_instant = WeaponManager.Instance().CurrentTorchL_torch.GetComponent<ItemOnWeapon>().weaponDamage_instant;
         int weaponDamamge_delay = WeaponManager.Instance().CurrentTorchL_torch.GetComponent<ItemOnWeapon>().weaponDamage_delay;
         float angle = WeaponManager.Instance().CurrentTorchL_torch.GetComponent<ItemOnWeapon>().weaponAngle;
@@ -155,29 +145,31 @@ public class CharacterAttackManager : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        //右手武器攻擊半徑
-        Gizmos.color = Color.red;
-        float angleR = WeaponManager.Instance().CurrentWeaponR_weaponR.GetComponent<ItemOnWeapon>().weaponAngle;
-        float radiusR = WeaponManager.Instance().CurrentWeaponR_weaponR.GetComponent<ItemOnWeapon>().weaponRadius;
-        int segments = 100;
-        float deltaAngle = angleR / segments;
-        Vector3 forward = transform.forward;
+        if(isOpenOnDrawGizmos)
+        {
+            //右手武器攻擊半徑
+            Gizmos.color = Color.red;
+            float angleR = WeaponManager.Instance().CurrentWeaponR_weaponR.GetComponent<ItemOnWeapon>().weaponAngle;
+            float radiusR = WeaponManager.Instance().CurrentWeaponR_weaponR.GetComponent<ItemOnWeapon>().weaponRadius;
+            int segments = 100;
+            float deltaAngle = angleR / segments;
+            Vector3 forward = transform.forward;
 
 
-        Vector3[] vertices = new Vector3[segments + 2];
-        vertices[0] = transform.position;
-        for (int i = 1; i < vertices.Length; i++)
-        {
-            Vector3 pos = Quaternion.Euler(0f, -angleR / 2 + deltaAngle * (i - 1), 0f) * forward * radiusR + transform.position;
-            vertices[i] = pos;
+            Vector3[] vertices = new Vector3[segments + 2];
+            vertices[0] = transform.position;
+            for (int i = 1; i < vertices.Length; i++)
+            {
+                Vector3 pos = Quaternion.Euler(0f, -angleR / 2 + deltaAngle * (i - 1), 0f) * forward * radiusR + transform.position;
+                vertices[i] = pos;
+            }
+            for (int i = 1; i < vertices.Length - 1; i++)
+            {
+                Gizmos.DrawLine(vertices[i], vertices[i + 1]);
+            }
+            Gizmos.DrawLine(vertices[0], vertices[vertices.Length - 1]);
+            Gizmos.DrawLine(vertices[0], vertices[1]);
         }
-        for (int i = 1; i < vertices.Length - 1; i++)
-        {
-            Gizmos.DrawLine(vertices[i], vertices[i + 1]);
-        }
-        Gizmos.DrawLine(vertices[0], vertices[vertices.Length - 1]);
-        Gizmos.DrawLine(vertices[0], vertices[1]);
-        
+
     }
-
 }
