@@ -168,7 +168,7 @@ public class Random_room : MonoBehaviour
     /// <returns></returns>
     Transform tilesRoom()
     {
-        int Index = Random.Range(0, tilesPrefabs.Length);
+        int Index = Random.Range(0, tilesPrefabs.Length-1);
         GameObject goTile = Instantiate(tilesPrefabs[Index], Vector3.zero, Quaternion.identity, container) as GameObject;
         goTile.name = tilesPrefabs[Index].name;
         //加到生成tile

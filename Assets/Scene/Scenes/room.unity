@@ -799,8 +799,8 @@ MonoBehaviour:
   tilesPrefabs:
   - {fileID: 509430328337694080, guid: 42b3c993926aca24eb3b69c91106c326, type: 3}
   - {fileID: 7120893048691616093, guid: 9e148b7c347a35146883eb53b5beff0c, type: 3}
-  - {fileID: 4375208673767601974, guid: 2d0eae51a6f96af4fa3b027c00f69c3d, type: 3}
   - {fileID: 7952589243086337090, guid: 3259329d27750ec49ae42aca131c6809, type: 3}
+  - {fileID: 4375208673767601974, guid: 2d0eae51a6f96af4fa3b027c00f69c3d, type: 3}
   exitPrefabs:
   - {fileID: 6782804435126237475, guid: 3a1dbfaa0e4bf1b4caec77d302fd43f6, type: 3}
   blockedPredabs:
