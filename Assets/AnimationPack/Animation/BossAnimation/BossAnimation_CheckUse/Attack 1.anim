@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Attack
+  m_Name: Attack 1
   serializedVersion: 6
   m_Legacy: 0
   m_Compressed: 0
@@ -52428,7 +52428,7 @@ AnimationClip:
     intParameter: 0
     messageOptions: 0
   - time: 1
-    functionName: AnimationSpeed_AttackEnd01
+    functionName: AnimationSpeed_AttackEnd01R
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0

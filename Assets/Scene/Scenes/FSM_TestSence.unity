@@ -441,11 +441,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &1129341026 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4378674757531084019, guid: 052b0736fab5eee4eaa4ea766d127ef3, type: 3}
-  m_PrefabInstance: {fileID: 1330145150}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1330145150
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -453,6 +448,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1242080072104151058, guid: 052b0736fab5eee4eaa4ea766d127ef3, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3520569212546745571, guid: 052b0736fab5eee4eaa4ea766d127ef3, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -463,7 +462,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3520569212546745571, guid: 052b0736fab5eee4eaa4ea766d127ef3, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 2.2
       objectReference: {fileID: 0}
     - target: {fileID: 3520569212546745571, guid: 052b0736fab5eee4eaa4ea766d127ef3, type: 3}
       propertyPath: m_LocalPosition.z
@@ -501,34 +500,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: LavaCharater Variant
       objectReference: {fileID: 0}
-    - target: {fileID: 4480147556232982221, guid: 052b0736fab5eee4eaa4ea766d127ef3, type: 3}
-      propertyPath: AxeOnBack
-      value: 
-      objectReference: {fileID: 1330145152}
-    - target: {fileID: 4480147556232982221, guid: 052b0736fab5eee4eaa4ea766d127ef3, type: 3}
-      propertyPath: AxeOnHand
-      value: 
-      objectReference: {fileID: 1129341026}
-    - target: {fileID: 4480147556232982221, guid: 052b0736fab5eee4eaa4ea766d127ef3, type: 3}
-      propertyPath: BigSwordOnBack
-      value: 
-      objectReference: {fileID: 1330145151}
-    - target: {fileID: 4480147556232982221, guid: 052b0736fab5eee4eaa4ea766d127ef3, type: 3}
-      propertyPath: BigSwordOnHand
-      value: 
-      objectReference: {fileID: 1710504297}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 052b0736fab5eee4eaa4ea766d127ef3, type: 3}
---- !u!1 &1330145151 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7106445746760935820, guid: 052b0736fab5eee4eaa4ea766d127ef3, type: 3}
-  m_PrefabInstance: {fileID: 1330145150}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &1330145152 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1250311426952700604, guid: 052b0736fab5eee4eaa4ea766d127ef3, type: 3}
-  m_PrefabInstance: {fileID: 1330145150}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1387236055
 GameObject:
   m_ObjectHideFlags: 0
@@ -956,11 +929,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1710504297 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5543836346630565820, guid: 052b0736fab5eee4eaa4ea766d127ef3, type: 3}
-  m_PrefabInstance: {fileID: 1330145150}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1844837455
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1037,8 +1005,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 994614847}
     - target: {fileID: 5403848983765803006, guid: 843a687dd2b95bb4cb66922c432cf3f4, type: 3}
+      propertyPath: m_Height
+      value: 10.37
+      objectReference: {fileID: 0}
+    - target: {fileID: 5403848983765803006, guid: 843a687dd2b95bb4cb66922c432cf3f4, type: 3}
       propertyPath: m_Enabled
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5403848983765803006, guid: 843a687dd2b95bb4cb66922c432cf3f4, type: 3}
+      propertyPath: m_Center.y
+      value: 5.18
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 843a687dd2b95bb4cb66922c432cf3f4, type: 3}
