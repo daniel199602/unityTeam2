@@ -9,13 +9,15 @@ public class MobDeathVFX : MonoBehaviour
     public GameObject FireFVX;
     public GameObject FireFVX2;
      public AnimationCurve fadeIn;
-    //public float timer = 0.0f;
+    
     public float spawnEffectTime = 1;
     public float t=0.0f;
     public bool isDeath;
+   
     private void Start()
     {
         meshRenderer = bearMaterial.GetComponent<SkinnedMeshRenderer>();
+     
     }
     void DeathFVXEvent()
     {
@@ -29,6 +31,7 @@ public class MobDeathVFX : MonoBehaviour
         mats[0].SetFloat("_Cutoff", fadeIn.Evaluate(Mathf.InverseLerp(0, spawnEffectTime, t)));
         meshRenderer.materials = mats;
     }
+   
     void DeathEvent_PS()
     {
         ParticleSystem ps = FireFVX.GetComponent<ParticleSystem>();

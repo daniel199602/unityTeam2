@@ -27,7 +27,6 @@ public class MobBoXBorn : MonoBehaviour
         m_Collider = GetComponent<Collider>();
         doorOpen_MobLast = GetComponent<DoorOpen_MobLast>();
         killMobLast = 0;
-
     }
     void MobBord()
     {
@@ -41,6 +40,7 @@ public class MobBoXBorn : MonoBehaviour
         {
             //不知道為甚麼角色觸發後第二次重生偶爾會為NULL,所以加上if防當
             GameObject go = MobMain.Instance().oPool.LoadObjectFromPool(MobMain.Instance().pTestList);
+
             if (go != null)
             {
                 go.transform.position = startPos;
@@ -129,6 +129,7 @@ public class MobBoXBorn : MonoBehaviour
             }
             killAll = false;
         }
+
     }
 }
 

@@ -2694,7 +2694,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8173418206782555741, guid: 0dc54ece4dafb9f428ab71ce304f8585, type: 3}
       propertyPath: looping
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8173418206782555741, guid: 0dc54ece4dafb9f428ab71ce304f8585, type: 3}
       propertyPath: lengthInSec
@@ -2858,6 +2858,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7292658344771522932}
     m_Modifications:
+    - target: {fileID: 6123336358348883743, guid: 90f9567ca9f47714fb8f21be78d68592, type: 3}
+      propertyPath: looping
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6208926138635924577, guid: 90f9567ca9f47714fb8f21be78d68592, type: 3}
       propertyPath: m_LocalScale.x
       value: 10
