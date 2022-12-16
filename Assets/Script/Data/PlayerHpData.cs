@@ -17,11 +17,12 @@ public class PlayerHpData : MonoBehaviour
     {
         thisItemOnMob = GetComponent<ItemOnMob>();
         Health = GetComponent<HealthPlayerBar>();
+        MaxHp = thisItemOnMob.mobMaxHp;
     }
 
     private void Start()
     {
-        MaxHp = thisItemOnMob.mobMaxHp;
+        
         Hp = MaxHp;
         currentHp = Hp;
     }

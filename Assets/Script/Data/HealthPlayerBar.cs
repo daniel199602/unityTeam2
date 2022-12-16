@@ -20,6 +20,7 @@ public class HealthPlayerBar : MonoBehaviour
     }
     void Start()
     {
+        Maxhealth = PlayerHp.MaxHp;
         Health = PlayerHp.Hp;
         //hpBar.SetActive(false);
     }
