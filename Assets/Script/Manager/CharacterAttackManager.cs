@@ -79,6 +79,7 @@ public class CharacterAttackManager : MonoBehaviour
             {
                 DeductMobHpInstant(mob, weaponDamage_instant);
                 DeductMobHpDelay(mob, weaponDamamge_delay);
+                DeductMobAnimatorDelay(mob);
                 recoilShake.camraPlayerSake();
                 Debug.LogWarning("Hit : " + mob.GetComponent<ItemOnMob>().mobName + "Hp : " + mob.GetComponent<MubHpData>().Hp);
             }
@@ -126,8 +127,10 @@ public class CharacterAttackManager : MonoBehaviour
             {
                 DeductMobHpInstant(mob, weaponDamage_instant);
                 DeductMobHpDelay(mob, weaponDamamge_delay);
+                DeductMobAnimatorDelay(mob);
                 ParticleSystem ps = hitVFX.GetComponent<ParticleSystem>();
                 ps.Play();
+                recoilShake.camraPlayerSake();
                 Debug.LogWarning("Hit : " + mob.GetComponent<ItemOnMob>().mobName + "Hp : " + mob.GetComponent<MubHpData>().Hp);
             }
         }
@@ -188,6 +191,26 @@ public class CharacterAttackManager : MonoBehaviour
             Count--;
         }
     }
+    /// <summary>
+    /// 怪物動作放慢
+    /// </summary>
+    public void DeductMobAnimatorDelay(GameObject mob)
+    {
+        StartCoroutine(AnimatorDelay(mob));
+        Debug.LogWarning("放慢");
+    }
+    /// <summary>
+    /// 怪物動作放慢0.5秒後恢復
+    /// </summary>
+    IEnumerator AnimatorDelay(GameObject mob)
+    {
+        this.gameObject.GetComponent<Animator>().speed = 0.1f;
+        mob.GetComponent<Animator>().speed = 0.1f;
+        yield return new WaitForSeconds(0.3f);
+        mob.GetComponent<Animator>().speed = 1.0f;
+        this.gameObject.GetComponent<Animator>().speed = 1.0f;
+    }
+
 
 
     private void OnDrawGizmos()
