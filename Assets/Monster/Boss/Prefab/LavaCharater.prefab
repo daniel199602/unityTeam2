@@ -1124,6 +1124,7 @@ GameObject:
   - component: {fileID: 1123800579022190649}
   - component: {fileID: 7127069732953496713}
   - component: {fileID: 5173183081115016483}
+  - component: {fileID: 7550107836961475713}
   m_Layer: 0
   m_Name: LavaCharater
   m_TagString: Untagged
@@ -1251,6 +1252,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0d53bdc15d14b54cb34152d0b9793f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  TeleportPoint01: {fileID: 0}
+  TeleportPoint02: {fileID: 0}
   AxeOnHand: {fileID: 1623761995645594728}
   BigSwordOnHand: {fileID: 7395832358293759783}
   AxeOnBack: {fileID: 4257326679317326375}
@@ -1274,6 +1277,18 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 1.08, z: 0}
+--- !u!114 &7550107836961475713
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1287092949503891138}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 777b924c59cda0e48a4c521996c81569, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1304009223062369689
 GameObject:
   m_ObjectHideFlags: 0

@@ -56,7 +56,7 @@ public class BossAttackManager : MonoBehaviour
         mobAngle_U = GetComponent<ItemOnMob>().mobAngle / 2;
         /*¶ZÂ÷*/
         mobRadius = GetComponent<ItemOnMob>().mobRadius;
-        mobRadius_R = GetComponent<ItemOnMob>().mobRadius * 1.8f;
+        mobRadius_R = GetComponent<ItemOnMob>().mobRadius * 2f;
         mobRadius_U = GetComponent<ItemOnMob>().mobRadius * 30f;
 
         TargetSize = Target.GetComponent<CharacterController>();

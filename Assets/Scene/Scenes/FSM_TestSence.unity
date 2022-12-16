@@ -301,6 +301,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PlayerStart: {fileID: 0}
   mobPool: []
+  DoorOpen: 0
 --- !u!4 &899411015
 Transform:
   m_ObjectHideFlags: 0
@@ -958,7 +959,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2636002069994985650, guid: 843a687dd2b95bb4cb66922c432cf3f4, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 469.7
+      value: 480
       objectReference: {fileID: 0}
     - target: {fileID: 2636002069994985650, guid: 843a687dd2b95bb4cb66922c432cf3f4, type: 3}
       propertyPath: m_LocalPosition.y
@@ -966,7 +967,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2636002069994985650, guid: 843a687dd2b95bb4cb66922c432cf3f4, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 10
+      value: -145
       objectReference: {fileID: 0}
     - target: {fileID: 2636002069994985650, guid: 843a687dd2b95bb4cb66922c432cf3f4, type: 3}
       propertyPath: m_LocalRotation.w
