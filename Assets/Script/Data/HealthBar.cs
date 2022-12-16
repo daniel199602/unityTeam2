@@ -21,9 +21,9 @@ public class HealthBar : MonoBehaviour
     }
     void Start()
     {
-        //Maxhealth = PlayerHp.MaxHp;
+        Maxhealth = PlayerHp.MaxHp;
         Health = PlayerHp.Hp;
-        //hpBar.SetActive(false);
+        hpBar.gameObject.SetActive(false);
     }
 
     // Update is called once per frame
@@ -43,10 +43,10 @@ public class HealthBar : MonoBehaviour
 
     public void BarFilter()
     {
-        //Healthbar.fillAmount = Health/ Maxhealth;
-        //Debug.Log("減少中"+Health / Maxhealth);
-        //Debug.Log(Healthbar.fillAmount);
-        
+        Healthbar.fillAmount = Health / Maxhealth;
+        Debug.Log("減少中" + Health / Maxhealth);
+        Debug.Log(Healthbar.fillAmount);
+
     }
 
     IEnumerator HealthBarDelay()
@@ -57,14 +57,14 @@ public class HealthBar : MonoBehaviour
             yield return new WaitForSeconds(Time.deltaTime);
             if (CountTime < 0)
             {
-                //if (HealthbarLate.fillAmount > Healthbar.fillAmount)
-                //{
-                //    HealthbarLate.fillAmount -= 0.01f;
-                //}
-                //else
-                //{
-                //    HealthbarLate.fillAmount = Healthbar.fillAmount;
-                //}
+                if (HealthbarLate.fillAmount > Healthbar.fillAmount)
+                {
+                    HealthbarLate.fillAmount -= 0.01f;
+                }
+                else
+                {
+                    HealthbarLate.fillAmount = Healthbar.fillAmount;
+                }
             }
             CountTime--;
         }

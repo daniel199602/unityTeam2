@@ -87,7 +87,7 @@ public class SpiderFSM : MonoBehaviour
 
         ATKRadius = ThisItemOnMob_State.mobRadius;//WeaponÂÐ»\
 
-        StartExplosionRadius = ATKRadius * 0.2f;
+        StartExplosionRadius = ATKRadius * 0.5f;
 
         StartExplosive = false;
     }

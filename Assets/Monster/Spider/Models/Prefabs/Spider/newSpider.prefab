@@ -4883,7 +4883,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 433062, guid: 5d2f4563d2df68441b4fd531600101ae, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.94903755
+      value: -0.02
       objectReference: {fileID: 0}
     - target: {fileID: 433062, guid: 5d2f4563d2df68441b4fd531600101ae, type: 3}
       propertyPath: m_LocalRotation.w
@@ -4930,6 +4930,10 @@ PrefabInstance:
       propertyPath: hitVFX_Bear
       value: 
       objectReference: {fileID: 1723430932210037142}
+    - target: {fileID: 185334941104344136, guid: 99ae7bdd379a96a43b8b110cb3d899f3, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6414648306119578305, guid: 99ae7bdd379a96a43b8b110cb3d899f3, type: 3}
       propertyPath: Boon
       value: 
