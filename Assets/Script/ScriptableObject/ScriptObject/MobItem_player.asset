@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9dc7ed6b98febf84ca6bf9d02ffd70d0, type: 3}
   m_Name: MobItem_player
   m_EditorClassIdentifier: 
-  mobName: 
-  mobType: 0
-  mobMaxHp: 0
+  mobName: Player
+  mobType: -1
+  mobMaxHp: 2000
   mobDamage_instant: 0
   mobDamage_delay: 0
   mobAngle: 0

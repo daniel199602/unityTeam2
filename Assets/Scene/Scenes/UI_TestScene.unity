@@ -276,6 +276,10 @@ PrefabInstance:
       propertyPath: thisWeaponItem
       value: 
       objectReference: {fileID: 11400000, guid: 1d4a4d87d2e65a544ae422e9ef9bba07, type: 2}
+    - target: {fileID: 821133959739569995, guid: 843a687dd2b95bb4cb66922c432cf3f4, type: 3}
+      propertyPath: Hp
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2631163319326334126, guid: 843a687dd2b95bb4cb66922c432cf3f4, type: 3}
       propertyPath: m_Name
       value: Male_Player_B
@@ -332,6 +336,10 @@ PrefabInstance:
       propertyPath: Healthbar
       value: 
       objectReference: {fileID: 408102299}
+    - target: {fileID: 4807207299345733460, guid: 843a687dd2b95bb4cb66922c432cf3f4, type: 3}
+      propertyPath: Maxhealth
+      value: 2000
+      objectReference: {fileID: 0}
     - target: {fileID: 4807207299345733460, guid: 843a687dd2b95bb4cb66922c432cf3f4, type: 3}
       propertyPath: HealthbarLate
       value: 
