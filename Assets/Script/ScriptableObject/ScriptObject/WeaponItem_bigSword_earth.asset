@@ -15,7 +15,7 @@ MonoBehaviour:
   weaponName: bigSword_earth
   weaponType: 3
   weaponID: 31
-  weaponDamage_instant: 220
+  weaponDamage_instant: 320
   weaponDamage_delay: 0
   weaponAngle: 120
   weaponRadius: 50

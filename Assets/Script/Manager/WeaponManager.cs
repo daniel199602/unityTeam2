@@ -158,7 +158,7 @@ public class WeaponManager : MonoBehaviour
     }
 
     /// <summary>
-    /// 從WeaponOneOfThreePool中，隨機取3個武器組合
+    /// 1216，從WeaponOneOfThreePool中，隨機取3個武器組合
     /// </summary>
     public GameObject GetThreeWeaponCombines()
     {
@@ -203,7 +203,7 @@ public class WeaponManager : MonoBehaviour
         //寫完三選一後，這邊就由三選一來設定，之後刪
         ChooseAndUseWeapon(1, 10);//初始盾牌
         //ChooseAndUseWeapon(2, 20);//初始右手單手劍 
-        ChooseAndUseWeapon(3, 30);//初始右手雙手劍 
+        ChooseAndUseWeapon(3, 31);//初始右手雙手劍 
 
 
         AddWeaponRCardPool();//測試用1215

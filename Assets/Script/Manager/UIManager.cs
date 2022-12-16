@@ -47,6 +47,7 @@ public class UIManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.H))
         {
             x.sprite = dicIDWeaponImage[30];
+            Time.timeScale = 0.001f;
         }
         if (Input.GetKeyDown(KeyCode.J))
         {
@@ -58,13 +59,14 @@ public class UIManager : MonoBehaviour
             weaponTextArray[3].text = "" + 99;
             weaponTextArray[4].text = "" + 77;
 
-            
+            Time.timeScale = 0.001f;
 
             OneOfThree.gameObject.SetActive(boolgggg);
         }
         if (Input.GetKeyDown(KeyCode.K))
         {
             OneOfThree.gameObject.SetActive(!boolgggg);
+            Time.timeScale = 1f;
         }
     }
 }
