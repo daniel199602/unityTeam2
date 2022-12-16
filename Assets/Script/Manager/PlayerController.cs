@@ -249,21 +249,21 @@ public class PlayerController : MonoBehaviour
 
         //*******這裡可能會造成不同層Layer的矛盾，可能要分開或合併
         //Layer(0)的攻擊
-        if (!animStateInfo.IsName("BlendMove") && animStateInfo.normalizedTime > 0.8f)
+        if (currentLayerNum == 0 &&!animStateInfo.IsName("BlendMove") && animStateInfo.normalizedTime > 0.8f)
         {
             // 每次設置完參數之後,都應該在下一幀開始時將參數設置清空,避免連續切換  
             charaterAnimator.SetInteger("intAttackID", 0);
             isOpenAttackMove = false;
         }
         //Layer(1)的攻擊
-        if (!animStateInfo.IsName("BlendMoveSingleHand") && animStateInfo.normalizedTime > 1f)
+        if (currentLayerNum == 1&& !animStateInfo.IsName("BlendMoveSingleHand") && animStateInfo.normalizedTime > 1f)
         {
             // 每次設置完參數之後,都應該在下一幀開始時將參數設置清空,避免連續切換  
             charaterAnimator.SetInteger("intAttackID", 0);
             isOpenAttackMove = false;
         }
         //Layer(2)的攻擊
-        if (!animStateInfo.IsName("BlendMove2Hands") && animStateInfo.normalizedTime > 1f)
+        if (currentLayerNum==2 && !animStateInfo.IsName("BlendMove2Hands") && animStateInfo.normalizedTime > 0.95f)
         {
             // 每次設置完參數之後,都應該在下一幀開始時將參數設置清空,避免連續切換  
             charaterAnimator.SetInteger("intAttackID", 0);
@@ -291,6 +291,15 @@ public class PlayerController : MonoBehaviour
                 charaterAnimator.SetTrigger("isTriggerAttack2");
             }
         }
+        if(isMouseClickDownR && currentLayerNum == 2 && animStateInfo.IsName("BlendMove2Hands"))//滑鼠右鍵
+        {
+            m_pCurrentState = pFSMState.Attack;
+            if (!charaterAnimator.IsInTransition(2))
+            {
+                charaterAnimator.SetTrigger("isTriggerAttack2");
+            }
+        }
+
         if (isOpenAttackMove)
         {
             cc.Move(transform.forward * attackMoveSpeed * Time.deltaTime);//攻擊位移
@@ -321,7 +330,6 @@ public class PlayerController : MonoBehaviour
     /// 給WeaponManage用
     /// 判斷當前的右手武器類型
     /// 若玩家當前 layer==1 or layer==2，才去切換玩家Animator Layer狀態
-    /// 1213施工中
     /// </summary>
     public void AutoSwitchWeaponR(GameObject currentWeaponR)
     {
