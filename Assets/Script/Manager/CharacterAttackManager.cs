@@ -9,13 +9,36 @@ public class CharacterAttackManager : MonoBehaviour
     RecoilShake recoilShake;
     public GameObject hitVFX;
     private bool isOpenOnDrawGizmos = false;//是否打開OnDrawGizmos
+    Animator playerAnimator;
 
     private void Start()
     {
+        playerAnimator = GetComponent<Animator>();
         recoilShake = GetComponent<RecoilShake>();
         isOpenOnDrawGizmos = true;
     }
 
+    /// <summary>
+    /// 動畫減速事件
+    /// </summary>
+    public void SpeedMinusEvent()
+    {
+        playerAnimator.speed = 0.8f;
+    }
+    /// <summary>
+    /// 動畫正常速度事件
+    /// </summary>
+    public void SpeedNormalEvent()
+    {
+        playerAnimator.speed = 1f;
+    }
+    /// <summary>
+    /// 動畫加速事件
+    /// </summary>
+    public void SpeedPlusEvent()
+    {
+        playerAnimator.speed = 2f;
+    }
 
     /// <summary>
     /// 左手火把攻擊事件，綁在左手火把攻擊動畫上
@@ -66,6 +89,30 @@ public class CharacterAttackManager : MonoBehaviour
     /// 右手攻擊事件，綁在右手攻擊動畫上
     /// </summary>
     private void AttackEvent()
+    {
+        int weaponDamage_instant = WeaponManager.Instance().CurrentWeaponR_weaponR.GetComponent<ItemOnWeapon>().weaponDamage_instant;
+        int weaponDamamge_delay = WeaponManager.Instance().CurrentWeaponR_weaponR.GetComponent<ItemOnWeapon>().weaponDamage_delay;
+        float angle = WeaponManager.Instance().CurrentWeaponR_weaponR.GetComponent<ItemOnWeapon>().weaponAngle;
+        float radius = WeaponManager.Instance().CurrentWeaponR_weaponR.GetComponent<ItemOnWeapon>().weaponRadius;
+
+        foreach (GameObject mob in GameManager.Instance().mobPool)
+        {
+            Debug.Log("attack");
+            if (IsInRange(angle, radius, gameObject.transform, mob.transform))
+            {
+                DeductMobHpInstant(mob, weaponDamage_instant);
+                DeductMobHpDelay(mob, weaponDamamge_delay);
+                ParticleSystem ps = hitVFX.GetComponent<ParticleSystem>();
+                ps.Play();
+                Debug.LogWarning("Hit : " + mob.GetComponent<ItemOnMob>().mobName + "Hp : " + mob.GetComponent<MubHpData>().Hp);
+            }
+        }
+    }
+
+    /// <summary>
+    /// 右手攻擊事件，綁在右手攻擊動畫上
+    /// </summary>
+    private void AttackEvent_bigRight()
     {
         int weaponDamage_instant = WeaponManager.Instance().CurrentWeaponR_weaponR.GetComponent<ItemOnWeapon>().weaponDamage_instant;
         int weaponDamamge_delay = WeaponManager.Instance().CurrentWeaponR_weaponR.GetComponent<ItemOnWeapon>().weaponDamage_delay;

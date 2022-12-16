@@ -128,7 +128,7 @@ public class WeaponManager : MonoBehaviour
     /// 將weaponRCardPool武器，分類成 Tuple(右單劍,左盾)or(右雙手劍,右雙手劍)
     /// 左盾隨機從weaponPoolL取，存進weaponRCardPool內
     /// </summary>
-    public void AddWeaponOneOfTreePool()
+    public void AddWeaponOneOfThreePool()
     {
         foreach (var card in weaponRCardPool)
         {
@@ -157,6 +157,23 @@ public class WeaponManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 從WeaponOneOfThreePool中，隨機取3個武器組合
+    /// </summary>
+    public GameObject GetThreeWeaponCombines()
+    {
+        int randomIndex = UnityEngine.Random.Range(0, WeaponOneOfThreePool.Count);
+
+        if(WeaponOneOfThreePool[randomIndex].aWeaponR.GetComponent<ItemOnWeapon>().weaponType==2)
+        {
+            return WeaponOneOfThreePool[randomIndex].aWeaponR;
+        }
+        else if(WeaponOneOfThreePool[randomIndex].aWeaponR.GetComponent<ItemOnWeapon>().weaponType == 3)
+        {
+            return WeaponOneOfThreePool[randomIndex].aWeaponR;
+        }
+        return null;
+    }
     /*---------------------------------*/
 
     private void Awake()
@@ -185,10 +202,12 @@ public class WeaponManager : MonoBehaviour
 
         //寫完三選一後，這邊就由三選一來設定，之後刪
         ChooseAndUseWeapon(1, 10);//初始盾牌
-        ChooseAndUseWeapon(2, 20);//初始右手單手劍 
+        //ChooseAndUseWeapon(2, 20);//初始右手單手劍 
+        ChooseAndUseWeapon(3, 30);//初始右手雙手劍 
+
 
         AddWeaponRCardPool();//測試用1215
-        AddWeaponOneOfTreePool();
+        AddWeaponOneOfThreePool();
     }
 
     private void Update()
