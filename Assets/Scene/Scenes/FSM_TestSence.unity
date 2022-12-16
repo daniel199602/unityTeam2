@@ -500,6 +500,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: LavaCharater Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 4292004830827175513, guid: 052b0736fab5eee4eaa4ea766d127ef3, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 052b0736fab5eee4eaa4ea766d127ef3, type: 3}
 --- !u!1 &1387236055

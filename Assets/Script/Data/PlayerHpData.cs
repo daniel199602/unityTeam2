@@ -7,8 +7,8 @@ public class PlayerHpData : MonoBehaviour
     // Start is called before the first frame update
     ItemOnMob thisItemOnMob;
 
-    [HideInInspector] public int MaxHp = 1000;
-    [SerializeField] public int Hp = 1000;
+    [HideInInspector] public int MaxHp;
+    [SerializeField] public int Hp;
     [SerializeField] private int currentHp;
 
     HealthPlayerBar Health;
@@ -17,11 +17,12 @@ public class PlayerHpData : MonoBehaviour
     {
         thisItemOnMob = GetComponent<ItemOnMob>();
         Health = GetComponent<HealthPlayerBar>();
+        MaxHp = thisItemOnMob.mobMaxHp;
     }
 
     private void Start()
     {
-        MaxHp = thisItemOnMob.mobMaxHp;
+        
         Hp = MaxHp;
         currentHp = Hp;
     }

@@ -5706,6 +5706,7 @@ GameObject:
   - component: {fileID: 3737803097286614813}
   - component: {fileID: 6976945080694197950}
   - component: {fileID: 4900490701733397481}
+  - component: {fileID: 3624866976881766380}
   m_Layer: 0
   m_Name: Skeleton@Skin_Fixed
   m_TagString: Untagged
@@ -5749,7 +5750,7 @@ Animator:
   m_Controller: {fileID: 9100000, guid: 6da3f4b7b6bbbf94f9164aa421cb0886, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
-  m_ApplyRootMotion: 1
+  m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
   m_WarningMessage: 
@@ -5881,6 +5882,20 @@ MonoBehaviour:
   MaxHp: 1000
   Hp: 1000
   currentHp: 0
+--- !u!136 &3624866976881766380
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8171539735143675359}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.06
+  m_Height: 1
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.495, z: 0}
 --- !u!1 &8171539735143675361
 GameObject:
   m_ObjectHideFlags: 0
