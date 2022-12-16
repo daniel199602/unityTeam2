@@ -14,6 +14,8 @@ public class DoorOpen_MobLast : MonoBehaviour
     {
         if (mobLast == 0)
         {
+            Time.timeScale = 0.5f;
+            
             this.gameObject.SetActive(false);
         }
     }

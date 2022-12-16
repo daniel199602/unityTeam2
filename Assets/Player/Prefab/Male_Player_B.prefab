@@ -4945,7 +4945,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2274833a1053481478e019d26a7952d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fHp: 0
   hitVFX: {fileID: 4011514427364212165}
 --- !u!114 &821133959739569995
 MonoBehaviour:
@@ -4991,7 +4990,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7115c9c725dd2df4dbf732bd0afc60e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  thisMobItem: {fileID: 11400000, guid: 5cb287263cb4f6c4e993d3e736f89b22, type: 2}
+  thisMobItem: {fileID: 11400000, guid: 9e3afce23f1b9c445b75ac3202a8cb06, type: 2}
 --- !u!1 &2631163493861753916
 GameObject:
   m_ObjectHideFlags: 0
