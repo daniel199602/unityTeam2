@@ -6,6 +6,7 @@ public class DoorOpen_MobLast : MonoBehaviour
 {
     public int mobLast = 8;
 
+
     public void killMob()
     {
         mobLast -= 1;
@@ -14,10 +15,9 @@ public class DoorOpen_MobLast : MonoBehaviour
     {
         if (mobLast == 0)
         {
-            Time.timeScale = 0.5f;
-            
             this.gameObject.SetActive(false);
         }
     }
-
 }
+
+

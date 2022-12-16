@@ -41,7 +41,7 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 563071864453283073}
   serializedVersion: 8
-  lengthInSec: 2
+  lengthInSec: 1.5
   simulationSpeed: 20
   stopAction: 0
   cullingMode: 1
@@ -116,7 +116,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 2
+      scalar: 1.5
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -4814,7 +4814,7 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6040442098695827983}
   serializedVersion: 8
-  lengthInSec: 2
+  lengthInSec: 1.5
   simulationSpeed: 20
   stopAction: 0
   cullingMode: 1
@@ -4889,7 +4889,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 2
+      scalar: 1.5
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -14843,6 +14843,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 19820068, guid: e392662fd49f2404cb7b2395eaa82cdf, type: 3}
+      propertyPath: lengthInSec
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 19820068, guid: e392662fd49f2404cb7b2395eaa82cdf, type: 3}
       propertyPath: simulationSpeed
       value: 20
       objectReference: {fileID: 0}
@@ -14860,15 +14864,31 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 19820068, guid: e392662fd49f2404cb7b2395eaa82cdf, type: 3}
       propertyPath: InitialModule.startLifetime.scalar
-      value: 2
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 19835484, guid: e392662fd49f2404cb7b2395eaa82cdf, type: 3}
       propertyPath: lengthInSec
-      value: 2
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 19835484, guid: e392662fd49f2404cb7b2395eaa82cdf, type: 3}
       propertyPath: simulationSpeed
       value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 19835484, guid: e392662fd49f2404cb7b2395eaa82cdf, type: 3}
+      propertyPath: InitialModule.size3D
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 19835484, guid: e392662fd49f2404cb7b2395eaa82cdf, type: 3}
+      propertyPath: ShapeModule.arc.value
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 19835484, guid: e392662fd49f2404cb7b2395eaa82cdf, type: 3}
+      propertyPath: RotationModule.x.minMaxState
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 19835484, guid: e392662fd49f2404cb7b2395eaa82cdf, type: 3}
+      propertyPath: RotationModule.y.minMaxState
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 19835484, guid: e392662fd49f2404cb7b2395eaa82cdf, type: 3}
       propertyPath: InitialModule.maxNumParticles
@@ -14883,12 +14903,24 @@ PrefabInstance:
       value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 19835484, guid: e392662fd49f2404cb7b2395eaa82cdf, type: 3}
+      propertyPath: EmissionModule.rateOverTime.scalar
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 19835484, guid: e392662fd49f2404cb7b2395eaa82cdf, type: 3}
       propertyPath: InitialModule.startLifetime.scalar
-      value: 2
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 19835484, guid: e392662fd49f2404cb7b2395eaa82cdf, type: 3}
       propertyPath: ColorModule.gradient.maxGradient.key0.a
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 19835484, guid: e392662fd49f2404cb7b2395eaa82cdf, type: 3}
+      propertyPath: SizeModule.curve.maxCurve.m_Curve.Array.data[2].time
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 19835484, guid: e392662fd49f2404cb7b2395eaa82cdf, type: 3}
+      propertyPath: SizeModule.curve.maxCurve.m_Curve.Array.data[2].value
+      value: 0.542078
       objectReference: {fileID: 0}
     - target: {fileID: 19842544, guid: e392662fd49f2404cb7b2395eaa82cdf, type: 3}
       propertyPath: InitialModule.startSpeed.scalar
