@@ -171,13 +171,15 @@ public class WeaponManager : MonoBehaviour
         DontDestroyOnLoad(this.gameObject);
 
         AddAllWeaponsInTheirWeaponPool();//將所有武器，分別加入他們各自的武器池
-        player = GameManager.Instance().PlayerStart;//抓到玩家
+        
         weaponRCardPool = new List<(GameObject aWeapon_r, bool isCanSetWeaponL)>();
         WeaponOneOfThreePool = new List<(GameObject aWeaponR, GameObject aWeaponL)>();
     }
 
     void Start()
     {
+        player = GameManager.Instance().PlayerStart;//抓到玩家
+
         //玩家初始武器設定
         ChooseAndUseWeapon(0, 0);//初始火把
 
