@@ -7,9 +7,12 @@ public class lightTorchSwitch : MonoBehaviour
     public GameObject fire;
     bool isInZone;
     bool haveFire;
+ 
+
     // Start is called before the first frame update
     void Start()
     {
+        
         haveFire = true;
         //測試需開關用
         //fire.SetActive(false);
@@ -18,7 +21,7 @@ public class lightTorchSwitch : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(isInZone && Input.GetMouseButtonDown(0)&& haveFire)
+        if (isInZone && Input.GetMouseButtonDown(0)&& GameManager.Instance().PlayerStart.GetComponent<CharacterAttackManager>().AttackEvent_left_torch())
         {
             //測試需開關用
             //fire.SetActive(!fire.activeSelf);

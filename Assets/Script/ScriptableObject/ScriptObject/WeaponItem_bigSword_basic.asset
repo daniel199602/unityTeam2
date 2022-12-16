@@ -15,7 +15,7 @@ MonoBehaviour:
   weaponName: bigSword_basic
   weaponType: 3
   weaponID: 30
-  weaponDamage_instant: 160
+  weaponDamage_instant: 300
   weaponDamage_delay: 0
   weaponAngle: 120
   weaponRadius: 50

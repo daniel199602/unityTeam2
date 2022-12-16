@@ -43,8 +43,8 @@ public class CharacterAttackManager : MonoBehaviour
     /// <summary>
     /// 左手火把攻擊事件，綁在左手火把攻擊動畫上
     /// </summary>
-    private void AttackEvent_left_torch()
-        {
+    public bool AttackEvent_left_torch()
+    {
         int weaponDamage_instant = WeaponManager.Instance().CurrentTorchL_torch.GetComponent<ItemOnWeapon>().weaponDamage_instant;
         int weaponDamamge_delay = WeaponManager.Instance().CurrentTorchL_torch.GetComponent<ItemOnWeapon>().weaponDamage_delay;
         float angle = WeaponManager.Instance().CurrentTorchL_torch.GetComponent<ItemOnWeapon>().weaponAngle;
@@ -60,6 +60,7 @@ public class CharacterAttackManager : MonoBehaviour
                 Debug.LogWarning("Hit : " + mob.GetComponent<ItemOnMob>().mobName + "Hp : " + mob.GetComponent<MubHpData>().Hp);
             }
         }
+        return true;
     }
 
     /// <summary>

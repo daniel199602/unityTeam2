@@ -44,6 +44,7 @@ public class SkeletonFSM : MonoBehaviour
     private void Awake()
     {
         ThisItemOnMob_State = GetComponent<ItemOnMob>();
+        Debug.LogWarning("---------------------------------------------------------------------------------------");
     }
     void Start()
     {
@@ -67,6 +68,7 @@ public class SkeletonFSM : MonoBehaviour
         LeaveATKRadius = ATKRadius * 1.05f;
 
         LookBool = true;
+        Debug.LogWarning("---------------------------------------------------------------------------------------start");
 
     }
     // Update is called once per frame
@@ -248,8 +250,9 @@ public class SkeletonFSM : MonoBehaviour
             MubAnimator.SetFloat("Blend", 0);
         }
         GetTargetNormalize = (Target.transform.position - transform.position).normalized;
+        GetTargetNormalize.y = 0;
 
-        capsule.SimpleMove(GetTargetNormalize*MoveSpeed);
+        capsule.Move(GetTargetNormalize*MoveSpeed*Time.deltaTime);
 
         if (GetTargetMegnitude == ATKRadius)
         {
