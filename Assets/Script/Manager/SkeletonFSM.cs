@@ -72,6 +72,8 @@ public class SkeletonFSM : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Vector3 local = new Vector3(transform.position.x,0,transform.position.z);
+        transform.position = local;
         //玩家死亡TODO()還沒寫
         AwakeSensor();
         Quaternion c = new Quaternion(0, transform.rotation.y, 0, transform.rotation.w);

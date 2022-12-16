@@ -500,6 +500,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: LavaCharater Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 4292004830827175513, guid: 052b0736fab5eee4eaa4ea766d127ef3, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 052b0736fab5eee4eaa4ea766d127ef3, type: 3}
 --- !u!1 &1387236055
@@ -1105,7 +1109,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7143010690539542105, guid: 99ae7bdd379a96a43b8b110cb3d899f3, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7145534490858302305, guid: 99ae7bdd379a96a43b8b110cb3d899f3, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
