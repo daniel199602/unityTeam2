@@ -81,6 +81,8 @@ public class CharacterAttackManager : MonoBehaviour
                 DeductMobHpInstant(mob, weaponDamage_instant);
                 DeductMobHpDelay(mob, weaponDamamge_delay);
                 DeductMobAnimatorDelay(mob);
+                ParticleSystem ps = hitVFX.GetComponent<ParticleSystem>();
+                ps.Play();
                 recoilShake.camraPlayerSake();
                 Debug.LogWarning("Hit : " + mob.GetComponent<ItemOnMob>().mobName + "Hp : " + mob.GetComponent<MubHpData>().Hp);
             }
@@ -133,6 +135,25 @@ public class CharacterAttackManager : MonoBehaviour
                 ps.Play();
                 recoilShake.camraPlayerSake();
                 Debug.LogWarning("Hit : " + mob.GetComponent<ItemOnMob>().mobName + "Hp : " + mob.GetComponent<MubHpData>().Hp);
+            }
+        }
+    }
+
+    /// <summary>
+    /// 單純打擊粒子特效
+    /// </summary>
+    private void AttackParticleEvent()
+    {
+        float angle = WeaponManager.Instance().CurrentWeaponR_weaponR.GetComponent<ItemOnWeapon>().weaponAngle;
+        float radius = WeaponManager.Instance().CurrentWeaponR_weaponR.GetComponent<ItemOnWeapon>().weaponRadius;
+
+        foreach (GameObject mob in GameManager.Instance().mobPool)
+        {
+            Debug.Log("attack");
+            if (IsInRange(angle, radius, gameObject.transform, mob.transform))
+            {
+                ParticleSystem ps = hitVFX.GetComponent<ParticleSystem>();
+                ps.Play();
             }
         }
     }
