@@ -43,7 +43,7 @@ public class HealthBar : MonoBehaviour
 
     public void BarFilter()
     {
-        Healthbar.fillAmount = Health/ Maxhealth;
+        //Healthbar.fillAmount = Health/ Maxhealth;
         //Debug.Log("´î¤Ö¤¤"+Health / Maxhealth);
         //Debug.Log(Healthbar.fillAmount);
         
@@ -57,14 +57,14 @@ public class HealthBar : MonoBehaviour
             yield return new WaitForSeconds(Time.deltaTime);
             if (CountTime < 0)
             {
-                if (HealthbarLate.fillAmount > Healthbar.fillAmount)
-                {
-                    HealthbarLate.fillAmount -= 0.01f;
-                }
-                else
-                {
-                    HealthbarLate.fillAmount = Healthbar.fillAmount;
-                }
+                //if (HealthbarLate.fillAmount > Healthbar.fillAmount)
+                //{
+                //    HealthbarLate.fillAmount -= 0.01f;
+                //}
+                //else
+                //{
+                //    HealthbarLate.fillAmount = Healthbar.fillAmount;
+                //}
             }
             CountTime--;
         }
