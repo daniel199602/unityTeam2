@@ -760,6 +760,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1243245066 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5664162745329559516, guid: 843a687dd2b95bb4cb66922c432cf3f4, type: 3}
+  m_PrefabInstance: {fileID: 1880995978}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1319476572 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5499223534040164984, guid: 843a687dd2b95bb4cb66922c432cf3f4, type: 3}
@@ -914,6 +919,10 @@ PrefabInstance:
       propertyPath: hitMask.m_Bits
       value: 640
       objectReference: {fileID: 0}
+    - target: {fileID: 686143627886375539, guid: 843a687dd2b95bb4cb66922c432cf3f4, type: 3}
+      propertyPath: bigSwoadSlash_Right
+      value: 
+      objectReference: {fileID: 1243245066}
     - target: {fileID: 2631163319326334126, guid: 843a687dd2b95bb4cb66922c432cf3f4, type: 3}
       propertyPath: m_Name
       value: Male_Player_B
