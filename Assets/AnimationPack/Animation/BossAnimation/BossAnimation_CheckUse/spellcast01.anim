@@ -33358,14 +33358,7 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.33333334
-    functionName: AttackEvent_Ranged
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
-  - time: 0.4
+  - time: 0.36666667
     functionName: AttackEvent_Ranged
     data: 
     objectReferenceParameter: {fileID: 0}
@@ -33379,14 +33372,7 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.53333336
-    functionName: AttackEvent_Ranged
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
-  - time: 0.6
+  - time: 0.56666666
     functionName: AttackEvent_Ranged
     data: 
     objectReferenceParameter: {fileID: 0}
@@ -33400,8 +33386,8 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.73333335
-    functionName: AttackEvent_Ranged
+  - time: 0.6666667
+    functionName: AnimationR_s
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0

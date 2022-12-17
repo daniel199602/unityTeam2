@@ -62,12 +62,28 @@ public class BossFSM : MonoBehaviour
 
     ItemOnMob ThisItemOnMob_State;
 
+    //噴火
+    GameObject LeftArm;
+    ParticleSystem Spilt_Fire;
+    //傳送
+    GameObject Teleport;
+    ParticleSystem magic_circle;
+    //大招
+    GameObject UltimateFire;
+    ParticleSystem Fire;
+    //2階段
+    GameObject Flame;
+    ParticleSystem Roar;
     // Start is called before the first frame update
     private void Awake()
     {
         ThisItemOnMob_State = GetComponent<ItemOnMob>();
         TeleportPoint01 = GameObject.Find("TeleportPoint01");
         TeleportPoint02 = GameObject.Find("TeleportPoint02");
+        LeftArm = GameObject.Find("FlameThrower");
+        Teleport = GameObject.Find("MagicRune3");
+        UltimateFire = GameObject.Find("FlameEmission");
+        Flame = GameObject.Find("Candle3");
     }
     void Start()
     {
@@ -86,6 +102,12 @@ public class BossFSM : MonoBehaviour
         AxeOnBack.SetActive(true);
         AxeOnHand.SetActive(false);
 
+        //特效
+        Spilt_Fire = LeftArm.GetComponent<ParticleSystem>();
+        magic_circle = Teleport.GetComponent<ParticleSystem>();
+        Fire = UltimateFire.GetComponent<ParticleSystem>();
+        Roar = Flame.GetComponent<ParticleSystem>();
+
         //血量區
         hpTemporary = State.Hp;
         hpTemporaryMax = State.Hp;
@@ -99,10 +121,10 @@ public class BossFSM : MonoBehaviour
         //範圍設定
         ATKRadius = ThisItemOnMob_State.mobRadius;
         ATKRadius_norm = ThisItemOnMob_State.mobRadius;//Weapon覆蓋
-        ATKRadius_Atk = ThisItemOnMob_State.mobRadius*1.5f;
-        RangedRadius = ATKRadius * 2f;
-        RangedRadius_norm = ATKRadius * 2f;
-        TraceRadius = ATKRadius * 3f;
+        ATKRadius_Atk = ThisItemOnMob_State.mobRadius * 1.5f;
+        RangedRadius = ATKRadius * 3f;
+        RangedRadius_norm = ATKRadius * 3f;
+        TraceRadius = ATKRadius * 4f;
 
         GetHit = false;
         inRrangeBool = false;
@@ -118,7 +140,6 @@ public class BossFSM : MonoBehaviour
     void Update()
     {
         TargetHp = Target.GetComponent<PlayerHpData>().Hp;
-        Debug.Log(TargetHp);
         if (StartBattle == true)
         {
             Vector3 pv = new Vector3(transform.position.x, 0f, transform.position.z);
@@ -136,11 +157,13 @@ public class BossFSM : MonoBehaviour
             else if (TargetHp <= 1)
             {
                 CheckPlayerState();
-            }           
+            }
             else if ((float)hpTemporary / (float)hpTemporaryMax <= 0.5f && IK == false)
             {
                 StageTwo = true;
                 IK = true;
+                Debug.Log("t2");
+                Debug.Log(IK);
                 MubAnimator.SetBool("Trace", false);
                 MubAnimator.SetBool("Attack01", false);
                 MubAnimator.SetBool("Attack02", false);
@@ -189,12 +212,12 @@ public class BossFSM : MonoBehaviour
                 AttackStatus();
             }
             Debug.Log(m_NowState);
-        }        
+        }
     }
     public void DoorOpen()
-    {     
-            MubAnimator.SetBool("DrawWeapon",true);
-            StartBattle = true;
+    {
+        MubAnimator.SetBool("DrawWeapon", true);
+        StartBattle = true;
         Debug.Log("attack");
     }
     public void CheckPlayerState()
@@ -213,6 +236,7 @@ public class BossFSM : MonoBehaviour
     {
         if (StageTwo == true)
         {
+            Debug.Log("incost");
             MubAnimator.SetTrigger("T2");
             UCount = 0;
             LookBool = false;
@@ -267,7 +291,7 @@ public class BossFSM : MonoBehaviour
         {
             InRangeATKrange = IsInRange_RangedBattleRange(RangedRadius, MySelf, Target);
             if (InRangeATKrange == true)
-            {                
+            {
                 LookBool = true;
                 m_NowState = BossState.RangeAttack;
                 MubAnimator.SetBool("Trace", false);
@@ -275,7 +299,7 @@ public class BossFSM : MonoBehaviour
                 inRrangeBool = true;
             }
             else
-            {                
+            {
                 inRrangeBool = false;
             }
         }
@@ -306,6 +330,7 @@ public class BossFSM : MonoBehaviour
         {
             MubAnimator.SetBool("R_Attack", true);
             RangedRadius = TraceRadius;
+
         }
         else if (RCount != 0)
         {
@@ -381,6 +406,7 @@ public class BossFSM : MonoBehaviour
     }
     public void Ultimate()
     {
+        Debug.LogWarning("大招");
         MubAnimator.SetTrigger("Ulti");
         MubAnimator.SetBool("Attack01", false);
         MubAnimator.SetBool("Attack02", false);
@@ -390,7 +416,7 @@ public class BossFSM : MonoBehaviour
         MubAnimator.SetBool("TAttack03", false);
         MubAnimator.SetBool("R_Attack", false);
     }
-   
+
     //甦醒狀態
     public bool IsInRange_AwakeRange(float Radius, GameObject attacker, GameObject attacked)
     {
@@ -443,40 +469,47 @@ public class BossFSM : MonoBehaviour
 
     private void Animation_RangedAttack()
     {
-        MubAnimator.speed = 0.1f;
+        MubAnimator.speed = 0.4f;
         RotateSpeed /= 5;
+        Spilt_Fire.Play();
+    }
+    private void AnimationR_s()
+    {
+        Spilt_Fire.Stop();
     }
     private void AnimationSpeed_R_AttackEnd()
     {
         MubAnimator.speed = 1f;
-        LookBool = true;
+       
         RCount = 10;
+
         RotateSpeed *= 5;
         StartCoroutine(RangerCooldown());
     }
+  
     private void AnimationSpeed_AttackEnd01R()
     {
         MubAnimator.speed = 1f;
-        LookBool = true;
+
     }
     private void AnimationSpeed_AttackEnd01()
     {
         MubAnimator.speed = 1f;
-        LookBool = true;
+
         Count = 2;
         StartCoroutine(AttackCooldown());
     }
     private void AnimationSpeed_AttackEnd02()
     {
         MubAnimator.speed = 1f;
-        LookBool = true;
+
         Count = 3;
         StartCoroutine(AttackCooldown());
     }
     private void AnimationSpeed_TAttackEnd()
     {
         Count = 3;
-        LookBool = true;
+
         StartCoroutine(AttackCooldown());
         MubAnimator.speed = 1f;
     }
@@ -486,9 +519,12 @@ public class BossFSM : MonoBehaviour
     }
     private void StageTwoEventSwitch()
     {
-        //階段二特效
-
+        Roar.Play();
         MubAnimator.ResetTrigger("T2");
+    }
+    private void StageTwoEventSwitch_s()
+    {
+        Roar.Stop();
     }
     private void TeleportEvent()
     {
@@ -501,6 +537,7 @@ public class BossFSM : MonoBehaviour
             transform.rotation = Look;
             MubAnimator.applyRootMotion = false;
             transform.position = TeleportPoint01.transform.position;
+            magic_circle.Stop();
             MubAnimator.SetBool("ChangeWeapon", true);
         }
         else
@@ -510,6 +547,7 @@ public class BossFSM : MonoBehaviour
             transform.rotation = Look;
             MubAnimator.applyRootMotion = false;
             transform.position = TeleportPoint02.transform.position;
+            magic_circle.Stop();
             MubAnimator.SetBool("ChangeWeapon", true);
         }
     }
@@ -523,7 +561,7 @@ public class BossFSM : MonoBehaviour
     }
     private void ChargeUpEvent_GetPower()
     {
-        //續力特效
+        Fire.Play();
         MubAnimator.speed = 0.2f;
     }
     private void Animation_UltimateAttack()
@@ -539,9 +577,14 @@ public class BossFSM : MonoBehaviour
     {
         MubAnimator.speed = 1f;
         MubAnimator.SetBool("ChargeUp", false);
+        MubAnimator.ResetTrigger("Ulti");
         LookBool = true;
         UCount = 80;
         StartCoroutine(UltimateCooldown());
+    }
+    private void UltiPatricle_End()
+    {
+        Fire.Stop();
     }
     private void GetHitReset()
     {
@@ -557,9 +600,9 @@ public class BossFSM : MonoBehaviour
     private void ChangeWeapon()
     {
         MubAnimator.SetBool("ChangeWeapon", false);
-        LookBool = false;        
+        LookBool = false;
         if (AxeOnHand.activeInHierarchy == true)
-        {            
+        {
             AxeOnBack.SetActive(true);
             AxeOnHand.SetActive(false);
         }
@@ -584,7 +627,7 @@ public class BossFSM : MonoBehaviour
     private void WeaponOnHand()
     {
         MubAnimator.SetBool("DrawWeapon", false);
-    }   
+    }
     private void WeaponOnBack_E()
     {
         BigSwordOnBack.SetActive(true);
@@ -592,13 +635,17 @@ public class BossFSM : MonoBehaviour
         AxeOnBack.SetActive(true);
         AxeOnHand.SetActive(false);
     }
+    private void Teleport_Start()
+    {
+        magic_circle.Play();
+    }
     IEnumerator AttackCooldown()
     {
         while (Count > 0)
         {
             Count--;
             yield return new WaitForSeconds(1);
-            Debug.Log("攻擊CD:"+Count);
+            Debug.Log("攻擊CD:" + Count);
             if (Count == 1)
             {
                 RandomChooseCd = false;

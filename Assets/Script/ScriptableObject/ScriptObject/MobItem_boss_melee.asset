@@ -15,7 +15,7 @@ MonoBehaviour:
   mobName: boss_melee
   mobType: 11
   mobMaxHp: 10000
-  mobDamage_instant: 70
+  mobDamage_instant: 60
   mobDamage_delay: 5
-  mobAngle: 120
-  mobRadius: 70
+  mobAngle: 70
+  mobRadius: 40

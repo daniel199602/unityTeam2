@@ -53,10 +53,10 @@ public class BossAttackManager : MonoBehaviour
         /*¨¤«×*/
         mobAngle = GetComponent<ItemOnMob>().mobAngle;
         mobAngle_R = GetComponent<ItemOnMob>().mobAngle / 4;
-        mobAngle_U = GetComponent<ItemOnMob>().mobAngle / 2;
+        mobAngle_U = GetComponent<ItemOnMob>().mobAngle / 5;
         /*¶ZÂ÷*/
         mobRadius = GetComponent<ItemOnMob>().mobRadius;
-        mobRadius_R = GetComponent<ItemOnMob>().mobRadius * 2f;
+        mobRadius_R = GetComponent<ItemOnMob>().mobRadius * 3f;
         mobRadius_U = GetComponent<ItemOnMob>().mobRadius * 30f;
 
         TargetSize = Target.GetComponent<CharacterController>();
@@ -78,7 +78,6 @@ public class BossAttackManager : MonoBehaviour
             DeductMobHpDelay(Target, mobDamamge_delay);
 
             TargetSize.SimpleMove(TargetN * 20000 * Time.deltaTime);
-            Debug.LogWarning("Hit");
         }
     }
 
@@ -93,7 +92,6 @@ public class BossAttackManager : MonoBehaviour
             DeductMobHpDelay(Target, mobDamamge_delay);
 
             TargetSize.SimpleMove(TargetN * 20000 * Time.deltaTime);
-            Debug.LogWarning("Hit");
         }
     }
 
@@ -108,7 +106,6 @@ public class BossAttackManager : MonoBehaviour
             DeductMobHpDelay(Target, mobDamamge_delay_R);
 
             TargetSize.SimpleMove(TargetN * 20000 * Time.deltaTime);
-            Debug.LogWarning("Hit");
         }
     }
 
@@ -153,7 +150,6 @@ public class BossAttackManager : MonoBehaviour
     public void DeductMobHpDelay(GameObject mob, int demage_delay)
     {
         StartCoroutine(DamageDelay(mob, demage_delay));
-        Debug.LogWarning("«ùÄò¦©¦åµ²§ô");
     }
     /// <summary>
     /// ©µ¿ð¶Ë®`_Debuff«ùÄò¦©¦å
