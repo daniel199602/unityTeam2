@@ -101,8 +101,15 @@ public class MagicCasterFSM : MonoBehaviour
             }
             else if (State.Hp != hpTemporary)
             {
-                hpTemporary = State.Hp;
-                MubAnimator.SetBool("GetHit", true);
+                if (hpTemporary - State.Hp < 50)
+                {
+                    hpTemporary = State.Hp;
+                }
+                else if (hpTemporary - State.Hp >= 50)
+                {
+                    hpTemporary = State.Hp;
+                    MubAnimator.SetBool("GetHit", true);
+                }
             }
             else if (FrameCount_Roar <= 0)
             {

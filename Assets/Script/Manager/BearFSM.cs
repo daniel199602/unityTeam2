@@ -110,10 +110,17 @@ public class BearFSM : MonoBehaviour
             }
             else if (State.Hp != hpTemporary)
             {
-                hpTemporary = State.Hp;
-                MubAnimator.SetBool("GetHit", true);
-                capsule.SimpleMove(-(transform.forward*(MoveSpeed/5)));
-            }
+                if (hpTemporary - State.Hp < 50)
+                {
+                    hpTemporary = State.Hp;
+                }
+                else if (hpTemporary - State.Hp >= 50)
+                {
+                    hpTemporary = State.Hp;
+                    MubAnimator.SetBool("GetHit", true);
+                    capsule.SimpleMove(-(transform.forward * (MoveSpeed / 5)));
+                }
+            }                        
             else if (FrameCount_Roar <= 0)
             {
                 MubAnimator.SetBool("GetHit", false);

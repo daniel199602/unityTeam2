@@ -9,7 +9,7 @@ public class BossFSM : MonoBehaviour
 {
     private BossState m_NowState;
 
-    private GameObject Target;//存玩家
+    [SerializeField]private GameObject Target;//存玩家
     private GameObject MySelf;//存自己
 
     [SerializeField] private GameObject TeleportPoint01;
