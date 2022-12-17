@@ -74,6 +74,8 @@ public class BossFSM : MonoBehaviour
     //2階段
     GameObject Flame;
     ParticleSystem Roar;
+    //刀光
+    public ParticleSystem Bladelight;
     // Start is called before the first frame update
     private void Awake()
     {
@@ -107,6 +109,7 @@ public class BossFSM : MonoBehaviour
         magic_circle = Teleport.GetComponent<ParticleSystem>();
         Fire = UltimateFire.GetComponent<ParticleSystem>();
         Roar = Flame.GetComponent<ParticleSystem>();
+        Bladelight = GetComponent<ParticleSystem>();
 
         //血量區
         hpTemporary = State.Hp;
@@ -465,6 +468,8 @@ public class BossFSM : MonoBehaviour
     {
         MubAnimator.speed = 2f;
         LookBool = false;
+        Bladelight.transform.rotation = AxeOnHand.transform.rotation;
+        Bladelight.Play();
     }
 
     private void Animation_RangedAttack()
