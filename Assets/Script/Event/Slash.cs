@@ -11,6 +11,8 @@ public class Slash : MonoBehaviour
     public GameObject bigSwoadSlash_2;
     public GameObject bigSwoadSlash_3;
 
+    public GameObject SingleSwoadSlash_2;
+
     private void Start()
     {
         recoilShake = GetComponent<RecoilShake>();
@@ -37,6 +39,12 @@ public class Slash : MonoBehaviour
     void bigSwoadSlash3_Event()
     {
         ParticleSystem ps = bigSwoadSlash_3.GetComponent<ParticleSystem>();
+        ps.Play();
+    }
+
+    void singleSwoadSlash2_Event()
+    {
+        ParticleSystem ps = SingleSwoadSlash_2.GetComponent<ParticleSystem>();
         ps.Play();
     }
 
