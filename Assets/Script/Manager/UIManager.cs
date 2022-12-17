@@ -18,8 +18,6 @@ public class UIManager : MonoBehaviour
     public Transform weaponButton;//武器卡(按鈕)
     private TMP_Text[] weaponTextArray;//武器文字陣列
 
-    private bool boolgggg= true;
-
     private void Awake()
     {
         if (mInstance != null)
@@ -61,11 +59,11 @@ public class UIManager : MonoBehaviour
 
             Time.timeScale = 0.001f;
 
-            OneOfThree.gameObject.SetActive(boolgggg);
+            OneOfThree.gameObject.SetActive(true);
         }
         if (Input.GetKeyDown(KeyCode.K))
         {
-            OneOfThree.gameObject.SetActive(!boolgggg);
+            OneOfThree.gameObject.SetActive(false);
             Time.timeScale = 1f;
         }
     }
