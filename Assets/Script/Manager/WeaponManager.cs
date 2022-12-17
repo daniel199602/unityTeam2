@@ -138,7 +138,26 @@ public class WeaponManager : MonoBehaviour
     //第二步機制:
     //隨機從 weaponPoolR 抓3支不重複的左手武器(盾)
     //如果有當前裝備的左手盾則要排除
+    public List<GameObject> GetRandomThreeWeaponL()
+    {
+        int randomIndex = UnityEngine.Random.Range(0, weaponPoolL.Count);
+        List<GameObject> randomThreeWeaponLPool = new List<GameObject>();
 
+        for(int i = 0; i < 3; i++)
+        {
+            if (weaponPoolL[randomIndex] != CurrentWeaponL_weaponL)
+            {
+                randomThreeWeaponLPool.Add(weaponPoolR[randomIndex]);
+            }
+            else
+            {
+                i--;
+            }
+            if (randomIndex == (weaponPoolR.Count - 1)) randomIndex = 0;
+            if (randomIndex < weaponPoolR.Count) randomIndex++;
+        }
+        return randomThreeWeaponLPool;
+    }
 
     ////UI分別抓出三組武器的id，將對應的武器圖及數值顯示在UI上
     ////玩家選擇後，將該武器組合顯示在武器格中
@@ -150,9 +169,9 @@ public class WeaponManager : MonoBehaviour
     //如果是單手劍 + 盾，分別call一次 ChooseAndUseWeapon(傳入type,傳入id)
 
 
-
-
     /*---------------------------------*/
+
+
 
     private void Awake()
     {
