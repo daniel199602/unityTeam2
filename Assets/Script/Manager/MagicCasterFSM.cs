@@ -10,11 +10,13 @@ public class MagicCasterFSM : MonoBehaviour
 {
     public GameObject Bug;
     public GameObject LightRays;
+    public GameObject RoarLight;
     public Transform LaunchPort;
 
     private MagicCasterState m_NowState;
 
     ParticleSystem ps;
+    ParticleSystem pc;
 
     private GameObject Target;
     private GameObject MySelf;
@@ -61,18 +63,19 @@ public class MagicCasterFSM : MonoBehaviour
         capsule = GetComponent<CharacterController>();
         MubAnimator = GetComponent<Animator>();
         State = GetComponent<MubHpData>();
-        THp = Target.GetComponent<PlayerHpData>().Hp;
+        
 
         hpTemporary = State.Hp;
         FrameCount_Roar = 200;
-
+        ps = LightRays.GetComponent<ParticleSystem>();
+        pc = RoarLight.GetComponent<ParticleSystem>();
 
         m_NowState = MagicCasterState.Idle;
 
         ATKRadius = ThisItemOnMob_State.mobRadius;//Weapon覆蓋
 
         Close_ATKRadius = ATKRadius * 0.8f;
-        AwakeRadius = ATKRadius * 1.5f;
+        AwakeRadius = ATKRadius * 2.5f;
         Count = 0;
         RotateSpeed = 10f;
     }
@@ -80,7 +83,7 @@ public class MagicCasterFSM : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //玩家死亡TODO()還沒寫
+        THp = Target.GetComponent<PlayerHpData>().Hp;
         AwakeSensor();
         Quaternion c = new Quaternion(0, transform.rotation.y, 0, transform.rotation.w);
         transform.rotation = c;
@@ -92,6 +95,7 @@ public class MagicCasterFSM : MonoBehaviour
             }
             if (RoarBool == false)
             {
+                pc.Play();
                 Roar();
                 RoarBool = true;
             }
@@ -103,7 +107,8 @@ public class MagicCasterFSM : MonoBehaviour
             }
             else if (THp <= 1)
             {
-
+                MubAnimator.SetTrigger("IDLE");
+                return;
             }
             else if (State.Hp > 0)
             {
@@ -160,6 +165,7 @@ public class MagicCasterFSM : MonoBehaviour
         {
             MubAnimator.SetTrigger("Die");
             ps.Stop();
+            pc.Stop();
             capsule.radius = 0f;
         }
     }
@@ -295,7 +301,7 @@ public class MagicCasterFSM : MonoBehaviour
     private void AnimationSpeed_Attack()
     {
         MubAnimator.speed = 0.2f;
-        ParticleSystem ps = LightRays.GetComponent<ParticleSystem>();
+        
         ps.Play();
         RotateSpeed = RotateSpeed * .1f;
     }
@@ -306,7 +312,7 @@ public class MagicCasterFSM : MonoBehaviour
         CDs = 4;
         RotateSpeed = RotateSpeed * 10f;
         StartCoroutine(AttackCooldown());
-        ParticleSystem ps = LightRays.GetComponent<ParticleSystem>();
+        
         ps.Stop();
     }
     public void ZoneOpen()

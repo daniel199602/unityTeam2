@@ -59,6 +59,8 @@ public class SpiderFSM : MonoBehaviour
 
     int ColorChange;
 
+    int TargetHp;
+
     float ColorChangeTime;
     private void Awake()
     {
@@ -93,6 +95,7 @@ public class SpiderFSM : MonoBehaviour
     }
     private void Update()
     {
+        TargetHp = Target.GetComponent<PlayerHpData>().Hp;
         if (FrameCount_Roar > 0)
         {
             FrameCount_Roar--;
@@ -107,6 +110,12 @@ public class SpiderFSM : MonoBehaviour
             DeadStatus();
             return;
         }
+        else if (TargetHp <= 1)
+        {
+            m_NowState = SpiderState.Dead;
+            DeadStatus();
+            return;
+        }        
         else if (FrameCount_Roar <= 0)
         {
             MubAnimator.SetBool("Roar", false);

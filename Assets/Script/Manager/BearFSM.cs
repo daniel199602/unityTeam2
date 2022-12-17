@@ -17,6 +17,7 @@ public class BearFSM : MonoBehaviour
     MubHpData State;
     Animator MubAnimator;
     [SerializeField]int hpTemporary;
+    int TargetHp;
     CharacterController capsule;
     bool backing;
     bool tracing;
@@ -39,6 +40,7 @@ public class BearFSM : MonoBehaviour
     Vector3 GetTargetNormalize;
     float GetTargetMegnitude;
     int Count;
+
     bool AttackCBool=false;
 
     bool LeaveAttackRangeBool;
@@ -59,6 +61,7 @@ public class BearFSM : MonoBehaviour
     {        
         Target = GameManager.Instance().PlayerStart;//抓出玩家
         MySelf = this.transform.gameObject;//抓出自己
+        
 
         m_NowState = BearState.Idle;
         capsule = GetComponent<CharacterController>();
@@ -84,7 +87,7 @@ public class BearFSM : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //玩家死亡TODO()還沒寫
+        TargetHp = Target.GetComponent<PlayerHpData>().Hp;
         Quaternion c = new Quaternion(0, transform.rotation.y, 0,transform.rotation.w);
         transform.rotation = c;
         AwakeSensor();
@@ -107,8 +110,13 @@ public class BearFSM : MonoBehaviour
                 DeadStatus();
                 return;
             }
-            else if (State.Hp > 0)
+            else if (TargetHp <= 1)
             {
+                EatPlayer();
+                return;
+            }
+            else if (State.Hp > 0)
+            {               
                 if (State.Hp != hpTemporary)
                 {
                     if (hpTemporary - State.Hp < 50)
@@ -182,6 +190,11 @@ public class BearFSM : MonoBehaviour
         if (m_NowState == BearState.Dead)
         {
             MubAnimator.SetTrigger("Die");
+            MubAnimator.SetBool("Attack01", false);
+            MubAnimator.SetBool("Attack02", false);
+            MubAnimator.SetBool("Attack03", false);
+            MubAnimator.SetBool("Rotate", false);
+            MubAnimator.SetBool("Trace", false);
             isAttacking = true;
             capsule.radius = 0f;
         }
@@ -256,7 +269,8 @@ public class BearFSM : MonoBehaviour
             InATKrange_Close = CloseRange_RangedBattleRange(ATKRadius, Close_ATKRadius, MySelf, Target);
             if (InATKrange_Close == true)
             {
-                m_NowState = BearState.Attack;                
+                m_NowState = BearState.Attack;
+                Attack();
             }
             GetTargetMegnitude = (Target.transform.position - transform.position).magnitude;
             if (GetTargetMegnitude < Close_ATKRadius)
@@ -379,11 +393,27 @@ public class BearFSM : MonoBehaviour
     public void Idle()
     {
         MubAnimator.SetBool("Trace", false);
+        MubAnimator.SetBool("Rotate", true);
+        MubAnimator.SetBool("Attack01", false);
+        MubAnimator.SetBool("Attack02", false);
+        MubAnimator.SetBool("Attack03", false);
+    }
+    public void EatPlayer()
+    {
+        isAttacking = false;
+        GetTargetMegnitude = (Target.transform.position - transform.position).magnitude;
+        GetTargetNormalize = (Target.transform.position - transform.position).normalized;
+        capsule.SimpleMove(GetTargetNormalize * MoveSpeed);
+        MubAnimator.SetBool("GoTo", true);
+        if (GetTargetMegnitude <= 30)
+        {
+            MubAnimator.SetBool("GoTo", false);
+        }
     }
     public void Move()
     {
         GetTargetMegnitude = (Target.transform.position - transform.position).magnitude;
-
+        isAttacking = false;
         if (GetTargetMegnitude > RunRadius)
         {
             MoveSpeed *= 1.5f;
@@ -411,6 +441,8 @@ public class BearFSM : MonoBehaviour
     }
     public void Back()
     {
+        isAttacking = false;
+
         GetTargetMegnitude = (Target.transform.position - transform.position).magnitude;
 
         capsule.SimpleMove(-(transform.forward*5));

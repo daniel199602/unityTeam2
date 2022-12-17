@@ -37,6 +37,7 @@ public class SkeletonFSM : MonoBehaviour
     float MoveSpeed;
 
     int CDs;
+    int TargetHp;
 
     ItemOnMob ThisItemOnMob_State;
 
@@ -63,7 +64,7 @@ public class SkeletonFSM : MonoBehaviour
 
         TraceRadius = ATKRadius * 2;
 
-        AwakeRadius = ATKRadius * 1.5f;
+        AwakeRadius = ATKRadius * 4f;
 
         LeaveATKRadius = ATKRadius * 1.05f;
 
@@ -76,7 +77,7 @@ public class SkeletonFSM : MonoBehaviour
     {
         Vector3 local = new Vector3(transform.position.x, 0, transform.position.z);
         transform.position = local;
-        //玩家死亡TODO()還沒寫
+        TargetHp = Target.GetComponent<PlayerHpData>().Hp;
         AwakeSensor();
         Quaternion c = new Quaternion(0, transform.rotation.y, 0, transform.rotation.w);
         transform.rotation = c;
@@ -95,6 +96,11 @@ public class SkeletonFSM : MonoBehaviour
             {
                 m_NowState = SkeletonState.Dead;
                 DeadStatus();
+                return;
+            }
+            else if(TargetHp<=1)
+            {
+                MubAnimator.SetTrigger("PlayerDie");
                 return;
             }
             else if (State.Hp > 0)
