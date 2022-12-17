@@ -28,7 +28,6 @@ public class WeaponOneOfThreeUI : MonoBehaviour
         weaponDataArrayX = weaponButtonX.GetComponentsInChildren<TMP_Text>();//依照子對象順序查找
         weaponDataArrayY = weaponButtonY.GetComponentsInChildren<TMP_Text>();//依照子對象順序查找
         weaponDataArrayZ = weaponButtonZ.GetComponentsInChildren<TMP_Text>();//依照子對象順序查找
-
     }
 
 
@@ -127,8 +126,6 @@ public class WeaponOneOfThreeUI : MonoBehaviour
         if(weaponX.GetComponent<ItemOnWeapon>().weaponType==2)
         {
             SetRandomThreeWeaponL();
-            Debug.LogWarning("---------------------------222");
-
         }
         else
         {
@@ -144,7 +141,6 @@ public class WeaponOneOfThreeUI : MonoBehaviour
         if (weaponY.GetComponent<ItemOnWeapon>().weaponType == 2)
         {
             SetRandomThreeWeaponL();
-            Debug.LogWarning("---------------------------222");
         }
         else
         {
@@ -160,7 +156,6 @@ public class WeaponOneOfThreeUI : MonoBehaviour
         if (weaponZ.GetComponent<ItemOnWeapon>().weaponType == 2)
         {
             SetRandomThreeWeaponL();
-            Debug.LogWarning("---------------------------222");
         }
         else
         {

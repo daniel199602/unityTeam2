@@ -243,7 +243,7 @@ public class CharacterAttackManager : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        if(isOpenOnDrawGizmos)
+        if(isOpenOnDrawGizmos && WeaponManager.Instance().CurrentWeaponR_weaponR)
         {
             //¥k¤âªZ¾¹§ðÀ»¥b®|
             Gizmos.color = Color.red;

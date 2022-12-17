@@ -10,7 +10,8 @@ public class UIManager : MonoBehaviour
     private static UIManager mInstance;
     public static UIManager Instance() { return mInstance; }
 
-    public RectTransform weaponOneOfThreePanel;//三選一面版
+    public RectTransform weaponOneOfThreePanel;//三選一面板
+    public RectTransform weaponFramePanel;//武器格面板
 
     public Dictionary<int, Sprite> dicIDWeaponImage;//ID 找 武器圖 字典
 
