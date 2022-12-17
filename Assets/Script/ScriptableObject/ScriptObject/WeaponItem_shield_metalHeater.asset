@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e9fecbaf6227624459173a292215c6d1, type: 3}
-  m_Name: WeaponItem_shield_woodenKite
+  m_Name: WeaponItem_shield_metalHeater
   m_EditorClassIdentifier: 
-  weaponName: shield_woodenKite
+  weaponName: shield_metalHeater
   weaponType: 1
-  weaponID: 12
-  weaponDamage_instant: 50
+  weaponID: 13
+  weaponDamage_instant: 60
   weaponDamage_delay: 0
-  weaponAngle: 100
+  weaponAngle: 120
   weaponRadius: 40
