@@ -10,12 +10,16 @@ public class UIManager : MonoBehaviour
     private static UIManager mInstance;
     public static UIManager Instance() { return mInstance; }
 
-    public RectTransform OneOfThree;
+    public RectTransform OneOfThreePanel;//三選一面版
 
-    public Image x;//三選一之0，武器圖
+    public Transform weaponButtonX;//武器卡(按鈕)
+    public Transform weaponButtonY;//武器卡(按鈕)
+    public Transform weaponButtonZ;//武器卡(按鈕)
+    public Image imageX;//三選一之0，顯示武器圖示
+    public Image imageY;//三選一之1，顯示武器圖示
+    public Image imageZ;//三選一之2，顯示武器圖示
 
     public Dictionary<int,Sprite> dicIDWeaponImage;//ID 找 武器圖 字典
-    public Transform weaponButton;//武器卡(按鈕)
     private TMP_Text[] weaponTextArray;//武器文字陣列
 
     private void Awake()
@@ -31,12 +35,12 @@ public class UIManager : MonoBehaviour
 
 
         dicIDWeaponImage = new Dictionary<int, Sprite>();
-        weaponTextArray = weaponButton.GetComponentsInChildren<TMP_Text>();//依照子對象順序查找
+        weaponTextArray = weaponButtonX.GetComponentsInChildren<TMP_Text>();//依照子對象順序查找
     }
 
     private void Start()
     {
-        dicIDWeaponImage.Add(20, Resources.Load<Sprite>("iconTest_20"));
+        dicIDWeaponImage.Add(20, Resources.Load<Sprite>("w_20"));
         dicIDWeaponImage.Add(30, Resources.Load<Sprite>("iconTest_30"));
     }
 
@@ -44,12 +48,12 @@ public class UIManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.H))
         {
-            x.sprite = dicIDWeaponImage[30];
+            imageX.sprite = dicIDWeaponImage[30];
             Time.timeScale = 0.001f;
         }
         if (Input.GetKeyDown(KeyCode.J))
         {
-            x.sprite = dicIDWeaponImage[20];
+            imageX.sprite = dicIDWeaponImage[20];
 
             weaponTextArray[0].text = "weapon Ya";
             weaponTextArray[1].text = "" + 10000;
@@ -59,13 +63,14 @@ public class UIManager : MonoBehaviour
 
             Time.timeScale = 0.001f;
 
-            OneOfThree.gameObject.SetActive(true);
+            OneOfThreePanel.gameObject.SetActive(true);
         }
         if (Input.GetKeyDown(KeyCode.K))
         {
-            OneOfThree.gameObject.SetActive(false);
+            OneOfThreePanel.gameObject.SetActive(false);
             Time.timeScale = 1f;
         }
+        
     }
 
     /// <summary>
@@ -73,7 +78,7 @@ public class UIManager : MonoBehaviour
     /// </summary>
     public void OneOfThreeUIOpen()
     {
-        OneOfThree.gameObject.SetActive(true);
+        OneOfThreePanel.gameObject.SetActive(true);
     }
 
     /// <summary>
@@ -81,7 +86,7 @@ public class UIManager : MonoBehaviour
     /// </summary>
     public void OneOfThreeUIClose()
     {
-        OneOfThree.gameObject.SetActive(false);
+        OneOfThreePanel.gameObject.SetActive(false);
     }
 
 }
