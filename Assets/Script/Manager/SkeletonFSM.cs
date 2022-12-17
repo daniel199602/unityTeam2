@@ -31,12 +31,13 @@ public class SkeletonFSM : MonoBehaviour
     float LeaveATKRadius;
     float AwakeRadius;
 
-    public float Speed = 15f;    
+    public float Speed = 15f;
     Vector3 GetTargetNormalize;
     float GetTargetMegnitude;
     float MoveSpeed;
 
     int CDs;
+    int TargetHp;
 
     ItemOnMob ThisItemOnMob_State;
 
@@ -63,7 +64,7 @@ public class SkeletonFSM : MonoBehaviour
 
         TraceRadius = ATKRadius * 2;
 
-        AwakeRadius = ATKRadius * 1.5f;
+        AwakeRadius = ATKRadius * 4f;
 
         LeaveATKRadius = ATKRadius * 1.05f;
 
@@ -74,13 +75,13 @@ public class SkeletonFSM : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector3 local = new Vector3(transform.position.x,0,transform.position.z);
+        Vector3 local = new Vector3(transform.position.x, 0, transform.position.z);
         transform.position = local;
-        //玩家死亡TODO()還沒寫
+        TargetHp = Target.GetComponent<PlayerHpData>().Hp;
         AwakeSensor();
         Quaternion c = new Quaternion(0, transform.rotation.y, 0, transform.rotation.w);
         transform.rotation = c;
-        if (AwakeBool ==true)
+        if (AwakeBool == true)
         {
             if (FrameCount_Roar > 0)
             {
@@ -97,26 +98,41 @@ public class SkeletonFSM : MonoBehaviour
                 DeadStatus();
                 return;
             }
-            else if (State.Hp != hpTemporary)
+            else if(TargetHp<=1)
             {
-                hpTemporary = State.Hp;
-                MubAnimator.SetBool("GetHit", true);
+                MubAnimator.SetTrigger("PlayerDie");
+                return;
             }
-            else if (FrameCount_Roar <= 0)
+            else if (State.Hp > 0)
             {
-                MubAnimator.SetBool("GetHit", false);
+                if (State.Hp != hpTemporary)
+                {
+                    if (hpTemporary - State.Hp < 50)
+                    {
+                        hpTemporary = State.Hp;
+                    }
+                    else if (hpTemporary - State.Hp >= 50)
+                    {
+                        hpTemporary = State.Hp;
+                        MubAnimator.SetBool("GetHit", true);
+                    }
+                }
+                else if (FrameCount_Roar <= 0)
+                {
+                    MubAnimator.SetBool("GetHit", false);
 
-                MubAnimator.SetBool("Roar", false);
+                    MubAnimator.SetBool("Roar", false);
 
-                LookForward();
+                    LookForward();
 
-                TraceStatus();
+                    TraceStatus();
 
-                AttackStatus();
+                    AttackStatus();
 
-                LeaveAttackStatus();
-            }
-        }        
+                    LeaveAttackStatus();
+                }
+            }            
+        }
     }
     public void LookForward()
     {
@@ -134,14 +150,14 @@ public class SkeletonFSM : MonoBehaviour
     public void AwakeSensor()
     {
         {
-            if (AwakeBool==false)
+            if (AwakeBool == false)
             {
                 Awaken = IsInRange_AwakeRange(AwakeRadius, MySelf, Target);
                 if (Awaken == true)
                 {
                     AwakeBool = true;
                 }
-            }            
+            }
         }
     }
     public void DeadStatus()
@@ -252,7 +268,7 @@ public class SkeletonFSM : MonoBehaviour
         GetTargetNormalize = (Target.transform.position - transform.position).normalized;
         GetTargetNormalize.y = 0;
 
-        capsule.Move(GetTargetNormalize*MoveSpeed*Time.deltaTime);
+        capsule.Move(GetTargetNormalize * MoveSpeed * Time.deltaTime);
 
         if (GetTargetMegnitude == ATKRadius)
         {
@@ -272,7 +288,7 @@ public class SkeletonFSM : MonoBehaviour
     }
     public void Attack()
     {
-        if (m_NowState == SkeletonState.Attack&&CDs==0)
+        if (m_NowState == SkeletonState.Attack && CDs == 0)
         {
             MubAnimator.SetBool("Attack", true);
             LookBool = false;
@@ -307,7 +323,7 @@ public class SkeletonFSM : MonoBehaviour
     private void AnimationSpeed_AttackEnd()
     {
         MubAnimator.speed = 1f;
-        LeaveATKRadius = ATKRadius * 1.5f;
+        LeaveATKRadius = ATKRadius * 1.05f;
         CDs = 3;
         LookBool = true;
         StartCoroutine(AttackCooldown());

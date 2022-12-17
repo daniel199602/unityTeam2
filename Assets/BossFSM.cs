@@ -9,7 +9,7 @@ public class BossFSM : MonoBehaviour
 {
     private BossState m_NowState;
 
-    private GameObject Target;//存玩家
+    [SerializeField]private GameObject Target;//存玩家
     private GameObject MySelf;//存自己
 
     [SerializeField] private GameObject TeleportPoint01;
@@ -74,6 +74,8 @@ public class BossFSM : MonoBehaviour
     //2階段
     GameObject Flame;
     ParticleSystem Roar;
+    //刀光
+    public ParticleSystem Bladelight;
     // Start is called before the first frame update
     private void Awake()
     {
@@ -107,6 +109,7 @@ public class BossFSM : MonoBehaviour
         magic_circle = Teleport.GetComponent<ParticleSystem>();
         Fire = UltimateFire.GetComponent<ParticleSystem>();
         Roar = Flame.GetComponent<ParticleSystem>();
+        Bladelight = GetComponent<ParticleSystem>();
 
         //血量區
         hpTemporary = State.Hp;
@@ -154,64 +157,68 @@ public class BossFSM : MonoBehaviour
                 DeadStatus();
                 return;
             }
-            else if (TargetHp <= 1)
+            else if(State.Hp > 0)
             {
-                CheckPlayerState();
-            }
-            else if ((float)hpTemporary / (float)hpTemporaryMax <= 0.5f && IK == false)
-            {
-                StageTwo = true;
-                IK = true;
-                Debug.Log("t2");
-                Debug.Log(IK);
-                MubAnimator.SetBool("Trace", false);
-                MubAnimator.SetBool("Attack01", false);
-                MubAnimator.SetBool("Attack02", false);
-                MubAnimator.SetBool("Attack03", false);
-                MubAnimator.SetBool("R_Attack", false);
-                MubAnimator.SetBool("TAttack01", false);
-                MubAnimator.SetBool("TAttack02", false);
-                MubAnimator.SetBool("TAttack03", false);
-                StageTwoCost();
-            }
-            else if (UCount == 0)
-            {
-                MubAnimator.SetBool("GetHit01", false);
-                MubAnimator.SetBool("GetHit02", false);
-                Ultimate();
-            }
-            else if (State.Hp != hpTemporary)
-            {
-                hpTemporary = State.Hp;
-                if (GetHit == false && Count != 0 && RCount != 0)
+                if (TargetHp <= 1)
                 {
-                    RandomChooseHit = UnityEngine.Random.Range(1, 2);
-                    GetHit = true;
-                    if (RandomChooseHit == 1)
+                    CheckPlayerState();
+                }
+                else if ((float)hpTemporary / (float)hpTemporaryMax <= 0.5f && IK == false)
+                {
+                    StageTwo = true;
+                    IK = true;
+                    Debug.Log("t2");
+                    Debug.Log(IK);
+                    MubAnimator.SetBool("Trace", false);
+                    MubAnimator.SetBool("Attack01", false);
+                    MubAnimator.SetBool("Attack02", false);
+                    MubAnimator.SetBool("Attack03", false);
+                    MubAnimator.SetBool("R_Attack", false);
+                    MubAnimator.SetBool("TAttack01", false);
+                    MubAnimator.SetBool("TAttack02", false);
+                    MubAnimator.SetBool("TAttack03", false);
+                    StageTwoCost();
+                }
+                else if (UCount == 0)
+                {
+                    MubAnimator.SetBool("GetHit01", false);
+                    MubAnimator.SetBool("GetHit02", false);
+                    Ultimate();
+                }
+                else if (State.Hp != hpTemporary)
+                {
+                    hpTemporary = State.Hp;
+                    if (GetHit == false && Count != 0 && RCount != 0)
                     {
-                        MubAnimator.SetBool("GetHit01", true);
-                        return;
-                    }
-                    if (RandomChooseHit == 2)
-                    {
-                        MubAnimator.SetBool("GetHit02", true);
-                        return;
+                        RandomChooseHit = UnityEngine.Random.Range(1, 2);
+                        GetHit = true;
+                        if (RandomChooseHit == 1)
+                        {
+                            MubAnimator.SetBool("GetHit01", true);
+                            return;
+                        }
+                        if (RandomChooseHit == 2)
+                        {
+                            MubAnimator.SetBool("GetHit02", true);
+                            return;
+                        }
                     }
                 }
+                else
+                {
+                    MubAnimator.SetBool("GetHit01", false);
+                    MubAnimator.SetBool("GetHit02", false);
+                    GetHit = false;
+
+                    TraceStatus();
+
+                    RangedAttackStatus();
+
+                    AttackStatus();
+                }
+                Debug.Log(m_NowState);
             }
-            else
-            {
-                MubAnimator.SetBool("GetHit01", false);
-                MubAnimator.SetBool("GetHit02", false);
-                GetHit = false;
-
-                TraceStatus();
-
-                RangedAttackStatus();
-
-                AttackStatus();
-            }
-            Debug.Log(m_NowState);
+            
         }
     }
     public void DoorOpen()
@@ -256,6 +263,11 @@ public class BossFSM : MonoBehaviour
         {
             MubAnimator.SetTrigger("Die");
             CheckPlayerState();
+            magic_circle.Stop();
+            Spilt_Fire.Stop();
+            Fire.Stop();
+            Bladelight.Stop();
+            Roar.Stop();
             LookBool = false;
             capsule.radius = 0f;
         }
@@ -465,6 +477,8 @@ public class BossFSM : MonoBehaviour
     {
         MubAnimator.speed = 2f;
         LookBool = false;
+        Bladelight.transform.rotation = AxeOnHand.transform.rotation;
+        Bladelight.Play();
     }
 
     private void Animation_RangedAttack()

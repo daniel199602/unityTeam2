@@ -23,6 +23,13 @@ public class killMoBTest : MonoBehaviour
         ParticleSystem ps = mobDeathFVX.GetComponent<ParticleSystem>();
         ps.Play();
     }
+    public void killMobEvent_VFX_Leave()
+    {
+        ParticleSystem ps = mobDeathFVX.GetComponent<ParticleSystem>();
+        ps.Play();
+        MobMain.Instance().oPool.UnLoadObjectToPool(MobMain.Instance().pTestList, this.gameObject);
+        MobMain.Instance().pAliveObject.Remove(this.gameObject);
+    }
 
 
     public void killMobEvent()

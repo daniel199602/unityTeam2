@@ -10,11 +10,13 @@ public class MagicCasterFSM : MonoBehaviour
 {
     public GameObject Bug;
     public GameObject LightRays;
+    public GameObject RoarLight;
     public Transform LaunchPort;
 
     private MagicCasterState m_NowState;
 
     ParticleSystem ps;
+    ParticleSystem pc;
 
     private GameObject Target;
     private GameObject MySelf;
@@ -30,14 +32,15 @@ public class MagicCasterFSM : MonoBehaviour
 
     bool AwakeBool = false;
     bool Awaken;
+    bool TA = false;
 
     float ATKRadius;
     float Close_ATKRadius;
     float AwakeRadius;
-    [SerializeField]float RotateSpeed;
+    [SerializeField] float RotateSpeed;
 
     Vector3 GetTargetNormalize;
-
+    int THp;
     int Count;
     int CDs;
     ItemOnMob ThisItemOnMob_State;
@@ -61,16 +64,18 @@ public class MagicCasterFSM : MonoBehaviour
         MubAnimator = GetComponent<Animator>();
         State = GetComponent<MubHpData>();
         
+
         hpTemporary = State.Hp;
         FrameCount_Roar = 200;
+        ps = LightRays.GetComponent<ParticleSystem>();
+        pc = RoarLight.GetComponent<ParticleSystem>();
 
-        
         m_NowState = MagicCasterState.Idle;
 
         ATKRadius = ThisItemOnMob_State.mobRadius;//Weapon覆蓋
 
         Close_ATKRadius = ATKRadius * 0.8f;
-        AwakeRadius = ATKRadius * 1.5f;
+        AwakeRadius = ATKRadius * 2.5f;
         Count = 0;
         RotateSpeed = 10f;
     }
@@ -78,7 +83,7 @@ public class MagicCasterFSM : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //玩家死亡TODO()還沒寫
+        THp = Target.GetComponent<PlayerHpData>().Hp;
         AwakeSensor();
         Quaternion c = new Quaternion(0, transform.rotation.y, 0, transform.rotation.w);
         transform.rotation = c;
@@ -90,6 +95,7 @@ public class MagicCasterFSM : MonoBehaviour
             }
             if (RoarBool == false)
             {
+                pc.Play();
                 Roar();
                 RoarBool = true;
             }
@@ -99,29 +105,45 @@ public class MagicCasterFSM : MonoBehaviour
                 DeadStatus();
                 return;
             }
-            else if (State.Hp != hpTemporary)
+            else if (THp <= 1)
             {
-                hpTemporary = State.Hp;
-                MubAnimator.SetBool("GetHit", true);
+                MubAnimator.SetTrigger("IDLE");
+                return;
             }
-            else if (FrameCount_Roar <= 0)
+            else if (State.Hp > 0)
             {
-                MubAnimator.SetBool("GetHit", false);
+                if (State.Hp != hpTemporary)
+                {
+                    if (hpTemporary - State.Hp < 50)
+                    {
+                        hpTemporary = State.Hp;
+                    }
+                    else if (hpTemporary - State.Hp >= 50)
+                    {
+                        hpTemporary = State.Hp;
+                        MubAnimator.SetBool("GetHit", true);
+                    }
+                }
+                else if (FrameCount_Roar <= 0)
+                {
+                    MubAnimator.SetBool("GetHit", false);
 
-                MubAnimator.SetBool("Warn", false);
+                    MubAnimator.SetBool("Warn", false);
 
-                GetTargetNormalize = (Target.transform.position - transform.position).normalized;
+                    GetTargetNormalize = (Target.transform.position - transform.position).normalized;
 
-                Quaternion Look = Quaternion.LookRotation(GetTargetNormalize);
+                    Quaternion Look = Quaternion.LookRotation(GetTargetNormalize);
 
-                transform.rotation = Quaternion.Slerp(transform.rotation, Look, RotateSpeed * Time.deltaTime);
+                    transform.rotation = Quaternion.Slerp(transform.rotation, Look, RotateSpeed * Time.deltaTime);
 
-                BugSummon();
+                    BugSummon();
 
-                TraceStatus();
+                    TraceStatus();
 
-                AttackStatus();
+                    AttackStatus();
+                }
             }
+
         }
     }
     public void AwakeSensor()
@@ -142,6 +164,8 @@ public class MagicCasterFSM : MonoBehaviour
         if (m_NowState == MagicCasterState.Dead)
         {
             MubAnimator.SetTrigger("Die");
+            ps.Stop();
+            pc.Stop();
             capsule.radius = 0f;
         }
     }
@@ -214,22 +238,39 @@ public class MagicCasterFSM : MonoBehaviour
     }
     public void Attack()
     {
-        if (m_NowState == MagicCasterState.Attack&&CDs==0)
+        if (m_NowState == MagicCasterState.Attack && CDs == 0)
         {
             MubAnimator.SetBool("Attack", true);
+            MubAnimator.SetBool("Back", false);
+            MubAnimator.SetBool("Wondering01", false);
+            MubAnimator.SetBool("Wondering02", false);
+            TA = false;
         }
         else if (Count != 0)
         {
             backing = TooCloseRange_RangedBattleRange(Close_ATKRadius, MySelf, Target);
             if (backing == true)
             {
-                m_NowState = MagicCasterState.Back;
-                if (m_NowState == MagicCasterState.Back)
+                MubAnimator.SetBool("Back", true);
+                MubAnimator.SetBool("Attack", false);
+            }
+            else
+            {
+                if (TA == false)
                 {
-                    MubAnimator.SetBool("Back", true);
-                    MubAnimator.SetBool("Attack", false);
+                    int RA = Random.Range(0, 2);
+                    if (RA == 0)
+                    {
+                        MubAnimator.SetBool("Wondering01", true);
+                        TA = true;
+                    }
+                    else if (RA == 1)
+                    {
+                        MubAnimator.SetBool("Wondering02", true);
+                        TA = true;
+                    }
                 }
-            }            
+            }
         }
     }
     public void BugSummon()
@@ -255,15 +296,12 @@ public class MagicCasterFSM : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.color = InATKrange ? Color.red : Color.yellow;
-        Gizmos.DrawWireSphere(transform.position, ATKRadius);
-
-        Gizmos.color = Color.white;
-        Gizmos.DrawLine(MySelf.transform.position, MySelf.transform.forward*ATKRadius);
+        Gizmos.DrawWireSphere(transform.position, ATKRadius);       
     }
     private void AnimationSpeed_Attack()
     {
         MubAnimator.speed = 0.2f;
-        ParticleSystem ps = LightRays.GetComponent<ParticleSystem>();
+        
         ps.Play();
         RotateSpeed = RotateSpeed * .1f;
     }
@@ -274,13 +312,13 @@ public class MagicCasterFSM : MonoBehaviour
         CDs = 4;
         RotateSpeed = RotateSpeed * 10f;
         StartCoroutine(AttackCooldown());
-        ParticleSystem ps = LightRays.GetComponent<ParticleSystem>();
+        
         ps.Stop();
     }
     public void ZoneOpen()
     {
         Close_ATKRadius = ATKRadius * .1f;
-        
+
     }
     IEnumerator SummonCooldown()
     {
@@ -292,7 +330,7 @@ public class MagicCasterFSM : MonoBehaviour
     }
     private void Summon()
     {
-        Instantiate(Bug,(MySelf.transform.position+ MySelf.transform.forward*10), MySelf.transform.rotation);
+        Instantiate(Bug, (MySelf.transform.position + MySelf.transform.forward * 10), MySelf.transform.rotation);
         Count = 20;
         StartCoroutine(SummonCooldown());
     }

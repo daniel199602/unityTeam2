@@ -2007,6 +2007,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 754486398692616622, guid: 6f3af1ba804816f4294943a282356ace, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1370883981801927297, guid: 6f3af1ba804816f4294943a282356ace, type: 3}
       propertyPath: frameTransform
       value: 
