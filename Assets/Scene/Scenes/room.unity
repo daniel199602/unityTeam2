@@ -976,6 +976,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4765728035046430749, guid: 843a687dd2b95bb4cb66922c432cf3f4, type: 3}
+      propertyPath: hitVFX
+      value: 
+      objectReference: {fileID: 100002, guid: fc323bcb450933c4e9dc817f3f3e0f53, type: 3}
+    - target: {fileID: 4765728035046430749, guid: 843a687dd2b95bb4cb66922c432cf3f4, type: 3}
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}

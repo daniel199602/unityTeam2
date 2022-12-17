@@ -72,6 +72,7 @@ public class MubAttackManager : MonoBehaviour
             DeductMobHpInstant(Target, mobDamage_instant);
             DeductMobHpDelay(Target, mobDamamge_delay);
             ParticleSystem ps = hitVFX_Bear.GetComponent<ParticleSystem>();
+            Instantiate(ps, Target.transform.position, Target.transform.rotation);
             ps.Play();
             recoilShake.camraBearSake();
             TargetSize.SimpleMove(TargetN * 20000 * Time.deltaTime);
