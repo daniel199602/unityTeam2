@@ -27,7 +27,7 @@ public class killMoBTest : MonoBehaviour
 
     public void killMobEvent()
     {
-        
+        this.gameObject.transform.position = new Vector3(0,-200, 0);
         MobMain.Instance().oPool.UnLoadObjectToPool(MobMain.Instance().pTestList, this.gameObject);
         MobMain.Instance().pAliveObject.Remove(this.gameObject);
         int count = MobMain.Instance().pAliveObject.Count;

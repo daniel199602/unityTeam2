@@ -26,6 +26,7 @@ public class killBearMobTest : MonoBehaviour
     void killEliteMobEvent()
     {
         doorOpen_MobLast.killMob();
+        this.gameObject.transform.position = new Vector3(0, -200, 0);
         this.gameObject.SetActive(false);
     }
 
