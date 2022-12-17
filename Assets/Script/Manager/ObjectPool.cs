@@ -34,6 +34,7 @@ public class ObjectPool : MonoBehaviour
             ObjectPoolData data = new ObjectPoolData();
             data.bUsing = false;
             data.go = go;
+            go.transform.position = new Vector3(0, -200, 0);
             GameManager.Instance().mobPool.Add(go);
             go.SetActive(false);
             go.transform.SetParent(this.transform);
