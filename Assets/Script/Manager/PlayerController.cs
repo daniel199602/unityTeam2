@@ -256,7 +256,7 @@ public class PlayerController : MonoBehaviour
             isOpenAttackMove = false;
         }
         //Layer(1)的攻擊
-        if (currentLayerNum == 1&& !animStateInfo.IsName("BlendMoveSingleHand") && animStateInfo.normalizedTime > 1f)
+        if (currentLayerNum == 1&& !animStateInfo.IsName("BlendMoveSingleHand") && animStateInfo.normalizedTime > 0.8f)
         {
             // 每次設置完參數之後,都應該在下一幀開始時將參數設置清空,避免連續切換  
             charaterAnimator.SetInteger("intAttackID", 0);

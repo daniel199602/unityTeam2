@@ -52,14 +52,14 @@ public class WeaponManager : MonoBehaviour
     /// </summary>
     private void Test_ChooseAndUseWeapon(int type1_id, int type2or3, int type2_id, int type3_id)
     {
-        ChooseAndUseWeapon(1, type1_id);//右手_盾牌
+        ChooseAndUseWeaponTest(1, type1_id);//右手_盾牌
         if (type2or3 == 2)
         {
-            ChooseAndUseWeapon(2, type2_id);//左手_單手劍
+            ChooseAndUseWeaponTest(2, type2_id);//左手_單手劍
         }
         else if (type2or3 == 3)
         {
-            ChooseAndUseWeapon(3, type3_id);//左手_雙手劍
+            ChooseAndUseWeaponTest(3, type3_id);//左手_雙手劍
         }
     }
     /*-----------------------------------------------------*/
@@ -192,12 +192,12 @@ public class WeaponManager : MonoBehaviour
         player = GameManager.Instance().PlayerStart;//抓到玩家
 
         //玩家初始武器設定
-        ChooseAndUseWeapon(0, 0);//初始火把
+        ChooseAndUseWeaponTest(0, 0);//初始火把
 
         //寫完三選一後，這邊就由三選一來設定，之後刪
-        ChooseAndUseWeapon(1, 10);//初始盾牌
+        ChooseAndUseWeaponTest(1, 10);//初始盾牌
         //ChooseAndUseWeapon(2, 20);//初始右手單手劍 
-        ChooseAndUseWeapon(3, 31);//初始右手雙手劍
+        ChooseAndUseWeaponTest(3, 31);//初始右手雙手劍
     }
 
     private void Update()
@@ -241,13 +241,40 @@ public class WeaponManager : MonoBehaviour
     }
 
     /// <summary>
-    /// 選擇並使用該武器
-    /// (三選一機制會用到這個函式)
+    /// 選擇並使用該武器(測試用)
     /// </summary>
     /// <param name="type"></param>
     /// <param name="id"></param>
-    public void ChooseAndUseWeapon(int type, int id)
+    public void ChooseAndUseWeaponTest(int type, int id)
     {
+        WeaponSetActiveOpen(type, id);//開啟選擇的武器
+
+        if (type == 0)
+            this.CurrentTorchL_torch = GetWeapon(type, id);//當前火把
+        if (type == 1)
+            this.CurrentWeaponL_weaponL = GetWeapon(type, id);//當前左手武器
+        if (type == 2)
+        {
+            this.CurrentWeaponR_weaponR = GetWeapon(type, id);//當前右單手武器
+            player.GetComponent<PlayerController>().AutoSwitchWeaponR(this.CurrentWeaponR_weaponR);
+        }
+        if (type == 3)
+        {
+            this.CurrentWeaponR_weaponR = GetWeapon(type, id);//當前右雙手武器
+            player.GetComponent<PlayerController>().AutoSwitchWeaponR(this.CurrentWeaponR_weaponR);
+        }
+    }
+
+
+    /// <summary>
+    /// 選擇並使用該武器
+    /// (三選一機制會用到這個函式)
+    /// </summary>
+    public void ChooseAndUseWeapon(GameObject aWeapon)
+    {
+        int type = aWeapon.GetComponent<ItemOnWeapon>().weaponType;
+        int id = aWeapon.GetComponent<ItemOnWeapon>().weaponID;
+
         WeaponSetActiveOpen(type, id);//開啟選擇的武器
 
         if (type == 0)
