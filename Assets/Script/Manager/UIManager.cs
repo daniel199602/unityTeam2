@@ -69,4 +69,21 @@ public class UIManager : MonoBehaviour
             Time.timeScale = 1f;
         }
     }
+
+    /// <summary>
+    /// 開啟三選一介面
+    /// </summary>
+    public void OneOfThreeUIOpen()
+    {
+        OneOfThree.gameObject.SetActive(true);
+    }
+
+    /// <summary>
+    /// 關閉三選一介面
+    /// </summary>
+    public void OneOfThreeUIClose()
+    {
+        OneOfThree.gameObject.SetActive(false);
+    }
+
 }
