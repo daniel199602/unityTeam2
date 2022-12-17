@@ -10,6 +10,7 @@ public class PlayerHpData : MonoBehaviour
     [HideInInspector] public int MaxHp;
     [SerializeField] public int Hp;
     [SerializeField] private int currentHp;
+    GameObject Player;
 
     HealthPlayerBar Health;
 
@@ -22,7 +23,7 @@ public class PlayerHpData : MonoBehaviour
 
     private void Start()
     {
-        
+        Player = GameManager.Instance().PlayerStart;
         Hp = MaxHp;
         currentHp = Hp;
     }
@@ -49,15 +50,18 @@ public class PlayerHpData : MonoBehaviour
     /// </summary>
     public void HpCheck()
     {
-        if (Hp != currentHp)
+        if (Player.GetComponent<PlayerController>().isInvincible == false)
         {
-            Debug.Log("¦©¦å");
-            currentHp = Hp;
-        }
-        if (currentHp < 0)
-        {
-            currentHp = 0;
-            Hp = currentHp;
-        }
+            if (Hp != currentHp)
+            {
+                Debug.Log("¦©¦å");
+                currentHp = Hp;
+            }
+            if (currentHp < 0)
+            {
+                currentHp = 0;
+                Hp = currentHp;
+            }
+        }       
     }
 }

@@ -21,7 +21,7 @@ public class doorOpen_Boss : MonoBehaviour
         fog = GameObject.Find("FogOfWarPlane");
         //frameTransform.gameObject.SetActive(false);
         Debug.Log("123");
-        BossTrigger = GameManager.Instance().mobPool[0];   
+         
     }
 
     // Update is called once per frame
@@ -39,7 +39,7 @@ public class doorOpen_Boss : MonoBehaviour
     {
         if(other.gameObject.tag=="Player")
         {
-            
+            BossTrigger = GameManager.Instance().mobPool[0];
             isInZone = true;
         }
     }

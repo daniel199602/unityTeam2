@@ -30,7 +30,7 @@ public class PlayerController : MonoBehaviour
     private float attackMoveSpeed = 0;//攻擊位移速度
     bool isOpenAttackMove = false;//攻擊位移開關
     bool isUseMouseChangeForward = true;//滑鼠人物轉向開關
-    bool isInvincible = false;//翻滾無敵
+    public bool isInvincible = false;//翻滾無敵
     bool isInvincibleModeSwitch = false;
     [HideInInspector] public int currentLayerNum = 0;//當前Layer預設第0層
     //各層Layer的當前狀態
@@ -129,7 +129,7 @@ public class PlayerController : MonoBehaviour
             charaterAnimator.SetLayerWeight(1, 0);
             charaterAnimator.SetLayerWeight(2, 1);
         }
-        if (isInvincible == true)
+        if (isInvincibleModeSwitch == true)
         {
             State.Hp = hpTemporary;
             if (isInvincibleModeSwitch == true)
