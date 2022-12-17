@@ -772,6 +772,18 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4858924557752197871, guid: 052b0736fab5eee4eaa4ea766d127ef3, type: 3}
+      propertyPath: hpBar
+      value: 
+      objectReference: {fileID: 139296613}
+    - target: {fileID: 4858924557752197871, guid: 052b0736fab5eee4eaa4ea766d127ef3, type: 3}
+      propertyPath: Healthbar
+      value: 
+      objectReference: {fileID: 928820338}
+    - target: {fileID: 4858924557752197871, guid: 052b0736fab5eee4eaa4ea766d127ef3, type: 3}
+      propertyPath: HealthbarLate
+      value: 
+      objectReference: {fileID: 1225803053}
     - target: {fileID: 8510088616971104976, guid: 052b0736fab5eee4eaa4ea766d127ef3, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: -24.900024
@@ -1328,23 +1340,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1103825089}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &1171242455 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4292004830827175513, guid: 052b0736fab5eee4eaa4ea766d127ef3, type: 3}
-  m_PrefabInstance: {fileID: 410905601}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1171242465
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1171242455}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 777b924c59cda0e48a4c521996c81569, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1225803053 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6227758368541623090, guid: f124143b0839e4a4a83b33bd1ae1d989, type: 3}

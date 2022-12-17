@@ -35,5 +35,5 @@ Material:
     - _EdgeWidth: 0.05
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _EdgeColor: {r: 15.435294, g: 13.490196, b: 0, a: 1}
+    - _EdgeColor: {r: 15.435293, g: 14.506038, b: 0, a: 1}
   m_BuildTextureStacks: []
