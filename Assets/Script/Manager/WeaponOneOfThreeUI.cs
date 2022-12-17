@@ -85,6 +85,7 @@ public class WeaponOneOfThreeUI : MonoBehaviour
         {
             if (i == 0)
             {
+                weaponX = weaponL;
                 imageX.sprite = UIManager.Instance().dicIDWeaponImage[weaponL.GetComponent<ItemOnWeapon>().weaponID];
                 weaponDataArrayX[0].text = weaponL.GetComponent<ItemOnWeapon>().weaponName;
                 weaponDataArrayX[1].text = "" + weaponL.GetComponent<ItemOnWeapon>().weaponDamage_instant;
@@ -94,6 +95,7 @@ public class WeaponOneOfThreeUI : MonoBehaviour
             }
             if (i == 1)
             {
+                weaponY = weaponL;
                 imageY.sprite = UIManager.Instance().dicIDWeaponImage[weaponL.GetComponent<ItemOnWeapon>().weaponID];
                 weaponDataArrayY[0].text = weaponL.GetComponent<ItemOnWeapon>().weaponName;
                 weaponDataArrayY[1].text = "" + weaponL.GetComponent<ItemOnWeapon>().weaponDamage_instant;
@@ -104,6 +106,7 @@ public class WeaponOneOfThreeUI : MonoBehaviour
             }
             if (i == 2)
             {
+                weaponZ = weaponL;
                 imageZ.sprite = UIManager.Instance().dicIDWeaponImage[weaponL.GetComponent<ItemOnWeapon>().weaponID];
                 weaponDataArrayZ[0].text = weaponL.GetComponent<ItemOnWeapon>().weaponName;
                 weaponDataArrayZ[1].text = "" + weaponL.GetComponent<ItemOnWeapon>().weaponDamage_instant;
@@ -121,7 +124,16 @@ public class WeaponOneOfThreeUI : MonoBehaviour
     public void ClickWeaponBtnX()
     {
         WeaponManager.Instance().ChooseAndUseWeapon(weaponX);
-        UIManager.Instance().OneOfThreeUIClose();
+        if(weaponX.GetComponent<ItemOnWeapon>().weaponType==2)
+        {
+            SetRandomThreeWeaponL();
+            Debug.LogWarning("---------------------------222");
+
+        }
+        else
+        {
+            UIManager.Instance().OneOfThreeUIClose();
+        }
     }
     /// <summary>
     /// 點擊武器按鈕Y事件，設置武器
@@ -129,7 +141,15 @@ public class WeaponOneOfThreeUI : MonoBehaviour
     public void ClickWeaponBtnY()
     {
         WeaponManager.Instance().ChooseAndUseWeapon(weaponY);
-        UIManager.Instance().OneOfThreeUIClose();
+        if (weaponY.GetComponent<ItemOnWeapon>().weaponType == 2)
+        {
+            SetRandomThreeWeaponL();
+            Debug.LogWarning("---------------------------222");
+        }
+        else
+        {
+            UIManager.Instance().OneOfThreeUIClose();
+        }
     }
     /// <summary>
     /// 點擊武器按鈕Z事件，設置武器
@@ -137,6 +157,14 @@ public class WeaponOneOfThreeUI : MonoBehaviour
     public void ClickWeaponBtnZ()
     {
         WeaponManager.Instance().ChooseAndUseWeapon(weaponZ);
-        UIManager.Instance().OneOfThreeUIClose();
+        if (weaponZ.GetComponent<ItemOnWeapon>().weaponType == 2)
+        {
+            SetRandomThreeWeaponL();
+            Debug.LogWarning("---------------------------222");
+        }
+        else
+        {
+            UIManager.Instance().OneOfThreeUIClose();
+        }
     }
 }

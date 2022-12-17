@@ -145,13 +145,13 @@ public class WeaponManager : MonoBehaviour
 
         for(int i = 0; i < 3; i++)
         {
-            if (weaponPoolL[randomIndex] != CurrentWeaponL_weaponL)
+            if (weaponPoolL[randomIndex] == CurrentWeaponL_weaponL)
             {
-                randomThreeWeaponLPool.Add(weaponPoolR[randomIndex]);
+                i--;
             }
             else
             {
-                i--;
+                randomThreeWeaponLPool.Add(weaponPoolL[randomIndex]);
             }
             if (randomIndex == (weaponPoolR.Count - 1)) randomIndex = 0;
             if (randomIndex < weaponPoolR.Count) randomIndex++;

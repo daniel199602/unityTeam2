@@ -1415,7 +1415,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 104523b927e17b342a6ebfad1c809580, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OneOfThreePanel: {fileID: 865065212}
+  weaponOneOfThreePanel: {fileID: 865065212}
 --- !u!1 &1419411245
 GameObject:
   m_ObjectHideFlags: 0
