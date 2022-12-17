@@ -30,14 +30,15 @@ public class MagicCasterFSM : MonoBehaviour
 
     bool AwakeBool = false;
     bool Awaken;
+    bool TA = false;
 
     float ATKRadius;
     float Close_ATKRadius;
     float AwakeRadius;
-    [SerializeField]float RotateSpeed;
+    [SerializeField] float RotateSpeed;
 
     Vector3 GetTargetNormalize;
-
+    int THp;
     int Count;
     int CDs;
     ItemOnMob ThisItemOnMob_State;
@@ -60,11 +61,12 @@ public class MagicCasterFSM : MonoBehaviour
         capsule = GetComponent<CharacterController>();
         MubAnimator = GetComponent<Animator>();
         State = GetComponent<MubHpData>();
-        
+        THp = Target.GetComponent<PlayerHpData>().Hp;
+
         hpTemporary = State.Hp;
         FrameCount_Roar = 200;
 
-        
+
         m_NowState = MagicCasterState.Idle;
 
         ATKRadius = ThisItemOnMob_State.mobRadius;//WeaponÂÐ»\
@@ -99,36 +101,44 @@ public class MagicCasterFSM : MonoBehaviour
                 DeadStatus();
                 return;
             }
-            else if (State.Hp != hpTemporary)
+            else if (THp <= 1)
             {
-                if (hpTemporary - State.Hp < 50)
+
+            }
+            else if (State.Hp > 0)
+            {
+                if (State.Hp != hpTemporary)
                 {
-                    hpTemporary = State.Hp;
+                    if (hpTemporary - State.Hp < 50)
+                    {
+                        hpTemporary = State.Hp;
+                    }
+                    else if (hpTemporary - State.Hp >= 50)
+                    {
+                        hpTemporary = State.Hp;
+                        MubAnimator.SetBool("GetHit", true);
+                    }
                 }
-                else if (hpTemporary - State.Hp >= 50)
+                else if (FrameCount_Roar <= 0)
                 {
-                    hpTemporary = State.Hp;
-                    MubAnimator.SetBool("GetHit", true);
+                    MubAnimator.SetBool("GetHit", false);
+
+                    MubAnimator.SetBool("Warn", false);
+
+                    GetTargetNormalize = (Target.transform.position - transform.position).normalized;
+
+                    Quaternion Look = Quaternion.LookRotation(GetTargetNormalize);
+
+                    transform.rotation = Quaternion.Slerp(transform.rotation, Look, RotateSpeed * Time.deltaTime);
+
+                    BugSummon();
+
+                    TraceStatus();
+
+                    AttackStatus();
                 }
             }
-            else if (FrameCount_Roar <= 0)
-            {
-                MubAnimator.SetBool("GetHit", false);
 
-                MubAnimator.SetBool("Warn", false);
-
-                GetTargetNormalize = (Target.transform.position - transform.position).normalized;
-
-                Quaternion Look = Quaternion.LookRotation(GetTargetNormalize);
-
-                transform.rotation = Quaternion.Slerp(transform.rotation, Look, RotateSpeed * Time.deltaTime);
-
-                BugSummon();
-
-                TraceStatus();
-
-                AttackStatus();
-            }
         }
     }
     public void AwakeSensor()
@@ -149,6 +159,7 @@ public class MagicCasterFSM : MonoBehaviour
         if (m_NowState == MagicCasterState.Dead)
         {
             MubAnimator.SetTrigger("Die");
+            ps.Stop();
             capsule.radius = 0f;
         }
     }
@@ -221,22 +232,39 @@ public class MagicCasterFSM : MonoBehaviour
     }
     public void Attack()
     {
-        if (m_NowState == MagicCasterState.Attack&&CDs==0)
+        if (m_NowState == MagicCasterState.Attack && CDs == 0)
         {
             MubAnimator.SetBool("Attack", true);
+            MubAnimator.SetBool("Back", false);
+            MubAnimator.SetBool("Wondering01", false);
+            MubAnimator.SetBool("Wondering02", false);
+            TA = false;
         }
         else if (Count != 0)
         {
             backing = TooCloseRange_RangedBattleRange(Close_ATKRadius, MySelf, Target);
             if (backing == true)
             {
-                m_NowState = MagicCasterState.Back;
-                if (m_NowState == MagicCasterState.Back)
+                MubAnimator.SetBool("Back", true);
+                MubAnimator.SetBool("Attack", false);
+            }
+            else
+            {
+                if (TA == false)
                 {
-                    MubAnimator.SetBool("Back", true);
-                    MubAnimator.SetBool("Attack", false);
+                    int RA = Random.Range(0, 2);
+                    if (RA == 0)
+                    {
+                        MubAnimator.SetBool("Wondering01", true);
+                        TA = true;
+                    }
+                    else if (RA == 1)
+                    {
+                        MubAnimator.SetBool("Wondering02", true);
+                        TA = true;
+                    }
                 }
-            }            
+            }
         }
     }
     public void BugSummon()
@@ -262,10 +290,7 @@ public class MagicCasterFSM : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.color = InATKrange ? Color.red : Color.yellow;
-        Gizmos.DrawWireSphere(transform.position, ATKRadius);
-
-        Gizmos.color = Color.white;
-        Gizmos.DrawLine(MySelf.transform.position, MySelf.transform.forward*ATKRadius);
+        Gizmos.DrawWireSphere(transform.position, ATKRadius);       
     }
     private void AnimationSpeed_Attack()
     {
@@ -287,7 +312,7 @@ public class MagicCasterFSM : MonoBehaviour
     public void ZoneOpen()
     {
         Close_ATKRadius = ATKRadius * .1f;
-        
+
     }
     IEnumerator SummonCooldown()
     {
@@ -299,7 +324,7 @@ public class MagicCasterFSM : MonoBehaviour
     }
     private void Summon()
     {
-        Instantiate(Bug,(MySelf.transform.position+ MySelf.transform.forward*10), MySelf.transform.rotation);
+        Instantiate(Bug, (MySelf.transform.position + MySelf.transform.forward * 10), MySelf.transform.rotation);
         Count = 20;
         StartCoroutine(SummonCooldown());
     }

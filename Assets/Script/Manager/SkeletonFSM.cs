@@ -97,32 +97,35 @@ public class SkeletonFSM : MonoBehaviour
                 DeadStatus();
                 return;
             }
-            else if (State.Hp != hpTemporary)
+            else if (State.Hp > 0)
             {
-                if (hpTemporary - State.Hp < 50)
+                if (State.Hp != hpTemporary)
                 {
-                    hpTemporary = State.Hp;
+                    if (hpTemporary - State.Hp < 50)
+                    {
+                        hpTemporary = State.Hp;
+                    }
+                    else if (hpTemporary - State.Hp >= 50)
+                    {
+                        hpTemporary = State.Hp;
+                        MubAnimator.SetBool("GetHit", true);
+                    }
                 }
-                else if (hpTemporary - State.Hp >= 50)
+                else if (FrameCount_Roar <= 0)
                 {
-                    hpTemporary = State.Hp;
-                    MubAnimator.SetBool("GetHit", true);
+                    MubAnimator.SetBool("GetHit", false);
+
+                    MubAnimator.SetBool("Roar", false);
+
+                    LookForward();
+
+                    TraceStatus();
+
+                    AttackStatus();
+
+                    LeaveAttackStatus();
                 }
-            }
-            else if (FrameCount_Roar <= 0)
-            {
-                MubAnimator.SetBool("GetHit", false);
-
-                MubAnimator.SetBool("Roar", false);
-
-                LookForward();
-
-                TraceStatus();
-
-                AttackStatus();
-
-                LeaveAttackStatus();
-            }
+            }            
         }
     }
     public void LookForward()
@@ -314,7 +317,7 @@ public class SkeletonFSM : MonoBehaviour
     private void AnimationSpeed_AttackEnd()
     {
         MubAnimator.speed = 1f;
-        LeaveATKRadius = ATKRadius * 1.5f;
+        LeaveATKRadius = ATKRadius * 1.05f;
         CDs = 3;
         LookBool = true;
         StartCoroutine(AttackCooldown());

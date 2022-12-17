@@ -97,8 +97,7 @@ public class BearFSM : MonoBehaviour
                 LookTarget();
             }
             if (RoarBool == false)
-            {
-                
+            {                
                 Roar();
                 RoarBool = true;
             }
@@ -108,38 +107,41 @@ public class BearFSM : MonoBehaviour
                 DeadStatus();
                 return;
             }
-            else if (State.Hp != hpTemporary)
+            else if (State.Hp > 0)
             {
-                if (hpTemporary - State.Hp < 50)
+                if (State.Hp != hpTemporary)
                 {
-                    hpTemporary = State.Hp;
+                    if (hpTemporary - State.Hp < 50)
+                    {
+                        hpTemporary = State.Hp;
+                    }
+                    else if (hpTemporary - State.Hp >= 50)
+                    {
+                        hpTemporary = State.Hp;
+                        MubAnimator.SetBool("GetHit", true);
+                        capsule.SimpleMove(-(transform.forward * (MoveSpeed / 5)));
+                    }
                 }
-                else if (hpTemporary - State.Hp >= 50)
+                else if (FrameCount_Roar <= 0)
                 {
-                    hpTemporary = State.Hp;
-                    MubAnimator.SetBool("GetHit", true);
-                    capsule.SimpleMove(-(transform.forward * (MoveSpeed / 5)));
+                    MubAnimator.SetBool("GetHit", false);
+
+                    MubAnimator.SetBool("Warn", false);
+
+                    LookTarget();
+
+                    TraceStatus();
+
+                    AttackStatus();
+
+                    LeaveAttackStatus();
+
+                    TooCloseAttackStatus_York();
+
+                    BackStatus();
+
                 }
-            }                        
-            else if (FrameCount_Roar <= 0)
-            {
-                MubAnimator.SetBool("GetHit", false);
-
-                MubAnimator.SetBool("Warn", false);
-
-                LookTarget();
-
-                TraceStatus();
-
-                AttackStatus();
-
-                LeaveAttackStatus();
-
-                TooCloseAttackStatus_York();
-
-                BackStatus();
-
-            }
+            }            
         }
     }
     public void LookTarget()
@@ -180,6 +182,7 @@ public class BearFSM : MonoBehaviour
         if (m_NowState == BearState.Dead)
         {
             MubAnimator.SetTrigger("Die");
+            isAttacking = true;
             capsule.radius = 0f;
         }
     }

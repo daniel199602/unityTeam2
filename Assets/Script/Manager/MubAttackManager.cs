@@ -59,6 +59,19 @@ public class MubAttackManager : MonoBehaviour
         }
 
     }
+    private void AttackEvent_MagicCaster()
+    {
+        //OnDrawGizmos判斷是否在範圍用
+        flag = IsInRange(mobAngle, mobRadius, gameObject.transform, Target.transform);
+
+        if (IsInRange(mobAngle, mobRadius, gameObject.transform, Target.transform))
+        {
+            DeductMobHpInstant(Target, mobDamage_instant);
+            DeductMobHpDelay(Target, mobDamamge_delay);
+            Debug.LogWarning("Hit");
+        }
+
+    }
     /// <summary>
     /// 怪物攻擊事件_Bear用
     /// </summary>
