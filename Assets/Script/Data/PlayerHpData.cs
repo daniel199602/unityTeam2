@@ -7,7 +7,7 @@ public class PlayerHpData : MonoBehaviour
     // Start is called before the first frame update
     ItemOnMob thisItemOnMob;
 
-    [HideInInspector] public int MaxHp;
+    [HideInInspector] public int MaxHp = 2000;
     [SerializeField] public int Hp;
     [SerializeField] private int currentHp;
     GameObject Player;
@@ -19,17 +19,24 @@ public class PlayerHpData : MonoBehaviour
         thisItemOnMob = GetComponent<ItemOnMob>();
         Health = GetComponent<HealthPlayerBar>();
         MaxHp = thisItemOnMob.mobMaxHp;
+        Hp = MaxHp;
+        currentHp = Hp;
     }
 
     private void Start()
     {
         Player = GameManager.Instance().PlayerStart;
+        MaxHp = thisItemOnMob.mobMaxHp;
         Hp = MaxHp;
         currentHp = Hp;
     }
 
     private void Update()
     {
+        if (Input.GetKeyDown(KeyCode.F10))
+        {
+            Hp += 200;
+        }
         HpCheck();
         Health.BarFilter();
     }
