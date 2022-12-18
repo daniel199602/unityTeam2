@@ -150973,7 +150973,7 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 2.8333333
+  - time: 2.6666667
     functionName: AnimationSpeed_TAttackEnd
     data: 
     objectReferenceParameter: {fileID: 0}

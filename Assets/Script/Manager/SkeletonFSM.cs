@@ -57,7 +57,7 @@ public class SkeletonFSM : MonoBehaviour
         MubAnimator = GetComponent<Animator>();
         State = GetComponent<MubHpData>();
         hpTemporary = State.Hp;
-        
+        FrameCount_Roar = 160;
         LeaveAttackRangeBool = false;
 
         ATKRadius = ThisItemOnMob_State.mobRadius;//WeaponÂÐ»\
@@ -71,11 +71,6 @@ public class SkeletonFSM : MonoBehaviour
         LookBool = true;
         Debug.LogWarning("---------------------------------------------------------------------------------------start");
 
-    }
-    private void OnEnable()
-    {
-        FrameCount_Roar = 160;
-        Debug.LogWarning("---------------------------------------------------------------------------------------Enable");
     }
     // Update is called once per frame
     void Update()
@@ -91,7 +86,6 @@ public class SkeletonFSM : MonoBehaviour
             if (FrameCount_Roar > 0)
             {
                 FrameCount_Roar--;
-                Debug.Log("--------FrameCount_Roar"+ FrameCount_Roar);
             }
             if (RoarBool == false)
             {
