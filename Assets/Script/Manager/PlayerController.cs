@@ -76,7 +76,7 @@ public class PlayerController : MonoBehaviour
 
         State = GetComponent<PlayerHpData>();
         hpTemporary = State.Hp;
-        hpTemporaryMax = State.Hp;
+        
     }
 
     public void InvincibleMode()
@@ -85,6 +85,7 @@ public class PlayerController : MonoBehaviour
         {
             isInvincible = true;
             isInvincibleModeSwitch = true;
+            hpTemporaryMax = State.Hp;
         }
         if (Input.GetKey(KeyCode.F12))
         {
