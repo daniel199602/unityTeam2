@@ -10,7 +10,7 @@ public class MagicCasterFSM : MonoBehaviour
 {
     public GameObject Bug;
     public GameObject LightRays;
-    public GameObject RoarLight;
+    public GameObject RoarLight;    
     public Transform LaunchPort;
 
     private MagicCasterState m_NowState;

@@ -10,12 +10,15 @@ public class MubAttackManager : MonoBehaviour
     [HideInInspector] public int mobDamamge_delay;
     [HideInInspector] public float mobAngle;
     [HideInInspector] public float mobRadius;
+    //法師擊中特效
+    public GameObject HitEffect;
 
     public GameObject hitVFX_Bear;
     
     RecoilShake recoilShake;
 
     [SerializeField] private GameObject Target;//存玩家
+    GameObject ParticleSpace;
     
     PlayerHpData PlayerData;//玩家血量狀態
     CharacterController TargetSize;//玩家用CharacterController
@@ -35,7 +38,8 @@ public class MubAttackManager : MonoBehaviour
         mobAngle = GetComponent<ItemOnMob>().mobAngle;
         mobRadius = GetComponent<ItemOnMob>().mobRadius;
         /**/
-
+        ParticleSpace = Target.transform.GetChild(0).gameObject;
+        Debug.Log(ParticleSpace);
         TargetSize = Target.GetComponent<CharacterController>();
         PlayerData = Target.GetComponent<PlayerHpData>();
         TargetN = (Target.transform.position - transform.position).normalized;
@@ -68,6 +72,8 @@ public class MubAttackManager : MonoBehaviour
         {
             DeductMobHpInstant(Target, mobDamage_instant);
             DeductMobHpDelay(Target, mobDamamge_delay);
+            
+            Instantiate(HitEffect,Target.transform.position,Target.transform.rotation, ParticleSpace.transform);
             Debug.LogWarning("Hit");
         }
 
