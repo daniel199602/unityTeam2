@@ -68,6 +68,22 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: -0
       objectReference: {fileID: 0}
+    - target: {fileID: 422204, guid: 21eb15f5f71288a49ad65b6b85a9c1dc, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 422204, guid: 21eb15f5f71288a49ad65b6b85a9c1dc, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 449522, guid: 21eb15f5f71288a49ad65b6b85a9c1dc, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 449522, guid: 21eb15f5f71288a49ad65b6b85a9c1dc, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 451658, guid: 21eb15f5f71288a49ad65b6b85a9c1dc, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -128,85 +144,13 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: -0
       objectReference: {fileID: 0}
-    - target: {fileID: 19867512, guid: 21eb15f5f71288a49ad65b6b85a9c1dc, type: 3}
-      propertyPath: InitialModule.startRotationX.minMaxState
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 19867512, guid: 21eb15f5f71288a49ad65b6b85a9c1dc, type: 3}
-      propertyPath: InitialModule.startRotationY.minMaxState
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 19875088, guid: 21eb15f5f71288a49ad65b6b85a9c1dc, type: 3}
-      propertyPath: lengthInSec
-      value: 0.05
-      objectReference: {fileID: 0}
-    - target: {fileID: 19875088, guid: 21eb15f5f71288a49ad65b6b85a9c1dc, type: 3}
-      propertyPath: simulationSpeed
+    - target: {fileID: 488134, guid: 21eb15f5f71288a49ad65b6b85a9c1dc, type: 3}
+      propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 19875088, guid: 21eb15f5f71288a49ad65b6b85a9c1dc, type: 3}
-      propertyPath: InitialModule.startSize.scalar
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 19875088, guid: 21eb15f5f71288a49ad65b6b85a9c1dc, type: 3}
-      propertyPath: InitialModule.startSpeed.scalar
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 19875088, guid: 21eb15f5f71288a49ad65b6b85a9c1dc, type: 3}
-      propertyPath: InitialModule.startLifetime.scalar
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 19879026, guid: 21eb15f5f71288a49ad65b6b85a9c1dc, type: 3}
-      propertyPath: InitialModule.startSize.scalar
-      value: 70
-      objectReference: {fileID: 0}
-    - target: {fileID: 19879026, guid: 21eb15f5f71288a49ad65b6b85a9c1dc, type: 3}
-      propertyPath: InitialModule.startSpeed.scalar
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 19879026, guid: 21eb15f5f71288a49ad65b6b85a9c1dc, type: 3}
-      propertyPath: InitialModule.startRotationX.minMaxState
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 19879026, guid: 21eb15f5f71288a49ad65b6b85a9c1dc, type: 3}
-      propertyPath: InitialModule.startRotationY.minMaxState
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 19893908, guid: 21eb15f5f71288a49ad65b6b85a9c1dc, type: 3}
-      propertyPath: simulationSpeed
-      value: 0.96
-      objectReference: {fileID: 0}
-    - target: {fileID: 19893908, guid: 21eb15f5f71288a49ad65b6b85a9c1dc, type: 3}
-      propertyPath: ShapeModule.type
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 19893908, guid: 21eb15f5f71288a49ad65b6b85a9c1dc, type: 3}
-      propertyPath: ShapeModule.enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 19893908, guid: 21eb15f5f71288a49ad65b6b85a9c1dc, type: 3}
-      propertyPath: ShapeModule.m_Scale.x
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 19893908, guid: 21eb15f5f71288a49ad65b6b85a9c1dc, type: 3}
-      propertyPath: EmissionModule.enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 19893908, guid: 21eb15f5f71288a49ad65b6b85a9c1dc, type: 3}
-      propertyPath: ShapeModule.radiusThickness
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 19893908, guid: 21eb15f5f71288a49ad65b6b85a9c1dc, type: 3}
-      propertyPath: InitialModule.startSize.scalar
-      value: 40
-      objectReference: {fileID: 0}
-    - target: {fileID: 19893908, guid: 21eb15f5f71288a49ad65b6b85a9c1dc, type: 3}
-      propertyPath: InitialModule.startSpeed.scalar
-      value: 13.71
-      objectReference: {fileID: 0}
-    - target: {fileID: 19893908, guid: 21eb15f5f71288a49ad65b6b85a9c1dc, type: 3}
-      propertyPath: InitialModule.startLifetime.scalar
-      value: 3.52
+    - target: {fileID: 488134, guid: 21eb15f5f71288a49ad65b6b85a9c1dc, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 21eb15f5f71288a49ad65b6b85a9c1dc, type: 3}
