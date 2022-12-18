@@ -195,6 +195,7 @@ public class BearFSM : MonoBehaviour
             MubAnimator.SetBool("Attack03", false);
             MubAnimator.SetBool("Rotate", false);
             MubAnimator.SetBool("Trace", false);
+            MubAnimator.SetBool("GetHit", false);
             isAttacking = true;
             capsule.radius = 0f;
         }
@@ -402,12 +403,21 @@ public class BearFSM : MonoBehaviour
     {
         isAttacking = false;
         GetTargetMegnitude = (Target.transform.position - transform.position).magnitude;
-        GetTargetNormalize = (Target.transform.position - transform.position).normalized;
-        capsule.SimpleMove(GetTargetNormalize * MoveSpeed);
-        MubAnimator.SetBool("GoTo", true);
+        GetTargetNormalize = (Target.transform.position - transform.position).normalized;        
+        MubAnimator.SetBool("Attack01", false);
+        MubAnimator.SetBool("Attack02", false);
+        MubAnimator.SetBool("Attack03", false);
+        MubAnimator.SetBool("Rotate", false);
+        MubAnimator.SetBool("Trace", false);
+        MubAnimator.SetBool("GetHit", false);
         if (GetTargetMegnitude <= 30)
         {
             MubAnimator.SetBool("GoTo", false);
+        }
+        else
+        {
+            capsule.SimpleMove(GetTargetNormalize * MoveSpeed);
+            MubAnimator.SetBool("GoTo", true);
         }
     }
     public void Move()

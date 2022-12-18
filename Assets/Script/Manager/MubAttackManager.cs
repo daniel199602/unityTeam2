@@ -72,8 +72,8 @@ public class MubAttackManager : MonoBehaviour
         {
             DeductMobHpInstant(Target, mobDamage_instant);
             DeductMobHpDelay(Target, mobDamamge_delay);
-            
-            Instantiate(HitEffect,Target.transform.position,Target.transform.rotation, ParticleSpace.transform);
+            Vector3 Pp = new Vector3(ParticleSpace.transform.position.x, ParticleSpace.transform.position.y+5, ParticleSpace.transform.position.z);
+            Instantiate(HitEffect, Pp, ParticleSpace.transform.rotation, ParticleSpace.transform);
             Debug.LogWarning("Hit");
         }
 
