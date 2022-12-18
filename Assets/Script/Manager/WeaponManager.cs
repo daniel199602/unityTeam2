@@ -145,13 +145,14 @@ public class WeaponManager : MonoBehaviour
 
         for(int i = 0; i < 3; i++)
         {
-            if (weaponPoolL[randomIndex] == CurrentWeaponL_weaponL)
+            if (weaponPoolL[randomIndex] != CurrentWeaponL_weaponL)
             {
-                i--;
+                randomThreeWeaponLPool.Add(weaponPoolL[randomIndex]);
+                
             }
             else
             {
-                randomThreeWeaponLPool.Add(weaponPoolL[randomIndex]);
+                i--;
             }
             if (randomIndex == (weaponPoolR.Count - 1)) randomIndex = 0;
             if (randomIndex < weaponPoolR.Count) randomIndex++;
@@ -196,7 +197,7 @@ public class WeaponManager : MonoBehaviour
 
         //寫完三選一後，這邊就由三選一來設定，之後刪
         //ChooseAndUseWeaponTest(1, 10);//初始盾牌
-        ChooseAndUseWeaponTest(2, 20);//初始右手單手劍
+        //ChooseAndUseWeaponTest(2, 20);//初始右手單手劍
         //ChooseAndUseWeaponTest(3, 31);//初始右手雙手劍
     }
 

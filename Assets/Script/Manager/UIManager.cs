@@ -53,25 +53,28 @@ public class UIManager : MonoBehaviour
     private void Update()
     {
         //測試用開關按E
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            isOpenOneOfThreeFrame = !isOpenOneOfThreeFrame;
+        //if (Input.GetKeyDown(KeyCode.E))
+        //{
+        //    isOpenOneOfThreeFrame = !isOpenOneOfThreeFrame;
 
-            if (isOpenOneOfThreeFrame)
-            {
-                OneOfThreeUIOpen();
-                weaponOneOfThreePanel.GetComponent<WeaponOneOfThreeUI>().SetRandomThreeWeaponR();//設置右手武器三選一
-            }
-            else
-            {
-                OneOfThreeUIClose();
-            }
-        }
+        //    if (isOpenOneOfThreeFrame)
+        //    {
+        //        OneOfThreeUIOpen();
+        //        weaponOneOfThreePanel.GetComponent<WeaponOneOfThreeUI>().SetRandomThreeWeaponR();//設置右手武器三選一
+        //    }
+        //    else
+        //    {
+        //        OneOfThreeUIClose();
+        //    }
+        //}
         
     }
 
+
+
+
     /// <summary>
-    /// 開啟三選一介面
+    /// 開啟三選一介面，時間調慢
     /// </summary>
     public void OneOfThreeUIOpen()
     {
@@ -80,7 +83,7 @@ public class UIManager : MonoBehaviour
     }
 
     /// <summary>
-    /// 關閉三選一介面
+    /// 關閉三選一介面，時間恢復正常
     /// </summary>
     public void OneOfThreeUIClose()
     {

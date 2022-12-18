@@ -28,6 +28,8 @@ public class WeaponOneOfThreeUI : MonoBehaviour
         weaponDataArrayX = weaponButtonX.GetComponentsInChildren<TMP_Text>();//依照子對象順序查找
         weaponDataArrayY = weaponButtonY.GetComponentsInChildren<TMP_Text>();//依照子對象順序查找
         weaponDataArrayZ = weaponButtonZ.GetComponentsInChildren<TMP_Text>();//依照子對象順序查找
+
+        transform.gameObject.SetActive(false);
     }
 
 
@@ -43,7 +45,7 @@ public class WeaponOneOfThreeUI : MonoBehaviour
             {
                 weaponX = weaponR;
                 imageX.sprite = UIManager.Instance().dicIDWeaponImage[weaponR.GetComponent<ItemOnWeapon>().weaponID];
-                weaponDataArrayX[0].text = weaponR.GetComponent<ItemOnWeapon>().weaponName;
+                weaponDataArrayX[0].text = "" + weaponR.GetComponent<ItemOnWeapon>().weaponName;
                 weaponDataArrayX[1].text = "" + weaponR.GetComponent<ItemOnWeapon>().weaponDamage_instant;
                 weaponDataArrayX[2].text = "" + weaponR.GetComponent<ItemOnWeapon>().weaponDamage_delay;
                 weaponDataArrayX[3].text = "" + weaponR.GetComponent<ItemOnWeapon>().weaponAngle;
@@ -53,7 +55,7 @@ public class WeaponOneOfThreeUI : MonoBehaviour
             {
                 weaponY = weaponR;
                 imageY.sprite = UIManager.Instance().dicIDWeaponImage[weaponR.GetComponent<ItemOnWeapon>().weaponID];
-                weaponDataArrayY[0].text = weaponR.GetComponent<ItemOnWeapon>().weaponName;
+                weaponDataArrayY[0].text = "" + weaponR.GetComponent<ItemOnWeapon>().weaponName;
                 weaponDataArrayY[1].text = "" + weaponR.GetComponent<ItemOnWeapon>().weaponDamage_instant;
                 weaponDataArrayY[2].text = "" + weaponR.GetComponent<ItemOnWeapon>().weaponDamage_delay;
                 weaponDataArrayY[3].text = "" + weaponR.GetComponent<ItemOnWeapon>().weaponAngle;
@@ -64,7 +66,7 @@ public class WeaponOneOfThreeUI : MonoBehaviour
             {
                 weaponZ = weaponR;
                 imageZ.sprite = UIManager.Instance().dicIDWeaponImage[weaponR.GetComponent<ItemOnWeapon>().weaponID];
-                weaponDataArrayZ[0].text = weaponR.GetComponent<ItemOnWeapon>().weaponName;
+                weaponDataArrayZ[0].text = "" + weaponR.GetComponent<ItemOnWeapon>().weaponName;
                 weaponDataArrayZ[1].text = "" + weaponR.GetComponent<ItemOnWeapon>().weaponDamage_instant;
                 weaponDataArrayZ[2].text = "" + weaponR.GetComponent<ItemOnWeapon>().weaponDamage_delay;
                 weaponDataArrayZ[3].text = "" + weaponR.GetComponent<ItemOnWeapon>().weaponAngle;
@@ -86,7 +88,7 @@ public class WeaponOneOfThreeUI : MonoBehaviour
             {
                 weaponX = weaponL;
                 imageX.sprite = UIManager.Instance().dicIDWeaponImage[weaponL.GetComponent<ItemOnWeapon>().weaponID];
-                weaponDataArrayX[0].text = weaponL.GetComponent<ItemOnWeapon>().weaponName;
+                weaponDataArrayX[0].text = "" + weaponL.GetComponent<ItemOnWeapon>().weaponName;
                 weaponDataArrayX[1].text = "" + weaponL.GetComponent<ItemOnWeapon>().weaponDamage_instant;
                 weaponDataArrayX[2].text = "" + weaponL.GetComponent<ItemOnWeapon>().weaponDamage_delay;
                 weaponDataArrayX[3].text = "" + weaponL.GetComponent<ItemOnWeapon>().weaponAngle;
@@ -96,7 +98,7 @@ public class WeaponOneOfThreeUI : MonoBehaviour
             {
                 weaponY = weaponL;
                 imageY.sprite = UIManager.Instance().dicIDWeaponImage[weaponL.GetComponent<ItemOnWeapon>().weaponID];
-                weaponDataArrayY[0].text = weaponL.GetComponent<ItemOnWeapon>().weaponName;
+                weaponDataArrayY[0].text = "" + weaponL.GetComponent<ItemOnWeapon>().weaponName;
                 weaponDataArrayY[1].text = "" + weaponL.GetComponent<ItemOnWeapon>().weaponDamage_instant;
                 weaponDataArrayY[2].text = "" + weaponL.GetComponent<ItemOnWeapon>().weaponDamage_delay;
                 weaponDataArrayY[3].text = "" + weaponL.GetComponent<ItemOnWeapon>().weaponAngle;
@@ -107,7 +109,7 @@ public class WeaponOneOfThreeUI : MonoBehaviour
             {
                 weaponZ = weaponL;
                 imageZ.sprite = UIManager.Instance().dicIDWeaponImage[weaponL.GetComponent<ItemOnWeapon>().weaponID];
-                weaponDataArrayZ[0].text = weaponL.GetComponent<ItemOnWeapon>().weaponName;
+                weaponDataArrayZ[0].text = "" + weaponL.GetComponent<ItemOnWeapon>().weaponName;
                 weaponDataArrayZ[1].text = "" + weaponL.GetComponent<ItemOnWeapon>().weaponDamage_instant;
                 weaponDataArrayZ[2].text = "" + weaponL.GetComponent<ItemOnWeapon>().weaponDamage_delay;
                 weaponDataArrayZ[3].text = "" + weaponL.GetComponent<ItemOnWeapon>().weaponAngle;
