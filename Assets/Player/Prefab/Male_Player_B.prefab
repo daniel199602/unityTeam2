@@ -4952,7 +4952,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hitVFX: {fileID: 100002, guid: fc323bcb450933c4e9dc817f3f3e0f53, type: 3}
-  fireHitVFX: {fileID: 121580, guid: 331ad8f9f3b07c045821a68a5f4164e6, type: 3}
 --- !u!114 &821133959739569995
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7617,10 +7616,6 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6562340962086476941, guid: f566dbe11fdd1c34a97a7bd39d46ecfe, type: 3}
-      propertyPath: InitialModule.startLifetime.scalar
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 6562340962086476941, guid: f566dbe11fdd1c34a97a7bd39d46ecfe, type: 3}
       propertyPath: CustomDataModule.vector0_0.maxCurve.m_Curve.Array.data[0].time
       value: 0
       objectReference: {fileID: 0}
@@ -7794,10 +7789,6 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6562340962086476941, guid: f566dbe11fdd1c34a97a7bd39d46ecfe, type: 3}
-      propertyPath: InitialModule.startLifetime.scalar
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 6562340962086476941, guid: f566dbe11fdd1c34a97a7bd39d46ecfe, type: 3}
       propertyPath: CustomDataModule.vector0_0.maxCurve.m_Curve.Array.data[0].time
       value: 0
       objectReference: {fileID: 0}
@@ -7959,10 +7950,6 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6562340962086476941, guid: f566dbe11fdd1c34a97a7bd39d46ecfe, type: 3}
-      propertyPath: InitialModule.startLifetime.scalar
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 6562340962086476941, guid: f566dbe11fdd1c34a97a7bd39d46ecfe, type: 3}
       propertyPath: CustomDataModule.vector0_0.maxCurve.m_Curve.Array.data[0].time
       value: 0
       objectReference: {fileID: 0}
@@ -8056,10 +8043,6 @@ PrefabInstance:
     - target: {fileID: 6562340962086476941, guid: f566dbe11fdd1c34a97a7bd39d46ecfe, type: 3}
       propertyPath: startDelay.scalar
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6562340962086476941, guid: f566dbe11fdd1c34a97a7bd39d46ecfe, type: 3}
-      propertyPath: InitialModule.startLifetime.scalar
-      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 6562340962086476941, guid: f566dbe11fdd1c34a97a7bd39d46ecfe, type: 3}
       propertyPath: CustomDataModule.vector0_0.maxCurve.m_Curve.Array.data[0].time
