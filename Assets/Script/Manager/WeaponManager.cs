@@ -153,15 +153,11 @@ public class WeaponManager : MonoBehaviour
             {
                 randomThreeWeaponLPool.Add(weaponPoolL[randomIndex]);
                 UsedWeaponLIndexX = randomIndex;
-                Debug.LogError("x:" + randomIndex);
                 break;
             }
-            Debug.LogWarning("----------------------------------------------------x");
             if (randomIndex == (weaponPoolL.Count - 1)) randomIndex = 0;
             if (randomIndex < weaponPoolL.Count) randomIndex++;
-            
         }
-
 
         //¬ÞµPY
         for (int i = 0; i < weaponPoolL.Count+2; i++)
@@ -172,14 +168,11 @@ public class WeaponManager : MonoBehaviour
                 {
                     randomThreeWeaponLPool.Add(weaponPoolL[randomIndex]);
                     UsedWeaponLIndexY = randomIndex;
-                    Debug.LogError("y:" + randomIndex);
                     break;
                 }
             }
-            Debug.LogWarning("----------------------------------------------------y");
             if (randomIndex == (weaponPoolL.Count - 1)) randomIndex = 0;
                 if (randomIndex < weaponPoolL.Count) randomIndex++;
-            
         }
 
         //¬ÞµPZ
@@ -189,10 +182,8 @@ public class WeaponManager : MonoBehaviour
             {
 
                 randomThreeWeaponLPool.Add(weaponZ);
-                Debug.LogError("z: Get Z" );
                 break;
             }
-            Debug.LogWarning("----------------------------------------------------z");
         }
 
         return randomThreeWeaponLPool;
