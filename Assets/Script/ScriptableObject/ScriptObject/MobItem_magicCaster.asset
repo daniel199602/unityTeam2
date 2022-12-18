@@ -15,7 +15,7 @@ MonoBehaviour:
   mobName: magicCaster
   mobType: 2
   mobMaxHp: 2000
-  mobDamage_instant: 25
+  mobDamage_instant: 50
   mobDamage_delay: 0
   mobAngle: 20
   mobRadius: 80
