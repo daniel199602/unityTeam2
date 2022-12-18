@@ -71,11 +71,14 @@ public class BossFSM : MonoBehaviour
     //大招
     GameObject UltimateFire;
     ParticleSystem Fire;
+    public GameObject HitFlame;
+    ParticleSystem FlameONground;
     //2階段
     GameObject Flame;
     ParticleSystem Roar;
     //刀光
-    public ParticleSystem Bladelight;
+    public GameObject BLight;
+    ParticleSystem Bladelight;
     // Start is called before the first frame update
     private void Awake()
     {
@@ -109,7 +112,8 @@ public class BossFSM : MonoBehaviour
         magic_circle = Teleport.GetComponent<ParticleSystem>();
         Fire = UltimateFire.GetComponent<ParticleSystem>();
         Roar = Flame.GetComponent<ParticleSystem>();
-        Bladelight = GetComponent<ParticleSystem>();
+        Bladelight = BLight.GetComponent<ParticleSystem>();
+        FlameONground = HitFlame.GetComponentInChildren<ParticleSystem>();
 
         //血量區
         hpTemporary = State.Hp;
@@ -477,7 +481,7 @@ public class BossFSM : MonoBehaviour
     {
         MubAnimator.speed = 2f;
         LookBool = false;
-        Bladelight.transform.rotation = AxeOnHand.transform.rotation;
+        BLight.transform.rotation = AxeOnHand.transform.rotation;
         Bladelight.Play();
     }
 
@@ -510,19 +514,19 @@ public class BossFSM : MonoBehaviour
     {
         MubAnimator.speed = 1f;
 
-        Count = 2;
+        Count = 3;
         StartCoroutine(AttackCooldown());
     }
     private void AnimationSpeed_AttackEnd02()
     {
         MubAnimator.speed = 1f;
 
-        Count = 3;
+        Count = 4;
         StartCoroutine(AttackCooldown());
     }
     private void AnimationSpeed_TAttackEnd()
     {
-        Count = 3;
+        Count = 4;
 
         StartCoroutine(AttackCooldown());
         MubAnimator.speed = 1f;
@@ -585,7 +589,7 @@ public class BossFSM : MonoBehaviour
     }
     private void ChargeUpEvent_Attack()
     {
-        //攻擊特效
+        Instantiate(HitFlame,MySelf.transform.position,MySelf.transform.rotation);
     }
     private void Animation_UltimateCoolDown()
     {

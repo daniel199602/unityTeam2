@@ -324,7 +324,7 @@ public class SkeletonFSM : MonoBehaviour
     {
         MubAnimator.speed = 1f;
         LeaveATKRadius = ATKRadius * 1.05f;
-        CDs = 3;
+        CDs = 5;
         LookBool = true;
         StartCoroutine(AttackCooldown());
     }

@@ -6058,7 +6058,8 @@ MonoBehaviour:
   AxeOnBack: {fileID: 4257326679317326375}
   BigSwordOnBack: {fileID: 5247754946742673687}
   RotateSpeed: 0
-  Bladelight: {fileID: 6230599285827390318}
+  HitFlame: {fileID: 4116065691858157808, guid: 2724b0f20a035fa49983a0f86b88cf6d, type: 3}
+  BLight: {fileID: 7228381462048430082, guid: d751f5237993fc247ae15268c90f11b6, type: 3}
 --- !u!143 &5173183081115016483
 CharacterController:
   m_ObjectHideFlags: 0
@@ -11570,11 +11571,6 @@ GameObject:
 --- !u!4 &2144577922446161618 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3434584089707925493, guid: 8b619c2273fa4e1478003dbcbaf3223b, type: 3}
-  m_PrefabInstance: {fileID: 3632445888581056807}
-  m_PrefabAsset: {fileID: 0}
---- !u!198 &6230599285827390318 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 7214347965458608713, guid: 8b619c2273fa4e1478003dbcbaf3223b, type: 3}
   m_PrefabInstance: {fileID: 3632445888581056807}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4835394101381124292

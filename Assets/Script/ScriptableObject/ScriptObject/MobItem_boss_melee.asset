@@ -17,5 +17,5 @@ MonoBehaviour:
   mobMaxHp: 10000
   mobDamage_instant: 60
   mobDamage_delay: 5
-  mobAngle: 70
+  mobAngle: 90
   mobRadius: 40
