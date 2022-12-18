@@ -2015,9 +2015,17 @@ PrefabInstance:
       propertyPath: frameTransform
       value: 
       objectReference: {fileID: 139296613}
+    - target: {fileID: 4766050280437518127, guid: 6f3af1ba804816f4294943a282356ace, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 4949615189479602662, guid: 6f3af1ba804816f4294943a282356ace, type: 3}
       propertyPath: m_Name
       value: blue dungeon
+      objectReference: {fileID: 0}
+    - target: {fileID: 4949615189479602662, guid: 6f3af1ba804816f4294943a282356ace, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4949615189479602663, guid: 6f3af1ba804816f4294943a282356ace, type: 3}
       propertyPath: m_RootOrder
@@ -2062,6 +2070,10 @@ PrefabInstance:
     - target: {fileID: 4949615189479602663, guid: 6f3af1ba804816f4294943a282356ace, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7485926733880730705, guid: 6f3af1ba804816f4294943a282356ace, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6f3af1ba804816f4294943a282356ace, type: 3}
