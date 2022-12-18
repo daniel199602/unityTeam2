@@ -140,23 +140,61 @@ public class WeaponManager : MonoBehaviour
     //如果有當前裝備的左手盾則要排除
     public List<GameObject> GetRandomThreeWeaponL()
     {
+        int UsedWeaponLIndexX=-1;
+        int UsedWeaponLIndexY=-1;
+
         int randomIndex = UnityEngine.Random.Range(0, weaponPoolL.Count);
         List<GameObject> randomThreeWeaponLPool = new List<GameObject>();
 
-        for(int i = 0; i < 3; i++)
+        //盾牌X
+        for (int i = 0; i < weaponPoolL.Count; i++)
         {
             if (weaponPoolL[randomIndex] != CurrentWeaponL_weaponL)
             {
                 randomThreeWeaponLPool.Add(weaponPoolL[randomIndex]);
-                
+                UsedWeaponLIndexX = randomIndex;
+                Debug.LogError("x:" + randomIndex);
+                break;
             }
-            else
-            {
-                i--;
-            }
-            if (randomIndex == (weaponPoolR.Count - 1)) randomIndex = 0;
-            if (randomIndex < weaponPoolR.Count) randomIndex++;
+            Debug.LogWarning("----------------------------------------------------x");
+            if (randomIndex == (weaponPoolL.Count - 1)) randomIndex = 0;
+            if (randomIndex < weaponPoolL.Count) randomIndex++;
+            
         }
+
+
+        //盾牌Y
+        for (int i = 0; i < weaponPoolL.Count+2; i++)
+        {
+            if (randomIndex != UsedWeaponLIndexX)
+            {
+                if (weaponPoolL[randomIndex] != CurrentWeaponL_weaponL)
+                {
+                    randomThreeWeaponLPool.Add(weaponPoolL[randomIndex]);
+                    UsedWeaponLIndexY = randomIndex;
+                    Debug.LogError("y:" + randomIndex);
+                    break;
+                }
+            }
+            Debug.LogWarning("----------------------------------------------------y");
+            if (randomIndex == (weaponPoolL.Count - 1)) randomIndex = 0;
+                if (randomIndex < weaponPoolL.Count) randomIndex++;
+            
+        }
+
+        //盾牌Z
+        foreach(var weaponZ in weaponPoolL)
+        {
+            if(weaponZ != randomThreeWeaponLPool[0] && weaponZ!= randomThreeWeaponLPool[1])
+            {
+
+                randomThreeWeaponLPool.Add(weaponZ);
+                Debug.LogError("z: Get Z" );
+                break;
+            }
+            Debug.LogWarning("----------------------------------------------------z");
+        }
+
         return randomThreeWeaponLPool;
     }
 

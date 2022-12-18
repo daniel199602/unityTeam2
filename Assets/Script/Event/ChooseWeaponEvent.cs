@@ -11,7 +11,13 @@ public class ChooseWeaponEvent : MonoBehaviour
 
     private void Awake()
     {
+        
+    }
+
+    private void Start()
+    {
         uIManager = UIManager.Instance();
+        Debug.LogWarning(uIManager);
     }
 
     // Update is called once per frame
@@ -19,8 +25,7 @@ public class ChooseWeaponEvent : MonoBehaviour
     {
         if (isInZone && Input.GetKeyDown(KeyCode.E))
         {
-            uIManager.weaponOneOfThreePanel.GetComponent<WeaponOneOfThreeUI>().SetRandomThreeWeaponR();//設置右手武器三選一
-            uIManager.OneOfThreeUIOpen();//三選一UI介面打開
+            uIManager.OpenOneOfThreeAndChooseWeapon();
         }
     }
 
