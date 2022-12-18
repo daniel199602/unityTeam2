@@ -76,7 +76,7 @@ public class PlayerController : MonoBehaviour
 
         State = GetComponent<PlayerHpData>();
         hpTemporary = State.Hp;
-        hpTemporaryMax = State.Hp;
+        
     }
 
     public void InvincibleMode()
@@ -85,6 +85,7 @@ public class PlayerController : MonoBehaviour
         {
             isInvincible = true;
             isInvincibleModeSwitch = true;
+            hpTemporaryMax = State.Hp;
         }
         if (Input.GetKey(KeyCode.F12))
         {
@@ -367,20 +368,22 @@ public class PlayerController : MonoBehaviour
         }
         else if (Input.GetKeyDown(KeyCode.Alpha2))
         {
-
-            if (WeaponManager.Instance().CurrentWeaponR_weaponR.GetComponent<ItemOnWeapon>().weaponType == 2)
-            //if (/*之後依據武器的type切換成 劍、盾*/alpha2Switch)
+            if (WeaponManager.Instance().CurrentWeaponR_weaponR)
             {
-                currentLayerNum = 1;
-                charaterAnimator.SetTrigger("isTriggerLayerChange");
-                StartCoroutine(ShowWeaponLWeaponR());
+                if (WeaponManager.Instance().CurrentWeaponR_weaponR.GetComponent<ItemOnWeapon>().weaponType == 2)
+                {
+                    currentLayerNum = 1;
+                    charaterAnimator.SetTrigger("isTriggerLayerChange");
+                    StartCoroutine(ShowWeaponLWeaponR());
+                }
+                else if (WeaponManager.Instance().CurrentWeaponR_weaponR.GetComponent<ItemOnWeapon>().weaponType == 3)
+                {
+                    currentLayerNum = 2;
+                    charaterAnimator.SetTrigger("isTriggerLayerChange");
+                    StartCoroutine(ShowWeaponR());
+                }
             }
-            else if (WeaponManager.Instance().CurrentWeaponR_weaponR.GetComponent<ItemOnWeapon>().weaponType == 3)
-            {
-                currentLayerNum = 2;
-                charaterAnimator.SetTrigger("isTriggerLayerChange");
-                StartCoroutine(ShowWeaponR());
-            }
+            
         }
     }
 

@@ -67,7 +67,16 @@ public class UIManager : MonoBehaviour
         //        OneOfThreeUIClose();
         //    }
         //}
-        
+
+    }
+
+    /// <summary>
+    /// 給寶箱使用
+    /// </summary>
+    public void OpenOneOfThreeAndChooseWeapon()
+    {
+        OneOfThreeUIOpen();
+        weaponOneOfThreePanel.GetComponent<WeaponOneOfThreeUI>().SetRandomThreeWeaponR();//設置右手武器三選一
     }
 
 

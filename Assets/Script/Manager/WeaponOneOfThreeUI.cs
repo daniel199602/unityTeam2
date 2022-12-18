@@ -28,7 +28,10 @@ public class WeaponOneOfThreeUI : MonoBehaviour
         weaponDataArrayX = weaponButtonX.GetComponentsInChildren<TMP_Text>();//依照子對象順序查找
         weaponDataArrayY = weaponButtonY.GetComponentsInChildren<TMP_Text>();//依照子對象順序查找
         weaponDataArrayZ = weaponButtonZ.GetComponentsInChildren<TMP_Text>();//依照子對象順序查找
+    }
 
+    private void Start()
+    {
         transform.gameObject.SetActive(false);
     }
 
