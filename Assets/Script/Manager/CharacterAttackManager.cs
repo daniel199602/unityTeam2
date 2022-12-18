@@ -82,7 +82,6 @@ public class CharacterAttackManager : MonoBehaviour
             {
                 DeductMobHpInstant(mob, weaponDamage_instant);
                 DeductMobHpDelay(mob, weaponDamamge_delay);
-                DeductMobAnimatorDelay(mob);
                 ParticleSystem ps = hitVFX.GetComponent<ParticleSystem>();
                 Instantiate(ps, mob.transform.position+up, mob.transform.rotation);
                 ps.Play();
@@ -91,6 +90,29 @@ public class CharacterAttackManager : MonoBehaviour
             }
         }
     }
+
+    /// <summary>
+    /// 左手攻擊事件，綁在左手攻擊動畫上   專門處理放慢動作 
+    /// </summary>
+    private void AttackAmimatorDelayEvent_left()
+    {
+        int weaponDamage_instant = WeaponManager.Instance().CurrentWeaponL_weaponL.GetComponent<ItemOnWeapon>().weaponDamage_instant;
+        int weaponDamamge_delay = WeaponManager.Instance().CurrentWeaponL_weaponL.GetComponent<ItemOnWeapon>().weaponDamage_delay;
+        float angle = WeaponManager.Instance().CurrentWeaponL_weaponL.GetComponent<ItemOnWeapon>().weaponAngle;
+        float radius = WeaponManager.Instance().CurrentWeaponL_weaponL.GetComponent<ItemOnWeapon>().weaponRadius;
+
+        foreach (GameObject mob in GameManager.Instance().mobPool)
+        {
+            Debug.Log("attack");
+            if (IsInRange(angle, radius, gameObject.transform, mob.transform))
+            {
+                DeductMobAnimatorDelay(mob);
+                Debug.LogWarning("Hit : " + mob.GetComponent<ItemOnMob>().mobName + "Hp : " + mob.GetComponent<MubHpData>().Hp);
+            }
+        }
+    }
+
+
 
     /// <summary>
     /// 右手攻擊事件，綁在右手攻擊動畫上
@@ -232,12 +254,15 @@ public class CharacterAttackManager : MonoBehaviour
     /// </summary>
     IEnumerator AnimatorDelay(GameObject mob)
     {
-        this.gameObject.GetComponent<Animator>().speed = 0.1f;
+        this.gameObject.GetComponent<Animator>().speed = 0.4f;
         mob.GetComponent<Animator>().speed = 0.1f;
         yield return new WaitForSeconds(0.3f);
         mob.GetComponent<Animator>().speed = 1.0f;
         this.gameObject.GetComponent<Animator>().speed = 1.0f;
     }
+
+
+
 
 
 
