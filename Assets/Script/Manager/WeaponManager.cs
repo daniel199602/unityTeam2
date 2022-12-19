@@ -64,149 +64,6 @@ public class WeaponManager : MonoBehaviour
     }
     /*-----------------------------------------------------*/
 
-
-    /*1217武器三選一，施工中-----------*/
-
-    //執行順位: 要在武器池抓完所有武器之後
-
-    //第一步機制:
-    //隨機從 weaponPoolR 抓3支不重複的右手武器(劍)
-    //先抓1支雙手劍，再抓1支單手劍，再隨機抓1支右手劍，且如果有當前裝備的右手劍則要排除
-
-    /// <summary>
-    /// 從weaponPoolR中，取隨機不重複1支雙手劍、1支單手劍 、再1支右手劍
-    /// 並回傳一個 List<GameObject>
-    /// </summary>
-    public List<GameObject> GetRandomThreeWeaponR()
-    {
-        int UsedWeaponType3Index=-1;//用過的雙手劍weaponPoolR 內的index
-        int UsedWeaponType2Index=-1;//用過的單手劍weaponPoolR 內的index
-
-        int randomIndex = UnityEngine.Random.Range(0, weaponPoolR.Count);
-        List<GameObject> randomThreeWeaponRPool = new List<GameObject>();
-
-        //雙手劍 && 不等於當前裝備右手武器
-        for (int i = 0; i < weaponPoolR.Count; i++)
-        {
-            if (weaponPoolR[randomIndex].GetComponent<ItemOnWeapon>().weaponType == 3)
-            {
-                if (weaponPoolR[randomIndex] != CurrentWeaponR_weaponR)
-                {
-                    randomThreeWeaponRPool.Add(weaponPoolR[randomIndex]);
-                    UsedWeaponType3Index = randomIndex;
-                    break;
-                }
-            }
-            if (randomIndex == (weaponPoolR.Count - 1)) randomIndex = 0;
-            if (randomIndex < weaponPoolR.Count) randomIndex++;
-        }
-
-        //單手劍 && 不等於當前裝備右手武器
-        int randomIndexForSecondChoose = UnityEngine.Random.Range(0, weaponPoolR.Count);//增加隨機性
-        randomIndex = randomIndexForSecondChoose;
-        for (int i = 0; i < weaponPoolR.Count; i++)
-        {
-            if (weaponPoolR[randomIndex].GetComponent<ItemOnWeapon>().weaponType == 2)
-            {
-                if (weaponPoolR[randomIndex] != CurrentWeaponR_weaponR)
-                {
-                    randomThreeWeaponRPool.Add(weaponPoolR[randomIndex]);
-                    UsedWeaponType2Index = randomIndex;
-                    break;
-                }
-            }
-            if (randomIndex == (weaponPoolR.Count - 1)) randomIndex = 0;
-            if (randomIndex < weaponPoolR.Count) randomIndex++;
-        }
-
-        //再隨機抓1支右手劍 && 不等於當前裝備右手武器 && 不重複前兩把武器
-        int randomIndexForThridChoose = UnityEngine.Random.Range(0, weaponPoolR.Count);//增加隨機性
-        randomIndex = randomIndexForThridChoose;
-        for (int i = 0; i < weaponPoolR.Count; i++)
-        {
-            if (randomIndex!= UsedWeaponType3Index && randomIndex != UsedWeaponType2Index)
-            {
-                if (weaponPoolR[randomIndex] != CurrentWeaponR_weaponR)
-                {
-                    randomThreeWeaponRPool.Add(weaponPoolR[randomIndex]);
-                    break;
-                }
-            }
-            if (randomIndex == (weaponPoolR.Count - 1)) randomIndex = 0;
-            if (randomIndex < weaponPoolR.Count) randomIndex++;
-        }
-
-        return randomThreeWeaponRPool;
-    }
-
-    //第二步機制:
-    //隨機從 weaponPoolR 抓3支不重複的左手武器(盾)
-    //如果有當前裝備的左手盾則要排除
-    public List<GameObject> GetRandomThreeWeaponL()
-    {
-        int UsedWeaponLIndexX=-1;
-        int UsedWeaponLIndexY=-1;
-
-        int randomIndex = UnityEngine.Random.Range(0, weaponPoolL.Count);
-        List<GameObject> randomThreeWeaponLPool = new List<GameObject>();
-
-        //盾牌X
-        for (int i = 0; i < weaponPoolL.Count; i++)
-        {
-            if (weaponPoolL[randomIndex] != CurrentWeaponL_weaponL)
-            {
-                randomThreeWeaponLPool.Add(weaponPoolL[randomIndex]);
-                UsedWeaponLIndexX = randomIndex;
-                break;
-            }
-            if (randomIndex == (weaponPoolL.Count - 1)) randomIndex = 0;
-            if (randomIndex < weaponPoolL.Count) randomIndex++;
-        }
-
-        //盾牌Y
-        for (int i = 0; i < weaponPoolL.Count+2; i++)
-        {
-            if (randomIndex != UsedWeaponLIndexX)
-            {
-                if (weaponPoolL[randomIndex] != CurrentWeaponL_weaponL)
-                {
-                    randomThreeWeaponLPool.Add(weaponPoolL[randomIndex]);
-                    UsedWeaponLIndexY = randomIndex;
-                    break;
-                }
-            }
-            if (randomIndex == (weaponPoolL.Count - 1)) randomIndex = 0;
-                if (randomIndex < weaponPoolL.Count) randomIndex++;
-        }
-
-        //盾牌Z
-        foreach(var weaponZ in weaponPoolL)
-        {
-            if(weaponZ != randomThreeWeaponLPool[0] && weaponZ!= randomThreeWeaponLPool[1])
-            {
-
-                randomThreeWeaponLPool.Add(weaponZ);
-                break;
-            }
-        }
-
-        return randomThreeWeaponLPool;
-    }
-
-    ////UI分別抓出三組武器的id，將對應的武器圖及數值顯示在UI上
-    ////玩家選擇後，將該武器組合顯示在武器格中
-    ////如果是雙手劍 雙手劍第0格，第1格鎖起來效果圖
-    ////如果是單手劍+盾 單手劍第0格，盾第1格
-
-
-    //如果是雙手劍，call一次 ChooseAndUseWeapon(傳入type,傳入id)
-    //如果是單手劍 + 盾，分別call一次 ChooseAndUseWeapon(傳入type,傳入id)
-
-
-    /*---------------------------------*/
-
-
-
     private void Awake()
     {
         if (mInstance != null)
@@ -236,11 +93,11 @@ public class WeaponManager : MonoBehaviour
 
     private void Update()
     {
-        //按L切換成測試inspector當前的type,id武器
-        if(Input.GetKeyDown(KeyCode.L))
-        {
-            Test_ChooseAndUseWeapon(test_type1_id, test_type23, test_type2_id, test_type3_id);
-        }
+        ////按L切換成測試inspector當前的type,id武器
+        //if(Input.GetKeyDown(KeyCode.L))
+        //{
+        //    Test_ChooseAndUseWeapon(test_type1_id, test_type23, test_type2_id, test_type3_id);
+        //}
     }
 
     /// <summary>
@@ -274,6 +131,9 @@ public class WeaponManager : MonoBehaviour
         }
     }
 
+
+
+
     /// <summary>
     /// 選擇並使用該武器(不使用，專門測試用)
     /// </summary>
@@ -300,35 +160,7 @@ public class WeaponManager : MonoBehaviour
     }
 
 
-    /// <summary>
-    /// 選擇並使用該武器
-    /// (三選一機制會用到這個函式)
-    /// </summary>
-    public void ChooseAndUseWeapon(GameObject aWeapon)
-    {
-        int type = aWeapon.GetComponent<ItemOnWeapon>().weaponType;
-        int id = aWeapon.GetComponent<ItemOnWeapon>().weaponID;
-
-        WeaponSetActiveOpen(type, id);//開啟選擇的武器
-
-        if (type == 0)
-            this.CurrentTorchL_torch = GetWeapon(type, id);//當前火把
-        if (type == 1)
-            this.CurrentWeaponL_weaponL = GetWeapon(type, id);//當前左手武器
-            UIManager.Instance().weaponFramePanel.GetComponent<WeaponFrameUI>().SetCurrentWeaponImage(aWeapon);//設置當前武器進武器格
-        if (type == 2)
-        {
-            this.CurrentWeaponR_weaponR = GetWeapon(type, id);//當前右單手武器
-            UIManager.Instance().weaponFramePanel.GetComponent<WeaponFrameUI>().SetCurrentWeaponImage(aWeapon);//設置當前武器進武器格
-            player.GetComponent<PlayerController>().AutoSwitchWeaponR(this.CurrentWeaponR_weaponR);
-        }
-        if (type == 3)
-        {
-            this.CurrentWeaponR_weaponR = GetWeapon(type, id);//當前右雙手武器
-            UIManager.Instance().weaponFramePanel.GetComponent<WeaponFrameUI>().SetCurrentWeaponImage(aWeapon);//設置當前武器進武器格
-            player.GetComponent<PlayerController>().AutoSwitchWeaponR(this.CurrentWeaponR_weaponR);
-        }
-    }
+ 
 
     /// <summary>
     /// 開啟選擇的武器，並關閉其他同類型的武器
@@ -451,5 +283,157 @@ public class WeaponManager : MonoBehaviour
         return null;
     }
 
+    /*武器三選一*/
+    //執行順位: 要在武器池抓完所有武器之後
+
+    //第一步機制:
+    //隨機從 weaponPoolR 抓3支不重複的右手武器(劍)
+    //先抓1支雙手劍，再抓1支單手劍，再隨機抓1支右手劍，且如果有當前裝備的右手劍則要排除
+    /// <summary>
+    /// 從weaponPoolR中，取隨機不重複1支雙手劍、1支單手劍 、再1支右手劍
+    /// 並回傳一個 List<GameObject>
+    /// </summary>
+    public List<GameObject> GetRandomThreeWeaponR()
+    {
+        int UsedWeaponType3Index = -1;//用過的雙手劍weaponPoolR 內的index
+        int UsedWeaponType2Index = -1;//用過的單手劍weaponPoolR 內的index
+
+        int randomIndex = UnityEngine.Random.Range(0, weaponPoolR.Count);
+        List<GameObject> randomThreeWeaponRPool = new List<GameObject>();
+
+        //雙手劍 && 不等於當前裝備右手武器
+        for (int i = 0; i < weaponPoolR.Count; i++)
+        {
+            if (weaponPoolR[randomIndex].GetComponent<ItemOnWeapon>().weaponType == 3)
+            {
+                if (weaponPoolR[randomIndex] != CurrentWeaponR_weaponR)
+                {
+                    randomThreeWeaponRPool.Add(weaponPoolR[randomIndex]);
+                    UsedWeaponType3Index = randomIndex;
+                    break;
+                }
+            }
+            if (randomIndex == (weaponPoolR.Count - 1)) randomIndex = 0;
+            if (randomIndex < weaponPoolR.Count) randomIndex++;
+        }
+        //單手劍 && 不等於當前裝備右手武器
+        int randomIndexForSecondChoose = UnityEngine.Random.Range(0, weaponPoolR.Count);//增加隨機性
+        randomIndex = randomIndexForSecondChoose;
+        for (int i = 0; i < weaponPoolR.Count; i++)
+        {
+            if (weaponPoolR[randomIndex].GetComponent<ItemOnWeapon>().weaponType == 2)
+            {
+                if (weaponPoolR[randomIndex] != CurrentWeaponR_weaponR)
+                {
+                    randomThreeWeaponRPool.Add(weaponPoolR[randomIndex]);
+                    UsedWeaponType2Index = randomIndex;
+                    break;
+                }
+            }
+            if (randomIndex == (weaponPoolR.Count - 1)) randomIndex = 0;
+            if (randomIndex < weaponPoolR.Count) randomIndex++;
+        }
+        //再隨機抓1支右手劍 && 不等於當前裝備右手武器 && 不重複前兩把武器
+        int randomIndexForThridChoose = UnityEngine.Random.Range(0, weaponPoolR.Count);//增加隨機性
+        randomIndex = randomIndexForThridChoose;
+        for (int i = 0; i < weaponPoolR.Count; i++)
+        {
+            if (randomIndex != UsedWeaponType3Index && randomIndex != UsedWeaponType2Index)
+            {
+                if (weaponPoolR[randomIndex] != CurrentWeaponR_weaponR)
+                {
+                    randomThreeWeaponRPool.Add(weaponPoolR[randomIndex]);
+                    break;
+                }
+            }
+            if (randomIndex == (weaponPoolR.Count - 1)) randomIndex = 0;
+            if (randomIndex < weaponPoolR.Count) randomIndex++;
+        }
+        return randomThreeWeaponRPool;
+    }
+
+    //第二步機制:
+    //隨機從 weaponPoolR 抓3支不重複的左手武器(盾)
+    //如果有當前裝備的左手盾則要排除
+
+    /// <summary>
+    /// 從weaponPoolR中，取隨機不重複3把盾
+    /// 並回傳一個 List<GameObject>
+    /// </summary>
+    public List<GameObject> GetRandomThreeWeaponL()
+    {
+        int UsedWeaponLIndexX = -1;
+        int randomIndex = UnityEngine.Random.Range(0, weaponPoolL.Count);
+        List<GameObject> randomThreeWeaponLPool = new List<GameObject>();
+
+        //盾牌X
+        for (int i = 0; i < weaponPoolL.Count; i++)
+        {
+            if (weaponPoolL[randomIndex] != CurrentWeaponL_weaponL)
+            {
+                randomThreeWeaponLPool.Add(weaponPoolL[randomIndex]);
+                UsedWeaponLIndexX = randomIndex;
+                break;
+            }
+            if (randomIndex == (weaponPoolL.Count - 1)) randomIndex = 0;
+            if (randomIndex < weaponPoolL.Count) randomIndex++;
+        }
+        //盾牌Y
+        for (int i = 0; i < weaponPoolL.Count + 2; i++)
+        {
+            if (randomIndex != UsedWeaponLIndexX)
+            {
+                if (weaponPoolL[randomIndex] != CurrentWeaponL_weaponL)
+                {
+                    randomThreeWeaponLPool.Add(weaponPoolL[randomIndex]);
+                    break;
+                }
+            }
+            if (randomIndex == (weaponPoolL.Count - 1)) randomIndex = 0;
+            if (randomIndex < weaponPoolL.Count) randomIndex++;
+        }
+        //盾牌Z
+        foreach (var weaponZ in weaponPoolL)
+        {
+            if (weaponZ != randomThreeWeaponLPool[0] && weaponZ != randomThreeWeaponLPool[1])
+            {
+
+                randomThreeWeaponLPool.Add(weaponZ);
+                break;
+            }
+        }
+        return randomThreeWeaponLPool;
+    }
+
+    /// <summary>
+    /// 選擇並使用該武器
+    /// (三選一機制會用到這個函式)
+    /// </summary>
+    public void ChooseAndUseWeapon(GameObject aWeapon)
+    {
+        int type = aWeapon.GetComponent<ItemOnWeapon>().weaponType;
+        int id = aWeapon.GetComponent<ItemOnWeapon>().weaponID;
+
+        WeaponSetActiveOpen(type, id);//開啟選擇的武器
+
+        if (type == 0)
+            this.CurrentTorchL_torch = GetWeapon(type, id);//當前火把
+        if (type == 1)
+            this.CurrentWeaponL_weaponL = GetWeapon(type, id);//當前左手武器
+        UIManager.Instance().weaponFramePanel.GetComponent<WeaponFrameUI>().SetCurrentWeaponImage(aWeapon);//設置當前武器進武器格
+        if (type == 2)
+        {
+            this.CurrentWeaponR_weaponR = GetWeapon(type, id);//當前右單手武器
+            UIManager.Instance().weaponFramePanel.GetComponent<WeaponFrameUI>().SetCurrentWeaponImage(aWeapon);//設置當前武器進武器格
+            player.GetComponent<PlayerController>().AutoSwitchWeaponR(this.CurrentWeaponR_weaponR);
+        }
+        if (type == 3)
+        {
+            this.CurrentWeaponR_weaponR = GetWeapon(type, id);//當前右雙手武器
+            UIManager.Instance().weaponFramePanel.GetComponent<WeaponFrameUI>().SetCurrentWeaponImage(aWeapon);//設置當前武器進武器格
+            player.GetComponent<PlayerController>().AutoSwitchWeaponR(this.CurrentWeaponR_weaponR);
+        }
+    }
+    /*---------------------------------*/
 
 }

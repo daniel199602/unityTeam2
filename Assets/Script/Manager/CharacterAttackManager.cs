@@ -254,7 +254,7 @@ public class CharacterAttackManager : MonoBehaviour
     /// </summary>
     IEnumerator AnimatorDelay(GameObject mob)
     {
-        this.gameObject.GetComponent<Animator>().speed = 0.4f;
+        this.gameObject.GetComponent<Animator>().speed = 0.3f;
         mob.GetComponent<Animator>().speed = 0.1f;
         yield return new WaitForSeconds(0.3f);
         mob.GetComponent<Animator>().speed = 1.0f;
@@ -271,7 +271,7 @@ public class CharacterAttackManager : MonoBehaviour
         if(isOpenOnDrawGizmos && WeaponManager.Instance().CurrentWeaponR_weaponR)
         {
             //¥k¤âªZ¾¹§ðÀ»¥b®|
-            Gizmos.color = Color.red;
+            Gizmos.color = Color.green;
             float angleR = WeaponManager.Instance().CurrentWeaponR_weaponR.GetComponent<ItemOnWeapon>().weaponAngle;
             float radiusR = WeaponManager.Instance().CurrentWeaponR_weaponR.GetComponent<ItemOnWeapon>().weaponRadius;
             int segments = 100;

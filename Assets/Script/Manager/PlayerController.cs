@@ -176,7 +176,7 @@ public class PlayerController : MonoBehaviour
             }
             else if (m_pCurrentState == pFSMState.Attack)
             {
-                isUseJump = false;//禁用空白鍵，禁止翻滾
+
             }
 
             SwitchLayer(currentLayerNum);
@@ -224,21 +224,21 @@ public class PlayerController : MonoBehaviour
             {
                 charaterAnimator.SetBool("GetHit01", false);
                 charaterAnimator.SetBool("GetHit02", false);
-                if (m_pCurrentState == pFSMState.MoveTree)
-                {
-                    isUseFire1 = true;
-                    isUseJump = true;
-                    isOpenAttackMove = false;//攻擊位移關閉，防呆
-                    charaterAnimator.SetFloat("animSpeed", 1.5f);
-                }
-                else if (m_pCurrentState == pFSMState.Roll)
-                {
-                    isUseFire1 = false;//禁用滑鼠左鍵，禁止攻擊
-                }
-                else if (m_pCurrentState == pFSMState.Attack)
-                {
-                    isUseJump = false;//禁用空白鍵，禁止翻滾
-                }
+                //if (m_pCurrentState == pFSMState.MoveTree)
+                //{
+                //    isUseFire1 = true;
+                //    isUseJump = true;
+                //    isOpenAttackMove = false;//攻擊位移關閉，防呆
+                //    charaterAnimator.SetFloat("animSpeed", 1.5f);
+                //}
+                //else if (m_pCurrentState == pFSMState.Roll)
+                //{
+                //    isUseFire1 = false;//禁用滑鼠左鍵，禁止攻擊
+                //}
+                //else if (m_pCurrentState == pFSMState.Attack)
+                //{
+                //    isUseJump = false;//禁用空白鍵，禁止翻滾
+                //}
 
                 SwitchLayer(currentLayerNum);
                 ControlSwitchWeapon();
@@ -378,7 +378,7 @@ public class PlayerController : MonoBehaviour
         }
         else if (Input.GetKeyDown(KeyCode.Alpha2))
         {
-            if (WeaponManager.Instance().CurrentWeaponR_weaponR)
+            if (WeaponManager.Instance().CurrentWeaponR_weaponR)//有裝備當前右手武器才開啟
             {
                 if (WeaponManager.Instance().CurrentWeaponR_weaponR.GetComponent<ItemOnWeapon>().weaponType == 2)
                 {
