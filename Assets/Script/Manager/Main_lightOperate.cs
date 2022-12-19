@@ -43,7 +43,8 @@ public class Main_lightOperate : MonoBehaviour
         {
             FireLight();
         }
-        if (Input.GetKeyDown(KeyCode.Alpha2))
+
+        if (Input.GetKeyDown(KeyCode.Alpha2) && WeaponManager.Instance().CurrentWeaponR_weaponR)
         {
             FireFalse();
         }

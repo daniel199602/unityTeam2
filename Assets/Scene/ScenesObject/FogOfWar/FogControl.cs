@@ -25,7 +25,7 @@ public class FogControl : MonoBehaviour
         {
             this.transform.GetComponent<Renderer>().material = M2;
         }
-        if (Input.GetKeyDown(KeyCode.Alpha2))
+        if (Input.GetKeyDown(KeyCode.Alpha2) && WeaponManager.Instance().CurrentWeaponR_weaponR)
         {
             this.transform.GetComponent<Renderer>().material = M1;
         }
