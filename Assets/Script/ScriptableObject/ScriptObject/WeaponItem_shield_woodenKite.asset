@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9fecbaf6227624459173a292215c6d1, type: 3}
   m_Name: WeaponItem_shield_woodenKite
   m_EditorClassIdentifier: 
-  weaponName: shield_woodenKite
+  weaponName: "\u9CF6\u5F62\u6728\u76FE"
   weaponType: 1
   weaponID: 12
   weaponDamage_instant: 50
