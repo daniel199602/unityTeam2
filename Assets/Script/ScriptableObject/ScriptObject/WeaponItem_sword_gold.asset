@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9fecbaf6227624459173a292215c6d1, type: 3}
   m_Name: WeaponItem_sword_gold
   m_EditorClassIdentifier: 
-  weaponName: sword_gold
+  weaponName: "\u5967\u6797\u5339\u514B\u4E4B\u5203"
   weaponType: 2
   weaponID: 22
   weaponDamage_instant: 180

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9fecbaf6227624459173a292215c6d1, type: 3}
   m_Name: WeaponItem_shield_epic
   m_EditorClassIdentifier: 
-  weaponName: shield_epic
+  weaponName: "\u7687\u5BB6\u5713\u76FE"
   weaponType: 1
   weaponID: 11
   weaponDamage_instant: 50

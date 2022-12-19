@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9fecbaf6227624459173a292215c6d1, type: 3}
   m_Name: WeaponItem_bigSword_bone
   m_EditorClassIdentifier: 
-  weaponName: bigSword_bone
+  weaponName: "\u6C99\u6F20\u907A\u9AB8"
   weaponType: 3
   weaponID: 33
   weaponDamage_instant: 280
