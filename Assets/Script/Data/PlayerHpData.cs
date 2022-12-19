@@ -7,9 +7,9 @@ public class PlayerHpData : MonoBehaviour
     // Start is called before the first frame update
     ItemOnMob thisItemOnMob;
 
-    [HideInInspector] public int MaxHp;
-    [SerializeField] public int Hp;
-    [SerializeField] private int currentHp;
+    [HideInInspector] public int MaxHp=4000;
+    [SerializeField] public int Hp=4000;
+    [SerializeField] private int currentHp=4000;
     GameObject Player;
 
     HealthPlayerBar Health;

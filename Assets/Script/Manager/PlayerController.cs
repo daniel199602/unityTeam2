@@ -1,7 +1,5 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-
 
 public enum pFSMState
 {
@@ -15,6 +13,18 @@ public enum pFSMState
 
 public class PlayerController : MonoBehaviour
 {
+    public enum pAnimLayerState
+    {
+        Layer0,
+        Layer1,
+        Layer2
+    }
+    private pAnimLayerState m_pCurrentAnimLayer; //當前動畫層級
+    private pFSMState m_pCurrentState;//當前人物狀態
+
+    //各層Layer的當前狀態
+    AnimatorStateInfo animStateInfo;
+
     //攝影機
     Camera cameraMain;
     public LayerMask hitMask;
@@ -30,17 +40,20 @@ public class PlayerController : MonoBehaviour
     private float attackMoveSpeed = 0;//攻擊位移速度
     bool isOpenAttackMove = false;//攻擊位移開關
     bool isUseMouseChangeForward = true;//滑鼠人物轉向開關
+
+    /*--------宗倫---------start-----------------------------*/
     public bool isInvincible = false;//翻滾無敵
     bool isInvincibleModeSwitch = false;
-    [HideInInspector] public int currentLayerNum = 0;//當前Layer預設第0層
-    //各層Layer的當前狀態
-    AnimatorStateInfo animStateInfo;
+    /*--------宗倫---------end-----------------------------*/
 
-    //手綁物品方塊
-    public GameObject torchL;//綁火把左手
+    [HideInInspector] public int currentLayerNum = 0;//當前Layer預設第0層
+    
+    //手綁物品空物件
+    public GameObject torchL;//左手(專門綁火把)
     public GameObject weaponL;//左手
     public GameObject weaponR;//右手
 
+    /*--------宗倫---------start-----------------------------*/
     //玩家數值(挖洞)
     PlayerHpData State;
     [SerializeField]int hpTemporary;
@@ -48,17 +61,8 @@ public class PlayerController : MonoBehaviour
     int RandomNum;
     bool isOpenBeHit = true;
     bool Reviving = false;
+    /*--------宗倫---------end-----------------------------*/
 
-    public enum pAnimLayerState
-    {
-        Layer0,
-        Layer1,
-        Layer2
-    }
-    private pAnimLayerState m_pCurrentAnimLayer;
-
-    
-    private pFSMState m_pCurrentState;
 
     private void Awake()
     {
@@ -74,11 +78,14 @@ public class PlayerController : MonoBehaviour
         weaponL.SetActive(false);
         weaponR.SetActive(false);
 
+        /*--------宗倫---------start-----------------------------*/
         State = GetComponent<PlayerHpData>();
         hpTemporary = State.Hp;
-        
+        /*--------宗倫---------end-----------------------------*/
+
     }
 
+    /*--------宗倫---------start-----------------------------*/
     public void InvincibleMode()
     {
         if (Input.GetKey(KeyCode.F11))
@@ -93,6 +100,8 @@ public class PlayerController : MonoBehaviour
             isInvincibleModeSwitch = false;
         }
     }
+    /*--------宗倫---------end-----------------------------*/
+
 
     // Update is called once per frame
     void Update()
@@ -130,6 +139,9 @@ public class PlayerController : MonoBehaviour
             charaterAnimator.SetLayerWeight(1, 0);
             charaterAnimator.SetLayerWeight(2, 1);
         }
+
+
+        /*--------宗倫---------start-----------------------------*/
         if (isInvincibleModeSwitch == true)
         {
             State.Hp = hpTemporary;
@@ -149,7 +161,8 @@ public class PlayerController : MonoBehaviour
                         charaterAnimator.ResetTrigger("Revive");
                     }
                 }
-            }            
+            }
+            
             if (m_pCurrentState == pFSMState.MoveTree)
             {
                 isUseFire1 = true;
@@ -234,7 +247,8 @@ public class PlayerController : MonoBehaviour
                 ControlAttack(isUseFire1);
             }
         }
-        
+        /*--------宗倫---------end-----------------------------*/
+
     }
 
 
@@ -270,10 +284,6 @@ public class PlayerController : MonoBehaviour
             charaterAnimator.SetInteger("intAttackID", 0);
             isOpenAttackMove = false;
         }
-
-
-
-
         if (isMouseClickDown && isUseFire1)
         {
             m_pCurrentState = pFSMState.Attack;//進入攻擊狀態***
@@ -524,6 +534,8 @@ public class PlayerController : MonoBehaviour
         attackMoveSpeed = 0f;
     }
 
+
+    /*--------宗倫---------start-----------------------------*/
     private void AnimSpeedPlus()
     {
         charaterAnimator.SetFloat("animSpeed", 5f);
@@ -544,7 +556,6 @@ public class PlayerController : MonoBehaviour
             cc.radius = 0f;
         }
     }
-
     /// <summary>
     /// 開啟觸發人物受擊事件
     /// </summary>
@@ -552,4 +563,7 @@ public class PlayerController : MonoBehaviour
     {
         isOpenBeHit = true;
     }
+    /*--------宗倫---------end-----------------------------*/
+
+
 }
