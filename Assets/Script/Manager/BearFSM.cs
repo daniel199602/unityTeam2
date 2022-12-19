@@ -234,8 +234,7 @@ public class BearFSM : MonoBehaviour
         InATKrange = IsInRange_RangedBattleRange(ATKRadius, Close_ATKRadius, MySelf, Target);
         if (InATKrange == true)
         {
-            LeaveAttackRangeBool = true;
-            InAttackRangeBool = true;
+           
             MoveSpeed = 0f;
             m_NowState = BearState.Attack;
             MubAnimator.SetBool("Trace", false);
@@ -255,11 +254,7 @@ public class BearFSM : MonoBehaviour
                 m_NowState = BearState.Idle;
                 Idle();
             }
-            GetTargetMegnitude = (Target.transform.position - transform.position).magnitude;
-            if (GetTargetMegnitude > LeaveATKRadius)
-            {
-                LeaveAttackRangeBool = false;
-            }
+            GetTargetMegnitude = (Target.transform.position - transform.position).magnitude;            
         }
     }
     //¦b§ðÀ»³J¶À°Ï(¤º°é)ª¬ºA
@@ -361,7 +356,9 @@ public class BearFSM : MonoBehaviour
     public void Attack()
     {
         if (m_NowState == BearState.Attack&& Count == 0)
-        {            
+        {
+            LeaveAttackRangeBool = true;
+            InAttackRangeBool = true;
             if (RandomChooseCoolDown==false)
             {
                 RandomChoose = UnityEngine.Random.Range(1, 4);
@@ -388,7 +385,7 @@ public class BearFSM : MonoBehaviour
             MubAnimator.SetBool("Attack01", false);
             MubAnimator.SetBool("Attack02", false);
             MubAnimator.SetBool("Attack03", false);
-            isAttacking = false;
+            
         }
     }
     public void Idle()
@@ -498,6 +495,7 @@ public class BearFSM : MonoBehaviour
         Close_ATKRadius = ATKRadius * 0.4f;
         MubAnimator.applyRootMotion = false;
         isAttacking = false;
+        LeaveAttackRangeBool = false;
         Count = 2;
         StartCoroutine(SummonCooldown());
     }
@@ -507,7 +505,6 @@ public class BearFSM : MonoBehaviour
         LeaveATKRadius = ATKRadius * 1.02f;
         Close_ATKRadius = ATKRadius * 0.4f;
         MubAnimator.applyRootMotion = false;
-        isAttacking = false;
     }
     private void AnimationSpeed_AttackEnd02()
     {
@@ -516,6 +513,7 @@ public class BearFSM : MonoBehaviour
         Close_ATKRadius = ATKRadius * 0.4f;
         MubAnimator.applyRootMotion = false;
         isAttacking = false;
+        LeaveAttackRangeBool = false;
         Count = 2;
         StartCoroutine(SummonCooldown());
     }
@@ -525,7 +523,6 @@ public class BearFSM : MonoBehaviour
         LeaveATKRadius = ATKRadius * 1.02f;
         Close_ATKRadius = ATKRadius * 0.4f;
         MubAnimator.applyRootMotion = false;
-        isAttacking = false;
     }
     private void AnimationSpeed_AttackEnd03()
     {
@@ -534,6 +531,7 @@ public class BearFSM : MonoBehaviour
         Close_ATKRadius = ATKRadius * 0.4f;
         MubAnimator.applyRootMotion = false;
         isAttacking = false;
+        LeaveAttackRangeBool = false;
         Count = 3;
         StartCoroutine(SummonCooldown());
     }
