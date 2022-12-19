@@ -1354,6 +1354,14 @@ PrefabInstance:
       propertyPath: bigSwoadSlash_Right
       value: 
       objectReference: {fileID: 1243245066}
+    - target: {fileID: 821133959739569995, guid: 843a687dd2b95bb4cb66922c432cf3f4, type: 3}
+      propertyPath: Hp
+      value: 4000
+      objectReference: {fileID: 0}
+    - target: {fileID: 821133959739569995, guid: 843a687dd2b95bb4cb66922c432cf3f4, type: 3}
+      propertyPath: currentHp
+      value: 4000
+      objectReference: {fileID: 0}
     - target: {fileID: 2631163319326334126, guid: 843a687dd2b95bb4cb66922c432cf3f4, type: 3}
       propertyPath: m_Name
       value: Male_Player_B
