@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mobName: Player
   mobType: -1
-  mobMaxHp: 2000
+  mobMaxHp: 4000
   mobDamage_instant: 0
   mobDamage_delay: 0
   mobAngle: 0

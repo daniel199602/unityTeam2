@@ -30,14 +30,14 @@ public class HealthPlayerBar : MonoBehaviour
     {
         Health = PlayerHp.Hp;
         StartCoroutine(HealthBarDelay());
-        if(Maxhealth != Health&& Health>0)
-        {
-            hpBar.gameObject.SetActive(true);
-        }
-        else if(Health<=0)
-        {
-            hpBar.gameObject.SetActive(false);
-        }
+        //if(Maxhealth != Health&& Health>0)
+        //{
+        //    hpBar.gameObject.SetActive(true);
+        //}
+        //else if(Health<=0)
+        //{
+        //    hpBar.gameObject.SetActive(false);
+        //}
     }
 
     public void BarFilter()

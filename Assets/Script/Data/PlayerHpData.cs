@@ -14,6 +14,8 @@ public class PlayerHpData : MonoBehaviour
 
     HealthPlayerBar Health;
 
+
+
     private void Awake()
     {
         thisItemOnMob = GetComponent<ItemOnMob>();
@@ -24,6 +26,7 @@ public class PlayerHpData : MonoBehaviour
     private void Start()
     {
         Player = GameManager.Instance().PlayerStart;
+        MaxHp = thisItemOnMob.mobMaxHp;
         Hp = MaxHp;
         currentHp = Hp;
     }
@@ -60,7 +63,7 @@ public class PlayerHpData : MonoBehaviour
             if (currentHp < 0)
             {
                 currentHp = 0;
-                Hp = currentHp;
+                Hp = 0;
             }
         }       
     }
