@@ -15,7 +15,7 @@ MonoBehaviour:
   weaponName: "\u79D8\u9280\u77ED\u528D"
   weaponType: 2
   weaponID: 23
-  weaponDamage_instant: 190
-  weaponDamage_delay: 0
+  weaponDamage_instant: 180
+  weaponDamage_delay: 10
   weaponAngle: 75
-  weaponRadius: 35
+  weaponRadius: 30

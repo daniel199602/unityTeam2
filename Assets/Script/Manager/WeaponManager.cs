@@ -102,6 +102,8 @@ public class WeaponManager : MonoBehaviour
         }
 
         //單手劍 && 不等於當前裝備右手武器
+        int randomIndexForSecondChoose = UnityEngine.Random.Range(0, weaponPoolR.Count);//增加隨機性
+        randomIndex = randomIndexForSecondChoose;
         for (int i = 0; i < weaponPoolR.Count; i++)
         {
             if (weaponPoolR[randomIndex].GetComponent<ItemOnWeapon>().weaponType == 2)
@@ -118,6 +120,8 @@ public class WeaponManager : MonoBehaviour
         }
 
         //再隨機抓1支右手劍 && 不等於當前裝備右手武器 && 不重複前兩把武器
+        int randomIndexForThridChoose = UnityEngine.Random.Range(0, weaponPoolR.Count);//增加隨機性
+        randomIndex = randomIndexForThridChoose;
         for (int i = 0; i < weaponPoolR.Count; i++)
         {
             if (randomIndex!= UsedWeaponType3Index && randomIndex != UsedWeaponType2Index)
