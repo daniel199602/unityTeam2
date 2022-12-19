@@ -8,8 +8,12 @@ public class bossTeleport : MonoBehaviour
 {
     Animation fadeOut;
     GameObject Player;
+    public GameObject TeleportVFX;
+    
+
 
     private float duration;
+    private float duration2;
     void Awake()
     {
         fadeOut = GameObject.Find("FadeColor").GetComponent<Animation>();
@@ -17,12 +21,21 @@ public class bossTeleport : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
+        ParticleSystem ps = TeleportVFX.GetComponent<ParticleSystem>();
         
-        fadeOut.Play("FadeOut");
+        ps.Play();
+
         Debug.Log("boss");
         GameManager.Instance().mobPool.Clear();
-        duration = 2;
-        Invoke(nameof(playerclose), duration);
+        duration = 0.5f;
+        Invoke(nameof(FadeOutWait), duration);
+        duration2 = 2.5f;
+        Invoke(nameof(playerclose), duration2);
+    }
+
+    void FadeOutWait()
+    {
+        fadeOut.Play("FadeOut");
     }
     void playerclose()
     {
