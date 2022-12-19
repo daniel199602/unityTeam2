@@ -95014,7 +95014,21 @@ AnimationClip:
     intParameter: 0
     messageOptions: 0
   - time: 0.46666667
-    functionName: AttackEvent_bigRight
+    functionName: AttackEvent_leftDuo
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 0.53333336
+    functionName: AttackEvent_leftDuo
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 0.6
+    functionName: AttackEvent_leftDuo
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0

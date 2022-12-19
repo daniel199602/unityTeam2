@@ -64,6 +64,32 @@ public class CharacterAttackManager : MonoBehaviour
         }
         return true;
     }
+    /// <summary>
+    /// 左手攻擊事件，綁在左手攻擊動畫上
+    /// </summary>
+    private void AttackEvent_leftDuo()
+    {
+        int weaponDamage_instant = WeaponManager.Instance().CurrentWeaponL_weaponL.GetComponent<ItemOnWeapon>().weaponDamage_instant;
+        int weaponDamamge_delay = WeaponManager.Instance().CurrentWeaponL_weaponL.GetComponent<ItemOnWeapon>().weaponDamage_delay;
+        float angle = WeaponManager.Instance().CurrentWeaponL_weaponL.GetComponent<ItemOnWeapon>().weaponAngle;
+        float angle360 = (angle / angle) + 360;
+        float radius = WeaponManager.Instance().CurrentWeaponL_weaponL.GetComponent<ItemOnWeapon>().weaponRadius;
+
+        foreach (GameObject mob in GameManager.Instance().mobPool)
+        {
+            Debug.Log("attack");
+            if (IsInRange(angle360, radius, gameObject.transform, mob.transform))
+            {
+                DeductMobHpInstant(mob, weaponDamage_instant);
+                DeductMobHpDelay(mob, weaponDamamge_delay);
+                ParticleSystem ps = hitVFX.GetComponent<ParticleSystem>();
+                Instantiate(ps, mob.transform.position + up, mob.transform.rotation);
+                ps.Play();
+                recoilShake.camraPlayerSake();
+                Debug.LogWarning("Hit : " + mob.GetComponent<ItemOnMob>().mobName + "Hp : " + mob.GetComponent<MubHpData>().Hp);
+            }
+        }
+    }
 
     /// <summary>
     /// 左手攻擊事件，綁在左手攻擊動畫上
