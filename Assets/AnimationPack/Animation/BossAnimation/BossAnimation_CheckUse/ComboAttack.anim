@@ -140120,7 +140120,7 @@ AnimationClip:
     intParameter: 0
     messageOptions: 0
   - time: 2.6666667
-    functionName: AnimationSpeed_TAttackEnd
+    functionName: AnimationSpeed_AttackEnd
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0

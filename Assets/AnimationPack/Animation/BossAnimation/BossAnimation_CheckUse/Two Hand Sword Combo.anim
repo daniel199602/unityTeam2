@@ -134216,7 +134216,7 @@ AnimationClip:
     intParameter: 0
     messageOptions: 0
   - time: 2.5833333
-    functionName: AnimationSpeed_TAttackEnd
+    functionName: AnimationSpeed_AttackEnd
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0

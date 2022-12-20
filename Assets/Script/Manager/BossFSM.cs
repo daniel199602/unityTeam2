@@ -265,6 +265,7 @@ public class BossFSM : MonoBehaviour
     {
         if (m_NowState == BossState.Dead)
         {
+            MySelf.isStatic = true;
             MubAnimator.SetTrigger("Die");
             CheckPlayerState();
             magic_circle.Stop();
@@ -309,6 +310,7 @@ public class BossFSM : MonoBehaviour
             if (InRangeATKrange == true)
             {
                 LookBool = true;
+                RangedRadius = TraceRadius;
                 m_NowState = BossState.RangeAttack;
                 MubAnimator.SetBool("Trace", false);
                 RangeAttack();
@@ -327,6 +329,7 @@ public class BossFSM : MonoBehaviour
         if (InATKrange == true)
         {
             InATKrangeSwitch = true;
+            ATKRadius = ATKRadius_Atk;
             m_NowState = BossState.Attack;
             MubAnimator.SetBool("Trace", false);
             MubAnimator.SetBool("Back", false);
@@ -345,11 +348,12 @@ public class BossFSM : MonoBehaviour
         if (m_NowState == BossState.RangeAttack && RCount == 0)
         {
             MubAnimator.SetBool("R_Attack", true);
-            RangedRadius = TraceRadius;
-
+            RCount = 12;
+            StartCoroutine(RangerCooldown());
         }
         else if (RCount != 0)
         {
+
             RangeCDtodo = IsInRange_TraceRange(ATKRadius, MySelf, Target);
             if (RangeCDtodo == true)
             {
@@ -364,7 +368,6 @@ public class BossFSM : MonoBehaviour
     {
         if (m_NowState == BossState.Attack && Count == 0)
         {
-            ATKRadius = ATKRadius_Atk;
             if (StageTwo == true)
             {
                 if (RandomChooseCd == false)
@@ -376,14 +379,20 @@ public class BossFSM : MonoBehaviour
                 if (RandomChoose == 1)
                 {
                     MubAnimator.SetBool("TAttack01", true);
+                    Count = 6;
+                    StartCoroutine(AttackCooldown());
                 }
                 else if (RandomChoose == 2)
                 {
                     MubAnimator.SetBool("TAttack02", true);
+                    Count = 6;
+                    StartCoroutine(AttackCooldown());
                 }
                 else if (RandomChoose == 3)
                 {
                     MubAnimator.SetBool("TAttack03", true);
+                    Count = 6;
+                    StartCoroutine(AttackCooldown());
                 }
             }
             else
@@ -398,20 +407,27 @@ public class BossFSM : MonoBehaviour
                 if (RandomChoose == 1)
                 {
                     MubAnimator.SetBool("Attack01", true);
+                    Count = 5;
+                    StartCoroutine(AttackCooldown());
                 }
                 else if (RandomChoose == 2)
                 {
                     MubAnimator.SetBool("Attack02", true);
+                    Count = 7;
+                    StartCoroutine(AttackCooldown());
                 }
                 else if (RandomChoose == 3)
                 {
                     MubAnimator.SetBool("Attack03", true);
+                    Count = 7;
+                    StartCoroutine(AttackCooldown());
                 }
             }
         }
         else if (Count != 0)
         {
             ATKRadius = ATKRadius_norm;
+
             MubAnimator.SetBool("Attack01", false);
             MubAnimator.SetBool("Attack02", false);
             MubAnimator.SetBool("Attack03", false);
@@ -431,6 +447,8 @@ public class BossFSM : MonoBehaviour
         MubAnimator.SetBool("TAttack02", false);
         MubAnimator.SetBool("TAttack03", false);
         MubAnimator.SetBool("R_Attack", false);
+        UCount = 80;
+        StartCoroutine(UltimateCooldown());
     }
 
     //µd¿ôª¬ºA
@@ -498,38 +516,13 @@ public class BossFSM : MonoBehaviour
     private void AnimationSpeed_R_AttackEnd()
     {
         MubAnimator.speed = 1f;
-       
-        RCount = 10;
-
-        RotateSpeed *= 5;
-        StartCoroutine(RangerCooldown());
+        RotateSpeed *= 5;     
     }
   
-    private void AnimationSpeed_AttackEnd01R()
+    private void AnimationSpeed_AttackEnd()
     {
         MubAnimator.speed = 1f;
 
-    }
-    private void AnimationSpeed_AttackEnd01()
-    {
-        MubAnimator.speed = 1f;
-
-        Count = 3;
-        StartCoroutine(AttackCooldown());
-    }
-    private void AnimationSpeed_AttackEnd02()
-    {
-        MubAnimator.speed = 1f;
-
-        Count = 4;
-        StartCoroutine(AttackCooldown());
-    }
-    private void AnimationSpeed_TAttackEnd()
-    {
-        Count = 4;
-
-        StartCoroutine(AttackCooldown());
-        MubAnimator.speed = 1f;
     }
     private void StartAim()
     {
@@ -543,7 +536,7 @@ public class BossFSM : MonoBehaviour
     private void StageTwoEventSwitch_s()
     {
         Roar.Stop();
-    }
+    }   
     private void TeleportEvent()
     {
         float TeleoortChoose01 = (TeleportPoint01.transform.position - transform.position).magnitude;
@@ -589,16 +582,14 @@ public class BossFSM : MonoBehaviour
     }
     private void ChargeUpEvent_Attack()
     {
-        Instantiate(HitFlame,MySelf.transform.position,MySelf.transform.rotation);
+        Instantiate(HitFlame,MySelf.transform.position,HitFlame.transform.rotation);
     }
     private void Animation_UltimateCoolDown()
     {
         MubAnimator.speed = 1f;
         MubAnimator.SetBool("ChargeUp", false);
         MubAnimator.ResetTrigger("Ulti");
-        LookBool = true;
-        UCount = 80;
-        StartCoroutine(UltimateCooldown());
+        LookBool = true;       
     }
     private void UltiPatricle_End()
     {
@@ -655,14 +646,26 @@ public class BossFSM : MonoBehaviour
     }
     private void Teleport_Start()
     {
-        magic_circle.Play();
+        float TeleoortChoose01 = (TeleportPoint01.transform.position - transform.position).magnitude;
+        float TeleoortChoose02 = (TeleportPoint02.transform.position - transform.position).magnitude;
+        if (TeleoortChoose01 > TeleoortChoose02)
+        {
+            magic_circle.Play();
+            Instantiate(Teleport, TeleportPoint01.transform.position,Quaternion.identity);
+        }
+        else
+        {
+            magic_circle.Play();
+            Instantiate(Teleport, TeleportPoint02.transform.position, Quaternion.identity);
+        }
+        
     }
     IEnumerator AttackCooldown()
     {
         while (Count > 0)
         {
-            Count--;
             yield return new WaitForSeconds(1);
+            Count--;
             Debug.Log("§ðÀ»CD:" + Count);
             if (Count == 1)
             {
@@ -673,9 +676,9 @@ public class BossFSM : MonoBehaviour
     IEnumerator RangerCooldown()
     {
         while (RCount > 0)
-        {
-            RCount--;
+        {           
             yield return new WaitForSeconds(1);
+            RCount--;
             Debug.Log("»·µ{CD:" + RCount);
         }
     }
@@ -683,8 +686,8 @@ public class BossFSM : MonoBehaviour
     {
         while (UCount > 0)
         {
-            UCount--;
             yield return new WaitForSeconds(1);
+            UCount--;
             Debug.Log("¤j©ÛCD:" + UCount);
         }
     }

@@ -35,6 +35,10 @@ public class PlayerHpData : MonoBehaviour
     {
         HpCheck();
         Health.BarFilter();
+        if (Input.GetKey(KeyCode.F10))
+        {
+            Hp += 400;
+        }
     }
 
 

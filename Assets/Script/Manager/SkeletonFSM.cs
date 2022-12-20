@@ -69,6 +69,8 @@ public class SkeletonFSM : MonoBehaviour
         LeaveATKRadius = ATKRadius * 1.05f;
 
         LookBool = true;
+
+        StartCoroutine(AttackCooldown());
         Debug.LogWarning("---------------------------------------------------------------------------------------start");
 
     }

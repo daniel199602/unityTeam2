@@ -132,7 +132,8 @@ public class SpiderFSM : MonoBehaviour
                 TraceStatus();
             }
         }
-
+        Vector3 cc = new Vector3(transform.position.x, 0, transform.position.z);
+        transform.position = cc;
         Boon.transform.position = SpiderSelf.transform.position;
     }
     public void DeadStatus()

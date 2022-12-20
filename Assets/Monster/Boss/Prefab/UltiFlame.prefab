@@ -9,7 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1573950157547505408}
-  - component: {fileID: 3681183234785584115}
+  - component: {fileID: 889454333956994850}
+  - component: {fileID: 3078894583290549715}
   m_Layer: 0
   m_Name: UltiFlame
   m_TagString: Untagged
@@ -33,7 +34,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 89.2, z: 0}
---- !u!114 &3681183234785584115
+--- !u!114 &889454333956994850
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -42,9 +43,25 @@ MonoBehaviour:
   m_GameObject: {fileID: 4116065691858157808}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c154a6f64e5229b408874e547ddf2280, type: 3}
+  m_Script: {fileID: 11500000, guid: 538ac9618490f154a956d1c02bb152a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mobDamage_instant: 0
+  mobDamamge_delay: 0
+  Target: {fileID: 0}
+--- !u!114 &3078894583290549715
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4116065691858157808}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7115c9c725dd2df4dbf732bd0afc60e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  thisMobItem: {fileID: 11400000, guid: 371519b782a527b4b859e4da92339b84, type: 2}
 --- !u!1001 &5580084394014135402
 PrefabInstance:
   m_ObjectHideFlags: 0

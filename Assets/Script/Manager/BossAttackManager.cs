@@ -38,7 +38,6 @@ public class BossAttackManager : MonoBehaviour
     private void Start()
     {
         Target = GameManager.Instance().PlayerStart;
-        //recoilShake = GetComponent<RecoilShake>();
         PlayerData = Target.GetComponent<PlayerHpData>();
         Hp = PlayerData.Hp;
 

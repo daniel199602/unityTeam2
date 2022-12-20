@@ -149,16 +149,16 @@ public class PlayerController : MonoBehaviour
             {
                 if (hpTemporary != hpTemporaryMax)
                 {
-                    hpTemporary++;
+                    hpTemporary+=10;
                     Reviving = true;
                 }
                 if (hpTemporary == hpTemporaryMax&&Reviving == true)
                 {
-                    charaterAnimator.SetTrigger("Revive");
+                    charaterAnimator.SetBool("Revive",true);
                     Reviving = false; 
                     if (Reviving == false)
                     {
-                        charaterAnimator.ResetTrigger("Revive");
+                        charaterAnimator.SetBool("Revive", false);
                     }
                 }
             }
@@ -546,7 +546,10 @@ public class PlayerController : MonoBehaviour
     }
     private void invincibleRoll_End()
     {
-        isInvincible = false;
+        if (isInvincibleModeSwitch == false)
+        {
+            isInvincible = false;
+        }
     }
     public void DeadStatus()
     {
