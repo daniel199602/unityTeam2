@@ -44,7 +44,7 @@ public class SkeletonFSM : MonoBehaviour
     private void Awake()
     {
         ThisItemOnMob_State = GetComponent<ItemOnMob>();
-        Debug.LogWarning("---------------------------------------------------------------------------------------");
+        // Debug.LogWarning("---------------------------------------------------------------------------------------");
     }
     void Start()
     {
@@ -67,7 +67,7 @@ public class SkeletonFSM : MonoBehaviour
 
         LookBool = true;
 
-        Debug.LogWarning("---------------------------------------------------------------------------------------start");
+        // Debug.LogWarning("---------------------------------------------------------------------------------------start");
 
     }
     private void OnEnable()
@@ -81,6 +81,7 @@ public class SkeletonFSM : MonoBehaviour
         LeaveATKRadius = ATKRadius * 1.05f;
         LookBool = true;
         LeaveAttackRangeBool = false;
+        deathIng = false;
     }
     private void OnDisable()
     {
@@ -95,60 +96,61 @@ public class SkeletonFSM : MonoBehaviour
         TargetHp = Target.GetComponent<PlayerHpData>().Hp;
         Quaternion c = new Quaternion(0, transform.rotation.y, 0, transform.rotation.w);
         transform.rotation = c;
-            if (FrameCount_Roar > 0)
-            {
-                FrameCount_Roar--;
-            }
-            if (RoarBool == false)
-            {
-                Roar();
-                RoarBool = true;
-            }
-            if (State.Hp <= 0)//死亡→無狀態
-            {
-               if(deathIng==false)
+        if (FrameCount_Roar > 0)
+        {
+            FrameCount_Roar--;
+        }
+        if (RoarBool == false)
+        {
+            Roar();
+            RoarBool = true;
+        }
+        if (State.Hp <= 0)//死亡→無狀態
+        {
+            if (deathIng == false)
             {
                 m_NowState = SkeletonState.Dead;
                 DeadStatus();
                 deathIng = true;
+                Debug.Log("-----------------------------------------------------------------deathIng");
             }
-                return;
-            }
-            else if(TargetHp<=1)
+            return;
+        }
+        else if (TargetHp <= 1)
+        {
+            MubAnimator.SetTrigger("PlayerDie");
+            return;
+        }
+        else if (State.Hp > 0)
+        {
+            if (State.Hp != hpTemporary)
             {
-                MubAnimator.SetTrigger("PlayerDie");
-                return;
+                if (hpTemporary - State.Hp < 50)
+                {
+                    hpTemporary = State.Hp;
+                }
+                else if (hpTemporary - State.Hp >= 50)
+                {
+                    hpTemporary = State.Hp;
+                    MubAnimator.SetBool("GetHit", true);
+                }
             }
-            else if (State.Hp > 0)
+            else if (FrameCount_Roar <= 0)
             {
-                if (State.Hp != hpTemporary)
-                {
-                    if (hpTemporary - State.Hp < 50)
-                    {
-                        hpTemporary = State.Hp;
-                    }
-                    else if (hpTemporary - State.Hp >= 50)
-                    {
-                        hpTemporary = State.Hp;
-                        MubAnimator.SetBool("GetHit", true);
-                    }
-                }
-                else if (FrameCount_Roar <= 0)
-                {
-                    MubAnimator.SetBool("GetHit", false);
+                MubAnimator.SetBool("GetHit", false);
 
-                    MubAnimator.SetBool("Roar", false);
+                MubAnimator.SetBool("Roar", false);
 
-                    LookForward();
+                LookForward();
 
-                    TraceStatus();
+                TraceStatus();
 
-                    AttackStatus();
+                AttackStatus();
 
-                    LeaveAttackStatus();
-                }
-            }            
-        
+                LeaveAttackStatus();
+            }
+        }
+
     }
     public void LookForward()
     {
@@ -163,7 +165,7 @@ public class SkeletonFSM : MonoBehaviour
             transform.rotation = m;
         }
     }
-    
+
     public void DeadStatus()
     {
         if (m_NowState == SkeletonState.Dead)
@@ -327,7 +329,7 @@ public class SkeletonFSM : MonoBehaviour
     private void AnimationSpeed_AttackEnd()
     {
         MubAnimator.speed = 1f;
-        LeaveATKRadius = ATKRadius * 1.05f;        
+        LeaveATKRadius = ATKRadius * 1.05f;
         LookBool = true;
         CDs = 5;
         StartCoroutine(AttackCooldown());

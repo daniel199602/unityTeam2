@@ -5941,8 +5941,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
-      time: -0.001045227
-      value: 0.9952736
+      time: -0.012500763
+      value: 1.0023499
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -5950,8 +5950,8 @@ MonoBehaviour:
       inWeight: 0
       outWeight: 0
     - serializedVersion: 3
-      time: 0.994751
-      value: 0.014149144
+      time: 1.000004
+      value: 0
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -5961,8 +5961,8 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  spawnEffectTime: 1
-  t: 0
+  spawnEffectTime: 4
+  t: 0.01
   isDeath: 0
 --- !u!1 &8171539735143675361
 GameObject:

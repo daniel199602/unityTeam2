@@ -14,11 +14,11 @@ public class MobDeathVFX : MonoBehaviour
     public float spawnEffectTime = 1;
     public float t=0.0f;
     public bool isDeath;
-   
+    bool deathIngVFX;
     private void Awake()
     {
         meshRenderer = bearMaterial.GetComponent<SkinnedMeshRenderer>();
-        
+        deathIngVFX = false;
     }
     void DeathFVXEvent()
     {
@@ -26,23 +26,39 @@ public class MobDeathVFX : MonoBehaviour
     }
     void DeathFVX()
     {
-        Debug.Log("death");
-        Material[] mats = meshRenderer.materials;
-        t += Time.deltaTime;
-        //mats[0].SetFloat("_Cutoff", Mathf.Lerp(0, 1, t));
-        mats[0].SetFloat("_Cutoff", fadeIn.Evaluate(Mathf.InverseLerp(0, spawnEffectTime, t)));
-        meshRenderer.materials = mats;
+        
+        if (deathIngVFX==false)
+        {
+            Debug.Log("death");
+            Material[] mats = meshRenderer.materials;
+            t+= Time.deltaTime;
+            //mats[0].SetFloat("_Cutoff", Mathf.Lerp(0, 1, t));
+            mats[0].SetFloat("_Cutoff", fadeIn.Evaluate(Mathf.InverseLerp(0, spawnEffectTime, t)));
+            meshRenderer.materials = mats;
+        }
+    }
+    void DeathStart()
+    {
+        t = 0;
+        deathIngVFX = false;
+        Debug.Log("-----------------------------------------------------------deathStart");
+    }
+    void DeathEnd()
+    {
+        deathIngVFX = true;
+        Debug.Log("-----------------------------------------------------------deathEnd");
     }
     void BornFVX()
     {
+        t = 0.01f;
         Debug.Log("born");
         Material[] mats = meshRenderer.materials;
         t += Time.deltaTime;
-        mats[0].SetFloat("_Cutoff", 0);
-        
-       // mats[0].SetFloat("_Cutoff", fadeOut.Evaluate(Mathf.InverseLerp(1, spawnEffectTime, t)));
+        //mats[0].SetFloat("_Cutoff", Mathf.Lerp(0, 1, t));
+        mats[0].SetFloat("_Cutoff", fadeOut.Evaluate(Mathf.InverseLerp(spawnEffectTime, 0, t)));
         meshRenderer.materials = mats;
-        Debug.Log("--------------------------------------------------------------------------------");
+        
+        Debug.Log("-----------------------------------------------------------------------------------------------Born");
     }
 
     void DeathEvent_PS()
