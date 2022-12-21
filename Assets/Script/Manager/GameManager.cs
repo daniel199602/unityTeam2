@@ -56,4 +56,12 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 直接關閉應用程式
+    /// </summary>
+    public void QuitGame()
+    {
+        Application.Quit(); //關閉應用程式
+    }
+
 }

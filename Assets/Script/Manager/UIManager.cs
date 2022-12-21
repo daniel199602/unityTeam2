@@ -12,6 +12,7 @@ public class UIManager : MonoBehaviour
 
     public RectTransform weaponOneOfThreePanel;//三選一面板
     public RectTransform weaponFramePanel;//武器格面板
+    public RectTransform quitGamePanel;//離開遊戲面板
 
     public Dictionary<int, Sprite> dicIDWeaponImage;//ID 找 武器圖 字典
 
@@ -52,22 +53,11 @@ public class UIManager : MonoBehaviour
 
     private void Update()
     {
-        //測試用開關按E
-        //if (Input.GetKeyDown(KeyCode.E))
-        //{
-        //    isOpenOneOfThreeFrame = !isOpenOneOfThreeFrame;
-
-        //    if (isOpenOneOfThreeFrame)
-        //    {
-        //        OneOfThreeUIOpen();
-        //        weaponOneOfThreePanel.GetComponent<WeaponOneOfThreeUI>().SetRandomThreeWeaponR();//設置右手武器三選一
-        //    }
-        //    else
-        //    {
-        //        OneOfThreeUIClose();
-        //    }
-        //}
-
+        //按下esc鍵
+        if (Input.GetKeyDown("escape"))
+        {
+            QuitGameUIOpen();
+        }
     }
 
     /// <summary>
@@ -78,8 +68,6 @@ public class UIManager : MonoBehaviour
         OneOfThreeUIOpen();
         weaponOneOfThreePanel.GetComponent<WeaponOneOfThreeUI>().SetRandomThreeWeaponR();//設置右手武器三選一
     }
-
-
 
 
     /// <summary>
@@ -97,6 +85,24 @@ public class UIManager : MonoBehaviour
     public void OneOfThreeUIClose()
     {
         weaponOneOfThreePanel.gameObject.SetActive(false);
+        Time.timeScale = 1f;
+    }
+
+    /// <summary>
+    /// 開啟離開遊戲介面，時間調慢
+    /// </summary>
+    public void QuitGameUIOpen()
+    {
+        quitGamePanel.gameObject.SetActive(true);
+        Time.timeScale = 0.001f;
+    }
+
+    /// <summary>
+    /// 關閉離開遊戲介面，時間恢復正常
+    /// </summary>
+    public void QuitGameUIClose()
+    {
+        quitGamePanel.gameObject.SetActive(false);
         Time.timeScale = 1f;
     }
 
