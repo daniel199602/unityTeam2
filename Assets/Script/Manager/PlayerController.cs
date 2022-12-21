@@ -40,20 +40,16 @@ public class PlayerController : MonoBehaviour
     private float attackMoveSpeed = 0;//攻擊位移速度
     bool isOpenAttackMove = false;//攻擊位移開關
     bool isUseMouseChangeForward = true;//滑鼠人物轉向開關
-
-    /*--------宗倫---------start-----------------------------*/
     public bool isInvincible = false;//翻滾無敵
     bool isInvincibleModeSwitch = false;
-    /*--------宗倫---------end-----------------------------*/
-
-    [HideInInspector] public int currentLayerNum = 0;//當前Layer預設第0層
+    public int currentLayerNum { private set; get; }
+    //[HideInInspector] public int currentLayerNum = 0;//當前Layer預設第0層
     
     //手綁物品空物件
     public GameObject torchL;//左手(專門綁火把)
     public GameObject weaponL;//左手
     public GameObject weaponR;//右手
 
-    /*--------宗倫---------start-----------------------------*/
     //玩家數值(挖洞)
     PlayerHpData State;
     [SerializeField]int hpTemporary;
@@ -61,18 +57,23 @@ public class PlayerController : MonoBehaviour
     int RandomNum;
     bool isOpenBeHit = true;
     bool Reviving = false;
-    /*--------宗倫---------end-----------------------------*/
 
+    /// <summary>
+    /// 回傳當前的currentLayerNum
+    /// </summary>
+    /// <returns></returns>
     public int GetLayerNumNow()
     {
         return currentLayerNum;
     }
+
     private void Awake()
     {
         m_pCurrentState = pFSMState.MoveTree;//預設狀態
         cameraMain = Camera.main;//攝影機要綁tag:MainCamera
         charaterAnimator = GetComponent<Animator>();
         cc = GetComponent<CharacterController>();
+        this.currentLayerNum = 0;//當前Layer預設第0層
         animStateInfo = charaterAnimator.GetCurrentAnimatorStateInfo(currentLayerNum);//預設當前Layer(0)的當前動畫狀態
         charaterAnimator.SetLayerWeight(1, currentLayerNum);//Layer(0),BaseLayer
         charaterAnimator.SetInteger("intCurrentLayer", currentLayerNum);//動作權限預設啟用Layer(0)
@@ -81,14 +82,11 @@ public class PlayerController : MonoBehaviour
         weaponL.SetActive(false);
         weaponR.SetActive(false);
 
-        /*--------宗倫---------start-----------------------------*/
         State = GetComponent<PlayerHpData>();
         hpTemporary = State.Hp;
-        /*--------宗倫---------end-----------------------------*/
 
     }
 
-    /*--------宗倫---------start-----------------------------*/
     public void InvincibleMode()
     {
         if (Input.GetKey(KeyCode.F11))
@@ -103,8 +101,6 @@ public class PlayerController : MonoBehaviour
             isInvincibleModeSwitch = false;
         }
     }
-    /*--------宗倫---------end-----------------------------*/
-
 
     // Update is called once per frame
     void Update()
@@ -143,8 +139,6 @@ public class PlayerController : MonoBehaviour
             charaterAnimator.SetLayerWeight(2, 1);
         }
 
-
-        /*--------宗倫---------start-----------------------------*/
         if (isInvincibleModeSwitch == true)
         {
             State.Hp = hpTemporary;
@@ -214,12 +208,12 @@ public class PlayerController : MonoBehaviour
                     if (RandomNum == 1)
                     {
                         charaterAnimator.SetBool("GetHit01", true);
-                        //cc.SimpleMove(-(transform.forward * 500));
+                        charaterAnimator.speed = 1f;
                     }
                     else if (RandomNum == 2)
                     {
                         charaterAnimator.SetBool("GetHit02", true);
-                        //cc.SimpleMove(-(transform.forward * 500));
+                        charaterAnimator.speed = 1f;
                     }
                 }                               
             }
@@ -227,22 +221,6 @@ public class PlayerController : MonoBehaviour
             {
                 charaterAnimator.SetBool("GetHit01", false);
                 charaterAnimator.SetBool("GetHit02", false);
-                //if (m_pCurrentState == pFSMState.MoveTree)
-                //{
-                //    isUseFire1 = true;
-                //    isUseJump = true;
-                //    isOpenAttackMove = false;//攻擊位移關閉，防呆
-                //    charaterAnimator.SetFloat("animSpeed", 1.5f);
-                //}
-                //else if (m_pCurrentState == pFSMState.Roll)
-                //{
-                //    isUseFire1 = false;//禁用滑鼠左鍵，禁止攻擊
-                //}
-                //else if (m_pCurrentState == pFSMState.Attack)
-                //{
-                //    isUseJump = false;//禁用空白鍵，禁止翻滾
-                //}
-
                 SwitchLayer(currentLayerNum);
                 ControlSwitchWeapon();
                 MousePosChangeForward(isUseMouseChangeForward);
@@ -250,10 +228,7 @@ public class PlayerController : MonoBehaviour
                 ControlAttack(isUseFire1);
             }
         }
-        /*--------宗倫---------end-----------------------------*/
-
     }
-
 
     /// <summary>
     /// 玩家角色的攻擊操控，目前暫定雙手武器Layer(1)
@@ -365,7 +340,6 @@ public class PlayerController : MonoBehaviour
     }
 
 
-
     /// <summary>
     /// 切換武器模式Key1,2
     /// 同時切換currentLayerNum數值
@@ -433,7 +407,6 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSeconds(0.3f);
         weaponR.SetActive(true);
     }
-
 
     /// <summary>
     /// 玩家角色的移動操控
@@ -537,8 +510,6 @@ public class PlayerController : MonoBehaviour
         attackMoveSpeed = 0f;
     }
 
-
-    /*--------宗倫---------start-----------------------------*/
     private void AnimSpeedPlus()
     {
         charaterAnimator.SetFloat("animSpeed", 5f);
@@ -569,7 +540,4 @@ public class PlayerController : MonoBehaviour
     {
         isOpenBeHit = true;
     }
-    /*--------宗倫---------end-----------------------------*/
-
-
 }
