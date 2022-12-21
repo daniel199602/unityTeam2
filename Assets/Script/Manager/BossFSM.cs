@@ -38,6 +38,7 @@ public class BossFSM : MonoBehaviour
     bool InATKrange;
     bool GetHit;
     bool StageTwo = false;
+    bool Ulting = false;
     bool IK = false;//2階段單次判定，不會重複進入2階段
 
     float TraceRadius;
@@ -188,25 +189,29 @@ public class BossFSM : MonoBehaviour
                     MubAnimator.SetBool("GetHit01", false);
                     MubAnimator.SetBool("GetHit02", false);
                     Ultimate();
+                    Ulting = true;
                 }
                 else if (State.Hp != hpTemporary)
                 {
                     hpTemporary = State.Hp;
-                    if (GetHit == false && Count != 0 && RCount != 0)
+                    if (Ulting == false)
                     {
-                        RandomChooseHit = UnityEngine.Random.Range(1, 2);
-                        GetHit = true;
-                        if (RandomChooseHit == 1)
+                        if (GetHit == false && Count != 0 && RCount != 0)
                         {
-                            MubAnimator.SetBool("GetHit01", true);
-                            return;
+                            RandomChooseHit = UnityEngine.Random.Range(1, 2);
+                            GetHit = true;
+                            if (RandomChooseHit == 1)
+                            {
+                                MubAnimator.SetBool("GetHit01", true);
+                                return;
+                            }
+                            if (RandomChooseHit == 2)
+                            {
+                                MubAnimator.SetBool("GetHit02", true);
+                                return;
+                            }
                         }
-                        if (RandomChooseHit == 2)
-                        {
-                            MubAnimator.SetBool("GetHit02", true);
-                            return;
-                        }
-                    }
+                    }                    
                 }
                 else
                 {
@@ -379,19 +384,19 @@ public class BossFSM : MonoBehaviour
                 if (RandomChoose == 1)
                 {
                     MubAnimator.SetBool("TAttack01", true);
-                    Count = 6;
+                    Count = 4;
                     StartCoroutine(AttackCooldown());
                 }
                 else if (RandomChoose == 2)
                 {
                     MubAnimator.SetBool("TAttack02", true);
-                    Count = 6;
+                    Count = 4;
                     StartCoroutine(AttackCooldown());
                 }
                 else if (RandomChoose == 3)
                 {
                     MubAnimator.SetBool("TAttack03", true);
-                    Count = 6;
+                    Count = 4;
                     StartCoroutine(AttackCooldown());
                 }
             }
@@ -407,19 +412,19 @@ public class BossFSM : MonoBehaviour
                 if (RandomChoose == 1)
                 {
                     MubAnimator.SetBool("Attack01", true);
-                    Count = 5;
+                    Count = 4;
                     StartCoroutine(AttackCooldown());
                 }
                 else if (RandomChoose == 2)
                 {
                     MubAnimator.SetBool("Attack02", true);
-                    Count = 7;
+                    Count = 5;
                     StartCoroutine(AttackCooldown());
                 }
                 else if (RandomChoose == 3)
                 {
                     MubAnimator.SetBool("Attack03", true);
-                    Count = 7;
+                    Count = 5;
                     StartCoroutine(AttackCooldown());
                 }
             }
@@ -427,7 +432,6 @@ public class BossFSM : MonoBehaviour
         else if (Count != 0)
         {
             ATKRadius = ATKRadius_norm;
-
             MubAnimator.SetBool("Attack01", false);
             MubAnimator.SetBool("Attack02", false);
             MubAnimator.SetBool("Attack03", false);
@@ -589,7 +593,8 @@ public class BossFSM : MonoBehaviour
         MubAnimator.speed = 1f;
         MubAnimator.SetBool("ChargeUp", false);
         MubAnimator.ResetTrigger("Ulti");
-        LookBool = true;       
+        LookBool = true;
+        Ulting = false;
     }
     private void UltiPatricle_End()
     {

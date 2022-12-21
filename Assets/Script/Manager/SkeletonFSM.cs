@@ -22,8 +22,6 @@ public class SkeletonFSM : MonoBehaviour
     bool tracing;
     bool InATKrange;
     bool OutATKrange;
-    bool AwakeBool = false;
-    bool Awaken;
     bool LookBool;
 
     float TraceRadius;
@@ -64,8 +62,6 @@ public class SkeletonFSM : MonoBehaviour
 
         TraceRadius = ATKRadius * 2;
 
-        AwakeRadius = ATKRadius * 4f;
-
         LeaveATKRadius = ATKRadius * 1.05f;
 
         LookBool = true;
@@ -76,8 +72,19 @@ public class SkeletonFSM : MonoBehaviour
     private void OnEnable()
     {
         StartCoroutine(AttackCooldown());
+        m_NowState = SkeletonState.Idle;
         FrameCount_Roar = 160;
-        AwakeBool = false;
+        RoarBool = false;
+        MubAnimator = GetComponent<Animator>();
+        MubAnimator.speed = 1f;
+        LeaveATKRadius = ATKRadius * 1.05f;
+        LookBool = true;
+        LeaveAttackRangeBool = false;
+    }
+    private void OnDisable()
+    {
+        m_NowState = SkeletonState.Idle;
+        FrameCount_Roar = 160;
     }
     // Update is called once per frame
     void Update()
@@ -85,11 +92,8 @@ public class SkeletonFSM : MonoBehaviour
         Vector3 local = new Vector3(transform.position.x, 0, transform.position.z);
         transform.position = local;
         TargetHp = Target.GetComponent<PlayerHpData>().Hp;
-        AwakeSensor();
         Quaternion c = new Quaternion(0, transform.rotation.y, 0, transform.rotation.w);
         transform.rotation = c;
-        if (AwakeBool == true)
-        {
             if (FrameCount_Roar > 0)
             {
                 FrameCount_Roar--;
@@ -139,7 +143,7 @@ public class SkeletonFSM : MonoBehaviour
                     LeaveAttackStatus();
                 }
             }            
-        }
+        
     }
     public void LookForward()
     {
@@ -154,19 +158,7 @@ public class SkeletonFSM : MonoBehaviour
             transform.rotation = m;
         }
     }
-    public void AwakeSensor()
-    {
-        {
-            if (AwakeBool == false)
-            {
-                Awaken = IsInRange_AwakeRange(AwakeRadius, MySelf, Target);
-                if (Awaken == true)
-                {
-                    AwakeBool = true;
-                }
-            }
-        }
-    }
+    
     public void DeadStatus()
     {
         if (m_NowState == SkeletonState.Dead)
@@ -330,9 +322,9 @@ public class SkeletonFSM : MonoBehaviour
     private void AnimationSpeed_AttackEnd()
     {
         MubAnimator.speed = 1f;
-        LeaveATKRadius = ATKRadius * 1.05f;
-        CDs = 5;
+        LeaveATKRadius = ATKRadius * 1.05f;        
         LookBool = true;
+        CDs = 5;
         StartCoroutine(AttackCooldown());
     }
     public void ZoneOpen()
