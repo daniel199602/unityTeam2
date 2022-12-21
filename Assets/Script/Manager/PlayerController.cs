@@ -63,7 +63,10 @@ public class PlayerController : MonoBehaviour
     bool Reviving = false;
     /*--------宗倫---------end-----------------------------*/
 
-
+    public int GetLayerNumNow()
+    {
+        return currentLayerNum;
+    }
     private void Awake()
     {
         m_pCurrentState = pFSMState.MoveTree;//預設狀態

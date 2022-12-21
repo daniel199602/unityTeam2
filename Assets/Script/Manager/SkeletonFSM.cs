@@ -70,9 +70,14 @@ public class SkeletonFSM : MonoBehaviour
 
         LookBool = true;
 
-        StartCoroutine(AttackCooldown());
         Debug.LogWarning("---------------------------------------------------------------------------------------start");
 
+    }
+    private void OnEnable()
+    {
+        StartCoroutine(AttackCooldown());
+        FrameCount_Roar = 160;
+        AwakeBool = false;
     }
     // Update is called once per frame
     void Update()

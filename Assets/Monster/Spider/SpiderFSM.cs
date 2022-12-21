@@ -39,6 +39,8 @@ public class SpiderFSM : MonoBehaviour
 
     bool RoarBool = false;
 
+    bool StartCountDown;
+
     bool tracing;
 
     bool InATKrange;
@@ -60,6 +62,8 @@ public class SpiderFSM : MonoBehaviour
     int ColorChange;
 
     int TargetHp;
+
+    int CountDown;
 
     float ColorChangeTime;
     private void Awake()
@@ -92,6 +96,8 @@ public class SpiderFSM : MonoBehaviour
         StartExplosionRadius = ATKRadius * 0.5f;
 
         StartExplosive = false;
+
+        StartCountDown = false;
     }
     private void Update()
     {
@@ -120,21 +126,19 @@ public class SpiderFSM : MonoBehaviour
         {
             MubAnimator.SetBool("Roar", false);
 
-            AttackStatus();
-            if (m_NowState!= SpiderState.Attack)
-            {
-                GetTargetNormalize = (Target.transform.position - transform.position).normalized;
-
-                Quaternion Look = Quaternion.LookRotation(GetTargetNormalize);
-
-                transform.rotation = Quaternion.Slerp(transform.rotation, Look, Speed * Time.deltaTime);
-
-                TraceStatus();
-            }
+            AttackStatus();           
         }
         Vector3 cc = new Vector3(transform.position.x, 0, transform.position.z);
         transform.position = cc;
         Boon.transform.position = SpiderSelf.transform.position;
+    }
+    public void LookTarget()
+    {
+        GetTargetNormalize = (Target.transform.position - transform.position).normalized;
+
+        Quaternion Look = Quaternion.LookRotation(GetTargetNormalize);
+
+        transform.rotation = Quaternion.Slerp(transform.rotation, Look, Speed * Time.deltaTime);
     }
     public void DeadStatus()
     {
@@ -145,30 +149,39 @@ public class SpiderFSM : MonoBehaviour
             MubAnimator.SetBool("Attack", false);
             Selfcapsule.radius = 0f;
         }
-    }
-    public void TraceStatus()
+    }    
+    public void AttackStatus()
     {
+        InATKrange = IsInRange_MeleeBattleRange(StartExplosionRadius, MySelf, Target);
         tracing = IsInRange_TraceRange(StartExplosionRadius, MySelf, Target);
-        if (tracing == true)
+        if (InATKrange == true)
+        {
+            MoveSpeed = 0f;
+            m_NowState = SpiderState.Attack;
+            Attack();
+        }        
+        else if (tracing == true)
         {
             m_NowState = SpiderState.Trace;
             if (m_NowState == SpiderState.Trace)
             {
-                Move();
-                MubAnimator.SetBool("Trace", true);
-                MubAnimator.SetBool("Attack", false);
+                if (StartCountDown == false)
+                {
+                    CountDown = 4;
+                    StartCountDown = true;
+                    StartCoroutine(CountTimeDown());
+                }                              
+                if (CountDown<=0)
+                {
+                    Attack();
+                }
+                else
+                {
+                    Move();
+                    MubAnimator.SetBool("Trace", true);
+                    LookTarget();
+                }
             }
-        }
-    }
-    public void AttackStatus()
-    {
-        InATKrange = IsInRange_MeleeBattleRange(StartExplosionRadius, MySelf, Target);
-        if (InATKrange == true)
-        {           
-            MoveSpeed = 0f;
-            m_NowState = SpiderState.Attack;
-            MubAnimator.SetBool("Trace", false);
-            Attack();            
         }
     }
     public void Move()
@@ -192,10 +205,17 @@ public class SpiderFSM : MonoBehaviour
     {
         if (m_NowState == SpiderState.Attack)
         {
-            MubAnimator.SetBool("Attack", true);
+            MubAnimator.SetBool("Attack", true);                       
         }        
     }
-
+    IEnumerator CountTimeDown()
+    {
+        if (CountDown>0)
+        {
+            yield return new WaitForSeconds(1);
+            CountDown--;
+        }       
+    }
     public bool IsInRange_TraceRange(float Radius, GameObject attacker, GameObject attacked)
     {
         Vector3 direction = attacked.transform.position - attacker.transform.position;
