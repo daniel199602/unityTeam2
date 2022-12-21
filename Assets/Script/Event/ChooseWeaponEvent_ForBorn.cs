@@ -9,6 +9,7 @@ public class ChooseWeaponEvent_ForBorn : MonoBehaviour
     void Start()
     {
         uIManager = UIManager.Instance();
+        //uIManager.OpenOneOfThreeAndChooseWeapon();
     }
 
     private void OnTriggerEnter(Collider other)
