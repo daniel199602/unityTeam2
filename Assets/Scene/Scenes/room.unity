@@ -1362,6 +1362,10 @@ PrefabInstance:
       propertyPath: currentHp
       value: 4000
       objectReference: {fileID: 0}
+    - target: {fileID: 1205567847854631157, guid: 843a687dd2b95bb4cb66922c432cf3f4, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 07c285d5d1d09d344a317a5cc6974591, type: 2}
     - target: {fileID: 2631163319326334126, guid: 843a687dd2b95bb4cb66922c432cf3f4, type: 3}
       propertyPath: m_Name
       value: Male_Player_B
@@ -1458,6 +1462,10 @@ PrefabInstance:
       propertyPath: m_Intensity
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 5403848983689204431, guid: 843a687dd2b95bb4cb66922c432cf3f4, type: 3}
+      propertyPath: m_Shadows.m_Type
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8251171311221856198, guid: 843a687dd2b95bb4cb66922c432cf3f4, type: 3}
       propertyPath: moveSpeed
       value: 30
@@ -1465,6 +1473,34 @@ PrefabInstance:
     - target: {fileID: 8251171311221856198, guid: 843a687dd2b95bb4cb66922c432cf3f4, type: 3}
       propertyPath: hitMask.m_Bits
       value: 512
+      objectReference: {fileID: 0}
+    - target: {fileID: 8461735492545185222, guid: 843a687dd2b95bb4cb66922c432cf3f4, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.27
+      objectReference: {fileID: 0}
+    - target: {fileID: 8461735492545185222, guid: 843a687dd2b95bb4cb66922c432cf3f4, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.000090755886
+      objectReference: {fileID: 0}
+    - target: {fileID: 8461735492545185222, guid: 843a687dd2b95bb4cb66922c432cf3f4, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.27
+      objectReference: {fileID: 0}
+    - target: {fileID: 8461735492545185222, guid: 843a687dd2b95bb4cb66922c432cf3f4, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.032
+      objectReference: {fileID: 0}
+    - target: {fileID: 8461735492545185222, guid: 843a687dd2b95bb4cb66922c432cf3f4, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.018
+      objectReference: {fileID: 0}
+    - target: {fileID: 8461735492545185222, guid: 843a687dd2b95bb4cb66922c432cf3f4, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.012
+      objectReference: {fileID: 0}
+    - target: {fileID: 8461735492545185222, guid: 843a687dd2b95bb4cb66922c432cf3f4, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 707197541644771798, guid: 843a687dd2b95bb4cb66922c432cf3f4, type: 3}
@@ -1746,6 +1782,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &2124635605 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4109211833874794880, guid: 843a687dd2b95bb4cb66922c432cf3f4, type: 3}
+  m_PrefabInstance: {fileID: 1880995978}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &905132350532893066
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2110,6 +2151,10 @@ PrefabInstance:
       propertyPath: Fog
       value: 
       objectReference: {fileID: 806127168}
+    - target: {fileID: 8327562281533342095, guid: 05686b8794dda204393a88d8add6cacd, type: 3}
+      propertyPath: shadow
+      value: 
+      objectReference: {fileID: 2124635605}
     - target: {fileID: 8327562281533342095, guid: 05686b8794dda204393a88d8add6cacd, type: 3}
       propertyPath: goHandTorch
       value: 

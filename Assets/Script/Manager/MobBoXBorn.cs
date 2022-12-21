@@ -31,10 +31,10 @@ public class MobBoXBorn : MonoBehaviour
     void MobBord()
     {
 
-        Vector3 startPos = spawnPoint.transform.position + new Vector3(Random.Range(-2.0f, 2.0f), 0.0f, Random.Range(-2.0f, 2.0f));
-        Vector3 startPos1 = spawnPoint1.transform.position + new Vector3(Random.Range(-2.0f, 2.0f), 0.0f, Random.Range(-2.0f, 2.0f));
-        Vector3 startPos2 = spawnPoint2.transform.position + new Vector3(Random.Range(-2.0f, 2.0f), 0.0f, Random.Range(-2.0f, 2.0f));
-        Vector3 startPos3 = spawnPoint3.transform.position + new Vector3(Random.Range(-2.0f, 2.0f), 0.0f, Random.Range(-2.0f, 2.0f));
+        Vector3 startPos = spawnPoint.transform.position + new Vector3(Random.Range(-1.0f, 1.0f), 0.0f, Random.Range(-1.0f, 1.0f));
+        Vector3 startPos1 = spawnPoint1.transform.position + new Vector3(Random.Range(-1.0f, 1.0f), 0.0f, Random.Range(-1.0f, 1.0f));
+        Vector3 startPos2 = spawnPoint2.transform.position + new Vector3(Random.Range(-1.0f, 1.0f), 0.0f, Random.Range(-1.0f, 1.0f));
+        Vector3 startPos3 = spawnPoint3.transform.position + new Vector3(Random.Range(-1.0f, 1.0f), 0.0f, Random.Range(-1.0f, 1.0f));
         int count = MobMain.Instance().pAliveObject.Count;
         if (count < 4)
         {
