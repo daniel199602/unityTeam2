@@ -152,36 +152,39 @@ public class SpiderFSM : MonoBehaviour
     }    
     public void AttackStatus()
     {
-        InATKrange = IsInRange_MeleeBattleRange(StartExplosionRadius, MySelf, Target);
-        tracing = IsInRange_TraceRange(StartExplosionRadius, MySelf, Target);
+        InATKrange = IsInRange_MeleeBattleRange(StartExplosionRadius, MySelf, Target);        
         if (InATKrange == true)
         {
             MoveSpeed = 0f;
             m_NowState = SpiderState.Attack;
             Attack();
         }        
-        else if (tracing == true)
+        else if (m_NowState != SpiderState.Attack)
         {
-            m_NowState = SpiderState.Trace;
-            if (m_NowState == SpiderState.Trace)
+            tracing = IsInRange_TraceRange(StartExplosionRadius, MySelf, Target);
+            if (tracing == true)
             {
-                if (StartCountDown == false)
+                m_NowState = SpiderState.Trace;
+                if (m_NowState == SpiderState.Trace)
                 {
-                    CountDown = 4;
-                    StartCountDown = true;
-                    StartCoroutine(CountTimeDown());
-                }                              
-                if (CountDown<=0)
-                {
-                    Attack();
+                    if (StartCountDown == false)
+                    {
+                        CountDown = 4;
+                        StartCountDown = true;
+                        StartCoroutine(CountTimeDown());
+                    }
+                    if (CountDown <= 0)
+                    {
+                        Attack();
+                    }
+                    else if (CountDown > 0)
+                    {
+                        Move();
+                        MubAnimator.SetBool("Trace", true);
+                        LookTarget();
+                    }
                 }
-                else if (CountDown > 0)
-                {
-                    Move();
-                    MubAnimator.SetBool("Trace", true);
-                    LookTarget();
-                }
-            }
+            }            
         }
     }
     public void Move()
