@@ -89,7 +89,7 @@ public class SpiderFSM : MonoBehaviour
 
         MubAnimator = GetComponent<Animator>();
 
-        FrameCount_Roar = 420;
+        FrameCount_Roar = 390;
 
         ATKRadius = ThisItemOnMob_State.mobRadius;//WeaponÂÐ»\
 
@@ -175,7 +175,7 @@ public class SpiderFSM : MonoBehaviour
                 {
                     Attack();
                 }
-                else
+                else if (CountDown > 0)
                 {
                     Move();
                     MubAnimator.SetBool("Trace", true);

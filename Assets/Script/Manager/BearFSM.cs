@@ -68,7 +68,7 @@ public class BearFSM : MonoBehaviour
         MubAnimator = GetComponent<Animator>();
         State = GetComponent<MubHpData>();
         hpTemporary = State.Hp;
-        FrameCount_Roar = 310;//鎖住起始位移
+        FrameCount_Roar = 250;//鎖住起始位移
         LeaveAttackRangeBool = false;
         InAttackRangeBool = false;
 
