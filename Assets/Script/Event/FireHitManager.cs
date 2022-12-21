@@ -17,6 +17,7 @@ public class FireHitManager : MonoBehaviour
         mobDamamge_delay = GetComponent<ItemOnMob>().mobDamage_delay;
         Target = GameManager.Instance().PlayerStart;
         PlayerData = Target.GetComponent<PlayerHpData>();
+        StartCoroutine(cc());
     }
     // Update is called once per frame    
     private void Update()
@@ -34,7 +35,7 @@ public class FireHitManager : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            InvokeRepeating("AttackEvent_Normal",0, 1);
+            InvokeRepeating("AttackEvent_Normal",0, 1);            
         }
     }
     private void OnTriggerExit(Collider other)
@@ -48,7 +49,6 @@ public class FireHitManager : MonoBehaviour
     {       
         DeductMobHpInstant(Target, mobDamage_instant);
         DeductMobHpDelay(Target, mobDamamge_delay);
-        TimeLine--;
     }
     /// <summary>
     /// 扣怪物血_只算立即傷害
@@ -84,5 +84,10 @@ public class FireHitManager : MonoBehaviour
             mob.GetComponent<PlayerHpData>().HpDeduction(demage_delay);
             Count--;
         }
+    }
+    IEnumerator cc()
+    {
+        yield return new WaitForSeconds(1);
+        TimeLine--;
     }
 }

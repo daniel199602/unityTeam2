@@ -196,21 +196,28 @@ public class BossFSM : MonoBehaviour
                     hpTemporary = State.Hp;
                     if (Ulting == false)
                     {
-                        if (GetHit == false && Count != 0 && RCount != 0)
+                        if (hpTemporary - State.Hp < 50)
                         {
-                            RandomChooseHit = UnityEngine.Random.Range(1, 2);
-                            GetHit = true;
-                            if (RandomChooseHit == 1)
-                            {
-                                MubAnimator.SetBool("GetHit01", true);
-                                return;
-                            }
-                            if (RandomChooseHit == 2)
-                            {
-                                MubAnimator.SetBool("GetHit02", true);
-                                return;
-                            }
+                            hpTemporary = State.Hp;
                         }
+                        else if(hpTemporary - State.Hp >= 50)
+                        {
+                            if (GetHit == false && Count != 0 && RCount != 0)
+                            {
+                                RandomChooseHit = UnityEngine.Random.Range(1, 2);
+                                GetHit = true;
+                                if (RandomChooseHit == 1)
+                                {
+                                    MubAnimator.SetBool("GetHit01", true);
+                                    return;
+                                }
+                                if (RandomChooseHit == 2)
+                                {
+                                    MubAnimator.SetBool("GetHit02", true);
+                                    return;
+                                }
+                            }
+                        }                       
                     }                    
                 }
                 else
@@ -309,7 +316,7 @@ public class BossFSM : MonoBehaviour
     }
     public void RangedAttackStatus()
     {
-        if (InATKrangeSwitch == false)
+        if (InATKrangeSwitch == false&& Ulting == false)
         {
             InRangeATKrange = IsInRange_RangedBattleRange(RangedRadius, MySelf, Target);
             if (InRangeATKrange == true)
@@ -586,7 +593,7 @@ public class BossFSM : MonoBehaviour
     }
     private void ChargeUpEvent_Attack()
     {
-        Instantiate(HitFlame,MySelf.transform.position,HitFlame.transform.rotation);
+        Instantiate(HitFlame,MySelf.transform.forward, MySelf.transform.rotation);
     }
     private void Animation_UltimateCoolDown()
     {
