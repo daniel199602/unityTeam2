@@ -257,7 +257,7 @@ public class CharacterAttackManager : MonoBehaviour
     IEnumerator DamageDelay(GameObject mob, int demage_delay)
     {
         int Count = 5;
-        while (Count >= 0)
+        while (Count >= 0 && mob.activeSelf)
         {
             yield return new WaitForSeconds(1);
             mob.GetComponent<MubHpData>().HpDeduction(demage_delay);
