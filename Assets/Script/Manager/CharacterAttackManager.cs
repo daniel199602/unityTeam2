@@ -107,9 +107,9 @@ public class CharacterAttackManager : MonoBehaviour
             {
                 DeductMobHpInstant(mob, weaponDamage_instant);
                 DeductMobHpDelay(mob, weaponDamamge_delay);
+                KnockBack(mob, gameObject);
                 ParticleSystem ps = hitVFX.GetComponent<ParticleSystem>();
                 Instantiate(ps, mob.transform.position + up, mob.transform.rotation);
-                KnockBack(mob);
                 ps.Play();
                 recoilShake.camraPlayerSake();
                 Debug.LogWarning("Hit : " + mob.GetComponent<ItemOnMob>().mobName + "Hp : " + mob.GetComponent<MubHpData>().Hp);
@@ -118,14 +118,12 @@ public class CharacterAttackManager : MonoBehaviour
     }
 
     /// <summary>
-    /// 專門處理放慢動作，左手攻擊事件，綁在左手攻擊動畫上
+    /// 專門處理放慢動作，攻擊事件，綁在攻擊動畫上
     /// </summary>
-    private void AttackAmimatorDelayEvent_left()
+    private void AttackAmimatorDelayEvent()
     {
-        int weaponDamage_instant = WeaponManager.Instance().CurrentWeaponL_weaponL.GetComponent<ItemOnWeapon>().weaponDamage_instant;
-        int weaponDamamge_delay = WeaponManager.Instance().CurrentWeaponL_weaponL.GetComponent<ItemOnWeapon>().weaponDamage_delay;
-        float angle = WeaponManager.Instance().CurrentWeaponL_weaponL.GetComponent<ItemOnWeapon>().weaponAngle;
-        float radius = WeaponManager.Instance().CurrentWeaponL_weaponL.GetComponent<ItemOnWeapon>().weaponRadius;
+        float angle = WeaponManager.Instance().CurrentWeaponR_weaponR.GetComponent<ItemOnWeapon>().weaponAngle;
+        float radius = WeaponManager.Instance().CurrentWeaponR_weaponR.GetComponent<ItemOnWeapon>().weaponRadius;
 
         foreach (GameObject mob in GameManager.Instance().mobPool)
         {
@@ -287,14 +285,14 @@ public class CharacterAttackManager : MonoBehaviour
     }
 
     /// <summary>
-    /// 怪物擊退
+    /// 怪物擊退位移
     /// </summary>
     /// <param name="mob"></param>
-    public void KnockBack(GameObject mob)
+    public void KnockBack(GameObject mob, GameObject player)
     {
         if (mob.GetComponent<ItemOnMob>().mobType == 1 || mob.GetComponent<ItemOnMob>().mobType == 0)
         {
-            mob.GetComponent<CharacterController>().Move(-(mob.transform.forward * 500) * Time.deltaTime);
+            mob.GetComponent<CharacterController>().Move((player.transform.position- mob.transform.forward).normalized*500 * Time.deltaTime);
         }
         if (mob.GetComponent<ItemOnMob>().mobType == 2)
         {
