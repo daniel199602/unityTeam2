@@ -65,11 +65,11 @@ public class CharacterAttackManager : MonoBehaviour
         return true;
     }
     /// <summary>
-    /// 左手攻擊事件，綁在左手攻擊動畫上
+    /// 迴旋斬攻擊事件，綁在右手攻擊動畫上
     /// </summary>
-    private void AttackEvent_leftDuo()
+    private void AttackEvent_rightDuo()
     {
-        int weaponDamage_instant = WeaponManager.Instance().CurrentWeaponR_weaponR.GetComponent<ItemOnWeapon>().weaponDamage_instant;
+        int weaponDamage_instant = WeaponManager.Instance().CurrentWeaponR_weaponR.GetComponent<ItemOnWeapon>().weaponDamage_instant+10;
         int weaponDamamge_delay = WeaponManager.Instance().CurrentWeaponR_weaponR.GetComponent<ItemOnWeapon>().weaponDamage_delay;
         float angle = WeaponManager.Instance().CurrentWeaponR_weaponR.GetComponent<ItemOnWeapon>().weaponAngle;
         float radius = WeaponManager.Instance().CurrentWeaponR_weaponR.GetComponent<ItemOnWeapon>().weaponRadius;
@@ -91,7 +91,7 @@ public class CharacterAttackManager : MonoBehaviour
     }
 
     /// <summary>
-    /// 左手攻擊事件，綁在左手攻擊動畫上
+    /// 盾擊，左手攻擊事件，綁在左手攻擊動畫上
     /// </summary>
     private void AttackEvent_left()
     {
@@ -109,7 +109,7 @@ public class CharacterAttackManager : MonoBehaviour
                 DeductMobHpDelay(mob, weaponDamamge_delay);
                 ParticleSystem ps = hitVFX.GetComponent<ParticleSystem>();
                 Instantiate(ps, mob.transform.position + up, mob.transform.rotation);
-               
+                KnockBack(mob);
                 ps.Play();
                 recoilShake.camraPlayerSake();
                 Debug.LogWarning("Hit : " + mob.GetComponent<ItemOnMob>().mobName + "Hp : " + mob.GetComponent<MubHpData>().Hp);
@@ -118,7 +118,7 @@ public class CharacterAttackManager : MonoBehaviour
     }
 
     /// <summary>
-    /// 左手攻擊事件，綁在左手攻擊動畫上   專門處理放慢動作 
+    /// 專門處理放慢動作，左手攻擊事件，綁在左手攻擊動畫上
     /// </summary>
     private void AttackAmimatorDelayEvent_left()
     {
@@ -141,7 +141,7 @@ public class CharacterAttackManager : MonoBehaviour
 
 
     /// <summary>
-    /// 右手攻擊事件，綁在右手攻擊動畫上
+    /// 單手劍擊，右手攻擊事件，綁在右手攻擊動畫上
     /// </summary>
     private void AttackEvent()
     {
@@ -166,7 +166,7 @@ public class CharacterAttackManager : MonoBehaviour
     }
 
     /// <summary>
-    /// 右手攻擊事件，綁在右手攻擊動畫上
+    /// 雙手大劍擊，右手攻擊事件，綁在右手攻擊動畫上
     /// </summary>
     private void AttackEvent_bigRight()
     {
@@ -182,11 +182,10 @@ public class CharacterAttackManager : MonoBehaviour
             {
                 DeductMobHpInstant(mob, weaponDamage_instant);
                 DeductMobHpDelay(mob, weaponDamamge_delay);
-                DeductMobAnimatorDelay(mob);
                 ParticleSystem ps = hitVFX.GetComponent<ParticleSystem>();
                 Instantiate(ps, mob.transform.position+up, mob.transform.rotation);
                 ps.Play();
-                recoilShake.camraPlayerSake();
+                //recoilShake.camraPlayerSake();
                 Debug.LogWarning("Hit : " + mob.GetComponent<ItemOnMob>().mobName + "Hp : " + mob.GetComponent<MubHpData>().Hp);
             }
         }
@@ -287,6 +286,10 @@ public class CharacterAttackManager : MonoBehaviour
         this.gameObject.GetComponent<Animator>().speed = 1.0f;
     }
 
+    /// <summary>
+    /// 怪物擊退
+    /// </summary>
+    /// <param name="mob"></param>
     public void KnockBack(GameObject mob)
     {
         if (mob.GetComponent<ItemOnMob>().mobType == 1 || mob.GetComponent<ItemOnMob>().mobType == 0)
