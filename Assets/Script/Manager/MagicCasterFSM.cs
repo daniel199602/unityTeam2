@@ -320,6 +320,11 @@ public class MagicCasterFSM : MonoBehaviour
         Close_ATKRadius = ATKRadius * .1f;
 
     }
+
+    public void Recover()
+    {
+        MubAnimator.SetBool("KnockBack", false);
+    }
     IEnumerator SummonCooldown()
     {
         while (Count > 0)

@@ -18,6 +18,7 @@ public class PlayerHpData : MonoBehaviour
 
     private void Awake()
     {
+
         thisItemOnMob = GetComponent<ItemOnMob>();
         Health = GetComponent<HealthPlayerBar>();
         MaxHp = thisItemOnMob.mobMaxHp;
@@ -48,7 +49,16 @@ public class PlayerHpData : MonoBehaviour
     /// <param name="Num">扣血量(請填入>=0整數)</param>
     public void HpDeduction(int Num)
     {
-        Hp -= Num;
+        if (GameManager.Instance().PlayerStart.GetComponent<PlayerController>().GetLayerNumNow() == 1)
+        {
+            Hp -= (int)(Num*0.9f);
+        }
+        else
+        {
+            Hp -= Num;
+        }
+       
+        
     }
 
 

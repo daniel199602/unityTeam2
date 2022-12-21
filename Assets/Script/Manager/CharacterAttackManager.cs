@@ -69,12 +69,11 @@ public class CharacterAttackManager : MonoBehaviour
     /// </summary>
     private void AttackEvent_leftDuo()
     {
-        int weaponDamage_instant = WeaponManager.Instance().CurrentWeaponL_weaponL.GetComponent<ItemOnWeapon>().weaponDamage_instant;
-        int weaponDamamge_delay = WeaponManager.Instance().CurrentWeaponL_weaponL.GetComponent<ItemOnWeapon>().weaponDamage_delay;
-        float angle = WeaponManager.Instance().CurrentWeaponL_weaponL.GetComponent<ItemOnWeapon>().weaponAngle;
-        float angle360 = (angle / angle) + 360;
-        float radius = WeaponManager.Instance().CurrentWeaponL_weaponL.GetComponent<ItemOnWeapon>().weaponRadius;
-
+        int weaponDamage_instant = WeaponManager.Instance().CurrentWeaponR_weaponR.GetComponent<ItemOnWeapon>().weaponDamage_instant;
+        int weaponDamamge_delay = WeaponManager.Instance().CurrentWeaponR_weaponR.GetComponent<ItemOnWeapon>().weaponDamage_delay;
+        float angle = WeaponManager.Instance().CurrentWeaponR_weaponR.GetComponent<ItemOnWeapon>().weaponAngle;
+        float radius = WeaponManager.Instance().CurrentWeaponR_weaponR.GetComponent<ItemOnWeapon>().weaponRadius;
+        float angle360 = (angle / angle) + 210;
         foreach (GameObject mob in GameManager.Instance().mobPool)
         {
             Debug.Log("attack");
@@ -109,7 +108,8 @@ public class CharacterAttackManager : MonoBehaviour
                 DeductMobHpInstant(mob, weaponDamage_instant);
                 DeductMobHpDelay(mob, weaponDamamge_delay);
                 ParticleSystem ps = hitVFX.GetComponent<ParticleSystem>();
-                Instantiate(ps, mob.transform.position+up, mob.transform.rotation);
+                Instantiate(ps, mob.transform.position + up, mob.transform.rotation);
+               
                 ps.Play();
                 recoilShake.camraPlayerSake();
                 Debug.LogWarning("Hit : " + mob.GetComponent<ItemOnMob>().mobName + "Hp : " + mob.GetComponent<MubHpData>().Hp);
@@ -287,10 +287,17 @@ public class CharacterAttackManager : MonoBehaviour
         this.gameObject.GetComponent<Animator>().speed = 1.0f;
     }
 
-
-
-
-
+    public void KnockBack(GameObject mob)
+    {
+        if (mob.GetComponent<ItemOnMob>().mobType == 1 || mob.GetComponent<ItemOnMob>().mobType == 0)
+        {
+            mob.GetComponent<CharacterController>().Move(-(mob.transform.forward * 500) * Time.deltaTime);
+        }
+        if (mob.GetComponent<ItemOnMob>().mobType == 2)
+        {
+            mob.GetComponent<Animator>().SetBool("KnockBack",true);
+        }
+    }
 
     private void OnDrawGizmos()
     {
