@@ -18,6 +18,7 @@ public class SkeletonFSM : MonoBehaviour
     int hpTemporary;
     CharacterController capsule;
     bool LeaveAttackRangeBool;
+    bool deathIng;
     bool RoarBool = false;
     bool tracing;
     bool InATKrange;
@@ -105,8 +106,12 @@ public class SkeletonFSM : MonoBehaviour
             }
             if (State.Hp <= 0)//¦º¤`¡÷µLª¬ºA
             {
+               if(deathIng==false)
+            {
                 m_NowState = SkeletonState.Dead;
                 DeadStatus();
+                deathIng = true;
+            }
                 return;
             }
             else if(TargetHp<=1)

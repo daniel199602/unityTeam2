@@ -54,7 +54,7 @@ public class MubHpData : MonoBehaviour
     {
         if (Hp != currentHp)
         {
-            Debug.Log("¦©¦å");
+          //  Debug.Log("¦©¦å");
             currentHp = Hp;
         }
         if (currentHp < 0)

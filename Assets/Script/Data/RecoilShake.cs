@@ -14,12 +14,12 @@ public class RecoilShake : MonoBehaviour
     public void camraPlayerSake()
     {
         screenShake.GenerateImpulse(new Vector3(Random.Range(2,3), Random.Range(0,1), Random.Range(2,3)));
-        Debug.Log("shake");
+        //Debug.Log("shake");
     }
     public void camraBearSake()
     {
         screenShake.GenerateImpulse(new Vector3(Random.Range(2,3), Random.Range(0,1), Random.Range(2,3)));
-        Debug.Log("shake");
+       // Debug.Log("shake");
     }
     void Update()
     {

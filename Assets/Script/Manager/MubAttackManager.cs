@@ -39,7 +39,7 @@ public class MubAttackManager : MonoBehaviour
         mobRadius = GetComponent<ItemOnMob>().mobRadius;
         /**/
         ParticleSpace = Target.transform.GetChild(0).gameObject;
-        Debug.Log(ParticleSpace);
+       // Debug.Log(ParticleSpace);
         TargetSize = Target.GetComponent<CharacterController>();
         PlayerData = Target.GetComponent<PlayerHpData>();
         TargetN = (Target.transform.position - transform.position).normalized;

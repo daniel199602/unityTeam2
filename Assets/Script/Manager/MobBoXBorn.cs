@@ -47,6 +47,7 @@ public class MobBoXBorn : MonoBehaviour
                 go.SetActive(true);
                 go.GetComponent<MubHpData>().Hp = 1000;//重生血量回滿
                 MobMain.Instance().pAliveObject.Add(go);
+
             }
 
             GameObject go1 = MobMain.Instance().oPool.LoadObjectFromPool(MobMain.Instance().pTestList);
@@ -56,6 +57,7 @@ public class MobBoXBorn : MonoBehaviour
                 go1.SetActive(true);
                 go1.GetComponent<MubHpData>().Hp = 1000;//重生血量回滿
                 MobMain.Instance().pAliveObject.Add(go1);
+
             }
 
             GameObject go2 = MobMain.Instance().oPool.LoadObjectFromPool(MobMain.Instance().pTestList);
@@ -65,6 +67,7 @@ public class MobBoXBorn : MonoBehaviour
                 go2.SetActive(true);
                 go2.GetComponent<MubHpData>().Hp = 1000;//重生血量回滿
                 MobMain.Instance().pAliveObject.Add(go2);
+
             }
 
             GameObject go3 = MobMain.Instance().oPool.LoadObjectFromPool(MobMain.Instance().pTestList);
@@ -74,6 +77,7 @@ public class MobBoXBorn : MonoBehaviour
                 go3.SetActive(true);
                 go3.GetComponent<MubHpData>().Hp = 1000;//重生血量回滿
                 MobMain.Instance().pAliveObject.Add(go3);
+
             }
         }
     }

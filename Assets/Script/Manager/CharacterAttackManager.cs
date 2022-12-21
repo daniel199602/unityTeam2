@@ -54,7 +54,7 @@ public class CharacterAttackManager : MonoBehaviour
 
         foreach (GameObject mob in GameManager.Instance().mobPool)
         {
-            Debug.Log("attack");
+           // Debug.Log("attack");
             if (IsInRange(angle, radius, gameObject.transform, mob.transform))
             {
                 DeductMobHpInstant(mob, weaponDamage_instant);
@@ -76,7 +76,7 @@ public class CharacterAttackManager : MonoBehaviour
         float angle360 = (angle / angle) + 210;
         foreach (GameObject mob in GameManager.Instance().mobPool)
         {
-            Debug.Log("attack");
+           // Debug.Log("attack");
             if (IsInRange(angle360, radius, gameObject.transform, mob.transform))
             {
                 DeductMobHpInstant(mob, weaponDamage_instant);
@@ -175,7 +175,7 @@ public class CharacterAttackManager : MonoBehaviour
 
         foreach (GameObject mob in GameManager.Instance().mobPool)
         {
-            Debug.Log("attack");
+            //Debug.Log("attack");
             if (IsInRange(angle, radius, gameObject.transform, mob.transform))
             {
                 DeductMobHpInstant(mob, weaponDamage_instant);
