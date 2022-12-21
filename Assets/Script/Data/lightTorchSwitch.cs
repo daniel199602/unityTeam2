@@ -21,7 +21,7 @@ public class lightTorchSwitch : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (isInZone && Input.GetMouseButtonDown(0)&& GameManager.Instance().PlayerStart.GetComponent<CharacterAttackManager>().AttackEvent_left_torch())
+        if (isInZone && Input.GetMouseButtonDown(0)&& GameManager.Instance().PlayerStart.GetComponent<PlayerController>().currentLayerNum==0)
         {
             //測試需開關用
             //fire.SetActive(!fire.activeSelf);
