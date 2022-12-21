@@ -2016,9 +2016,49 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1370883981801927297, guid: 6f3af1ba804816f4294943a282356ace, type: 3}
+      propertyPath: t
+      value: 0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 1370883981801927297, guid: 6f3af1ba804816f4294943a282356ace, type: 3}
       propertyPath: frameTransform
       value: 
       objectReference: {fileID: 139296613}
+    - target: {fileID: 1370883981801927297, guid: 6f3af1ba804816f4294943a282356ace, type: 3}
+      propertyPath: fadeOut.m_Curve.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1370883981801927297, guid: 6f3af1ba804816f4294943a282356ace, type: 3}
+      propertyPath: fadeOut.m_Curve.Array.data[0].time
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1370883981801927297, guid: 6f3af1ba804816f4294943a282356ace, type: 3}
+      propertyPath: fadeOut.m_Curve.Array.data[1].time
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1370883981801927297, guid: 6f3af1ba804816f4294943a282356ace, type: 3}
+      propertyPath: fadeOut.m_Curve.Array.data[2].time
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1370883981801927297, guid: 6f3af1ba804816f4294943a282356ace, type: 3}
+      propertyPath: fadeOut.m_Curve.Array.data[0].value
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1370883981801927297, guid: 6f3af1ba804816f4294943a282356ace, type: 3}
+      propertyPath: fadeOut.m_Curve.Array.data[1].value
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1370883981801927297, guid: 6f3af1ba804816f4294943a282356ace, type: 3}
+      propertyPath: fadeOut.m_Curve.Array.data[2].value
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1370883981801927297, guid: 6f3af1ba804816f4294943a282356ace, type: 3}
+      propertyPath: fadeOut.m_Curve.Array.data[0].inSlope
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1370883981801927297, guid: 6f3af1ba804816f4294943a282356ace, type: 3}
+      propertyPath: fadeOut.m_Curve.Array.data[0].outSlope
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4766050280437518127, guid: 6f3af1ba804816f4294943a282356ace, type: 3}
       propertyPath: m_LocalPosition.y
       value: 0.1

@@ -290,6 +290,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1529755744179086550, guid: faacc6eec94f2734a8b7bc612285e928, type: 3}
+      propertyPath: m_Alpha
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1529755745527624194, guid: faacc6eec94f2734a8b7bc612285e928, type: 3}
       propertyPath: m_Name
       value: UIManager
@@ -846,6 +850,11 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 5499223534040164984, guid: 843a687dd2b95bb4cb66922c432cf3f4, type: 3}
   m_PrefabInstance: {fileID: 1880995978}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1410555821 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1529755744179086547, guid: faacc6eec94f2734a8b7bc612285e928, type: 3}
+  m_PrefabInstance: {fileID: 850614441}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1568725591 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1529755744174436768, guid: faacc6eec94f2734a8b7bc612285e928, type: 3}
@@ -1319,6 +1328,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PlayerStart: {fileID: 0}
   mobPool: []
+  fade: {fileID: 1410555821}
 --- !u!4 &1914696425
 Transform:
   m_ObjectHideFlags: 0
@@ -1572,6 +1582,10 @@ PrefabInstance:
     - target: {fileID: 1141076914830034733, guid: f784f44c64d551140af9574ed929c37b, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1141076914830034733, guid: f784f44c64d551140af9574ed929c37b, type: 3}
+      propertyPath: m_TagString
+      value: fog
       objectReference: {fileID: 0}
     - target: {fileID: 1141076914830034735, guid: f784f44c64d551140af9574ed929c37b, type: 3}
       propertyPath: m_Materials.Array.size

@@ -9,7 +9,9 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance() { return mInstance; }
     public GameObject PlayerStart;
     public List<GameObject> mobPool;
-    
+    public GameObject fade;
+    Animation fadeIn;
+
     private float duration;
 
     private void Awake()
@@ -32,6 +34,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         SceneManager.sceneLoaded += OnSceneLoaded;
+        fadeIn = fade.GetComponent<Animation>();
     }
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
@@ -42,6 +45,7 @@ public class GameManager : MonoBehaviour
             PlayerStart.transform.position = new Vector3(-195, 2, -330);
             Debug.Log(PlayerStart.transform.position);
             PlayerStart.SetActive(true);
+            fadeIn.Play("FadeIn");
         }
     }
 

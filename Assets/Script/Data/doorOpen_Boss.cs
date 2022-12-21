@@ -13,7 +13,12 @@ public class doorOpen_Boss : MonoBehaviour
     GameObject BossTrigger;
     Animator myAnim;
     bool isInZone;
+    bool outDoorC;
     public GameObject fog;
+
+    public AnimationCurve fadeOut;
+
+    float t = 0.001f;
     // Start is called before the first frame update
     void Start()
     {             
@@ -21,7 +26,8 @@ public class doorOpen_Boss : MonoBehaviour
         fog = GameObject.Find("FogOfWarPlane");
         //frameTransform.gameObject.SetActive(false);
         Debug.Log("123");
-         
+
+        outDoorC = false;
     }
 
     // Update is called once per frame
@@ -30,9 +36,13 @@ public class doorOpen_Boss : MonoBehaviour
         if(isInZone&&Input.GetKeyDown(KeyCode.E))
         {                       
             myAnim.SetBool("isOpen", true);
-            
-            
         }
+        if(outDoorC ==true)
+        {
+            t += Time.deltaTime;
+            fog.GetComponent<MeshRenderer>().materials[0].SetFloat("_FogRadius", Mathf.Lerp(80, 200, t));
+        }
+
     }
 
     private void OnTriggerEnter(Collider other)
@@ -43,7 +53,6 @@ public class doorOpen_Boss : MonoBehaviour
             isInZone = true;
         }
     }
-
     private void OnTriggerExit(Collider other)
     {
         if (other.gameObject.tag == "Player")
@@ -54,8 +63,8 @@ public class doorOpen_Boss : MonoBehaviour
             
             myAnim.SetBool("isOpen", false);
             isInZone = false;
-            fog.SetActive(false);
-
+            outDoorC = true;
+            //fog.GetComponent<MeshRenderer>().materials[0].SetFloat("_FogRadius", 200);
             frameTransform.gameObject.SetActive(true);
         }
     }

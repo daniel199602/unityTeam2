@@ -9,7 +9,8 @@ public class bossTeleport : MonoBehaviour
     Animation fadeOut;
     GameObject Player;
     public GameObject TeleportVFX;
-    
+
+
 
 
     private float duration;
@@ -27,11 +28,11 @@ public class bossTeleport : MonoBehaviour
 
         Debug.Log("boss");
         GameManager.Instance().mobPool.Clear();
-        duration = 0.5f;
-        Invoke(nameof(FadeOutWait), duration);
-        duration2 = 2.5f;
+        FadeOutWait();
+        duration2 = 2f;
         Invoke(nameof(playerclose), duration2);
     }
+
 
     void FadeOutWait()
     {
