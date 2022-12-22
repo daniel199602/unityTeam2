@@ -3075,7 +3075,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TeleportVFX: {fileID: 2811687600181232142}
-  TeleportStatue: {fileID: 5982780957425318384}
 --- !u!1001 &932673453003850105
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10143,11 +10142,6 @@ PrefabInstance:
 --- !u!4 &5982780957424952784 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 1d526f20654226d42b3e9c84a09323ae, type: 3}
-  m_PrefabInstance: {fileID: 5982780957425352528}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &5982780957425318384 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 100000, guid: 1d526f20654226d42b3e9c84a09323ae, type: 3}
   m_PrefabInstance: {fileID: 5982780957425352528}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6211516077045503708
@@ -26125,23 +26119,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 124f7e82d47a12845b15a2203231d587, type: 3}
---- !u!1 &1649604065460249201 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 9111396639670327552, guid: 124f7e82d47a12845b15a2203231d587, type: 3}
-  m_PrefabInstance: {fileID: 7536418629717375857}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &6360034768375032694
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1649604065460249201}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 12d4d0a0b0e705e4a991ba38fc161051, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &5096819602177648168 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3327375884922084697, guid: 124f7e82d47a12845b15a2203231d587, type: 3}

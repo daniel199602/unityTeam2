@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mobName: boss_melee
   mobType: 11
-  mobMaxHp: 10000
+  mobMaxHp: 20000
   mobDamage_instant: 80
   mobDamage_delay: 15
   mobAngle: 90

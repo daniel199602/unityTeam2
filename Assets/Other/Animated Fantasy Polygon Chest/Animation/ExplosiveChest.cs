@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ExplosiveChest : MonoBehaviour
 {
+    UIManager uIManager;
     PlayerGetHit getHit = new PlayerGetHit();
     public LayerMask HitPlayer;
     ParticleSystem GetPower;
@@ -26,6 +27,12 @@ public class ExplosiveChest : MonoBehaviour
         Booms.Stop();
         ChestAnimator = GetComponent<Animator>();
     }
+
+    private void Start()
+    {
+        uIManager = UIManager.Instance();
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -47,6 +54,14 @@ public class ExplosiveChest : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 寶箱選武器事件
+    /// </summary>
+    public void BoxChangeWeaponEvent()
+    {
+        uIManager.OpenOneOfThreeAndChooseWeapon();
+        this.gameObject.SetActive(false);
+    }
 
     private void OnTriggerEnter(Collider other)
     {
