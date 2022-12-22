@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1573950157547505408}
   - component: {fileID: 889454333956994850}
   - component: {fileID: 3078894583290549715}
+  - component: {fileID: 1882954752037822039}
   m_Layer: 0
   m_Name: UltiFlame
   m_TagString: Untagged
@@ -62,6 +63,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   thisMobItem: {fileID: 11400000, guid: 371519b782a527b4b859e4da92339b84, type: 2}
+--- !u!65 &1882954752037822039
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4116065691858157808}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 383.8597, y: 26.278923, z: 54.869385}
+  m_Center: {x: 197.3576, y: 8.186077, z: 10.188805}
 --- !u!1001 &5580084394014135402
 PrefabInstance:
   m_ObjectHideFlags: 0
