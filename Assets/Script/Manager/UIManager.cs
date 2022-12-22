@@ -10,19 +10,22 @@ public class UIManager : MonoBehaviour
     private static UIManager mInstance;
     public static UIManager Instance() { return mInstance; }
 
+    public RectTransform fadeColor;//暗幕
     public RectTransform weaponOneOfThreePanel;//三選一面板
     public RectTransform weaponFramePanel;//武器格面板
     public RectTransform quitGamePanel;//離開遊戲面板
+    public RectTransform gameMenuPanel;//遊戲菜單面板
 
     public Dictionary<int, Sprite> dicIDWeaponImage;//ID 找 武器圖 字典
 
-    bool isOpenOneOfThreeFrame = false;
+    bool isOpenQuitGameUI = false;//是否打開離開選單，預設false
 
     private void Awake()
     {
         if (mInstance != null)
         {
-            Debug.LogErrorFormat(gameObject, "Multiple instances of {0} is not allow", GetType().Name);
+            //Debug.LogErrorFormat(gameObject, "Multiple instances of {0} is not allow", GetType().Name);
+            Debug.LogWarning("有兩個相同的singleton物件,UIManager");
             DestroyImmediate(gameObject);
             return;
         }
@@ -53,20 +56,45 @@ public class UIManager : MonoBehaviour
 
     private void Update()
     {
+
         //按下esc鍵
         if (Input.GetKeyDown("escape"))
         {
-            QuitGameUIOpen();
+            isOpenQuitGameUI = !isOpenQuitGameUI;
+            if (isOpenQuitGameUI)
+            {
+                QuitGameUIOpen();
+            }
+            else if(!isOpenQuitGameUI)
+            {
+                QuitGameUIClose();
+            }
         }
+
     }
 
     /// <summary>
-    /// 給寶箱使用
+    /// 給寶箱使用，設置武器三選一圖示
     /// </summary>
     public void OpenOneOfThreeAndChooseWeapon()
     {
         OneOfThreeUIOpen();
         weaponOneOfThreePanel.GetComponent<WeaponOneOfThreeUI>().SetRandomThreeWeaponR();//設置右手武器三選一
+    }
+
+    /// <summary>
+    /// 開啟遊戲菜單介面
+    /// </summary>
+    public void GameMenuPanelOpen()
+    {
+        gameMenuPanel.gameObject.SetActive(true);
+    }
+    /// <summary>
+    /// 關閉遊戲菜單介面
+    /// </summary>
+    public void GameMenuPanelClose()
+    {
+        gameMenuPanel.gameObject.SetActive(false);
     }
 
 
@@ -104,6 +132,7 @@ public class UIManager : MonoBehaviour
     {
         quitGamePanel.gameObject.SetActive(false);
         Time.timeScale = 1f;
+        isOpenQuitGameUI = false;//是否打開離開選單，切成false
     }
 
 }

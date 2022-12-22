@@ -68,7 +68,8 @@ public class WeaponManager : MonoBehaviour
     {
         if (mInstance != null)
         {
-            Debug.LogErrorFormat(gameObject, "Multiple instances of {0} is not allow", GetType().Name);
+            //Debug.LogErrorFormat(gameObject, "Multiple instances of {0} is not allow", GetType().Name);
+            Debug.LogWarning("有兩個相同的singleton物件,WeaponManager");
             DestroyImmediate(gameObject);
             return;
         }
@@ -435,5 +436,15 @@ public class WeaponManager : MonoBehaviour
         }
     }
     /*---------------------------------*/
+
+    /// <summary>
+    /// 清除玩家當前裝備的所有武器
+    /// </summary>
+    public void SetAllCurrentWeaponsEmpty()
+    {
+        CurrentTorchL_torch = null;
+        CurrentWeaponL_weaponL = null;
+        CurrentWeaponR_weaponR = null;
+    }
 
 }
