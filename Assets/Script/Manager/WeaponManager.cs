@@ -438,11 +438,10 @@ public class WeaponManager : MonoBehaviour
     /*---------------------------------*/
 
     /// <summary>
-    /// 清除玩家當前裝備的所有武器
+    /// 清除玩家當前裝備的所有武器(除了火把)
     /// </summary>
     public void SetAllCurrentWeaponsEmpty()
     {
-        CurrentTorchL_torch = null;
         CurrentWeaponL_weaponL = null;
         CurrentWeaponR_weaponR = null;
     }
