@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameMenuUI : MonoBehaviour
 {
@@ -19,13 +20,18 @@ public class GameMenuUI : MonoBehaviour
     /// <summary>
     /// 點擊_進入遊戲
     /// </summary>
-    public void ClickEnterGameBtn()
+    public void ClickPlayGameBtn()
     {
-        
+        UIManager.Instance().weaponFramePanel.GetComponent<WeaponFrameUI>().SetEmptyWeaponImage();//清空武器格圖示
+        WeaponManager.Instance().SetAllCurrentWeaponsEmpty();//清除玩家當前裝備的所有武器
+        GameManager.Instance().PlayerStart.SetActive(false);
+        SceneManager.LoadSceneAsync("room");
+        //SceneManager.LoadScene("room");
+        transform.gameObject.SetActive(false);
     }
 
     /// <summary>
-    /// 點擊_離開遊戲
+    /// 點擊_結束遊戲
     /// </summary>
     public void ClickQuitGameBtn()
     {

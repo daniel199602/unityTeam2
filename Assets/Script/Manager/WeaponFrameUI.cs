@@ -30,4 +30,13 @@ public class WeaponFrameUI : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 將武器格的圖示全部清空
+    /// </summary>
+    public void SetEmptyWeaponImage()
+    {
+        imageWeaponR.sprite = UIManager.Instance().dicIDWeaponImage[-1];//右手武器(劍)Frame
+        imageWeaponL.sprite = UIManager.Instance().dicIDWeaponImage[-1];//左手武器(盾)Frame
+    }
+
 }

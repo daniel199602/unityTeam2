@@ -6,7 +6,13 @@ public class DoorOpen_MobLast : MonoBehaviour
 {
     public int mobLast = 8;
 
+    public GameObject door_VFX;
+    bool door_VFX_isPlaying;
 
+    private void Start()
+    {
+        door_VFX_isPlaying = false;
+    }
     public void killMob()
     {
         mobLast -= 1;
@@ -15,8 +21,19 @@ public class DoorOpen_MobLast : MonoBehaviour
     {
         if (mobLast == 0)
         {
-            this.gameObject.SetActive(false);
+            if(door_VFX_isPlaying==false)
+            {
+                ParticleSystem ps = door_VFX.GetComponent<ParticleSystem>();
+                ps.Play();
+                door_VFX_isPlaying = true;
+            }
+            Invoke(nameof(door_Open), 2);
         }
+    }
+    
+    void door_Open()
+    {
+        this.gameObject.SetActive(false);
     }
 }
 

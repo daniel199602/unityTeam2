@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 
 public class QuitGameUI : MonoBehaviour
 {
@@ -13,11 +14,14 @@ public class QuitGameUI : MonoBehaviour
     }
 
     /// <summary>
-    /// 點擊確定離開事件，離開遊戲
+    /// 點擊確定離開事件，回主選單
     /// </summary>
     public void ClickQuitGameBtnYes()
     {
-        GameManager.Instance().QuitGame();//關閉應用程式
+        SceneManager.LoadScene("GameMenu");
+        UIManager.Instance().GameMenuPanelOpen();
+        UIManager.Instance().QuitGameUIClose();
+        GameManager.Instance().MobPoolClear();
     }
 
     /// <summary>
