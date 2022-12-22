@@ -22,10 +22,7 @@ public class FireHitManager : MonoBehaviour
     // Update is called once per frame    
     private void Update()
     {
-        if (TimeLine <= 0)
-        {
-            Destroy(gameObject);
-        }
+       
     }
     private void OnDestroy()
     {
@@ -87,7 +84,14 @@ public class FireHitManager : MonoBehaviour
     }
     IEnumerator cc()
     {
-        yield return new WaitForSeconds(1);
-        TimeLine--;
+        while (TimeLine > 0)
+        {
+            yield return new WaitForSeconds(1);
+            TimeLine--;
+        }
+        if (TimeLine <= 0)
+        {
+            Destroy(gameObject);
+        }
     }
 }

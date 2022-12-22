@@ -17539,6 +17539,62 @@ PrefabInstance:
       propertyPath: m_Name
       value: FrogTrap
       objectReference: {fileID: 0}
+    - target: {fileID: 139057790077820057, guid: cf56415ac92fba440beecb2188c26e84, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 139057790257769818, guid: cf56415ac92fba440beecb2188c26e84, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5554757450633698962, guid: cf56415ac92fba440beecb2188c26e84, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5554757450951851592, guid: cf56415ac92fba440beecb2188c26e84, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5554757450951892228, guid: cf56415ac92fba440beecb2188c26e84, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5554757450977543876, guid: cf56415ac92fba440beecb2188c26e84, type: 3}
+      propertyPath: playOnAwake
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5554757450977583426, guid: cf56415ac92fba440beecb2188c26e84, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5554757450977630068, guid: cf56415ac92fba440beecb2188c26e84, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5554757451306180179, guid: cf56415ac92fba440beecb2188c26e84, type: 3}
+      propertyPath: InitialModule.startRotationX.minMaxState
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5554757451306180179, guid: cf56415ac92fba440beecb2188c26e84, type: 3}
+      propertyPath: InitialModule.startRotationY.minMaxState
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5554757451652941459, guid: cf56415ac92fba440beecb2188c26e84, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5554757451652994851, guid: cf56415ac92fba440beecb2188c26e84, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5554757451652996047, guid: cf56415ac92fba440beecb2188c26e84, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5554757451653046549, guid: cf56415ac92fba440beecb2188c26e84, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cf56415ac92fba440beecb2188c26e84, type: 3}
 --- !u!4 &4375208675178165372 stripped

@@ -154,7 +154,8 @@ public class BossFSM : MonoBehaviour
             transform.position = pv;
             if (LookBool == true)
             {
-                LookPoint();
+                LookPoint_A();
+                //LookPoint();
             }
             if (State.Hp <= 0)//死亡→無狀態
             {
@@ -265,13 +266,32 @@ public class BossFSM : MonoBehaviour
             LookBool = false;
         }
     }
-    public void LookPoint()
+    //public void LookPoint()
+    //{
+    //    GetTargetNormalize = (Target.transform.position - transform.position).normalized;
+
+    //    Quaternion Look = Quaternion.LookRotation(GetTargetNormalize);
+
+    //    transform.rotation = Quaternion.Slerp(this.transform.rotation, Look, RotateSpeed * Time.deltaTime);
+    //}
+    public void LookPoint_A()
     {
-        GetTargetNormalize = (Target.transform.position - transform.position).normalized;
-
-        Quaternion Look = Quaternion.LookRotation(GetTargetNormalize);
-
-        transform.rotation = Quaternion.Slerp(this.transform.rotation, Look, RotateSpeed * Time.deltaTime);
+        Vector3 MyF = transform.forward;
+        Vector3 MT = Target.transform.position - transform.position;
+        Vector3 MXT = Vector3.Cross(MyF,MT);
+        if (MXT.y>0)//右轉
+        {
+            MubAnimator.SetBool("TurnL",true);
+        }
+        else if (MXT.y<0)//左轉
+        {
+            MubAnimator.SetBool("TurnR", true);
+        }
+        else//平行
+        {
+            MubAnimator.SetBool("TurnL", false);
+            MubAnimator.SetBool("TurnR", false);
+        }
     }
     public void DeadStatus()
     {
@@ -505,6 +525,13 @@ public class BossFSM : MonoBehaviour
 
         Gizmos.color = InRangeATKrange ? Color.gray : Color.blue;
         Gizmos.DrawWireSphere(transform.position, RangedRadius);
+
+        Gizmos.color = Color.white;
+        Gizmos.DrawLine(transform.position,transform.forward);
+
+        Gizmos.color = Color.green;
+        Vector3 direction = Target.transform.position - transform.position;
+        Gizmos.DrawLine(transform.position, direction);
     }
     private void Animation_Attack()
     {
