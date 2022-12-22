@@ -12,6 +12,7 @@ public class Slash : MonoBehaviour
     public GameObject bigSwoadSlash_3;
 
     public GameObject SingleSwoadSlash_2;
+    public GameObject SingleSwoadSlash_3;
 
     private void Start()
     {
@@ -45,6 +46,11 @@ public class Slash : MonoBehaviour
     void singleSwoadSlash2_Event()
     {
         ParticleSystem ps = SingleSwoadSlash_2.GetComponent<ParticleSystem>();
+        ps.Play();
+    }
+    void singleSwoadSlash3_Event()
+    {
+        ParticleSystem ps = SingleSwoadSlash_3.GetComponent<ParticleSystem>();
         ps.Play();
     }
 
