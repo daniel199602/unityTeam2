@@ -208,7 +208,8 @@ public class SpiderFSM : MonoBehaviour
     {
         if (m_NowState == SpiderState.Attack)
         {
-            MubAnimator.SetBool("Attack", true);                       
+            MubAnimator.SetBool("Attack", true);
+            MubAnimator.SetBool("Trace", false);
         }        
     }
     IEnumerator CountTimeDown()

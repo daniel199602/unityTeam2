@@ -655,6 +655,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3390743658276153202}
   - component: {fileID: 4882130077679880201}
+  - component: {fileID: 8077899432505534189}
   m_Layer: 0
   m_Name: Fantasy_Polygon_Chest_level_03
   m_TagString: Untagged
@@ -700,6 +701,18 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &8077899432505534189
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5791374329373783010}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 12d4d0a0b0e705e4a991ba38fc161051, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6062114268515006891
 GameObject:
   m_ObjectHideFlags: 0
