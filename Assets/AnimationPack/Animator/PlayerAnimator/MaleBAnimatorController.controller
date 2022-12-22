@@ -81,7 +81,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: Revive
+    m_ConditionEvent: isTriggerDie
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -6495697962209964365}
@@ -2082,7 +2082,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: Revive
+    m_ConditionEvent: isTriggerDie
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -3120040349793564936}
@@ -2674,7 +2674,7 @@ AnimatorStateMachine:
     m_Position: {x: 230, y: 80, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -1749322015309505045}
-    m_Position: {x: 550, y: 80, z: 0}
+    m_Position: {x: 230, y: 160, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 5188662588336593383}
     m_Position: {x: 230, y: -30, z: 0}
@@ -2873,7 +2873,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: Revive
+    m_ConditionEvent: isTriggerDie
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 8824470727302079172}
@@ -3446,7 +3446,7 @@ AnimatorStateTransition:
   m_PrefabAsset: {fileID: 0}
   m_Name: 
   m_Conditions:
-  - m_ConditionMode: 2
+  - m_ConditionMode: 1
     m_ConditionEvent: Revive
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}

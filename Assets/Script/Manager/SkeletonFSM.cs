@@ -13,6 +13,8 @@ public class SkeletonFSM : MonoBehaviour
     private GameObject Target;//存玩家
     private GameObject MySelf;//存自己
 
+    public GameObject Blade;
+
     MubHpData State;
     Animator MubAnimator;
     int hpTemporary;
@@ -334,6 +336,10 @@ public class SkeletonFSM : MonoBehaviour
         CDs = 5;
         StartCoroutine(AttackCooldown());
     }
+    private void BladeOnGround()
+    {
+        Instantiate(Blade, Blade.transform.position, transform.rotation);
+    }
     public void ZoneOpen()
     {
         LeaveATKRadius = ATKRadius * 6;
@@ -346,4 +352,5 @@ public class SkeletonFSM : MonoBehaviour
             CDs--;
         }
     }
+    
 }

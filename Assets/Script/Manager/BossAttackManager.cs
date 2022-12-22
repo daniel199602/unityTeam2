@@ -51,7 +51,7 @@ public class BossAttackManager : MonoBehaviour
         mobDamamge_delay_U = GetComponent<ItemOnMob>().mobDamage_delay*0;
         /*¨¤«×*/
         mobAngle = GetComponent<ItemOnMob>().mobAngle;
-        mobAngle_R = GetComponent<ItemOnMob>().mobAngle / 4;
+        mobAngle_R = GetComponent<ItemOnMob>().mobAngle / 3;
         mobAngle_U = GetComponent<ItemOnMob>().mobAngle / 5;
         /*¶ZÂ÷*/
         mobRadius = GetComponent<ItemOnMob>().mobRadius;
