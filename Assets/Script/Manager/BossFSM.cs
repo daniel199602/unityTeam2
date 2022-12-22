@@ -457,12 +457,12 @@ public class BossFSM : MonoBehaviour
             Vector3 MyF = transform.forward;
             Vector3 MT = Target.transform.position - transform.position;
             Vector3 MXT = Vector3.Cross(MyF, MT);
-            if (MXT.y > 20)//右轉
+            if (MXT.y > 30)//右轉
             {
                 MubAnimator.SetBool("TurnR", true);
                 Debug.Log("TurnRight");
             }
-            if (MXT.y < -20)//左轉
+            else if (MXT.y < -20)//左轉
             {
                 MubAnimator.SetBool("TurnL", true);
                 Debug.Log("TurnLeft");
