@@ -249,7 +249,7 @@ public class SpiderFSM : MonoBehaviour
             offset = 5;
             mat.SetFloat("_offset", offset);
             yield return new WaitForSeconds(ColorChangeTime);
-            ColorChangeTime /= 1.5f;
+            ColorChangeTime /= 2f;
             ColorChange--;
         }
     }

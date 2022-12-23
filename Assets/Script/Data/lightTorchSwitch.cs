@@ -27,8 +27,15 @@ public class lightTorchSwitch : MonoBehaviour
             //fire.SetActive(!fire.activeSelf);
             
             fire.SetActive(true);
+            Invoke(nameof(fireClosed), 40);
         }
     }
+
+    void fireClosed()
+    {
+        fire.SetActive(false);
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if(other.gameObject.tag =="Player")
