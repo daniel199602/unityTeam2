@@ -1955,6 +1955,7 @@ GameObject:
   - component: {fileID: 1175541563194477488}
   - component: {fileID: 806048143363287515}
   - component: {fileID: 5455251557531149233}
+  - component: {fileID: 3943879651791756821}
   m_Layer: 0
   m_Name: Bear_4
   m_TagString: Untagged
@@ -1969,7 +1970,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7962199819078159310}
-  m_LocalRotation: {x: -0, y: -0.97865236, z: -0, w: -0.20552275}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -3.28, y: 0.5, z: -3.71}
   m_LocalScale: {x: 12, y: 12, z: 12}
   m_ConstrainProportionsScale: 1
@@ -1982,7 +1983,7 @@ Transform:
   - {fileID: 3221914547411904114}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: -203.71999, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &3734775969355451150
 Animator:
   serializedVersion: 4
@@ -2107,6 +2108,7 @@ MonoBehaviour:
   mobDamamge_delay: 0
   mobAngle: 0
   mobRadius: 0
+  HitEffect: {fileID: 0}
   hitVFX_Bear: {fileID: 100002, guid: be1098ad45b6cd84288853867464dfaa, type: 3}
   Target: {fileID: 0}
   fHp: 0
@@ -2122,12 +2124,12 @@ CharacterController:
   m_Enabled: 1
   serializedVersion: 2
   m_Height: 2.49
-  m_Radius: 1.48
+  m_Radius: 0.7
   m_SlopeLimit: 45
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 1.18, z: 0.12}
+  m_Center: {x: 0, y: 1.18, z: 0}
 --- !u!114 &1175541563194477488
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2240,9 +2242,28 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  fadeOut:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   spawnEffectTime: 4
   t: 0.01
   isDeath: 0
+--- !u!65 &3943879651791756821
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7962199819078159310}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.5410837, y: 2.377283, z: 2.4630847}
+  m_Center: {x: 0.0040380163, y: 1.1731939, z: 0.21736138}
 --- !u!1 &8002475675295336084
 GameObject:
   m_ObjectHideFlags: 0

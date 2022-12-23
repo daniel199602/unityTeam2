@@ -22,6 +22,7 @@ public class QuitGameUI : MonoBehaviour
         UIManager.Instance().GameMenuPanelOpen();
         UIManager.Instance().QuitGameUIClose();
         GameManager.Instance().MobPoolClear();
+        GameManager.Instance().PlayerSetActiveSwitch(false);
     }
 
     /// <summary>
