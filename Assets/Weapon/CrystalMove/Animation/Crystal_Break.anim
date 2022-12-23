@@ -6692,7 +6692,14 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_Events:
   - time: 0.16666667
-    functionName: Heal
+    functionName: AttackEvent_Crystal
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 1.0166667
+    functionName: End
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0

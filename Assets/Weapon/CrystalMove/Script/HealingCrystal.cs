@@ -43,4 +43,8 @@ public class HealingCrystal : MonoBehaviour
     {
         
     }
+    private void End()
+    {
+        Destroy(gameObject);
+    }
 }
