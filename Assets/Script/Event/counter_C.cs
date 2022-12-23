@@ -22,7 +22,10 @@ public class counter_C : MonoBehaviour
     }
     IEnumerator Counter()
     {
-        yield return new WaitForSeconds(1);
-        count--;        
+        while (count > 0)
+        {
+            yield return new WaitForSeconds(1);
+            count--;
+        }              
     }
 }

@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1217005646929085398}
-  - component: {fileID: -2736552904930898637}
   m_Layer: 0
   m_Name: Crystal 1
   m_TagString: Untagged
@@ -45,19 +44,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!135 &-2736552904930898637
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1217005646929085392}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 10.468038
-  m_Center: {x: -0.8406067, y: 3.5547676, z: 0.53815174}
 --- !u!1001 &1217005646572199812
 PrefabInstance:
   m_ObjectHideFlags: 0

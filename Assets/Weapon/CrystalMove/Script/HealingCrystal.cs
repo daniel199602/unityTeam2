@@ -9,17 +9,17 @@ public class HealingCrystal : MonoBehaviour
     private void Heal()
     {
 
-    } 
+    }
     void Start()
     {
         CrystalAnimator = GetComponent<Animator>();
     }
     private void OnTriggerEnter(Collider Player)
-    {       
-            if (Player.tag == "Player")
-            {
-                CrystalAnimator.SetBool("CrystalApproach", true);
-            }             
+    {
+        if (Player.tag == "Player")
+        {
+            CrystalAnimator.SetBool("CrystalApproach", true);
+        }
     }
     private void OnTriggerStay(Collider Player)
     {
@@ -41,9 +41,13 @@ public class HealingCrystal : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
     private void End()
+    {
+        gameObject.SetActive(false);
+    }
+    private void OnDisable()
     {
         Destroy(gameObject);
     }
