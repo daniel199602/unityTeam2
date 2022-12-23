@@ -14,17 +14,21 @@ public class MubAttackManager : MonoBehaviour
     public GameObject HitEffect;
 
     public GameObject hitVFX_Bear;
-    
+
     RecoilShake recoilShake;
+
+    public GameObject HitEffect_C;
+
+    public GameObject hitVFX_Bear_C;
 
     [SerializeField] private GameObject Target;//存玩家
     GameObject ParticleSpace;
-    
+
     PlayerHpData PlayerData;//玩家血量狀態
     CharacterController TargetSize;//玩家用CharacterController
 
     private bool flag = false; //OnDrawGizmos判斷是否在範圍用
-    public int fHp = 0; //1211目前PlayerGetHit有用到它刪掉會報錯，然後怪物有用PlayerGetHit，所以PlayerGetHit目前還不能刪
+    int fHp = 0; //1211目前PlayerGetHit有用到它刪掉會報錯，然後怪物有用PlayerGetHit，所以PlayerGetHit目前還不能刪
     Vector3 TargetN;//自己跟對方的向量
 
     private void Start()
@@ -39,7 +43,7 @@ public class MubAttackManager : MonoBehaviour
         mobRadius = GetComponent<ItemOnMob>().mobRadius;
         /**/
         ParticleSpace = Target.transform.GetChild(0).gameObject;
-       // Debug.Log(ParticleSpace);
+        // Debug.Log(ParticleSpace);
         TargetSize = Target.GetComponent<CharacterController>();
         PlayerData = Target.GetComponent<PlayerHpData>();
         TargetN = (Target.transform.position - transform.position).normalized;
@@ -58,10 +62,22 @@ public class MubAttackManager : MonoBehaviour
             DeductMobHpInstant(Target, mobDamage_instant);
             DeductMobHpDelay(Target, mobDamamge_delay);
 
-            TargetSize.SimpleMove(TargetN * 20000*Time.deltaTime);
+            TargetSize.SimpleMove(TargetN * 20000 * Time.deltaTime);
             Debug.LogWarning("Hit");
         }
 
+    }
+    private void AttackEvent_Crystal()
+    {
+        //OnDrawGizmos判斷是否在範圍用
+        DeductMobHpInstant(Target, mobDamage_instant);
+        DeductMobHpDelay(Target, mobDamamge_delay);
+        Vector3 Pp = new Vector3(ParticleSpace.transform.position.x, ParticleSpace.transform.position.y + 5, ParticleSpace.transform.position.z);
+        Instantiate(HitEffect_C, Pp, ParticleSpace.transform.rotation, ParticleSpace.transform);
+        ParticleSystem ps = hitVFX_Bear_C.GetComponent<ParticleSystem>();
+        Instantiate(ps, Target.transform.position, Target.transform.rotation);
+        ps.Play();
+        Debug.LogWarning("Hit");
     }
     private void AttackEvent_MagicCaster()
     {
@@ -72,7 +88,7 @@ public class MubAttackManager : MonoBehaviour
         {
             DeductMobHpInstant(Target, mobDamage_instant);
             DeductMobHpDelay(Target, mobDamamge_delay);
-            Vector3 Pp = new Vector3(ParticleSpace.transform.position.x, ParticleSpace.transform.position.y+5, ParticleSpace.transform.position.z);
+            Vector3 Pp = new Vector3(ParticleSpace.transform.position.x, ParticleSpace.transform.position.y + 5, ParticleSpace.transform.position.z);
             Instantiate(HitEffect, Pp, ParticleSpace.transform.rotation, ParticleSpace.transform);
             Debug.LogWarning("Hit");
         }

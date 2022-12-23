@@ -69,6 +69,8 @@ public class BossFSM : MonoBehaviour
     //傳送
     GameObject Teleport;
     ParticleSystem magic_circle;
+    public GameObject Teleport02;
+    ParticleSystem magic_circle02;
     //大招
     GameObject UltimateFire;
     ParticleSystem Fire;
@@ -80,6 +82,11 @@ public class BossFSM : MonoBehaviour
     //刀光
     public GameObject BLight;
     ParticleSystem Bladelight;
+    //頭
+    public GameObject Head01;
+    ParticleSystem Head01P;
+    public GameObject Head02;
+    ParticleSystem Head02P;
     // Start is called before the first frame update
     private void Awake()
     {
@@ -115,6 +122,8 @@ public class BossFSM : MonoBehaviour
         Roar = Flame.GetComponent<ParticleSystem>();
         Bladelight = BLight.GetComponent<ParticleSystem>();
         FlameONground = HitFlame.GetComponentInChildren<ParticleSystem>();
+        Head01P = Head01.GetComponentInChildren<ParticleSystem>();
+        Head02P = Head02.GetComponentInChildren<ParticleSystem>();
 
         //血量區
         hpTemporary = State.Hp;
@@ -280,6 +289,8 @@ public class BossFSM : MonoBehaviour
             Fire.Stop();
             Bladelight.Stop();
             Roar.Stop();
+            Head01P.Stop();
+            Head02P.Stop();
             LookBool = false;
             capsule.radius = 0f;
         }
@@ -590,7 +601,7 @@ public class BossFSM : MonoBehaviour
             MubAnimator.applyRootMotion = false;
             Quaternion Look = Quaternion.LookRotation(GetTargetNormalize);
             transform.rotation = Look;
-            
+            magic_circle02.Stop();
             transform.position = TeleportPoint01.transform.position;
             magic_circle.Stop();
             MubAnimator.SetBool("ChangeWeapon", true);
@@ -601,7 +612,7 @@ public class BossFSM : MonoBehaviour
             MubAnimator.applyRootMotion = false;
             Quaternion Look = Quaternion.LookRotation(GetTargetNormalize);
             transform.rotation = Look;
-            
+            magic_circle02.Stop();
             transform.position = TeleportPoint02.transform.position;
             magic_circle.Stop();
             MubAnimator.SetBool("ChangeWeapon", true);
@@ -697,14 +708,16 @@ public class BossFSM : MonoBehaviour
         if (TeleoortChoose01 > TeleoortChoose02)
         {
             magic_circle.Play();
-            Instantiate(Teleport, TeleportPoint01.transform.position,Quaternion.identity);
+            Instantiate(Teleport02, TeleportPoint01.transform.position,Quaternion.identity);
+            magic_circle02.Play();
         }
         else
         {
             magic_circle.Play();
-            Instantiate(Teleport, TeleportPoint02.transform.position, Quaternion.identity);
+            Instantiate(Teleport02, TeleportPoint02.transform.position, Quaternion.identity);
+            magic_circle02.Play();
         }
-        
+
     }
     IEnumerator AttackCooldown()
     {

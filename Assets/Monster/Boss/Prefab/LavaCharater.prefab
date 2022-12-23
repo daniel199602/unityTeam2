@@ -6058,6 +6058,7 @@ MonoBehaviour:
   AxeOnBack: {fileID: 4257326679317326375}
   BigSwordOnBack: {fileID: 5247754946742673687}
   RotateSpeed: 0
+  Teleport02: {fileID: 0}
   HitFlame: {fileID: 4116065691858157808, guid: 2724b0f20a035fa49983a0f86b88cf6d, type: 3}
   BLight: {fileID: 7228381462048430082, guid: d751f5237993fc247ae15268c90f11b6, type: 3}
 --- !u!143 &5173183081115016483
@@ -11194,6 +11195,10 @@ PrefabInstance:
       value: 975
       objectReference: {fileID: 0}
     - target: {fileID: 198154877614836784, guid: 529eb4216865eba419c1a4a68d0b0388, type: 3}
+      propertyPath: InitialModule.startSize.scalar
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 198154877614836784, guid: 529eb4216865eba419c1a4a68d0b0388, type: 3}
       propertyPath: InitialModule.startColor.maxColor.b
       value: 0
       objectReference: {fileID: 0}
@@ -12141,6 +12146,10 @@ PrefabInstance:
     - target: {fileID: 4972702023922000, guid: 529eb4216865eba419c1a4a68d0b0388, type: 3}
       propertyPath: m_ConstrainProportionsScale
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 198154877614836784, guid: 529eb4216865eba419c1a4a68d0b0388, type: 3}
+      propertyPath: InitialModule.startSize.scalar
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 198154877614836784, guid: 529eb4216865eba419c1a4a68d0b0388, type: 3}
       propertyPath: InitialModule.startColor.maxColor.b
