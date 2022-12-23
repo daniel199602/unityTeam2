@@ -4931,6 +4931,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1723430932210037142}
     - target: {fileID: 185334941104344136, guid: 99ae7bdd379a96a43b8b110cb3d899f3, type: 3}
+      propertyPath: m_Height
+      value: 3.61
+      objectReference: {fileID: 0}
+    - target: {fileID: 185334941104344136, guid: 99ae7bdd379a96a43b8b110cb3d899f3, type: 3}
+      propertyPath: m_Radius
+      value: 1.04
+      objectReference: {fileID: 0}
+    - target: {fileID: 185334941104344136, guid: 99ae7bdd379a96a43b8b110cb3d899f3, type: 3}
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}

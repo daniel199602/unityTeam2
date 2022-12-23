@@ -27,7 +27,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 297826645255750447}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -106, y: 0, z: -63.1}
+  m_LocalPosition: {x: -106, y: 0, z: -64.2}
   m_LocalScale: {x: 13.580846, y: 13.580846, z: 13.580846}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -95,7 +95,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 10, y: 2.2204466e-16, z: 10.000002}
+  m_Size: {x: 10.24, y: 0.5, z: 10.000002}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &509430328337694080
 GameObject:
@@ -536,7 +536,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 10, y: 2.2204466e-16, z: 10.000002}
+  m_Size: {x: 10, y: 0.76, z: 10.000002}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1851462410341934424
 GameObject:
@@ -722,7 +722,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 10, y: 2.2204466e-16, z: 10.000002}
+  m_Size: {x: 10, y: 0.82, z: 10.000002}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &2084610495463022309
 GameObject:
@@ -989,7 +989,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 10.000005, y: 0.000002384186, z: 10.000002}
+  m_Size: {x: 10.000005, y: 0.52, z: 10.000002}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &3912466380332230666
 GameObject:
@@ -1086,7 +1086,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 10.000005, y: 0.000002384186, z: 10.000002}
+  m_Size: {x: 10.000005, y: 0.63, z: 10.000002}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &4244491130891292773
 GameObject:
@@ -1349,7 +1349,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 10, y: 2.2204466e-16, z: 10.000002}
+  m_Size: {x: 10, y: 0.36, z: 10.000002}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &4676989987179249690
 GameObject:
@@ -6609,7 +6609,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2881238614836029233, guid: 5d1eed0da272290449ce75850662bf32, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -48.4
+      value: -48.7
       objectReference: {fileID: 0}
     - target: {fileID: 2881238614836029233, guid: 5d1eed0da272290449ce75850662bf32, type: 3}
       propertyPath: m_LocalRotation.w
