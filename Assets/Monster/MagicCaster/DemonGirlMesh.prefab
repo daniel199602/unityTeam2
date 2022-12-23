@@ -2453,9 +2453,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8559658806296912734}
   - component: {fileID: 8617459445911992714}
-  - component: {fileID: 4051324754958994056}
   - component: {fileID: 2287063813628994175}
-  - component: {fileID: 1764858278061436294}
   - component: {fileID: 796329680502127141}
   - component: {fileID: 4875957930652274703}
   - component: {fileID: 5249844410737661589}
@@ -2514,21 +2512,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &4051324754958994056
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8557610552027109654}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b8889cc20c3fac041a511c9e2cfa83c2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MaxHp: 1000
-  Hp: 1000
-  currentHp: 0
 --- !u!114 &2287063813628994175
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2546,22 +2529,7 @@ MonoBehaviour:
   Health: 0
   Maxhealth: 0
   hpBar: {fileID: 3207726151260402298}
---- !u!114 &1764858278061436294
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8557610552027109654}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a8b6680b85b09494aa6b7723887c3c24, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bloodTransform: {fileID: 0}
-  bloodDelayTransform: {fileID: 0}
-  frameTransform: {fileID: 0}
-  Head: {fileID: 1264909834952796637}
+  bossHpOpen: 0
 --- !u!114 &796329680502127141
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2612,8 +2580,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Bug: {fileID: 1143180963066806, guid: f7769b1fc067cae44b63ccdcc8288127, type: 3}
-  TestCube: {fileID: 5908830022544453823, guid: 52cd825b0bbcb2040bbccceec87f536b, type: 3}
+  layerMask_BugSensor:
+    serializedVersion: 2
+    m_Bits: 0
+  LightRays: {fileID: 0}
+  RoarLight: {fileID: 0}
   LaunchPort: {fileID: 0}
+  RotateSpeed: 0
 --- !u!143 &7019348681000112901
 CharacterController:
   m_ObjectHideFlags: 0

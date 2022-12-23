@@ -5050,6 +5050,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 4051324754958994056, guid: 9349fc6c44ecdab4daea1ed464bd7c38, type: 3}
+    - {fileID: 1764858278061436294, guid: 9349fc6c44ecdab4daea1ed464bd7c38, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 9349fc6c44ecdab4daea1ed464bd7c38, type: 3}
 --- !u!224 &1564633793487568356 stripped
 RectTransform:
@@ -5441,7 +5442,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 19835484, guid: e392662fd49f2404cb7b2395eaa82cdf, type: 3}
       propertyPath: InitialModule.startSize.scalar
-      value: 10
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 19835484, guid: e392662fd49f2404cb7b2395eaa82cdf, type: 3}
       propertyPath: InitialModule.startSpeed.scalar
