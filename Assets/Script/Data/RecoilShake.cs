@@ -21,6 +21,12 @@ public class RecoilShake : MonoBehaviour
         screenShake.GenerateImpulse(new Vector3(Random.Range(2,3), Random.Range(0,1), Random.Range(2,3)));
        // Debug.Log("shake");
     }
+    public void camraSpiderSake()
+    {
+        screenShake.GenerateImpulse(new Vector3(Random.Range(4, 5), Random.Range(0, 1), Random.Range(4, 5)));
+        // Debug.Log("shake");
+    }
+
     void Update()
     {
 

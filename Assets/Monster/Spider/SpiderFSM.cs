@@ -265,7 +265,7 @@ public class SpiderFSM : MonoBehaviour
     private void Animation_AttackEventTest()
     {
         //Instantiate(ExplosionZone, MySelf.transform.position, Quaternion.identity, MySelf.transform);
-        recoilShake.camraBearSake();
+        recoilShake.camraSpiderSake();
         ParticleSystem ps = Boon.GetComponent<ParticleSystem>();
         ps.Play();
     }

@@ -5765,8 +5765,9 @@ MonoBehaviour:
   mobRadius: 0
   HitEffect: {fileID: 0}
   hitVFX_Bear: {fileID: 4677828487385894751}
+  HitEffect_C: {fileID: 0}
+  hitVFX_Bear_C: {fileID: 0}
   Target: {fileID: 0}
-  fHp: 0
 --- !u!143 &6976945080694197950
 CharacterController:
   m_ObjectHideFlags: 0
@@ -6707,7 +6708,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6211858738836961211, guid: 90f9567ca9f47714fb8f21be78d68592, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 0.21
       objectReference: {fileID: 0}
     - target: {fileID: 6211858738836961211, guid: 90f9567ca9f47714fb8f21be78d68592, type: 3}
       propertyPath: m_ConstrainProportionsScale
