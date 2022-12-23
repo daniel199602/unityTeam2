@@ -18,4 +18,4 @@ MonoBehaviour:
   mobDamage_instant: 120
   mobDamage_delay: 20
   mobAngle: 90
-  mobRadius: 60
+  mobRadius: 50

@@ -6058,9 +6058,11 @@ MonoBehaviour:
   AxeOnBack: {fileID: 4257326679317326375}
   BigSwordOnBack: {fileID: 5247754946742673687}
   RotateSpeed: 0
-  Teleport02: {fileID: 0}
+  Teleport02: {fileID: 4261955206583758039, guid: 0e3d53c1d8d23514fa93fd9025e25cfe, type: 3}
   HitFlame: {fileID: 4116065691858157808, guid: 2724b0f20a035fa49983a0f86b88cf6d, type: 3}
   BLight: {fileID: 7228381462048430082, guid: d751f5237993fc247ae15268c90f11b6, type: 3}
+  Head01: {fileID: 1046350955828228191}
+  Head02: {fileID: 7154246646425200274}
 --- !u!143 &5173183081115016483
 CharacterController:
   m_ObjectHideFlags: 0
@@ -11264,6 +11266,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 529eb4216865eba419c1a4a68d0b0388, type: 3}
+--- !u!1 &1046350955828228191 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1900756431413560, guid: 529eb4216865eba419c1a4a68d0b0388, type: 3}
+  m_PrefabInstance: {fileID: 1045857783371403623}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1048377442756940295 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4283311113454432, guid: 529eb4216865eba419c1a4a68d0b0388, type: 3}
@@ -12224,6 +12231,11 @@ PrefabInstance:
 --- !u!4 &7152009192834024650 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4283311113454432, guid: 529eb4216865eba419c1a4a68d0b0388, type: 3}
+  m_PrefabInstance: {fileID: 7155724829492119466}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &7154246646425200274 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1900756431413560, guid: 529eb4216865eba419c1a4a68d0b0388, type: 3}
   m_PrefabInstance: {fileID: 7155724829492119466}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7437859923788392951

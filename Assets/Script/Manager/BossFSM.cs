@@ -118,6 +118,7 @@ public class BossFSM : MonoBehaviour
         //特效
         Spilt_Fire = LeftArm.GetComponent<ParticleSystem>();
         magic_circle = Teleport.GetComponent<ParticleSystem>();
+        magic_circle02 = Teleport02.GetComponent<ParticleSystem>();
         Fire = UltimateFire.GetComponent<ParticleSystem>();
         Roar = Flame.GetComponent<ParticleSystem>();
         Bladelight = BLight.GetComponent<ParticleSystem>();
@@ -275,6 +276,8 @@ public class BossFSM : MonoBehaviour
             Quaternion Look = Quaternion.LookRotation(GetTargetNormalize);
 
             transform.rotation = Quaternion.Slerp(this.transform.rotation, Look, RotateSpeed * Time.deltaTime);
+
+            Debug.Log("Looking");
         }        
     }
     public void DeadStatus()
@@ -306,6 +309,7 @@ public class BossFSM : MonoBehaviour
                 LookBool = true;
                 m_NowState = BossState.Trace;
                 LookPoint();
+                Debug.Log("ttttttttttttttttttttttttttttt");
                 if (m_NowState == BossState.Trace)
                 {
                     MubAnimator.SetBool("Trace", true);
@@ -316,6 +320,9 @@ public class BossFSM : MonoBehaviour
                     MubAnimator.SetBool("TAttack01", false);
                     MubAnimator.SetBool("TAttack02", false);
                     MubAnimator.SetBool("TAttack03", false);
+                    MubAnimator.SetBool("TurnL", false);
+                    MubAnimator.SetBool("TurnR", false);
+                    MubAnimator.SetBool("TurnB", false);
                 }
             }
         }
@@ -326,14 +333,13 @@ public class BossFSM : MonoBehaviour
         {
             InRangeATKrange = IsInRange_RangedBattleRange(RangedRadius, MySelf, Target);
             if (InRangeATKrange == true)
-            {
-                LookBool = true;
+            {              
                 RangedRadius = TraceRadius;
                 m_NowState = BossState.RangeAttack;
                 MubAnimator.SetBool("Trace", false);
-                RangeAttack();
-                LookPoint();
                 inRrangeBool = true;
+                RangeAttack();                
+                Debug.Log("rrrrrr");
             }
             else
             {
@@ -357,130 +363,145 @@ public class BossFSM : MonoBehaviour
                 MubAnimator.SetBool("Back", false);
                 MubAnimator.SetBool("R_Attack", false);
                 Attack();
+                Debug.Log("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
             }
             else
             {
                 ATKRadius = ATKRadius_norm;
-                inRrangeBool = false;
+                InATKrangeSwitch = false;
             }
         }        
     }
 
     public void RangeAttack()
     {
-        if (m_NowState == BossState.RangeAttack && RCount == 0)
+        if (m_NowState == BossState.RangeAttack)
         {
-            MubAnimator.SetBool("R_Attack", true);
-            LookPoint();
-            RCount = 12;
-            StartCoroutine(RangerCooldown());
-        }
-        else if (RCount != 0)
-        {
-            RangeCDtodo = IsInRange_TraceRange(ATKRadius, MySelf, Target);
-            if (RangeCDtodo == true)
-            {                
+            if (RCount == 0)
+            {
+                LookBool = true;
                 LookPoint();
-
-                MubAnimator.SetBool("Trace", true);
-                MubAnimator.SetBool("R_Attack", false);
+                MubAnimator.SetBool("R_Attack", true);                
+                RCount = 12;
+                StartCoroutine(RangerCooldown());
             }
-        }
+           else if (RCount != 0)
+            {
+                RangeCDtodo = IsInRange_TraceRange(ATKRadius, MySelf, Target);
+                if (RangeCDtodo == true)
+                {
+                    LookBool = true;
+                    LookPoint();
+                    Debug.Log("tttttttttttttttttttttttttttttrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr");
+                    MubAnimator.SetBool("Trace", true);
+                    MubAnimator.SetBool("R_Attack", false);
+                    MubAnimator.SetBool("TurnL", false);
+                    MubAnimator.SetBool("TurnR", false);
+                    MubAnimator.SetBool("TurnB", false);
+                }
+            }       
+        }        
     }
 
     public void Attack()
     {
-        if (m_NowState == BossState.Attack && Count == 0)
+        if (m_NowState == BossState.Attack)
         {
-            ATKRadius = ATKRadius_Atk;
-            MubAnimator.SetBool("TurnL", false);
-            MubAnimator.SetBool("TurnR", false);
-            LookPoint();
-            if (StageTwo == true)
-            {
-                if (RandomChooseCd == false)
-                {
-                    RandomChoose = UnityEngine.Random.Range(1, 4);
-                    Debug.Log("隨機數:" + RandomChoose);
-                    RandomChooseCd = true;
-                }
-                if (RandomChoose == 1)
-                {
-                    MubAnimator.SetBool("TAttack01", true);
-                    Count = 3;
-                    StartCoroutine(AttackCooldown());
-                }
-                else if (RandomChoose == 2)
-                {
-                    MubAnimator.SetBool("TAttack02", true);
-                    Count = 3;
-                    StartCoroutine(AttackCooldown());
-                }
-                else if (RandomChoose == 3)
-                {
-                    MubAnimator.SetBool("TAttack03", true);
-                    Count = 3;
-                    StartCoroutine(AttackCooldown());
-                }
-            }
-            else
-            {
-                if (RandomChooseCd == false)
-                {
-                    RandomChoose = UnityEngine.Random.Range(1, 4);
-                    Debug.Log("隨機數:" + RandomChoose);
-                    RandomChooseCd = true;
-                }
-
-                if (RandomChoose == 1)
-                {
-                    MubAnimator.SetBool("Attack01", true);
-                    Count = 2;
-                    StartCoroutine(AttackCooldown());
-                }
-                else if (RandomChoose == 2)
-                {
-                    MubAnimator.SetBool("Attack02", true);
-                    Count = 3;
-                    StartCoroutine(AttackCooldown());
-                }
-                else if (RandomChoose == 3)
-                {
-                    MubAnimator.SetBool("Attack03", true);
-                    Count = 3;
-                    StartCoroutine(AttackCooldown());
-                }
-            }
-        }
-        else if (Count != 0)
-        {
-
-            InATKrangeSwitch = false;
-            MubAnimator.SetBool("Attack01", false);
-            MubAnimator.SetBool("Attack02", false);
-            MubAnimator.SetBool("Attack03", false);
-            MubAnimator.SetBool("TAttack01", false);
-            MubAnimator.SetBool("TAttack02", false);
-            MubAnimator.SetBool("TAttack03", false);
-            Vector3 MyF = transform.forward;
-            Vector3 MT = Target.transform.position - transform.position;
-            Vector3 MXT = Vector3.Cross(MyF, MT);
-            if (MXT.y > 30)//右轉
-            {
-                MubAnimator.SetBool("TurnR", true);
-                Debug.Log("TurnRight");
-            }
-            else if (MXT.y < -20)//左轉
-            {
-                MubAnimator.SetBool("TurnL", true);
-                Debug.Log("TurnLeft");
-            }
-            else
+            if (Count == 0)
             {
                 MubAnimator.SetBool("TurnL", false);
                 MubAnimator.SetBool("TurnR", false);
-            }//平行            
-        }
+                MubAnimator.SetBool("TurnB", false);
+                if (StageTwo == true)
+                {
+                    if (RandomChooseCd == false)
+                    {
+                        RandomChoose = UnityEngine.Random.Range(1, 4);
+                        Debug.Log("隨機數:" + RandomChoose);
+                        RandomChooseCd = true;
+                    }
+                    if (RandomChoose == 1)
+                    {
+                        MubAnimator.SetBool("TAttack01", true);
+                        Count = 3;
+                        StartCoroutine(AttackCooldown());
+                    }
+                    else if (RandomChoose == 2)
+                    {
+                        MubAnimator.SetBool("TAttack02", true);
+                        Count = 3;
+                        StartCoroutine(AttackCooldown());
+                    }
+                    else if (RandomChoose == 3)
+                    {
+                        MubAnimator.SetBool("TAttack03", true);
+                        Count = 3;
+                        StartCoroutine(AttackCooldown());
+                    }
+                }
+                else
+                {
+                    if (RandomChooseCd == false)
+                    {
+                        RandomChoose = UnityEngine.Random.Range(1, 4);
+                        Debug.Log("隨機數:" + RandomChoose);
+                        RandomChooseCd = true;
+                    }
+
+                    if (RandomChoose == 1)
+                    {
+                        MubAnimator.SetBool("Attack01", true);
+                        Count = 2;
+                        StartCoroutine(AttackCooldown());
+                    }
+                    else if (RandomChoose == 2)
+                    {
+                        MubAnimator.SetBool("Attack02", true);
+                        Count = 3;
+                        StartCoroutine(AttackCooldown());
+                    }
+                    else if (RandomChoose == 3)
+                    {
+                        MubAnimator.SetBool("Attack03", true);
+                        Count = 3;
+                        StartCoroutine(AttackCooldown());
+                    }
+                }
+            }
+            else if (Count != 0)
+            {
+                MubAnimator.SetBool("Attack01", false);
+                MubAnimator.SetBool("Attack02", false);
+                MubAnimator.SetBool("Attack03", false);
+                MubAnimator.SetBool("TAttack01", false);
+                MubAnimator.SetBool("TAttack02", false);
+                MubAnimator.SetBool("TAttack03", false);
+                Vector3 MyF = transform.forward;
+                Vector3 MT = Target.transform.position - transform.position;
+                Vector3 MXT = Vector3.Cross(MyF, MT);
+                if (MXT.y >= 110)//不會向後轉
+                {
+                    MubAnimator.SetBool("TurnB", true);
+                    Debug.Log("TurnBack");
+                }
+                else if (110 > MXT.y && MXT.y > 40)//右轉
+                {
+                    MubAnimator.SetBool("TurnR", true);
+                    Debug.Log("TurnRight");
+                }
+                else if (MXT.y < -20)//左轉
+                {
+                    MubAnimator.SetBool("TurnL", true);
+                    Debug.Log("TurnLeft");
+                }
+                else//平行 
+                {
+                    MubAnimator.SetBool("TurnL", false);
+                    MubAnimator.SetBool("TurnR", false);
+                    MubAnimator.SetBool("TurnB", false);
+                }          
+            }
+        }       
     }
     public void Ultimate()
     {
@@ -493,9 +514,7 @@ public class BossFSM : MonoBehaviour
         MubAnimator.SetBool("TAttack02", false);
         MubAnimator.SetBool("TAttack03", false);
         MubAnimator.SetBool("R_Attack", false);
-        UCount = 80;
         LookPoint();
-        StartCoroutine(UltimateCooldown());
     }
 
     //甦醒狀態
@@ -576,11 +595,12 @@ public class BossFSM : MonoBehaviour
     private void AnimationSpeed_AttackEnd()
     {
         MubAnimator.speed = 1f;
-        LookBool = true;
+
     }
     private void StartAim()
     {
         LookBool = true;
+        LookPoint();
     }
     private void StageTwoEventSwitch()
     {
@@ -638,7 +658,7 @@ public class BossFSM : MonoBehaviour
     }
     private void ChargeUpEvent_Attack()
     {
-        Instantiate(HitFlame,MySelf.transform.position+ MySelf.transform.forward, MySelf.transform.rotation);
+        Instantiate(HitFlame,MySelf.transform.position+ MySelf.transform.right, MySelf.transform.rotation);
     }
     private void Animation_UltimateCoolDown()
     {
@@ -647,6 +667,8 @@ public class BossFSM : MonoBehaviour
         MubAnimator.ResetTrigger("Ulti");
         LookBool = true;
         Ulting = false;
+        UCount = 80;
+        StartCoroutine(UltimateCooldown());
     }
     private void UltiPatricle_End()
     {
