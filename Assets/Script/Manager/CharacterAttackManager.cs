@@ -81,6 +81,7 @@ public class CharacterAttackManager : MonoBehaviour
             {
                 DeductMobHpInstant(mob, weaponDamage_instant);
                 DeductMobHpDelay(mob, weaponDamamge_delay);
+                recoilShake.camraPlayerSake();
                 ParticleSystem ps = hitVFX.GetComponent<ParticleSystem>();
                 Instantiate(ps, mob.transform.position + up, mob.transform.rotation);
                 ps.Play();
@@ -130,7 +131,6 @@ public class CharacterAttackManager : MonoBehaviour
             if (IsInRange(angle, radius, gameObject.transform, mob.transform))
             {
                 DeductMobAnimatorDelay(mob);
-                recoilShake.camraPlayerSake();
                 Debug.LogWarning("Hit : " + mob.GetComponent<ItemOnMob>().mobName + "Hp : " + mob.GetComponent<MubHpData>().Hp);
             }
         }
