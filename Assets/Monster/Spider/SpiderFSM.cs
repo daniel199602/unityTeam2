@@ -112,7 +112,8 @@ public class SpiderFSM : MonoBehaviour
             RoarBool = true;
         }
         if (StartExplosive== true)//¦º¤`¡÷µLª¬ºA
-        {           
+        {
+            m_NowState = SpiderState.Dead;
             DeadStatus();
             return;
         }
@@ -170,11 +171,13 @@ public class SpiderFSM : MonoBehaviour
                     if (StartCountDown == false)
                     {
                         CountDown = 4;
+                        
                         StartCountDown = true;
                         StartCoroutine(CountTimeDown());
                     }
                     if (CountDown <= 0)
                     {
+                        m_NowState = SpiderState.Attack;
                         Attack();
                     }
                     else if (CountDown > 0)
@@ -216,8 +219,12 @@ public class SpiderFSM : MonoBehaviour
     {
         if (CountDown>0)
         {
-            yield return new WaitForSeconds(1);
-            CountDown--;
+            while (CountDown > 0)
+            {
+                yield return new WaitForSeconds(1);
+                CountDown--;
+                Debug.Log(CountDown);
+            }           
         }       
     }
     public bool IsInRange_TraceRange(float Radius, GameObject attacker, GameObject attacked)
