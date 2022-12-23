@@ -75,8 +75,6 @@ public class BossAttackManager : MonoBehaviour
         {
             DeductMobHpInstant(Target, mobDamage_instant);
             DeductMobHpDelay(Target, mobDamamge_delay);
-
-            TargetSize.SimpleMove(TargetN * 20000 * Time.deltaTime);
         }
     }
 
@@ -104,7 +102,6 @@ public class BossAttackManager : MonoBehaviour
             DeductMobHpInstant(Target, mobDamage_instant_R);
             DeductMobHpDelay(Target, mobDamamge_delay_R);
 
-            TargetSize.SimpleMove(TargetN * 20000 * Time.deltaTime);
         }
     }
 
