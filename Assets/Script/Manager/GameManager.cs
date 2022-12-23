@@ -28,14 +28,14 @@ public class GameManager : MonoBehaviour
         
         mobPool = new List<GameObject>();
         PlayerStart = GameObject.FindWithTag("Player");
-        
-
-        //mobPool.Add(PlayerStart);
     }
+
     private void Start()
     {
         SceneManager.sceneLoaded += OnSceneLoaded;
         fadeIn = fade.GetComponent<Animation>();
+
+        PlayerSetActiveSwitch(false);//先將玩家關閉
     }
 
 
@@ -88,6 +88,16 @@ public class GameManager : MonoBehaviour
     public void MobPoolClear()
     {
         mobPool.Clear();
+    }
+
+
+    /// <summary>
+    /// 玩家角色SetActive切換
+    /// </summary>
+    /// <param name="boolen">開關</param>
+    public void PlayerSetActiveSwitch(bool boolen)
+    {
+        PlayerStart.SetActive(boolen);
     }
 
 }
