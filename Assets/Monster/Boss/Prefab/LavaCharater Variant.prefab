@@ -15,10 +15,6 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 881683889231256919, guid: 693eee48e53fa1542812fc3b0f773541, type: 3}
-      propertyPath: InitialModule.startSize.scalar
-      value: 30
-      objectReference: {fileID: 0}
     - target: {fileID: 883767192071455437, guid: 693eee48e53fa1542812fc3b0f773541, type: 3}
       propertyPath: InitialModule.startSize.scalar
       value: 10
@@ -311,10 +307,10 @@ PrefabInstance:
       propertyPath: InitialModule.startSize.minScalar
       value: 30
       objectReference: {fileID: 0}
-    - target: {fileID: 7057634427520437146, guid: 693eee48e53fa1542812fc3b0f773541, type: 3}
-      propertyPath: InitialModule.startSize.scalar
-      value: 30
-      objectReference: {fileID: 0}
+    - target: {fileID: 7127069732953496713, guid: 693eee48e53fa1542812fc3b0f773541, type: 3}
+      propertyPath: Teleport02
+      value: 
+      objectReference: {fileID: 100710, guid: 2982f110c9c86514caeb48062d04ff19, type: 3}
     - target: {fileID: 7160608460066240250, guid: 693eee48e53fa1542812fc3b0f773541, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0
