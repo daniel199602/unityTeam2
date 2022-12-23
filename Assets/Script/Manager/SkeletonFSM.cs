@@ -339,7 +339,7 @@ public class SkeletonFSM : MonoBehaviour
     }
     private void BladeOnGround()
     {
-        Vector3 HHHH = new Vector3(HandP.transform.position.x, 2.5f, HandP.transform.position.z);
+        Vector3 HHHH = new Vector3(HandP.transform.position.x, 0.5f, HandP.transform.position.z);
         Instantiate(Blade, HHHH, HandP.transform.rotation);
     }
     public void ZoneOpen()
