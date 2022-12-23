@@ -9,6 +9,9 @@ public enum MagicCasterState
 public class MagicCasterFSM : MonoBehaviour
 {
     public GameObject Bug;
+
+    public LayerMask layerMask_BugSensor;
+
     public GameObject LightRays;
     public GameObject RoarLight;    
     public Transform LaunchPort;
@@ -335,8 +338,18 @@ public class MagicCasterFSM : MonoBehaviour
         }
     }
     private void Summon()
-    {
-        Instantiate(Bug, (MySelf.transform.position + MySelf.transform.forward * 10), MySelf.transform.rotation);
+    {        
+        Vector3 mePos = this.transform.forward;
+        Ray r = new Ray(this.transform.position, mePos);
+        RaycastHit rh;
+        if (Physics.Raycast(r, out rh, 15f, layerMask_BugSensor))
+        {
+            Instantiate(Bug, (MySelf.transform.position + -(MySelf.transform.forward * 10)), MySelf.transform.rotation);
+        }
+        else
+        {
+            Instantiate(Bug, (MySelf.transform.position + MySelf.transform.forward * 10), MySelf.transform.rotation);
+        }           
         Count = 20;
         StartCoroutine(SummonCooldown());
     }

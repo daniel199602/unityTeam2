@@ -70111,15 +70111,15 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 2
-    functionName: BladeOnGround
+  - time: 2.0833333
+    functionName: DeathEnd
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 2.0833333
-    functionName: DeathEnd
+  - time: 2.1166666
+    functionName: BladeOnGround
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0

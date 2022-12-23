@@ -32,7 +32,7 @@ Material:
     m_Floats:
     - _Cull: 2
     - _Cutoff: 0
-    - _EdgeWidth: 0.05
+    - _EdgeWidth: 0.11
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EdgeColor: {r: 15.435293, g: 14.506038, b: 0, a: 1}

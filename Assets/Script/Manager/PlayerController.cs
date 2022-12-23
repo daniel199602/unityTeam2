@@ -37,6 +37,7 @@ public class PlayerController : MonoBehaviour
     //操作開關，會根據玩家當前狀態開啟關閉
     bool isUseFire1 = true;
     bool isUseJump = true;
+    bool JumpLocker = false;
     private float attackMoveSpeed = 0;//攻擊位移速度
     bool isOpenAttackMove = false;//攻擊位移開關
     bool isUseMouseChangeForward = true;//滑鼠人物轉向開關
@@ -444,24 +445,39 @@ public class PlayerController : MonoBehaviour
 
             if (isJump && isUseJump)
             {
-                m_pCurrentState = pFSMState.Roll;//進入翻滾狀態***
-                isUseMouseChangeForward = false;
-                transform.forward = cameraRelativeMovement;
-                charaterAnimator.SetTrigger("isTriggerJump");
+                if (JumpLocker == false)
+                {
+                    m_pCurrentState = pFSMState.Roll;//進入翻滾狀態***
+                    isUseMouseChangeForward = false;
+                    transform.forward = cameraRelativeMovement;
+                    charaterAnimator.SetTrigger("isTriggerJump");
+                    JumpLocker = true;
+                    StartCoroutine(Jumplock());
+                }
             }
         }
         else
         {
             charaterAnimator.SetFloat("velocityV", 0.0f);
             charaterAnimator.SetFloat("velocityH", 0.0f);
+            
             if (isJump && isUseJump)
-            {
-                m_pCurrentState = pFSMState.Roll;//進入翻滾狀態***
-                charaterAnimator.SetTrigger("isTriggerJump");
+            {                
+                if (JumpLocker == false)
+                {
+                    m_pCurrentState = pFSMState.Roll;//進入翻滾狀態***
+                    charaterAnimator.SetTrigger("isTriggerJump");
+                    JumpLocker = true;
+                    StartCoroutine(Jumplock());
+                }                
             }
         }
     }
-
+    IEnumerator Jumplock()
+    {
+        yield return new WaitForSeconds(0.75f);
+        JumpLocker = false;
+    }
     /// <summary>
     /// 滑鼠座標改變玩家forward方向
     /// </summary>

@@ -14,6 +14,7 @@ public class SkeletonFSM : MonoBehaviour
     private GameObject MySelf;//¦s¦Û¤v
 
     public GameObject Blade;
+    public Transform HandP;
 
     MubHpData State;
     Animator MubAnimator;
@@ -338,7 +339,8 @@ public class SkeletonFSM : MonoBehaviour
     }
     private void BladeOnGround()
     {
-        Instantiate(Blade, Blade.transform.position, transform.rotation);
+        Vector3 HHHH = new Vector3(HandP.transform.position.x, 2.5f, HandP.transform.position.z);
+        Instantiate(Blade, HHHH, HandP.transform.rotation);
     }
     public void ZoneOpen()
     {

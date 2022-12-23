@@ -13,6 +13,7 @@ public class AudioEvent : MonoBehaviour
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
+        Debug.Log(audioSource);
     }
 
     void PlaySwordEvent_take()
