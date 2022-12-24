@@ -4780,6 +4780,7 @@ GameObject:
   - component: {fileID: 5403848983765803006}
   - component: {fileID: 10199059806689093}
   - component: {fileID: 5482933065900400663}
+  - component: {fileID: 1695596528176157154}
   m_Layer: 10
   m_Name: Male_Player_B menu
   m_TagString: menu
@@ -5009,6 +5010,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1695596528176157154
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2631163319326334126}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3f493f4a13068d4486a4c979fceae07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2631163493861753916
 GameObject:
   m_ObjectHideFlags: 0
