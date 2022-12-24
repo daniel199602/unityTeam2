@@ -169,6 +169,7 @@ GameObject:
   - component: {fileID: 9013044533348776184}
   - component: {fileID: 4743641044317122369}
   - component: {fileID: 5010074403936600200}
+  - component: {fileID: 3868753141648974058}
   m_Layer: 0
   m_Name: MobBorn_Room
   m_TagString: Untagged
@@ -305,6 +306,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &3868753141648974058
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3589567636346672280}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb0a3b9afbc6d964e8ff9b761a5ccfd3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  windBorn: {fileID: 8300000, guid: 406bc74dedf043f40b65f20de0d41557, type: 3}
 --- !u!1 &8477966148021418523
 GameObject:
   m_ObjectHideFlags: 0
