@@ -18,7 +18,7 @@ public class AudioEvent_frogTrap : MonoBehaviour
     /// </summary>
     public void PlayFrogSpitFireEvent()
     {
-        audioSource.PlayOneShot(frogSpitFire, 0.1f);
+        audioSource.PlayOneShot(frogSpitFire, 0.5f);
     }
 
     //public void PlayForTime(float time)
