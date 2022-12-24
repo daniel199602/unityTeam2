@@ -31057,7 +31057,7 @@ AnimationClip:
   m_HasMotionFloatCurves: 1
   m_Events:
   - time: 0.26666668
-    functionName: PlaySwordEvent_swing
+    functionName: PlayTorchEvent_swing
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0

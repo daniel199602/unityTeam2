@@ -6,6 +6,7 @@ public class AudioEvent : MonoBehaviour
 {
     AudioSource audioSource;
 
+    public AudioClip swingTorch;
     public AudioClip takeSword;
     public AudioClip swingSword;
     public AudioClip swingSword1;
@@ -18,25 +19,37 @@ public class AudioEvent : MonoBehaviour
         Debug.Log(audioSource);
     }
 
+
+    void PlayTorchEvent_swing()
+    {
+        audioSource.PlayOneShot(swingTorch, 1f);
+    }
+
+    /// <summary>
+    /// 拿劍音效
+    /// </summary>
     void PlaySwordEvent_take()
     {
         audioSource.PlayOneShot(takeSword, 0.5f);
     }
 
+    /// <summary>
+    /// 揮劍音效
+    /// </summary>
     void PlaySwordEvent_swing()
     {
         audioSource.PlayOneShot(swingSword, 0.5f);
     }
 
     /// <summary>
-    /// 細劍音效1
+    /// 揮細劍音效1
     /// </summary>
     void PlaySwordEvent_swing1()
     {
         audioSource.PlayOneShot(swingSword1, 0.5f);
     }
     /// <summary>
-    /// 細劍音效2
+    /// 揮細劍音效2
     /// </summary>
     void PlaySwordEvent_swing2()
     {
