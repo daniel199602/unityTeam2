@@ -8,10 +8,11 @@ public class DoorOpen_MobLast : MonoBehaviour
 
     public GameObject door_VFX;
     bool door_VFX_isPlaying;
-
+    ParticleSystem ps;
     private void Start()
     {
         door_VFX_isPlaying = false;
+        ps = door_VFX.GetComponent<ParticleSystem>();
     }
     public void killMob()
     {
@@ -23,7 +24,6 @@ public class DoorOpen_MobLast : MonoBehaviour
         {
             if(door_VFX_isPlaying==false)
             {
-                ParticleSystem ps = door_VFX.GetComponent<ParticleSystem>();
                 ps.Play();
                 door_VFX_isPlaying = true;
             }
