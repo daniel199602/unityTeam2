@@ -134194,6 +134194,13 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
+  - time: 0.5833333
+    functionName: PlaySwingMetalSwordEvent_1
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
   - time: 0.6333333
     functionName: AttackEvent_Normal
     data: 
@@ -134201,8 +134208,22 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
+  - time: 1.3333334
+    functionName: PlaySwingMetalSwordEvent_2
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
   - time: 1.35
     functionName: AttackEvent_Normal
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 2.25
+    functionName: PlaySwingMetalSwordEvent_2
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
