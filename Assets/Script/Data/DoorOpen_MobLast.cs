@@ -8,11 +8,14 @@ public class DoorOpen_MobLast : MonoBehaviour
 
     public GameObject door_VFX;
     bool door_VFX_isPlaying;
-    ParticleSystem ps;
+
+    AudioEvent_electircDoor mobBornRoom;//音效腳本_雷電門
+
     private void Start()
     {
+        mobBornRoom = this.gameObject.GetComponentInParent<AudioEvent_electircDoor>();//抓父親的腳本
+
         door_VFX_isPlaying = false;
-        ps = door_VFX.GetComponent<ParticleSystem>();
     }
     public void killMob()
     {
@@ -24,7 +27,11 @@ public class DoorOpen_MobLast : MonoBehaviour
         {
             if(door_VFX_isPlaying==false)
             {
+                ParticleSystem ps = door_VFX.GetComponent<ParticleSystem>();
                 ps.Play();
+
+                mobBornRoom.PlayElectricityEvent();//播音效
+
                 door_VFX_isPlaying = true;
             }
             Invoke(nameof(door_Open), 2);

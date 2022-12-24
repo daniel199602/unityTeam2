@@ -6,12 +6,13 @@ using UnityEngine.SceneManagement;
 
 public class bossTeleport : MonoBehaviour
 {
+
+    AudioSource audioSource;
+    public AudioClip portal;
+
     Animation fadeOut;
     GameObject Player;
     public GameObject TeleportVFX;
-
-
-
 
     private float duration;
     private float duration2;
@@ -19,11 +20,12 @@ public class bossTeleport : MonoBehaviour
     {
         fadeOut = GameObject.Find("FadeColor").GetComponent<Animation>();
         Player = GameObject.FindWithTag("Player");
+        audioSource = GetComponent<AudioSource>();
     }
     private void OnTriggerEnter(Collider other)
     {
         ParticleSystem ps = TeleportVFX.GetComponent<ParticleSystem>();
-        
+        PlayPortalEvent();//¼½­µ®Ä
         ps.Play();
 
         Debug.Log("boss");
@@ -41,5 +43,9 @@ public class bossTeleport : MonoBehaviour
     void playerclose()
     {
         Player.SetActive(false);
+    }
+    void PlayPortalEvent()
+    {
+        audioSource.PlayOneShot(portal);
     }
 }
