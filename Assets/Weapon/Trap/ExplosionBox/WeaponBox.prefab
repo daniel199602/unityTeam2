@@ -5244,6 +5244,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18b171a3ed14e844e9cc9b753d5bb669, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  boxKnock: {fileID: 8300000, guid: 7c07c05ba9d48cc44862c755ecf584ba, type: 3}
   HitPlayer:
     serializedVersion: 2
     m_Bits: 64

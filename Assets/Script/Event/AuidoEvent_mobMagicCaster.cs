@@ -20,7 +20,7 @@ public class AuidoEvent_mobMagicCaster : MonoBehaviour
     /// </summary>
     void PlayCreatSpiderEvent()
     {
-        audioSource.PlayOneShot(creatSpider, 0.3f);
+        audioSource.PlayOneShot(creatSpider, 0.2f);
     }
 
     /// <summary>
@@ -28,6 +28,6 @@ public class AuidoEvent_mobMagicCaster : MonoBehaviour
     /// </summary>
     void PlaySpitMagicLaserEvent()
     {
-        audioSource.PlayOneShot(spitMagicLaser, 0.3f);
+        audioSource.PlayOneShot(spitMagicLaser, 0.2f);
     }
 }

@@ -18,6 +18,6 @@ public class AudioEvent_electircDoor : MonoBehaviour
     /// </summary>
     public void PlayElectricityEvent()
     {
-        audioSource.PlayOneShot(electricity,0.5f);
+        audioSource.PlayOneShot(electricity,0.2f);
     }
 }

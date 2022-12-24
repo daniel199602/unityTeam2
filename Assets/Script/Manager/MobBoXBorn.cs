@@ -18,11 +18,12 @@ public class MobBoXBorn : MonoBehaviour
     public GameObject mob1,mob2;
 
     AudioEvent_electircDoor mobBornRoom;//音效腳本_雷電門
+    AudioEvent_mobSkeleton mobBornSkeleton;//音效腳本_骷髏
 
     private void Start()
     {
         mobBornRoom = this.gameObject.GetComponentInParent<AudioEvent_electircDoor>();//抓父親的腳本
-
+        mobBornSkeleton = this.gameObject.GetComponentInParent<AudioEvent_mobSkeleton>();//抓父親的腳本
         door = this.gameObject.transform.GetChild(0).gameObject;
         door.SetActive(false);
         GenerationTimes = 0;
@@ -80,6 +81,7 @@ public class MobBoXBorn : MonoBehaviour
                 go3.GetComponent<MubHpData>().Hp = 1000;//重生血量回滿
                 MobMain.Instance().pAliveObject.Add(go3);
 
+                mobBornSkeleton.PlayWindBornEvent();//播骷髏誕生風音效
             }
         }
     }

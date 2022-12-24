@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class ExplosiveChest : MonoBehaviour
 {
+    AudioSource audioSource;
+    public AudioClip boxKnock;
+
     UIManager uIManager;
     PlayerGetHit getHit = new PlayerGetHit();
     public LayerMask HitPlayer;
@@ -26,6 +29,7 @@ public class ExplosiveChest : MonoBehaviour
         GetPower.Stop();
         Booms.Stop();
         ChestAnimator = GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     private void Start()
@@ -80,6 +84,8 @@ public class ExplosiveChest : MonoBehaviour
             
         }
     }
+
+
 
     private void OnDrawGizmos()
     {
@@ -137,4 +143,13 @@ public class ExplosiveChest : MonoBehaviour
             return;
         }
     }
+
+    /// <summary>
+    /// 播放寶相搖晃音效
+    /// </summary>
+    void PlayBoxKnockEvent()
+    {
+        audioSource.PlayOneShot(boxKnock, 0.8f);
+    }
+
 }

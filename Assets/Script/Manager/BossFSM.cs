@@ -419,7 +419,7 @@ public class BossFSM : MonoBehaviour
                 float dot = Vector3.Dot(direction.normalized, transform.forward);
 
                 float offsetAngle = Mathf.Acos(dot) * Mathf.Rad2Deg;
-                if (offsetAngle > mobAngle * .7f)
+                if (offsetAngle > (mobAngle * .7f)/3*2)
                 {
                     Vector3 MyF = transform.forward;
                     Vector3 MyR = transform.right;

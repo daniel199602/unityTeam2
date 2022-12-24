@@ -26229,7 +26229,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3327375884922084702, guid: 124f7e82d47a12845b15a2203231d587, type: 3}
       propertyPath: m_Name
-      value: GameObject
+      value: WeaponBox
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 124f7e82d47a12845b15a2203231d587, type: 3}

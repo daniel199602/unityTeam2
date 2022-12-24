@@ -53,9 +53,13 @@ public class GameManager : MonoBehaviour
         {
             PlayerStart.SetActive(false);
             Debug.Log(PlayerStart.transform.position);
+<<<<<<< HEAD
             PlayerStart.transform.position = new Vector3(-195, 2, -330);
             audioSource.clip = audios[2];
             audioSource.Play();
+=======
+            PlayerStart.transform.position = new Vector3(-195, 10, -330);
+>>>>>>> ce4e3cd301fe846eb3b278f7db3c60473e2f252e
             Debug.Log(PlayerStart.transform.position);
             PlayerStart.SetActive(true);
             fadeIn.Play("FadeIn");

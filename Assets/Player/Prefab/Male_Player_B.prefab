@@ -5029,6 +5029,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c0ca5b8fa8555140bfd122c0278b49c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  swingTorch: {fileID: 8300000, guid: cb9b8700218684741b38a0ee080c2b33, type: 3}
   takeSword: {fileID: 8300000, guid: 26e9b0607a7504b8ca6ae8b0b885ab08, type: 3}
   swingSword: {fileID: 8300000, guid: 1785fff83652f42399d9b2017b05656c, type: 3}
   swingSword1: {fileID: 8300000, guid: 7c6251243ffbbb6428a73da63c75cc51, type: 3}
