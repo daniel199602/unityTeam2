@@ -19,7 +19,9 @@ public class AudioEvent : MonoBehaviour
         Debug.Log(audioSource);
     }
 
-
+    /// <summary>
+    /// ¤õ§â­µ®Ä
+    /// </summary>
     void PlayTorchEvent_swing()
     {
         audioSource.PlayOneShot(swingTorch, 1f);

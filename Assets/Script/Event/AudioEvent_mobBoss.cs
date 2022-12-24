@@ -4,15 +4,21 @@ using UnityEngine;
 
 public class AudioEvent_mobBoss : MonoBehaviour
 {
+    AudioSource audioSource;
+
+    public AudioClip swingAx;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        audioSource = GetComponent<AudioSource>();
     }
 
-    // Update is called once per frame
-    void Update()
+    /// <summary>
+    /// ¤õ§â­µ®Ä
+    /// </summary>
+    void PlaySwingAxEvent_swing()
     {
-        
+        audioSource.PlayOneShot(swingAx, 1f);
     }
 }
