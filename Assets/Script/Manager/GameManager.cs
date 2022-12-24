@@ -10,7 +10,12 @@ public class GameManager : MonoBehaviour
     public GameObject PlayerStart;
     public List<GameObject> mobPool;
     public GameObject fade;
+    public GameObject MainCamera_Audio;
+    public AudioClip[] audios;
+
     Animation fadeIn;
+    [HideInInspector] public AudioSource audioSource;
+    
 
     private float duration;
 
@@ -34,7 +39,9 @@ public class GameManager : MonoBehaviour
     {
         SceneManager.sceneLoaded += OnSceneLoaded;
         fadeIn = fade.GetComponent<Animation>();
-
+        audioSource = MainCamera_Audio.GetComponent<AudioSource>();
+        audioSource.clip = audios[0];
+        audioSource.Play();
         PlayerSetActiveSwitch(false);//先將玩家關閉
     }
 
@@ -44,8 +51,11 @@ public class GameManager : MonoBehaviour
 
         if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Boss"))
         {
+            PlayerStart.SetActive(false);
             Debug.Log(PlayerStart.transform.position);
             PlayerStart.transform.position = new Vector3(-195, 2, -330);
+            audioSource.clip = audios[2];
+            audioSource.Play();
             Debug.Log(PlayerStart.transform.position);
             PlayerStart.SetActive(true);
             fadeIn.Play("FadeIn");
@@ -54,6 +64,8 @@ public class GameManager : MonoBehaviour
         {
             Debug.Log(PlayerStart.transform.position);
             PlayerStart.transform.position = new Vector3(-10, 10, -186.7f);
+            audioSource.clip = audios[1];
+            audioSource.Play();
             Debug.Log(PlayerStart.transform.position);
             PlayerStart.SetActive(true);
             fadeIn.Play("FadeIn");

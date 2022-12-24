@@ -8,13 +8,20 @@ public class EndGame : MonoBehaviour
     bool isInZone;
     bool EndVFXing;
     public GameObject EndVFX;
+    public AudioClip portal;
+    public GameObject fadeColor_ForEnd;
+
     ParticleSystem ps;
+    AudioSource audioSource;
+    Animation fadeEnd;
     // Start is called before the first frame update
     void Start()
     {
         isInZone = false;
         EndVFXing = false;
         ps = EndVFX.GetComponent<ParticleSystem>();
+        audioSource = GetComponent<AudioSource>();
+        fadeEnd = fadeColor_ForEnd.GetComponent<Animation>();
     }
 
     // Update is called once per frame
@@ -24,7 +31,9 @@ public class EndGame : MonoBehaviour
         {
             if (EndVFXing == false)
             {
+                PlayPortalEvent();
                 ps.Play();
+                fadeEnd.Play("FadeEnd");
                 EndVFXing = true;
             }
             Invoke(nameof(EndToGameMenu), 3);
@@ -40,6 +49,8 @@ public class EndGame : MonoBehaviour
         UIManager.Instance().QuitGameUIClose();
         GameManager.Instance().MobPoolClear();
         GameManager.Instance().PlayerSetActiveSwitch(false);
+        GameManager.Instance().audioSource.clip = GameManager.Instance().audios[0];
+        GameManager.Instance().audioSource.Play();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -50,5 +61,9 @@ public class EndGame : MonoBehaviour
     private void OnTriggerExit(Collider other)
     {
         isInZone = false;
+    }
+    void PlayPortalEvent()
+    {
+        audioSource.PlayOneShot(portal);
     }
 }

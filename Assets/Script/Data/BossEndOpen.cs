@@ -32,6 +32,8 @@ public class BossEndOpen : MonoBehaviour
             if (door_VFX_isPlaying_Boss == false)
             {
                 ps.Play();
+                GameManager.Instance().audioSource.clip = GameManager.Instance().audios[3];
+                GameManager.Instance().audioSource.Play();
                 door_VFX_isPlaying_Boss = true;
             }
             Invoke(nameof(BossEndDoorOpen), 2);

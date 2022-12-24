@@ -23,6 +23,8 @@ public class QuitGameUI : MonoBehaviour
         UIManager.Instance().QuitGameUIClose();
         GameManager.Instance().MobPoolClear();
         GameManager.Instance().PlayerSetActiveSwitch(false);
+        GameManager.Instance().audioSource.clip = GameManager.Instance().audios[0];
+        GameManager.Instance().audioSource.Play();
     }
 
     /// <summary>

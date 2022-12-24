@@ -31,8 +31,8 @@ public class bossTeleport : MonoBehaviour
         Debug.Log("boss");
         GameManager.Instance().mobPool.Clear();
         FadeOutWait();
-        duration2 = 2f;
-        Invoke(nameof(playerclose), duration2);
+        //duration2 = 2f;
+        //Invoke(nameof(playerclose), duration2);
     }
 
 
