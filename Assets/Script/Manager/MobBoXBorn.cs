@@ -17,10 +17,12 @@ public class MobBoXBorn : MonoBehaviour
     
     public GameObject mob1,mob2;
 
-
+    AudioEvent_electircDoor mobBornRoom;//音效腳本_雷電門
 
     private void Start()
     {
+        mobBornRoom = this.gameObject.GetComponentInParent<AudioEvent_electircDoor>();//抓父親的腳本
+
         door = this.gameObject.transform.GetChild(0).gameObject;
         door.SetActive(false);
         GenerationTimes = 0;
@@ -88,6 +90,7 @@ public class MobBoXBorn : MonoBehaviour
         {
             door.SetActive(!door.activeSelf);
             isInZone = true;
+            mobBornRoom.PlayElectricityEvent();//播音效
             born();
             //Debug.Log(isInZone);
             GenerationTimes = 0;
