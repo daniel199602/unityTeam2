@@ -18414,6 +18414,20 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
+  - time: 0.41666666
+    functionName: PlaySpiderBombEvent
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 0.5416667
+    functionName: PlaySpiderBrustEvent
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
   - time: 0.75
     functionName: Animation_AttackEventTest
     data: 
@@ -18423,13 +18437,6 @@ AnimationClip:
     messageOptions: 0
   - time: 0.8333333
     functionName: AttackEvent
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
-  - time: 0.875
-    functionName: PlaySpiderBombEvent
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
