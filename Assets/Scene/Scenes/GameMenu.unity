@@ -1539,7 +1539,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc2e16b85be51254e8c4aac11b05eee3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerStart: {fileID: 0}
+  PlayerStart: {fileID: 2089231961}
   mobPool: []
   fade: {fileID: 617807853}
   MainCamera_Audio: {fileID: 971858858}
@@ -1602,11 +1602,11 @@ PrefabInstance:
       objectReference: {fileID: 8300000, guid: b4f4f18941a1637449a55d61569c4890, type: 3}
     - target: {fileID: 821133959739569995, guid: 843a687dd2b95bb4cb66922c432cf3f4, type: 3}
       propertyPath: Hp
-      value: 4000
+      value: 10000
       objectReference: {fileID: 0}
     - target: {fileID: 821133959739569995, guid: 843a687dd2b95bb4cb66922c432cf3f4, type: 3}
       propertyPath: currentHp
-      value: 4000
+      value: 10000
       objectReference: {fileID: 0}
     - target: {fileID: 1205567847854631157, guid: 843a687dd2b95bb4cb66922c432cf3f4, type: 3}
       propertyPath: m_Materials.Array.data[0]

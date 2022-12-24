@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerHpData : MonoBehaviour
 {
+    private static PlayerHpData mInstance;
+    public static PlayerHpData Instance() { return mInstance; }
     // Start is called before the first frame update
     ItemOnMob thisItemOnMob;
 
@@ -18,17 +20,19 @@ public class PlayerHpData : MonoBehaviour
 
     private void Awake()
     {
+        mInstance = this;
         thisItemOnMob = GetComponent<ItemOnMob>();
         Health = GetComponent<HealthPlayerBar>();
         MaxHp = thisItemOnMob.mobMaxHp;
+        
     }
 
-    private void OnEnable()
+    private void Start()
     {
         Player = GameManager.Instance().PlayerStart;
-        MaxHp = thisItemOnMob.mobMaxHp;
-        Hp = MaxHp;
-        currentHp = Hp;
+       // MaxHp = thisItemOnMob.mobMaxHp;
+       // Hp = MaxHp;
+       // currentHp = Hp;
     }
 
     private void Update()

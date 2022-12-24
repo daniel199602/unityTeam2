@@ -32,7 +32,7 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(this.gameObject);
         
         mobPool = new List<GameObject>();
-        PlayerStart = GameObject.FindWithTag("Player");
+        //PlayerStart = GameObject.FindWithTag("Player");
     }
 
     private void Start()
@@ -64,6 +64,7 @@ public class GameManager : MonoBehaviour
         {
             Debug.Log(PlayerStart.transform.position);
             PlayerStart.transform.position = new Vector3(-10, 10, -186.7f);
+            PlayerHpData.Instance().Hp = PlayerHpData.Instance().MaxHp;
             audioSource.clip = audios[1];
             audioSource.Play();
             Debug.Log(PlayerStart.transform.position);
