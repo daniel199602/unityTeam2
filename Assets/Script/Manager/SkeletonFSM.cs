@@ -47,6 +47,7 @@ public class SkeletonFSM : MonoBehaviour
     private void Awake()
     {
         ThisItemOnMob_State = GetComponent<ItemOnMob>();
+        FrameCount_Roar = 160;
         // Debug.LogWarning("---------------------------------------------------------------------------------------");
     }
     void Start()
@@ -89,6 +90,7 @@ public class SkeletonFSM : MonoBehaviour
     private void OnDisable()
     {
         m_NowState = SkeletonState.Idle;
+        RoarBool = false;
         FrameCount_Roar = 160;
     }
     // Update is called once per frame

@@ -19,6 +19,6 @@ public class AuidoEvent_mobMagicCaster : MonoBehaviour
     /// </summary>
     void PlaySpitMagicLaserEvent()
     {
-        audioSource.PlayOneShot(spitMagicLaser, 0.2f);
+        audioSource.PlayOneShot(spitMagicLaser, 0.1f);
     }
 }
