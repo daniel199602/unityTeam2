@@ -22,8 +22,12 @@ public class FrogTrap : MonoBehaviour
     [SerializeField] private GameObject Target;
     PlayerHpData PlayerData;
     int TimeLine;
+
+    AudioEvent_frogTrap frogTrap;
+
     void Start()
     {
+        frogTrap = this.gameObject.GetComponentInParent<AudioEvent_frogTrap>();//抓父親的腳本
         mobDamage_instant = GetComponent<ItemOnMob>().mobDamage_instant;
         mobDamamge_delay = GetComponent<ItemOnMob>().mobDamage_delay;
         radius = GetComponent<ItemOnMob>().mobRadius;
@@ -42,6 +46,9 @@ public class FrogTrap : MonoBehaviour
         {
             ParticleSystem ps = prepare.GetComponent<ParticleSystem>();
             ps.Play();
+
+            frogTrap.PlayFrogSpitFireEvent();//播放青蛙噴火音效
+
             TimeLine = 3;
             if (Spilt == false)
             {
