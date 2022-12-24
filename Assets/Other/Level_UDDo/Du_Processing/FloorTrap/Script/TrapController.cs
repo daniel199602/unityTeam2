@@ -5,6 +5,9 @@ using UnityEngine;
 public class TrapController : MonoBehaviour
 {
     public Animator TrapAnimator;
+    public AudioClip prick;
+    AudioSource audioSource;
+
     private float Timer=1f;
     // Start is called before the first frame update
     public void TrapRelease()
@@ -18,6 +21,7 @@ public class TrapController : MonoBehaviour
     void Start()
     {       
         TrapAnimator = GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
     }
     private void OnTriggerEnter(Collider Player)
     {
@@ -25,6 +29,7 @@ public class TrapController : MonoBehaviour
         {            
             //Debug.Log("Enter");
             TrapRelease();
+            audioSource.PlayOneShot(prick,0.5f);
         }
     }
     private void OnTriggerStay(Collider Player)
