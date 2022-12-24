@@ -2376,6 +2376,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bearGrowl: {fileID: 8300000, guid: 2fe5fb2089464774d9c624226ae9b9b0, type: 3}
+  bearBite: {fileID: 8300000, guid: e899e4e1ab546cb45b0aa6861492b6e6, type: 3}
 --- !u!1 &8002475675295336084
 GameObject:
   m_ObjectHideFlags: 0

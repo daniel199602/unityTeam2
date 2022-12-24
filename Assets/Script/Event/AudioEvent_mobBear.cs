@@ -6,6 +6,7 @@ public class AudioEvent_mobBear : MonoBehaviour
 {
     AudioSource audioSource;
     public AudioClip bearGrowl;
+    public AudioClip bearBite;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,5 +19,13 @@ public class AudioEvent_mobBear : MonoBehaviour
     public void PlayBearGrowlEvent()
     {
         audioSource.PlayOneShot(bearGrowl, 0.5f);
+    }
+
+    /// <summary>
+    /// ¼½©ñºµ«rÀ»­µ®Ä
+    /// </summary>
+    public void PlayBearBiteEvent()
+    {
+        audioSource.PlayOneShot(bearBite, 0.5f);
     }
 }
