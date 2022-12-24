@@ -11,6 +11,7 @@ public class AudioEvent : MonoBehaviour
     public AudioClip swingSword;
     public AudioClip swingSword1;
     public AudioClip swingSword2;
+    public AudioClip punchShield;
     
     // Start is called before the first frame update
     void Start()
@@ -56,5 +57,13 @@ public class AudioEvent : MonoBehaviour
     void PlaySwordEvent_swing2()
     {
         audioSource.PlayOneShot(swingSword2, 0.5f);
+    }
+
+    /// <summary>
+    /// ¬ÞÀ»­µ®Ä
+    /// </summary>
+    void PlayPunchShield()
+    {
+        audioSource.PlayOneShot(punchShield, 0.6f);
     }
 }

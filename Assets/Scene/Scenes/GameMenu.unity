@@ -1588,6 +1588,18 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 719531700751260117, guid: 843a687dd2b95bb4cb66922c432cf3f4, type: 3}
+      propertyPath: punchShield
+      value: 
+      objectReference: {fileID: 8300000, guid: 058a4c3d61fa5cc4fa152407fc56e241, type: 3}
+    - target: {fileID: 719531700751260117, guid: 843a687dd2b95bb4cb66922c432cf3f4, type: 3}
+      propertyPath: swingSword1
+      value: 
+      objectReference: {fileID: 8300000, guid: 1a5c42ddb5683924c833829fbed2fede, type: 3}
+    - target: {fileID: 719531700751260117, guid: 843a687dd2b95bb4cb66922c432cf3f4, type: 3}
+      propertyPath: swingSword2
+      value: 
+      objectReference: {fileID: 8300000, guid: b4f4f18941a1637449a55d61569c4890, type: 3}
     - target: {fileID: 821133959739569995, guid: 843a687dd2b95bb4cb66922c432cf3f4, type: 3}
       propertyPath: Hp
       value: 4000
