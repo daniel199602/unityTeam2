@@ -538,6 +538,22 @@ PrefabInstance:
       propertyPath: gameMenuPanel
       value: 
       objectReference: {fileID: 1895530644}
+    - target: {fileID: 1698798327653086489, guid: faacc6eec94f2734a8b7bc612285e928, type: 3}
+      propertyPath: m_fontColor.b
+      value: 0.42352942
+      objectReference: {fileID: 0}
+    - target: {fileID: 1698798327653086489, guid: faacc6eec94f2734a8b7bc612285e928, type: 3}
+      propertyPath: m_fontColor.g
+      value: 0.42352942
+      objectReference: {fileID: 0}
+    - target: {fileID: 1698798327653086489, guid: faacc6eec94f2734a8b7bc612285e928, type: 3}
+      propertyPath: m_fontColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1698798327653086489, guid: faacc6eec94f2734a8b7bc612285e928, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4285295871
+      objectReference: {fileID: 0}
     - target: {fileID: 2490094578018857479, guid: faacc6eec94f2734a8b7bc612285e928, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -654,6 +670,30 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4763660669858113191, guid: faacc6eec94f2734a8b7bc612285e928, type: 3}
+      propertyPath: m_fontColor.b
+      value: 0.4198113
+      objectReference: {fileID: 0}
+    - target: {fileID: 4763660669858113191, guid: faacc6eec94f2734a8b7bc612285e928, type: 3}
+      propertyPath: m_fontColor.g
+      value: 0.4198113
+      objectReference: {fileID: 0}
+    - target: {fileID: 4763660669858113191, guid: faacc6eec94f2734a8b7bc612285e928, type: 3}
+      propertyPath: m_fontColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4763660669858113191, guid: faacc6eec94f2734a8b7bc612285e928, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4285230079
+      objectReference: {fileID: 0}
+    - target: {fileID: 5002889332462430465, guid: faacc6eec94f2734a8b7bc612285e928, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -449
+      objectReference: {fileID: 0}
+    - target: {fileID: 5002889332462430465, guid: faacc6eec94f2734a8b7bc612285e928, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -190
+      objectReference: {fileID: 0}
     - target: {fileID: 5493231677356216832, guid: faacc6eec94f2734a8b7bc612285e928, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: -432
@@ -677,6 +717,14 @@ PrefabInstance:
     - target: {fileID: 7366373683075276336, guid: faacc6eec94f2734a8b7bc612285e928, type: 3}
       propertyPath: m_Softness.y
       value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 7731089938139159981, guid: faacc6eec94f2734a8b7bc612285e928, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -449
+      objectReference: {fileID: 0}
+    - target: {fileID: 7731089938139159981, guid: faacc6eec94f2734a8b7bc612285e928, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -82
       objectReference: {fileID: 0}
     - target: {fileID: 7772857774839350967, guid: faacc6eec94f2734a8b7bc612285e928, type: 3}
       propertyPath: m_IsActive
