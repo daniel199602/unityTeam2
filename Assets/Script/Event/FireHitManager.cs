@@ -7,6 +7,7 @@ public class FireHitManager : MonoBehaviour
     [HideInInspector] public int mobDamage_instant;
     [HideInInspector] public int mobDamamge_delay;
     [SerializeField] private GameObject Target;
+    public GameObject MySelf;
     PlayerHpData PlayerData;
     int TimeLine;
     // Start is called before the first frame update
@@ -17,6 +18,7 @@ public class FireHitManager : MonoBehaviour
         mobDamamge_delay = GetComponent<ItemOnMob>().mobDamage_delay;
         Target = GameManager.Instance().PlayerStart;
         PlayerData = Target.GetComponent<PlayerHpData>();
+        transform.rotation = MySelf.transform.rotation;
         StartCoroutine(cc());
     }
     // Update is called once per frame    

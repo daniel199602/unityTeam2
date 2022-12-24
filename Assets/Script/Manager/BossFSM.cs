@@ -85,8 +85,8 @@ public class BossFSM : MonoBehaviour
     GameObject Flame;
     ParticleSystem Roar;
     //¤M¥ú
-    public GameObject BLight;
-    ParticleSystem Bladelight;
+    //public GameObject BLight;
+    //ParticleSystem Bladelight;
     //ÀY
     public GameObject Head01;
     ParticleSystem Head01P;
@@ -125,7 +125,7 @@ public class BossFSM : MonoBehaviour
         magic_circle02 = Teleport02.GetComponent<ParticleSystem>();
         Fire = UltimateFire.GetComponent<ParticleSystem>();
         Roar = Flame.GetComponent<ParticleSystem>();
-        Bladelight = BLight.GetComponent<ParticleSystem>();
+        //Bladelight = BLight.GetComponent<ParticleSystem>();
         FlameONground = HitFlame.GetComponentInChildren<ParticleSystem>();
         Head01P = Head01.GetComponentInChildren<ParticleSystem>();
         Head02P = Head02.GetComponentInChildren<ParticleSystem>();
@@ -295,7 +295,7 @@ public class BossFSM : MonoBehaviour
             magic_circle.Stop();
             Spilt_Fire.Stop();
             Fire.Stop();
-            Bladelight.Stop();
+            //Bladelight.Stop();
             Roar.Stop();
             Head01P.Stop();
             Head02P.Stop();
@@ -421,6 +421,7 @@ public class BossFSM : MonoBehaviour
                 float offsetAngle = Mathf.Acos(dot) * Mathf.Rad2Deg;
                 if (offsetAngle > (mobAngle * .7f)/3*2)
                 {
+                    MubAnimator.speed = 1.5f;
                     Vector3 MyF = transform.forward;
                     Vector3 MyR = transform.right;
                     Vector3 MT = Target.transform.position - transform.position;
@@ -448,6 +449,7 @@ public class BossFSM : MonoBehaviour
                     MubAnimator.SetBool("TurnL", false);
                     MubAnimator.SetBool("TurnR", false);
                     MubAnimator.SetBool("TurnB", false);
+                    MubAnimator.speed = 1f;
                     LookPoint();
                     if (StageTwo == true)
                     {
@@ -629,11 +631,15 @@ public class BossFSM : MonoBehaviour
         MubAnimator.speed = 0.4f;
         RotateSpeed /= 5;
         Spilt_Fire.Play();
-        Instantiate(HitFlame_R, MySelf.transform.position, Quaternion.Euler(MySelf.transform.rotation.x, MySelf.transform.rotation.y + 90, MySelf.transform.rotation.z));
+        Quaternion QQ = new Quaternion(transform.rotation.x, transform.rotation.y - 45, transform.rotation.z, transform.rotation.w);
+        Debug.LogWarning(Quaternion.Euler(MySelf.transform.rotation.x, MySelf.transform.rotation.y - 45, MySelf.transform.rotation.z));
+        Debug.LogWarning(QQ);
+        
     }
     private void AnimationR_s()
     {
         Spilt_Fire.Stop();
+        Instantiate(HitFlame_R, MySelf.transform.position, MySelf.transform.rotation);
     }
     private void AnimationSpeed_R_AttackEnd()
     {

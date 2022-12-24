@@ -50,6 +50,7 @@ MonoBehaviour:
   mobDamage_instant: 0
   mobDamamge_delay: 0
   Target: {fileID: 0}
+  MySelf: {fileID: 81620202878197503, guid: 052b0736fab5eee4eaa4ea766d127ef3, type: 3}
 --- !u!114 &3078894583290549715
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -74,8 +75,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 383.8597, y: 26.278923, z: 54.869385}
-  m_Center: {x: 197.3576, y: 8.186077, z: 10.188805}
+  m_Size: {x: 70.40225, y: 26.278923, z: 396.98923}
+  m_Center: {x: -2.2075653, y: 8.186077, z: 197.44313}
 --- !u!1001 &5580084394014135402
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -121,19 +122,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 451658, guid: 21eb15f5f71288a49ad65b6b85a9c1dc, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 114
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 451658, guid: 21eb15f5f71288a49ad65b6b85a9c1dc, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 3.2
       objectReference: {fileID: 0}
     - target: {fileID: 451658, guid: 21eb15f5f71288a49ad65b6b85a9c1dc, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 115.3
       objectReference: {fileID: 0}
     - target: {fileID: 451658, guid: 21eb15f5f71288a49ad65b6b85a9c1dc, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: 451658, guid: 21eb15f5f71288a49ad65b6b85a9c1dc, type: 3}
       propertyPath: m_LocalRotation.x
@@ -141,7 +142,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 451658, guid: 21eb15f5f71288a49ad65b6b85a9c1dc, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: 451658, guid: 21eb15f5f71288a49ad65b6b85a9c1dc, type: 3}
       propertyPath: m_LocalRotation.z
@@ -153,7 +154,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 451658, guid: 21eb15f5f71288a49ad65b6b85a9c1dc, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: -90
       objectReference: {fileID: 0}
     - target: {fileID: 451658, guid: 21eb15f5f71288a49ad65b6b85a9c1dc, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z

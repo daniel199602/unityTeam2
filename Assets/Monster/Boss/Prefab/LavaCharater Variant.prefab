@@ -287,6 +287,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5121156462531692116, guid: 693eee48e53fa1542812fc3b0f773541, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 0e6ec7f0493959344b75b97f9feb10b6, type: 2}
     - target: {fileID: 5597841919969188727, guid: 693eee48e53fa1542812fc3b0f773541, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -331,6 +335,10 @@ PrefabInstance:
       propertyPath: playOnAwake
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6366342380942761007, guid: 693eee48e53fa1542812fc3b0f773541, type: 3}
+      propertyPath: temp
+      value: 
+      objectReference: {fileID: 1002788586739039529, guid: ce33ba98c93af8946aa058c121d72500, type: 3}
     - target: {fileID: 6463759958667487008, guid: 693eee48e53fa1542812fc3b0f773541, type: 3}
       propertyPath: m_IsActive
       value: 0

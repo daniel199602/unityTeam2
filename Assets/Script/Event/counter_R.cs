@@ -7,6 +7,7 @@ public class counter_R : MonoBehaviour
     [HideInInspector] public int mobDamage_instant;
     [HideInInspector] public int mobDamamge_delay;
     [SerializeField] private GameObject Target;
+    GameObject MySelf;
     PlayerHpData PlayerData;
     int TimeLine;
     // Start is called before the first frame update
