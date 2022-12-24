@@ -45,7 +45,7 @@ public class GameManager : MonoBehaviour
         if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Boss"))
         {
             Debug.Log(PlayerStart.transform.position);
-            PlayerStart.transform.position = new Vector3(-195, 2, -330);
+            PlayerStart.transform.position = new Vector3(-195, 10, -330);
             Debug.Log(PlayerStart.transform.position);
             PlayerStart.SetActive(true);
             fadeIn.Play("FadeIn");
