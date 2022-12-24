@@ -18,13 +18,12 @@ public class PlayerHpData : MonoBehaviour
 
     private void Awake()
     {
-
         thisItemOnMob = GetComponent<ItemOnMob>();
         Health = GetComponent<HealthPlayerBar>();
         MaxHp = thisItemOnMob.mobMaxHp;
     }
 
-    private void Start()
+    private void OnEnable()
     {
         Player = GameManager.Instance().PlayerStart;
         MaxHp = thisItemOnMob.mobMaxHp;
