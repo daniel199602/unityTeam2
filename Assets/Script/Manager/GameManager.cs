@@ -64,7 +64,6 @@ public class GameManager : MonoBehaviour
         {
             Debug.Log(PlayerStart.transform.position);
             PlayerStart.transform.position = new Vector3(-10, 10, -186.7f);
-            PlayerHpData.Instance().Hp = PlayerHpData.Instance().MaxHp;
             audioSource.clip = audios[1];
             audioSource.Play();
             Debug.Log(PlayerStart.transform.position);

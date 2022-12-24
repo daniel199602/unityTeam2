@@ -6,15 +6,12 @@ public class PlayerHpData : MonoBehaviour
 {
     private static PlayerHpData mInstance;
     public static PlayerHpData Instance() { return mInstance; }
-    // Start is called before the first frame update
+
     ItemOnMob thisItemOnMob;
-
-    [HideInInspector] public int MaxHp=4000;
-    [SerializeField] public int Hp=4000;
-    [SerializeField] private int currentHp=4000;
-    GameObject Player;
-
-    HealthPlayerBar Health;
+    [HideInInspector] public int MaxHp=10000;
+    [SerializeField] public int Hp=10000;
+    [SerializeField] private int currentHp=10000;
+    PlayerController playerController;
 
 
 
@@ -22,23 +19,22 @@ public class PlayerHpData : MonoBehaviour
     {
         mInstance = this;
         thisItemOnMob = GetComponent<ItemOnMob>();
-        Health = GetComponent<HealthPlayerBar>();
+        playerController = GetComponent<PlayerController>();
         MaxHp = thisItemOnMob.mobMaxHp;
         
     }
 
     private void Start()
     {
-        Player = GameManager.Instance().PlayerStart;
-       // MaxHp = thisItemOnMob.mobMaxHp;
-       // Hp = MaxHp;
-       // currentHp = Hp;
+        MaxHp = thisItemOnMob.mobMaxHp;
+        Hp = MaxHp;
+        currentHp = Hp;
     }
 
     private void Update()
     {
         HpCheck();
-        Health.BarFilter();
+
         if (Input.GetKey(KeyCode.F10))
         {
             Hp += 400;
@@ -52,7 +48,7 @@ public class PlayerHpData : MonoBehaviour
     /// <param name="Num">扣血量(請填入>=0整數)</param>
     public void HpDeduction(int Num)
     {
-        if (GameManager.Instance().PlayerStart.GetComponent<PlayerController>().GetLayerNumNow() == 1)
+        if (playerController.GetLayerNumNow() == 1)
         {
             Hp -= (int)(Num*0.9f);
         }
@@ -60,8 +56,6 @@ public class PlayerHpData : MonoBehaviour
         {
             Hp -= Num;
         }
-       
-        
     }
 
 
@@ -70,7 +64,7 @@ public class PlayerHpData : MonoBehaviour
     /// </summary>
     public void HpCheck()
     {
-        if (Player.GetComponent<PlayerController>().isInvincible == false)
+        if (playerController.isInvincible == false)
         {
             if (Hp != currentHp)
             {
