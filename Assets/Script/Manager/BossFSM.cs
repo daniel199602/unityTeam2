@@ -9,7 +9,7 @@ public class BossFSM : MonoBehaviour
 {
     private BossState m_NowState;
 
-    [SerializeField]private GameObject Target;//存玩家
+    [SerializeField] private GameObject Target;//存玩家
     private GameObject MySelf;//存自己
 
     [SerializeField] private GameObject TeleportPoint01;
@@ -19,6 +19,7 @@ public class BossFSM : MonoBehaviour
     public GameObject BigSwordOnHand;
     public GameObject AxeOnBack;
     public GameObject BigSwordOnBack;
+    public GameObject temp;
 
     MubHpData State;
     Animator MubAnimator;
@@ -47,6 +48,9 @@ public class BossFSM : MonoBehaviour
     float ATKRadius_Atk;
     float RangedRadius;
     float RangedRadius_norm;
+
+    float mobAngle;
+
     public float RotateSpeed;
 
 
@@ -66,6 +70,7 @@ public class BossFSM : MonoBehaviour
     //噴火
     GameObject LeftArm;
     ParticleSystem Spilt_Fire;
+    public GameObject HitFlame_R;
     //傳送
     GameObject Teleport;
     ParticleSystem magic_circle;
@@ -104,7 +109,6 @@ public class BossFSM : MonoBehaviour
         Target = GameManager.Instance().PlayerStart;//抓出玩家
         MySelf = this.transform.gameObject;//抓出自己
         TargetHp = Target.GetComponent<PlayerHpData>().Hp;
-        Debug.Log(TargetHp);
         capsule = GetComponent<CharacterController>();
         MubAnimator = GetComponent<Animator>();
         State = GetComponent<MubHpData>();
@@ -143,6 +147,7 @@ public class BossFSM : MonoBehaviour
         RangedRadius = ATKRadius * 3f;
         RangedRadius_norm = ATKRadius * 3f;
         TraceRadius = ATKRadius * 4f;
+        mobAngle = ThisItemOnMob_State.mobAngle;
 
         GetHit = false;
         inRrangeBool = false;
@@ -162,14 +167,14 @@ public class BossFSM : MonoBehaviour
         {
             Vector3 pv = new Vector3(transform.position.x, 0f, transform.position.z);
             transform.position = pv;
-            
+
             if (State.Hp <= 0)//死亡→無狀態
             {
                 m_NowState = BossState.Dead;
                 DeadStatus();
                 return;
             }
-            else if(State.Hp > 0)
+            else if (State.Hp > 0)
             {
                 if (TargetHp <= 1)
                 {
@@ -205,7 +210,7 @@ public class BossFSM : MonoBehaviour
                         {
                             hpTemporary = State.Hp;
                         }
-                        else if(hpTemporary - State.Hp >= 50)
+                        else if (hpTemporary - State.Hp >= 50)
                         {
                             if (GetHit == false && Count != 0 && RCount != 0)
                             {
@@ -222,8 +227,8 @@ public class BossFSM : MonoBehaviour
                                     return;
                                 }
                             }
-                        }                       
-                    }                    
+                        }
+                    }
                 }
                 else
                 {
@@ -238,7 +243,7 @@ public class BossFSM : MonoBehaviour
                     AttackStatus();
                 }
             }
-            
+
         }
     }
     public void DoorOpen()
@@ -278,7 +283,7 @@ public class BossFSM : MonoBehaviour
             transform.rotation = Quaternion.Slerp(this.transform.rotation, Look, RotateSpeed * Time.deltaTime);
 
             Debug.Log("Looking");
-        }        
+        }
     }
     public void DeadStatus()
     {
@@ -329,16 +334,16 @@ public class BossFSM : MonoBehaviour
     }
     public void RangedAttackStatus()
     {
-        if (InATKrangeSwitch == false&& Ulting == false)
+        if (InATKrangeSwitch == false && Ulting == false)
         {
             InRangeATKrange = IsInRange_RangedBattleRange(RangedRadius, MySelf, Target);
             if (InRangeATKrange == true)
-            {              
+            {
                 RangedRadius = TraceRadius;
                 m_NowState = BossState.RangeAttack;
                 MubAnimator.SetBool("Trace", false);
                 inRrangeBool = true;
-                RangeAttack();                
+                RangeAttack();
                 Debug.Log("rrrrrr");
             }
             else
@@ -370,7 +375,7 @@ public class BossFSM : MonoBehaviour
                 ATKRadius = ATKRadius_norm;
                 InATKrangeSwitch = false;
             }
-        }        
+        }
     }
 
     public void RangeAttack()
@@ -381,11 +386,11 @@ public class BossFSM : MonoBehaviour
             {
                 LookBool = true;
                 LookPoint();
-                MubAnimator.SetBool("R_Attack", true);                
+                MubAnimator.SetBool("R_Attack", true);
                 RCount = 12;
                 StartCoroutine(RangerCooldown());
             }
-           else if (RCount != 0)
+            else if (RCount != 0)
             {
                 RangeCDtodo = IsInRange_TraceRange(ATKRadius, MySelf, Target);
                 if (RangeCDtodo == true)
@@ -399,8 +404,8 @@ public class BossFSM : MonoBehaviour
                     MubAnimator.SetBool("TurnR", false);
                     MubAnimator.SetBool("TurnB", false);
                 }
-            }       
-        }        
+            }
+        }
     }
 
     public void Attack()
@@ -409,62 +414,95 @@ public class BossFSM : MonoBehaviour
         {
             if (Count == 0)
             {
-                MubAnimator.SetBool("TurnL", false);
-                MubAnimator.SetBool("TurnR", false);
-                MubAnimator.SetBool("TurnB", false);
-                if (StageTwo == true)
+                Vector3 direction = Target.transform.position - transform.position;
+
+                float dot = Vector3.Dot(direction.normalized, transform.forward);
+
+                float offsetAngle = Mathf.Acos(dot) * Mathf.Rad2Deg;
+                if (offsetAngle > mobAngle * .7f)
                 {
-                    if (RandomChooseCd == false)
+                    Vector3 MyF = transform.forward;
+                    Vector3 MyR = transform.right;
+                    Vector3 MT = Target.transform.position - transform.position;
+                    Vector3 MTN = (Target.transform.position - transform.position).normalized;
+                    Vector3 MXTFB = Vector3.Cross(MyR, MTN);
+                    Vector3 MXTLR = Vector3.Cross(MyF, MT);
+                    if (MXTFB.y > 0)//不會向後轉
                     {
-                        RandomChoose = UnityEngine.Random.Range(1, 4);
-                        Debug.Log("隨機數:" + RandomChoose);
-                        RandomChooseCd = true;
+                        MubAnimator.SetBool("TurnB", true);
+                        Debug.Log("TurnBack");
                     }
-                    if (RandomChoose == 1)
+                    else if (MXTLR.y < 0)//左轉
                     {
-                        MubAnimator.SetBool("TAttack01", true);
-                        Count = 3;
-                        StartCoroutine(AttackCooldown());
+                        MubAnimator.SetBool("TurnL", true);
+                        Debug.Log("TurnLeft");
                     }
-                    else if (RandomChoose == 2)
+                    else if (MXTLR.y > 0)//右轉
                     {
-                        MubAnimator.SetBool("TAttack02", true);
-                        Count = 3;
-                        StartCoroutine(AttackCooldown());
-                    }
-                    else if (RandomChoose == 3)
-                    {
-                        MubAnimator.SetBool("TAttack03", true);
-                        Count = 3;
-                        StartCoroutine(AttackCooldown());
+                        MubAnimator.SetBool("TurnR", true);
+                        Debug.Log("TurnRight");
                     }
                 }
-                else
+                else if(offsetAngle < mobAngle * .7f)
                 {
-                    if (RandomChooseCd == false)
+                    MubAnimator.SetBool("TurnL", false);
+                    MubAnimator.SetBool("TurnR", false);
+                    MubAnimator.SetBool("TurnB", false);
+                    LookPoint();
+                    if (StageTwo == true)
                     {
-                        RandomChoose = UnityEngine.Random.Range(1, 4);
-                        Debug.Log("隨機數:" + RandomChoose);
-                        RandomChooseCd = true;
+                        if (RandomChooseCd == false)
+                        {
+                            RandomChoose = UnityEngine.Random.Range(1, 4);
+                            Debug.Log("隨機數:" + RandomChoose);
+                            RandomChooseCd = true;
+                        }
+                        if (RandomChoose == 1)
+                        {
+                            MubAnimator.SetBool("TAttack01", true);
+                            Count = 3;
+                            StartCoroutine(AttackCooldown());
+                        }
+                        else if (RandomChoose == 2)
+                        {
+                            MubAnimator.SetBool("TAttack02", true);
+                            Count = 3;
+                            StartCoroutine(AttackCooldown());
+                        }
+                        else if (RandomChoose == 3)
+                        {
+                            MubAnimator.SetBool("TAttack03", true);
+                            Count = 3;
+                            StartCoroutine(AttackCooldown());
+                        }
                     }
+                    else
+                    {
+                        if (RandomChooseCd == false)
+                        {
+                            RandomChoose = UnityEngine.Random.Range(1, 4);
+                            Debug.Log("隨機數:" + RandomChoose);
+                            RandomChooseCd = true;
+                        }
 
-                    if (RandomChoose == 1)
-                    {
-                        MubAnimator.SetBool("Attack01", true);
-                        Count = 2;
-                        StartCoroutine(AttackCooldown());
-                    }
-                    else if (RandomChoose == 2)
-                    {
-                        MubAnimator.SetBool("Attack02", true);
-                        Count = 3;
-                        StartCoroutine(AttackCooldown());
-                    }
-                    else if (RandomChoose == 3)
-                    {
-                        MubAnimator.SetBool("Attack03", true);
-                        Count = 3;
-                        StartCoroutine(AttackCooldown());
+                        if (RandomChoose == 1)
+                        {
+                            MubAnimator.SetBool("Attack01", true);
+                            Count = 2;
+                            StartCoroutine(AttackCooldown());
+                        }
+                        else if (RandomChoose == 2)
+                        {
+                            MubAnimator.SetBool("Attack02", true);
+                            Count = 3;
+                            StartCoroutine(AttackCooldown());
+                        }
+                        else if (RandomChoose == 3)
+                        {
+                            MubAnimator.SetBool("Attack03", true);
+                            Count = 3;
+                            StartCoroutine(AttackCooldown());
+                        }
                     }
                 }
             }
@@ -476,32 +514,43 @@ public class BossFSM : MonoBehaviour
                 MubAnimator.SetBool("TAttack01", false);
                 MubAnimator.SetBool("TAttack02", false);
                 MubAnimator.SetBool("TAttack03", false);
-                Vector3 MyF = transform.forward;
-                Vector3 MT = Target.transform.position - transform.position;
-                Vector3 MXT = Vector3.Cross(MyF, MT);
-                if (MXT.y >= 110)//不會向後轉
+                Vector3 direction = Target.transform.position - transform.position;
+
+                float dot = Vector3.Dot(direction.normalized, transform.forward);
+
+                float offsetAngle = Mathf.Acos(dot) * Mathf.Rad2Deg;
+                if (offsetAngle > mobAngle)
                 {
-                    MubAnimator.SetBool("TurnB", true);
-                    Debug.Log("TurnBack");
-                }
-                else if (110 > MXT.y && MXT.y > 40)//右轉
-                {
-                    MubAnimator.SetBool("TurnR", true);
-                    Debug.Log("TurnRight");
-                }
-                else if (MXT.y < -20)//左轉
-                {
-                    MubAnimator.SetBool("TurnL", true);
-                    Debug.Log("TurnLeft");
+                    Vector3 MyF = transform.forward;
+                    Vector3 MyR = transform.right;
+                    Vector3 MT = Target.transform.position - transform.position;
+                    Vector3 MTN = (Target.transform.position - transform.position).normalized;
+                    Vector3 MXTFB = Vector3.Cross(MyR, MTN);
+                    Vector3 MXTLR = Vector3.Cross(MyF, MT);
+                    if (MXTFB.y > 180)//不會向後轉
+                    {
+                        MubAnimator.SetBool("TurnB", true);
+                        Debug.Log("TurnBack");
+                    }
+                    else if (MXTLR.y < 0)//左轉
+                    {
+                        MubAnimator.SetBool("TurnL", true);
+                        Debug.Log("TurnLeft");
+                    }
+                    else if (MXTLR.y > 0)//右轉
+                    {
+                        MubAnimator.SetBool("TurnR", true);
+                        Debug.Log("TurnRight");
+                    }                   
                 }
                 else//平行 
                 {
                     MubAnimator.SetBool("TurnL", false);
                     MubAnimator.SetBool("TurnR", false);
                     MubAnimator.SetBool("TurnB", false);
-                }          
+                }
             }
-        }       
+        }
     }
     public void Ultimate()
     {
@@ -562,7 +611,7 @@ public class BossFSM : MonoBehaviour
         Gizmos.DrawWireSphere(transform.position, RangedRadius);
 
         Gizmos.color = Color.white;
-        Gizmos.DrawLine(transform.position,transform.forward);
+        Gizmos.DrawLine(MySelf.transform.position, MySelf.transform.forward);
 
         Gizmos.color = Color.green;
         Vector3 direction = Target.transform.position - transform.position;
@@ -571,7 +620,6 @@ public class BossFSM : MonoBehaviour
     private void Animation_Attack()
     {
         MubAnimator.speed = 2f;
-        LookBool = false;
         //BLight.transform.rotation = AxeOnHand.transform.rotation;
         //Bladelight.Play();
     }
@@ -581,6 +629,7 @@ public class BossFSM : MonoBehaviour
         MubAnimator.speed = 0.4f;
         RotateSpeed /= 5;
         Spilt_Fire.Play();
+        Instantiate(HitFlame_R, MySelf.transform.position, Quaternion.Euler(MySelf.transform.rotation.x, MySelf.transform.rotation.y + 90, MySelf.transform.rotation.z));
     }
     private void AnimationR_s()
     {
@@ -589,9 +638,9 @@ public class BossFSM : MonoBehaviour
     private void AnimationSpeed_R_AttackEnd()
     {
         MubAnimator.speed = 1f;
-        RotateSpeed *= 5;     
+        RotateSpeed *= 5;
     }
-  
+
     private void AnimationSpeed_AttackEnd()
     {
         MubAnimator.speed = 1f;
@@ -610,7 +659,7 @@ public class BossFSM : MonoBehaviour
     private void StageTwoEventSwitch_s()
     {
         Roar.Stop();
-    }   
+    }
     private void TeleportEvent()
     {
         float TeleoortChoose01 = (TeleportPoint01.transform.position - transform.position).magnitude;
@@ -658,7 +707,7 @@ public class BossFSM : MonoBehaviour
     }
     private void ChargeUpEvent_Attack()
     {
-        Instantiate(HitFlame,MySelf.transform.position+ MySelf.transform.right, MySelf.transform.rotation);
+        Instantiate(HitFlame, MySelf.transform.position, Quaternion.Euler(MySelf.transform.rotation.x, MySelf.transform.rotation.y + 90, MySelf.transform.rotation.z));
     }
     private void Animation_UltimateCoolDown()
     {
@@ -730,7 +779,7 @@ public class BossFSM : MonoBehaviour
         if (TeleoortChoose01 > TeleoortChoose02)
         {
             magic_circle.Play();
-            Instantiate(Teleport02, TeleportPoint01.transform.position,Quaternion.identity);
+            Instantiate(Teleport02, TeleportPoint01.transform.position, Quaternion.identity);
             magic_circle02.Play();
         }
         else
@@ -757,7 +806,7 @@ public class BossFSM : MonoBehaviour
     IEnumerator RangerCooldown()
     {
         while (RCount > 0)
-        {           
+        {
             yield return new WaitForSeconds(1);
             RCount--;
             Debug.Log("遠程CD:" + RCount);
