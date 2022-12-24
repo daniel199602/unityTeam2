@@ -546,3 +546,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b6df3929a60ece419a6e5d8e3ab8755, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  swingAx: {fileID: 8300000, guid: 45d53ccb084510c4f92e6f9b44ea15e4, type: 3}
+  swingMetalSword_1: {fileID: 8300000, guid: 1a5c42ddb5683924c833829fbed2fede, type: 3}
+  swingMetalSword_2: {fileID: 8300000, guid: b4f4f18941a1637449a55d61569c4890, type: 3}
+  fireRoad: {fileID: 8300000, guid: 2c2de1fb0e355e64eac95d33b3f9c0d2, type: 3}
+  fireBall_1: {fileID: 8300000, guid: 0f08827c936620b49b9884a8fd11dcfc, type: 3}
+  fireBall_2: {fileID: 8300000, guid: c4580bb6130b8fd4c81f785fb0aa781a, type: 3}

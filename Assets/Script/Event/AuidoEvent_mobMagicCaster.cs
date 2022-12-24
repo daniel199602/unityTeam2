@@ -6,21 +6,12 @@ public class AuidoEvent_mobMagicCaster : MonoBehaviour
 {
 
     AudioSource audioSource;
-    public AudioClip creatSpider;
     public AudioClip spitMagicLaser;
 
     // Start is called before the first frame update
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
-    }
-
-    /// <summary>
-    /// ¼½©ñ¥l³ê»jµï­µ®Ä
-    /// </summary>
-    void PlayCreatSpiderEvent()
-    {
-        audioSource.PlayOneShot(creatSpider, 0.2f);
     }
 
     /// <summary>
