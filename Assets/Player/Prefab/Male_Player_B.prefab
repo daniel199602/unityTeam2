@@ -5031,6 +5031,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   takeSword: {fileID: 8300000, guid: 26e9b0607a7504b8ca6ae8b0b885ab08, type: 3}
   swingSword: {fileID: 8300000, guid: 1785fff83652f42399d9b2017b05656c, type: 3}
+  swingSword1: {fileID: 8300000, guid: 7c6251243ffbbb6428a73da63c75cc51, type: 3}
+  swingSword2: {fileID: 8300000, guid: 9bf0627b45ba4fb41aa4c07a08761e54, type: 3}
 --- !u!82 &5482933065900400663
 AudioSource:
   m_ObjectHideFlags: 0

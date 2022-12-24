@@ -44006,7 +44006,7 @@ AnimationClip:
     intParameter: 0
     messageOptions: 0
   - time: 0.26666668
-    functionName: PlaySwordEvent_swing
+    functionName: PlaySwordEvent_swing1
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0

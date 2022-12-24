@@ -5194,6 +5194,20 @@ MonoBehaviour:
   HitEffect_C: {fileID: 5760155195853954090}
   hitVFX_Bear_C: {fileID: 0}
   Target: {fileID: 0}
+--- !u!114 &989682762509856413
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5760155195853954090}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d41430452331844f806c293cdbe25f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  creatSpider: {fileID: 8300000, guid: a5906f1817b01eb44a86bf0eb280f6a7, type: 3}
+  spitMagicLaser: {fileID: 8300000, guid: 9b809ccb0f3052e45a500c4bced04996, type: 3}
 --- !u!114 &6024994156794912173
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5257,20 +5271,6 @@ MonoBehaviour:
   spawnEffectTime: 4
   t: 0.01
   isDeath: 0
---- !u!114 &989682762509856413
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5760155195853954090}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2d41430452331844f806c293cdbe25f8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  creatSpider: {fileID: 8300000, guid: a5906f1817b01eb44a86bf0eb280f6a7, type: 3}
-  spitMagicLaser: {fileID: 8300000, guid: f0740f1a57323e141bc3547bd11d340f, type: 3}
 --- !u!1 &5761551277755292688 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8559011417179969836, guid: 9349fc6c44ecdab4daea1ed464bd7c38, type: 3}

@@ -95,10 +95,10 @@ public class WeaponManager : MonoBehaviour
     private void Update()
     {
         ////按L切換成測試inspector當前的type,id武器
-        //if(Input.GetKeyDown(KeyCode.L))
-        //{
-        //    Test_ChooseAndUseWeapon(test_type1_id, test_type23, test_type2_id, test_type3_id);
-        //}
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            Test_ChooseAndUseWeapon(test_type1_id, test_type23, test_type2_id, test_type3_id);
+        }
     }
 
     /// <summary>
