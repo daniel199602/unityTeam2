@@ -10,6 +10,8 @@ public class AudioEvent_mobBoss : MonoBehaviour
     public AudioClip swingMetalSword_1;
     public AudioClip swingMetalSword_2;
     public AudioClip fireRoad;
+    public AudioClip fireBall_1;
+    public AudioClip fireBall_2;
 
 
 
@@ -44,12 +46,26 @@ public class AudioEvent_mobBoss : MonoBehaviour
     }
 
     /// <summary>
-    /// 噴火音效
+    /// 火炎道路音效
     /// </summary>
     void PlayFireRoadEvent()
     {
         audioSource.PlayOneShot(fireRoad, 1f);
     }
 
+    /// <summary>
+    /// 火焰球用於切換到狀態二音效_1
+    /// </summary>
+    void PlayFireBallStageTowEvent_1()
+    {
+        audioSource.PlayOneShot(fireBall_1, 1f);
+    }
 
+    /// <summary>
+    /// 火焰球用於噴火音效_2
+    /// </summary>
+    void PlayFireBallEvent_2()
+    {
+        audioSource.PlayOneShot(fireBall_2, 1f);
+    }
 }
