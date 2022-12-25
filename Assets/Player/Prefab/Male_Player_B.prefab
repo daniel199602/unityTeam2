@@ -4954,7 +4954,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hitVFX: {fileID: 100002, guid: fc323bcb450933c4e9dc817f3f3e0f53, type: 3}
-  Hit: {fileID: 8300000, guid: ba0325430c2c9c64381009e80ef002f6, type: 3}
+  Hit: {fileID: 8300000, guid: 1e99e259c0550c34a92cb270844ba346, type: 3}
 --- !u!114 &821133959739569995
 MonoBehaviour:
   m_ObjectHideFlags: 0

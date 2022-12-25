@@ -546,7 +546,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b6df3929a60ece419a6e5d8e3ab8755, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  swingAx: {fileID: 8300000, guid: f7881e969697bb44ab26bbad79c7a60e, type: 3}
+  swingAx: {fileID: 8300000, guid: cd93ada9ed415064483b2b5b2f5f6458, type: 3}
   swingAxH: {fileID: 8300000, guid: 00cc9688db7817e47a3388356c395902, type: 3}
   swingMetalSword_1: {fileID: 8300000, guid: 1a5c42ddb5683924c833829fbed2fede, type: 3}
   swingMetalSword_2: {fileID: 8300000, guid: b4f4f18941a1637449a55d61569c4890, type: 3}
