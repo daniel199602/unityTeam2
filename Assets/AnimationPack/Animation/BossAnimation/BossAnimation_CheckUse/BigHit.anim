@@ -99418,7 +99418,7 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 1.3666667
+  - time: 1.0333333
     functionName: PlaySwingAxEvent_swing
     data: 
     objectReferenceParameter: {fileID: 0}
@@ -99427,6 +99427,13 @@ AnimationClip:
     messageOptions: 0
   - time: 1.4333333
     functionName: AttackEvent_Big
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 1.4666667
+    functionName: PlaySwingAxEvent_hitGround
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0

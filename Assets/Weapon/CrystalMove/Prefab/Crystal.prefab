@@ -1342,28 +1342,12 @@ PrefabInstance:
     m_TransformParent: {fileID: 1217005646929085398}
     m_Modifications:
     - target: {fileID: 6560670877381441352, guid: 1f74ccec3b9da9943954de8f9f923675, type: 3}
-      propertyPath: playOnAwake
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6560670877381441352, guid: 1f74ccec3b9da9943954de8f9f923675, type: 3}
-      propertyPath: emitterVelocityMode
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6560670877381441352, guid: 1f74ccec3b9da9943954de8f9f923675, type: 3}
       propertyPath: InitialModule.startSize.scalar
-      value: 35
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 6560670877381441352, guid: 1f74ccec3b9da9943954de8f9f923675, type: 3}
-      propertyPath: InitialModule.startColor.maxColor.b
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6560670877381441352, guid: 1f74ccec3b9da9943954de8f9f923675, type: 3}
-      propertyPath: InitialModule.startColor.maxColor.g
-      value: 0.02631007
-      objectReference: {fileID: 0}
-    - target: {fileID: 6560670877381441352, guid: 1f74ccec3b9da9943954de8f9f923675, type: 3}
-      propertyPath: InitialModule.startColor.maxColor.r
-      value: 0.5377358
+      propertyPath: InitialModule.startSpeed.scalar
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 6560670877381489084, guid: 1f74ccec3b9da9943954de8f9f923675, type: 3}
       propertyPath: playOnAwake
@@ -1375,31 +1359,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6560670877381489084, guid: 1f74ccec3b9da9943954de8f9f923675, type: 3}
       propertyPath: InitialModule.startLifetime.scalar
-      value: 0.73
-      objectReference: {fileID: 0}
-    - target: {fileID: 6560670877381492858, guid: 1f74ccec3b9da9943954de8f9f923675, type: 3}
-      propertyPath: playOnAwake
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6560670877381492858, guid: 1f74ccec3b9da9943954de8f9f923675, type: 3}
-      propertyPath: emitterVelocityMode
-      value: 0
+      value: 3.7
       objectReference: {fileID: 0}
     - target: {fileID: 6560670877381492858, guid: 1f74ccec3b9da9943954de8f9f923675, type: 3}
       propertyPath: InitialModule.startSize.scalar
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 6560670877381492858, guid: 1f74ccec3b9da9943954de8f9f923675, type: 3}
-      propertyPath: InitialModule.startColor.maxColor.b
-      value: 0.03997326
-      objectReference: {fileID: 0}
-    - target: {fileID: 6560670877381492858, guid: 1f74ccec3b9da9943954de8f9f923675, type: 3}
-      propertyPath: InitialModule.startColor.maxColor.g
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6560670877381492858, guid: 1f74ccec3b9da9943954de8f9f923675, type: 3}
-      propertyPath: InitialModule.startColor.maxColor.r
-      value: 1
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 6560670877381511722, guid: 1f74ccec3b9da9943954de8f9f923675, type: 3}
       propertyPath: playOnAwake

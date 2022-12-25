@@ -6,18 +6,21 @@ using System.Collections;
 
 public class CharacterAttackManager : MonoBehaviour
 {
+    AudioSource audioSource;
+
     RecoilShake recoilShake;//鏡頭震動
     public GameObject hitVFX;  //怪物受擊特效
     Vector3 up = new Vector3(0, 10, 0);//調高怪物受擊特效位置
 
     private bool isOpenOnDrawGizmos = false;//是否打開OnDrawGizmos
     Animator playerAnimator;
-    
+    public AudioClip Hit;
     private void Start()
     {
         playerAnimator = GetComponent<Animator>();
         recoilShake = GetComponent<RecoilShake>();
         isOpenOnDrawGizmos = true;
+        audioSource = GetComponent<AudioSource>();
     }
 
     /// <summary>
@@ -59,6 +62,7 @@ public class CharacterAttackManager : MonoBehaviour
             {
                 DeductMobHpInstant(mob, weaponDamage_instant);
                 DeductMobHpDelay(mob, weaponDamamge_delay);
+                audioSource.PlayOneShot(Hit, 1f);
                 Debug.LogWarning("Hit : " + mob.GetComponent<ItemOnMob>().mobName + "Hp : " + mob.GetComponent<MubHpData>().Hp);
             }
         }
@@ -84,6 +88,7 @@ public class CharacterAttackManager : MonoBehaviour
                 ParticleSystem ps = hitVFX.GetComponent<ParticleSystem>();
                 Instantiate(ps, mob.transform.position + up, mob.transform.rotation);
                 ps.Play();
+                audioSource.PlayOneShot(Hit, 1f);
                 Debug.LogWarning("Hit : " + mob.GetComponent<ItemOnMob>().mobName + "Hp : " + mob.GetComponent<MubHpData>().Hp);
             }
         }
@@ -111,6 +116,7 @@ public class CharacterAttackManager : MonoBehaviour
                 Instantiate(ps, mob.transform.position + up, mob.transform.rotation);
                 ps.Play();
                 recoilShake.camraPlayerSake();
+                audioSource.PlayOneShot(Hit, 1f);
                 Debug.LogWarning("Hit : " + mob.GetComponent<ItemOnMob>().mobName + "Hp : " + mob.GetComponent<MubHpData>().Hp);
             }
         }
@@ -158,6 +164,7 @@ public class CharacterAttackManager : MonoBehaviour
                 ParticleSystem ps = hitVFX.GetComponent<ParticleSystem>();
                 Instantiate(ps, mob.transform.position+up, mob.transform.rotation);
                 ps.Play();
+                audioSource.PlayOneShot(Hit, 1f);
                 Debug.LogWarning("Hit : " + mob.GetComponent<ItemOnMob>().mobName + "Hp : " + mob.GetComponent<MubHpData>().Hp);
             }
         }
@@ -183,6 +190,7 @@ public class CharacterAttackManager : MonoBehaviour
                 ParticleSystem ps = hitVFX.GetComponent<ParticleSystem>();
                 Instantiate(ps, mob.transform.position+up, mob.transform.rotation);
                 ps.Play();
+                audioSource.PlayOneShot(Hit, 1f);
                 //recoilShake.camraPlayerSake();
                 Debug.LogWarning("Hit : " + mob.GetComponent<ItemOnMob>().mobName + "Hp : " + mob.GetComponent<MubHpData>().Hp);
             }

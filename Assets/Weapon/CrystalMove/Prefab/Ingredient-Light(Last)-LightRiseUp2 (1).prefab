@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6872528037881965234}
   - component: {fileID: 6872528037900203732}
   - component: {fileID: 6872528037899547700}
-  - component: {fileID: 1780606773217412572}
+  - component: {fileID: -78359756276719255}
   m_Layer: 0
   m_Name: Ingredient-Light(Last)-LightRiseUp2 (1)
   m_TagString: Untagged
@@ -42,7 +42,7 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6872528037881792660}
   serializedVersion: 8
-  lengthInSec: 5
+  lengthInSec: 0.05
   simulationSpeed: 1
   stopAction: 0
   cullingMode: 1
@@ -109,7 +109,7 @@ ParticleSystem:
       m_RotationOrder: 4
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
-  scalingMode: 1
+  scalingMode: 2
   randomSeed: 0
   InitialModule:
     serializedVersion: 3
@@ -117,7 +117,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1.5
+      scalar: 5
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -223,7 +223,7 @@ ParticleSystem:
     startColor:
       serializedVersion: 2
       minMaxState: 2
-      minColor: {r: 1, g: 0.9411765, b: 0.15294118, a: 1}
+      minColor: {r: 0.990566, g: 0, b: 0.042774048, a: 1}
       maxColor: {r: 0.043137256, g: 0.7372549, b: 0.21960784, a: 1}
       maxGradient:
         serializedVersion: 2
@@ -286,7 +286,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 3
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -4774,7 +4774,7 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
---- !u!114 &1780606773217412572
+--- !u!114 &-78359756276719255
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4783,6 +4783,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 6872528037881792660}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c154a6f64e5229b408874e547ddf2280, type: 3}
+  m_Script: {fileID: 11500000, guid: 784e8c5182a995941a4bcb26ec8d2cb4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

@@ -8,7 +8,7 @@ public class counter : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        count = 1;
+        count = 2;
         StartCoroutine(Counter());
     }
 

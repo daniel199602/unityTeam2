@@ -101254,15 +101254,15 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.5
-    functionName: ChargeUpEvent_GetPower
+  - time: 0.38333333
+    functionName: UltiEvent_C
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 1.2666667
-    functionName: PlayFireRoadEvent
+  - time: 0.5
+    functionName: ChargeUpEvent_GetPower
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
@@ -101275,6 +101275,13 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
+  - time: 2.3833334
+    functionName: UltiEvent_S
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
   - time: 2.4
     functionName: AttackEvent_Ultimate
     data: 
@@ -101282,8 +101289,8 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 2.4166667
-    functionName: ChargeUpEvent_Attack
+  - time: 2.4
+    functionName: AnimationSpeed_AttackEnd
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
@@ -101291,6 +101298,13 @@ AnimationClip:
     messageOptions: 0
   - time: 2.4166667
     functionName: ChargeUpEvent_Attack
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 2.5166667
+    functionName: PlayFireRoadEvent
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
