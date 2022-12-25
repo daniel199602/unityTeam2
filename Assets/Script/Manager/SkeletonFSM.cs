@@ -32,6 +32,7 @@ public class SkeletonFSM : MonoBehaviour
     float ATKRadius;
     float LeaveATKRadius;
     float AwakeRadius;
+    float mobAngle;
 
     public float Speed = 15f;
     Vector3 GetTargetNormalize;
@@ -47,7 +48,6 @@ public class SkeletonFSM : MonoBehaviour
     private void Awake()
     {
         ThisItemOnMob_State = GetComponent<ItemOnMob>();
-        FrameCount_Roar = 160;
         // Debug.LogWarning("---------------------------------------------------------------------------------------");
     }
     void Start()
@@ -60,10 +60,12 @@ public class SkeletonFSM : MonoBehaviour
         MubAnimator = GetComponent<Animator>();
         State = GetComponent<MubHpData>();
         hpTemporary = State.Hp;
-        FrameCount_Roar = 160;
+        FrameCount_Roar = 320;
         LeaveAttackRangeBool = false;
 
         ATKRadius = ThisItemOnMob_State.mobRadius;//WeaponÂÐ»\
+
+        mobAngle = ThisItemOnMob_State.mobAngle;
 
         TraceRadius = ATKRadius * 2;
 
@@ -78,7 +80,7 @@ public class SkeletonFSM : MonoBehaviour
     {
         StartCoroutine(AttackCooldown());
         m_NowState = SkeletonState.Idle;
-        FrameCount_Roar = 160;
+        FrameCount_Roar = 320;
         RoarBool = false;
         MubAnimator = GetComponent<Animator>();
         MubAnimator.speed = 1f;
@@ -91,7 +93,7 @@ public class SkeletonFSM : MonoBehaviour
     {
         m_NowState = SkeletonState.Idle;
         RoarBool = false;
-        FrameCount_Roar = 160;
+        FrameCount_Roar = 320;
     }
     // Update is called once per frame
     void Update()
@@ -146,8 +148,6 @@ public class SkeletonFSM : MonoBehaviour
 
                 MubAnimator.SetBool("Roar", false);
 
-                LookForward();
-
                 TraceStatus();
 
                 AttackStatus();
@@ -192,6 +192,7 @@ public class SkeletonFSM : MonoBehaviour
                 if (m_NowState == SkeletonState.Trace)
                 {
                     Move();
+
                     MubAnimator.SetBool("Trace", true);
                     MubAnimator.SetBool("Attack", false);
                 }
@@ -280,7 +281,7 @@ public class SkeletonFSM : MonoBehaviour
         GetTargetNormalize.y = 0;
 
         capsule.Move(GetTargetNormalize * MoveSpeed * Time.deltaTime);
-
+        LookForward();
         if (GetTargetMegnitude == ATKRadius)
         {
             MoveSpeed = 0;
@@ -292,22 +293,38 @@ public class SkeletonFSM : MonoBehaviour
     }
     public void Roar()
     {
-
         MubAnimator.SetBool("Roar", true);
         MoveSpeed = Speed * 0f;
-
     }
     public void Attack()
     {
-        if (m_NowState == SkeletonState.Attack && CDs == 0)
+        if (m_NowState == SkeletonState.Attack)
         {
-            MubAnimator.SetBool("Attack", true);
-            LookBool = false;
+            if (CDs == 0)
+            {
+                Vector3 direction = Target.transform.position - transform.position;
+
+                float dot = Vector3.Dot(direction.normalized, transform.forward);
+
+                float offsetAngle = Mathf.Acos(dot) * Mathf.Rad2Deg;
+
+                if (offsetAngle > (mobAngle * .7f) / 3 * 2)
+                {
+                    LookForward();
+                }
+                else if (offsetAngle <= (mobAngle * .7f) / 3 * 2)
+                {
+                    MubAnimator.SetBool("Attack", true);
+                    LookBool = false;
+                }                   
+            }
+            else if (CDs != 0)
+            {
+                LookForward();
+                MubAnimator.SetBool("Attack", false);
+            }
         }
-        else if (CDs != 0)
-        {
-            MubAnimator.SetBool("Attack", false);
-        }
+
     }
     public void Idle()
     {
@@ -356,5 +373,5 @@ public class SkeletonFSM : MonoBehaviour
             CDs--;
         }
     }
-    
+
 }

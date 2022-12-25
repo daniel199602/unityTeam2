@@ -45,7 +45,7 @@ public class BossAttackManager : MonoBehaviour
         /*¶Ë®`*/
         mobDamage_instant = GetComponent<ItemOnMob>().mobDamage_instant;
         mobDamage_instant_R = GetComponent<ItemOnMob>().mobDamage_instant-30;
-        mobDamage_instant_U = GetComponent<ItemOnMob>().mobDamage_instant +(Hp/2);
+        mobDamage_instant_U = GetComponent<ItemOnMob>().mobDamage_instant +(Hp/3);
         mobDamamge_delay = GetComponent<ItemOnMob>().mobDamage_delay;
         mobDamamge_delay_R = GetComponent<ItemOnMob>().mobDamage_delay+10;
         mobDamamge_delay_U = GetComponent<ItemOnMob>().mobDamage_delay*0;

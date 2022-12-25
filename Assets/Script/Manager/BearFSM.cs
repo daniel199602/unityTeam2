@@ -16,7 +16,7 @@ public class BearFSM : MonoBehaviour
 
     MubHpData State;
     Animator MubAnimator;
-    [SerializeField]int hpTemporary;
+    [SerializeField] int hpTemporary;
     int TargetHp;
     CharacterController capsule;
     bool backing;
@@ -32,8 +32,9 @@ public class BearFSM : MonoBehaviour
     float LeaveATKRadius;
     float Close_ATKRadius;
     float AwakeRadius;
+    float mobAngle;
 
-    public float Speed=20f;
+    public float Speed = 20f;
     float MoveSpeed;
     float BackSpeed;
 
@@ -41,7 +42,7 @@ public class BearFSM : MonoBehaviour
     float GetTargetMegnitude;
     int Count;
 
-    bool AttackCBool=false;
+    bool AttackCBool = false;
 
     bool LeaveAttackRangeBool;
     bool InAttackRangeBool;
@@ -58,25 +59,25 @@ public class BearFSM : MonoBehaviour
     }
     // Start is called before the first frame update
     void Start()
-    {        
+    {
         Target = GameManager.Instance().PlayerStart;//抓出玩家
         MySelf = this.transform.gameObject;//抓出自己
-        
+
 
         m_NowState = BearState.Idle;
         capsule = GetComponent<CharacterController>();
         MubAnimator = GetComponent<Animator>();
         State = GetComponent<MubHpData>();
         hpTemporary = State.Hp;
-        FrameCount_Roar = 340;//鎖住起始位移
+        FrameCount_Roar = 300;//鎖住起始位移
         LeaveAttackRangeBool = false;
         InAttackRangeBool = false;
 
         m_NowState = BearState.Idle;
 
         ATKRadius = ThisItemOnMob_State.mobRadius;//Weapon覆蓋
-
-        Close_ATKRadius = ATKRadius * 0.4f;        
+        mobAngle = ThisItemOnMob_State.mobAngle;
+        Close_ATKRadius = ATKRadius * 0.4f;
         LeaveATKRadius = ATKRadius * 1.02f;
         RunRadius = ATKRadius * 2.3f;
         AwakeRadius = ATKRadius * 2f;
@@ -88,7 +89,7 @@ public class BearFSM : MonoBehaviour
     void Update()
     {
         TargetHp = Target.GetComponent<PlayerHpData>().Hp;
-        Quaternion c = new Quaternion(0, transform.rotation.y, 0,transform.rotation.w);
+        Quaternion c = new Quaternion(0, transform.rotation.y, 0, transform.rotation.w);
         transform.rotation = c;
         AwakeSensor();
 
@@ -100,7 +101,7 @@ public class BearFSM : MonoBehaviour
                 LookTarget();
             }
             if (RoarBool == false)
-            {                
+            {
                 Roar();
                 RoarBool = true;
             }
@@ -116,7 +117,7 @@ public class BearFSM : MonoBehaviour
                 return;
             }
             else if (State.Hp > 0)
-            {               
+            {
                 if (State.Hp != hpTemporary)
                 {
                     if (hpTemporary - State.Hp < 50)
@@ -136,7 +137,7 @@ public class BearFSM : MonoBehaviour
 
                     MubAnimator.SetBool("Warn", false);
 
-                    LookTarget();
+
 
                     TraceStatus();
 
@@ -149,7 +150,7 @@ public class BearFSM : MonoBehaviour
                     BackStatus();
 
                 }
-            }            
+            }
         }
     }
     public void LookTarget()
@@ -159,18 +160,11 @@ public class BearFSM : MonoBehaviour
         Quaternion Look = Quaternion.LookRotation(GetTargetNormalize);
 
         Quaternion R = Quaternion.Slerp(transform.rotation, Look, 1.2f * Time.deltaTime);
+
         if (isAttacking == false)
         {
-            if (GetTargetNormalize != transform.forward)
-            {
-                MubAnimator.SetBool("Rotate", true);
-                transform.rotation = R;
-            }
-            else if (GetTargetNormalize == transform.forward)
-            {
-                MubAnimator.SetBool("Rotate", false);
-            }
-        }       
+            transform.rotation = R;
+        }
     }
     public void AwakeSensor()
     {
@@ -212,6 +206,7 @@ public class BearFSM : MonoBehaviour
                 if (m_NowState == BearState.Trace)
                 {
                     Move();
+                    
                     MubAnimator.SetBool("Trace", true);
                     MubAnimator.SetBool("Attack01", false);
                     MubAnimator.SetBool("Attack02", false);
@@ -234,7 +229,7 @@ public class BearFSM : MonoBehaviour
         InATKrange = IsInRange_RangedBattleRange(ATKRadius, Close_ATKRadius, MySelf, Target);
         if (InATKrange == true)
         {
-           
+
             MoveSpeed = 0f;
             m_NowState = BearState.Attack;
             MubAnimator.SetBool("Trace", false);
@@ -254,7 +249,7 @@ public class BearFSM : MonoBehaviour
                 m_NowState = BearState.Idle;
                 Idle();
             }
-            GetTargetMegnitude = (Target.transform.position - transform.position).magnitude;            
+            GetTargetMegnitude = (Target.transform.position - transform.position).magnitude;
         }
     }
     //在攻擊蛋黃區(內圈)狀態
@@ -280,11 +275,11 @@ public class BearFSM : MonoBehaviour
     {
         if (InAttackRangeBool == false)
         {
-            if (AttackCBool ==false)
+            if (AttackCBool == false)
             {
                 backing = TooCloseRange_RangedBattleRange(Close_ATKRadius, MySelf, Target);
                 AttackCBool = true;
-            }                        
+            }
             if (backing == true)
             {
                 m_NowState = BearState.Back;
@@ -355,37 +350,68 @@ public class BearFSM : MonoBehaviour
     }
     public void Attack()
     {
-        if (m_NowState == BearState.Attack&& Count == 0)
+        if (m_NowState == BearState.Attack)
         {
             LeaveAttackRangeBool = true;
             InAttackRangeBool = true;
-            if (RandomChooseCoolDown==false)
+            if (Count == 0)
             {
-                RandomChoose = UnityEngine.Random.Range(1, 4);
-                RandomChooseCoolDown= true;
-            }                       
-            if (RandomChoose ==1)
-            {
-                MubAnimator.SetBool("Attack01", true);
-                MubAnimator.applyRootMotion = true;
+                Vector3 direction = Target.transform.position - transform.position;
+
+                float dot = Vector3.Dot(direction.normalized, transform.forward);
+
+                float offsetAngle = Mathf.Acos(dot) * Mathf.Rad2Deg;
+
+                if (offsetAngle > (mobAngle * .7f) / 3 * 2)
+                {
+                    LookTarget();
+                    MubAnimator.SetBool("Rotate", true);
+                }
+                else if (offsetAngle <= (mobAngle * .7f) / 3 * 2)
+                {
+                    MubAnimator.SetBool("Rotate", false);
+                    if (RandomChooseCoolDown == false)
+                    {
+                        RandomChoose = UnityEngine.Random.Range(1, 4);
+                        RandomChooseCoolDown = true;
+                    }
+                    if (RandomChoose == 1)
+                    {
+                        MubAnimator.SetBool("Attack01", true);
+                        MubAnimator.applyRootMotion = true;
+                    }
+                    else if (RandomChoose == 2)
+                    {
+                        MubAnimator.SetBool("Attack02", true);
+                        MubAnimator.applyRootMotion = true;
+                    }
+                    else if (RandomChoose == 3)
+                    {
+                        MubAnimator.SetBool("Attack03", true);
+                        MubAnimator.applyRootMotion = true;
+                    }
+                }
             }
-            else if (RandomChoose == 2)
+            else if (Count != 0)
             {
-                MubAnimator.SetBool("Attack02", true);
-                MubAnimator.applyRootMotion = true;
+                Vector3 direction = Target.transform.position - transform.position;
+
+                float dot = Vector3.Dot(direction.normalized, transform.forward);
+
+                float offsetAngle = Mathf.Acos(dot) * Mathf.Rad2Deg;
+                if (offsetAngle > (mobAngle * .7f) / 3 * 2)
+                {
+                    LookTarget();
+                    MubAnimator.SetBool("Rotate", true);
+                }
+                else if (offsetAngle <= (mobAngle * .7f) / 3 * 2)
+                {
+                    MubAnimator.SetBool("Rotate", false);
+                }
+                MubAnimator.SetBool("Attack01", false);
+                MubAnimator.SetBool("Attack02", false);
+                MubAnimator.SetBool("Attack03", false);
             }
-            else if (RandomChoose == 3)
-            {
-                MubAnimator.SetBool("Attack03", true);
-                MubAnimator.applyRootMotion = true;
-            }
-        }
-        else if (Count!=0)
-        {
-            MubAnimator.SetBool("Attack01", false);
-            MubAnimator.SetBool("Attack02", false);
-            MubAnimator.SetBool("Attack03", false);
-            
         }
     }
     public void Idle()
@@ -400,7 +426,7 @@ public class BearFSM : MonoBehaviour
     {
         isAttacking = false;
         GetTargetMegnitude = (Target.transform.position - transform.position).magnitude;
-        GetTargetNormalize = (Target.transform.position - transform.position).normalized;        
+        GetTargetNormalize = (Target.transform.position - transform.position).normalized;
         MubAnimator.SetBool("Attack01", false);
         MubAnimator.SetBool("Attack02", false);
         MubAnimator.SetBool("Attack03", false);
@@ -421,10 +447,11 @@ public class BearFSM : MonoBehaviour
     {
         GetTargetMegnitude = (Target.transform.position - transform.position).magnitude;
         isAttacking = false;
+
         if (GetTargetMegnitude > RunRadius)
         {
             MoveSpeed *= 1.5f;
-            MubAnimator.SetBool("Run",true);
+            MubAnimator.SetBool("Run", true);
         }
         else
         {
@@ -434,7 +461,7 @@ public class BearFSM : MonoBehaviour
         }
 
         GetTargetNormalize = (Target.transform.position - transform.position).normalized;
-
+        LookTarget();
         capsule.SimpleMove(GetTargetNormalize * MoveSpeed);
 
         if (GetTargetMegnitude == ATKRadius)
@@ -452,7 +479,7 @@ public class BearFSM : MonoBehaviour
 
         GetTargetMegnitude = (Target.transform.position - transform.position).magnitude;
 
-        capsule.SimpleMove(-(transform.forward*5));
+        capsule.SimpleMove(-(transform.forward * 5));
 
         if (GetTargetMegnitude == ATKRadius)
         {
@@ -484,8 +511,8 @@ public class BearFSM : MonoBehaviour
         isAttacking = true;
         GetTargetNormalize = (Target.transform.position - transform.position).normalized;
 
-        capsule.SimpleMove(GetTargetNormalize * MoveSpeed*3);
-        MubAnimator.speed = 2f;        
+        capsule.SimpleMove(GetTargetNormalize * MoveSpeed * 3);
+        MubAnimator.speed = 2f;
     }
 
     private void AnimationSpeed_AttackEnd01()
@@ -538,18 +565,18 @@ public class BearFSM : MonoBehaviour
     public void ZoneOpen()
     {
         LeaveATKRadius = ATKRadius * 6;
-        Close_ATKRadius = ATKRadius * .1f;       
+        Close_ATKRadius = ATKRadius * .1f;
     }
     public void ZoneOpen01()
     {
         LeaveATKRadius = ATKRadius * 6;
-        Close_ATKRadius = ATKRadius * .1f;      
+        Close_ATKRadius = ATKRadius * .1f;
     }
 
     public void ZoneOpen02()
     {
         LeaveATKRadius = ATKRadius * 6;
-        Close_ATKRadius = ATKRadius * .1f;      
+        Close_ATKRadius = ATKRadius * .1f;
     }
     IEnumerator SummonCooldown()
     {

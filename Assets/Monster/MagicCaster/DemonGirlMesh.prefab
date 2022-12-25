@@ -2579,13 +2579,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f886370eb8fc02b4498e0c7189a2e3f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Bug: {fileID: 1143180963066806, guid: f7769b1fc067cae44b63ccdcc8288127, type: 3}
+  Bug: {fileID: 2153022781153084927, guid: dbd17ff80e477aa4ab50d5859533e9a9, type: 3}
   layerMask_BugSensor:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
   LightRays: {fileID: 0}
   RoarLight: {fileID: 0}
-  LaunchPort: {fileID: 0}
+  LaunchPort: {fileID: 448228632050446070}
   RotateSpeed: 0
 --- !u!143 &7019348681000112901
 CharacterController:

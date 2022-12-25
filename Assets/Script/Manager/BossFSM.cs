@@ -444,7 +444,7 @@ public class BossFSM : MonoBehaviour
                         Debug.Log("TurnRight");
                     }
                 }
-                else if(offsetAngle < mobAngle * .7f)
+                else if(offsetAngle <= (mobAngle * .7f) / 3 * 2)
                 {
                     MubAnimator.SetBool("TurnL", false);
                     MubAnimator.SetBool("TurnR", false);

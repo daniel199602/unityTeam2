@@ -167,6 +167,7 @@ public class MagicCasterFSM : MonoBehaviour
         if (m_NowState == MagicCasterState.Dead)
         {
             MubAnimator.SetTrigger("Die");
+            MubAnimator.SetBool("KnockBack", false);
             MubAnimator.speed = 1f;
             ps.Stop();
             pc.Stop();
