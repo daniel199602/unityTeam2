@@ -18,4 +18,4 @@ MonoBehaviour:
   weaponDamage_instant: 180
   weaponDamage_delay: 0
   weaponAngle: 90
-  weaponRadius: 50
+  weaponRadius: 45
