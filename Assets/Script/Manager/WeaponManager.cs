@@ -40,30 +40,6 @@ public class WeaponManager : MonoBehaviour
     public GameObject CurrentWeaponR_weaponR { private set; get; }
 
 
-    /*1213測試用，之後刪-------------------------------*/
-    [HeaderAttribute("Test_WeaponSwitch( Press keyCode.L )")]
-    public int test_type1_id = 10;
-    [Range(2, 3)] public int test_type23 = 2;
-    public int test_type2_id = 20;
-    public int test_type3_id = 30;
-
-    /// <summary>
-    /// 測試用函式，專門用於武器切換用的測試
-    /// </summary>
-    private void Test_ChooseAndUseWeapon(int type1_id, int type2or3, int type2_id, int type3_id)
-    {
-        ChooseAndUseWeaponTest(1, type1_id);//右手_盾牌
-        if (type2or3 == 2)
-        {
-            ChooseAndUseWeaponTest(2, type2_id);//左手_單手劍
-        }
-        else if (type2or3 == 3)
-        {
-            ChooseAndUseWeaponTest(3, type3_id);//左手_雙手劍
-        }
-    }
-    /*-----------------------------------------------------*/
-
     private void Awake()
     {
         if (mInstance != null)
@@ -94,11 +70,7 @@ public class WeaponManager : MonoBehaviour
 
     private void Update()
     {
-        ////按L切換成測試inspector當前的type,id武器
-        //if (Input.GetKeyDown(KeyCode.L))
-        //{
-        //    Test_ChooseAndUseWeapon(test_type1_id, test_type23, test_type2_id, test_type3_id);
-        //}
+
     }
 
     /// <summary>
@@ -136,28 +108,38 @@ public class WeaponManager : MonoBehaviour
 
 
     /// <summary>
-    /// 選擇並使用該武器(不使用，專門測試用)
+    /// 選擇並使用該武器(舊版，專門測試用)
+    /// BossTeleport外掛按鍵引用中
     /// </summary>
     /// <param name="type"></param>
     /// <param name="id"></param>
-    public void ChooseAndUseWeaponTest(int type, int id)
+    public GameObject ChooseAndUseWeaponTest(int type, int id)
     {
         WeaponSetActiveOpen(type, id);//開啟選擇的武器
-
         if (type == 0)
+        {
             this.CurrentTorchL_torch = GetWeapon(type, id);//當前火把
-        if (type == 1)
+            return CurrentTorchL_torch;
+        }
+        else if (type == 1)
+        {
             this.CurrentWeaponL_weaponL = GetWeapon(type, id);//當前左手武器
-        if (type == 2)
+            return CurrentWeaponL_weaponL;
+        }
+        else if (type == 2)
         {
             this.CurrentWeaponR_weaponR = GetWeapon(type, id);//當前右單手武器
             player.GetComponent<PlayerController>().AutoSwitchWeaponR(this.CurrentWeaponR_weaponR);
+            return CurrentWeaponR_weaponR;
         }
-        if (type == 3)
+        else if (type == 3)
         {
             this.CurrentWeaponR_weaponR = GetWeapon(type, id);//當前右雙手武器
             player.GetComponent<PlayerController>().AutoSwitchWeaponR(this.CurrentWeaponR_weaponR);
+            return CurrentWeaponR_weaponR;
         }
+        Debug.Log("沒有設定到武器");
+        return null;
     }
 
 

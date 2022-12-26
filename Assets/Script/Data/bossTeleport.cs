@@ -38,6 +38,9 @@ public class bossTeleport : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.F8))
         {
+            GameObject weapon = WeaponManager.Instance().ChooseAndUseWeaponTest(3, 31);//設置id31號武器
+            UIManager.Instance().weaponFramePanel.GetComponent<WeaponFrameUI>().SetCurrentWeaponImage(weapon);//設置當前武器進武器格
+
             PlayPortalEvent();//播音效
             GameManager.Instance().mobPool.Clear();
             FadeOutWait();
