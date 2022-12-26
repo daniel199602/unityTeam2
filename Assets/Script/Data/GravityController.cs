@@ -5,17 +5,17 @@ using UnityEngine;
 public class GravityController : MonoBehaviour
 {
     private float gravity = -9.8f;
-    [SerializeField] private float dropRayDistance = 2.5f;
+    private float dropRayDistance = 2f;
     public LayerMask hitMask;
 
     Vector3 velocity = Vector3.zero;
     Vector3 deltaMove = Vector3.zero;
-    private CharacterController cc;
+    //private CharacterController cc;
 
     // Use this for initialization
     void Start()
     {
-        cc = GetComponent<CharacterController>();
+        //cc = GetComponent<CharacterController>();
         velocity.y = 0;
     }
 
@@ -31,37 +31,59 @@ public class GravityController : MonoBehaviour
     void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawRay(transform.position, Vector3.down*dropRayDistance);
-        Gizmos.DrawRay(transform.position + Vector3.forward*0.1f, Vector3.down*dropRayDistance);
+        Gizmos.DrawRay(transform.position, Vector3.down * dropRayDistance);
+        Gizmos.DrawRay(transform.position + Vector3.up * 15f, Vector3.down * dropRayDistance);
     }
 
+    /// <summary>
+    /// 射線偵測
+    /// </summary>
     void UpdateRaycast()
     {
-        Ray r = new Ray(transform.position, Vector3.down);
-        Ray r2 = new Ray(transform.position + Vector3.forward*0.1f, Vector3.down);
-        if (Physics.Raycast(r, dropRayDistance, hitMask)|| Physics.Raycast(r2, dropRayDistance, hitMask))
+        Ray r = new Ray(transform.position, Vector3.down);//地面偵測射線
+        
+        if (Physics.Raycast(r, dropRayDistance, hitMask))
         {
             gravity = 0;
             velocity.y = 0;
         }
         else
         {
-            gravity = -9.8f;
+            Ray rRescue = new Ray(transform.position + Vector3.up * 15f, Vector3.down);//保險偵測射線
+            if (Physics.Raycast(rRescue, dropRayDistance, hitMask))
+            {
+                gravity = 9.8f;
+                velocity.y = 0;
+            }
+            else
+            {
+                gravity = -9.8f;
+            }
         }
     }
-
+    
+    /// <summary>
+    /// 每秒計算出當前的重力加速度位移向量
+    /// </summary>
+    /// <param name="deltatime"></param>
     void UpdateGravity(float deltatime)
     {
         velocity.y += gravity * deltatime;
-        if (velocity.y < -50.0f)
+        
+        //最大位移向量
+        if (velocity.y < -30.0f)
         {
-            velocity.y = -50.0f;
+            velocity.y = -30.0f;
         }
     }
 
+    /// <summary>
+    /// 每秒改變玩家當前座標位置
+    /// </summary>
+    /// <param name="deltatime"></param>
     void UpdateMovement(float deltatime)
     {
-        deltaMove = velocity * deltatime*1.1f;
+        deltaMove = velocity * deltatime;
         transform.Translate(deltaMove, Space.World);
     }
 
