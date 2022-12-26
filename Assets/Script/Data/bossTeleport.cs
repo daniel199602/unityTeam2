@@ -34,7 +34,16 @@ public class bossTeleport : MonoBehaviour
         //duration2 = 2f;
         //Invoke(nameof(playerclose), duration2);
     }
-
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.F8))
+        {
+            PlayPortalEvent();//播音效
+            GameManager.Instance().mobPool.Clear();
+            FadeOutWait();
+            //作弊系統直接傳王關 不要亂按!!
+        }
+    }
 
     void FadeOutWait()
     {
