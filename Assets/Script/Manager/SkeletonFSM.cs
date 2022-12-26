@@ -353,7 +353,7 @@ public class SkeletonFSM : MonoBehaviour
         MubAnimator.speed = 1f;
         LeaveATKRadius = ATKRadius * 1.05f;
         LookBool = true;
-        CDs = 5;
+        CDs = 2;
         StartCoroutine(AttackCooldown());
     }
     private void BladeOnGround()

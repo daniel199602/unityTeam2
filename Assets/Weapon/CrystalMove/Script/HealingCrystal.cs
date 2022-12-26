@@ -23,7 +23,7 @@ public class HealingCrystal : MonoBehaviour
     }
     private void OnTriggerStay(Collider Player)
     {
-        if (Input.GetKeyDown("f"))
+        if (Input.GetKeyDown(KeyCode.F))
         {
             if (Player.tag == "Player")
             {

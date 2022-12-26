@@ -713,7 +713,7 @@ public class BossFSM : MonoBehaviour
     }
     private void ChargeUpEvent_Attack()
     {
-        Instantiate(HitFlame, MySelf.transform.position, Quaternion.Euler(MySelf.transform.rotation.x, MySelf.transform.rotation.y + 90, MySelf.transform.rotation.z));
+        Instantiate(HitFlame, MySelf.transform.position, MySelf.transform.rotation);
     }
     private void Animation_UltimateCoolDown()
     {
@@ -791,7 +791,8 @@ public class BossFSM : MonoBehaviour
         else
         {
             magic_circle.Play();
-            Instantiate(Teleport02, TeleportPoint02.transform.position, Quaternion.identity);
+            Vector3 tt = new Vector3(TeleportPoint02.transform.position.x, TeleportPoint02.transform.position.y + 1, TeleportPoint02.transform.position.z);
+            Instantiate(Teleport02, tt, Quaternion.identity);
             magic_circle02.Play();
         }
 
