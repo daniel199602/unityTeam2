@@ -428,4 +428,13 @@ public class WeaponManager : MonoBehaviour
         CurrentWeaponR_weaponR = null;
     }
 
+    /// <summary>
+    /// 開始時設置預設武器(遊戲展示用)
+    /// </summary>
+    public void SetDefaultWeaponFirst()
+    {
+        GameObject weapon = ChooseAndUseWeaponTest(3, 30);//設置id30號武器
+        UIManager.Instance().weaponFramePanel.GetComponent<WeaponFrameUI>().SetCurrentWeaponImage(weapon);//設置當前武器進武器格
+    }
+
 }

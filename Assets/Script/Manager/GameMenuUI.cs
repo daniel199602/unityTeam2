@@ -24,6 +24,9 @@ public class GameMenuUI : MonoBehaviour
     {
         UIManager.Instance().weaponFramePanel.GetComponent<WeaponFrameUI>().SetEmptyWeaponImage();//清空武器格圖示
         WeaponManager.Instance().SetAllCurrentWeaponsEmpty();//清除玩家當前裝備的所有武器
+
+        WeaponManager.Instance().SetDefaultWeaponFirst(); //開始時設置預設武器(遊戲展示用)
+
         GameManager.Instance().PlayerStart.SetActive(false);
         SceneManager.LoadSceneAsync("room");
         //SceneManager.LoadScene("room");

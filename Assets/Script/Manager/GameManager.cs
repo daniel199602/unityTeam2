@@ -55,7 +55,7 @@ public class GameManager : MonoBehaviour
             Debug.Log(PlayerStart.transform.position);
             audioSource.clip = audios[2];
             audioSource.Play();
-            PlayerStart.transform.position = new Vector3(-195, 10, -330);
+            PlayerStart.transform.position = new Vector3(-195, 6, -330);
             Debug.Log(PlayerStart.transform.position);
             PlayerStart.SetActive(true);
             fadeIn.Play("FadeIn");
@@ -63,7 +63,7 @@ public class GameManager : MonoBehaviour
         if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("room"))
         {
             Debug.Log(PlayerStart.transform.position);
-            PlayerStart.transform.position = new Vector3(-10, 10, -186.7f);
+            PlayerStart.transform.position = new Vector3(-10, 6, -186.7f);
             audioSource.clip = audios[1];
             audioSource.Play();
             Debug.Log(PlayerStart.transform.position);
