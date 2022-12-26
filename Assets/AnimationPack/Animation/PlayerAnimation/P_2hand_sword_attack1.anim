@@ -95483,13 +95483,6 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.33333334
-    functionName: AtkMoveEventStart
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
   - time: 0.43333334
     functionName: PlaySwordEvent_swing
     data: 
@@ -95504,7 +95497,14 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.73333335
+  - time: 0.5
+    functionName: AtkMoveEventStart
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 0.6333333
     functionName: AtkMoveEventEnd
     data: 
     objectReferenceParameter: {fileID: 0}
