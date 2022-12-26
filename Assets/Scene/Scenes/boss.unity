@@ -6356,6 +6356,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: WinTipPanel
       objectReference: {fileID: 0}
+    - target: {fileID: 4778474969116421096, guid: 254f85e9346a05d4c9cdbf73d377aa0c, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -0.000011444
+      objectReference: {fileID: 0}
+    - target: {fileID: 4778474969116421096, guid: 254f85e9346a05d4c9cdbf73d377aa0c, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5350937733588924780, guid: 254f85e9346a05d4c9cdbf73d377aa0c, type: 3}
       propertyPath: m_Color.a
       value: 0
@@ -6394,7 +6402,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5351537449539546533, guid: 254f85e9346a05d4c9cdbf73d377aa0c, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: -945.5479
       objectReference: {fileID: 0}
     - target: {fileID: 5351537449539546533, guid: 254f85e9346a05d4c9cdbf73d377aa0c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -6430,7 +6438,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5351537449539546533, guid: 254f85e9346a05d4c9cdbf73d377aa0c, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: 440
       objectReference: {fileID: 0}
     - target: {fileID: 5351537449539546533, guid: 254f85e9346a05d4c9cdbf73d377aa0c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
