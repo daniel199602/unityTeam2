@@ -52413,6 +52413,13 @@ AnimationClip:
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
   m_Events:
+  - time: 0.16666667
+    functionName: bigSwoadSlashRight_Event
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
   - time: 0.3
     functionName: Animation_Attack
     data: 
@@ -52429,6 +52436,13 @@ AnimationClip:
     messageOptions: 0
   - time: 0.6333333
     functionName: AttackEvent_Normal
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 0.7
+    functionName: Shake_Event
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
