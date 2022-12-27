@@ -659,7 +659,7 @@ public class BossFSM : MonoBehaviour
     private void StartAim()
     {
         LookBool = true;
-        HighLightONground.Play();
+        
         LookPoint();
     }
     private void StageTwoEventSwitch()
@@ -684,6 +684,7 @@ public class BossFSM : MonoBehaviour
             magic_circle02.Stop();
             transform.position = TeleportPoint01.transform.position;
             magic_circle.Stop();
+
             MubAnimator.SetBool("ChangeWeapon", true);
         }
         else
@@ -695,6 +696,7 @@ public class BossFSM : MonoBehaviour
             magic_circle02.Stop();
             transform.position = TeleportPoint02.transform.position;
             magic_circle.Stop();
+            
             MubAnimator.SetBool("ChangeWeapon", true);
         }
     }
@@ -709,6 +711,7 @@ public class BossFSM : MonoBehaviour
     private void ChargeUpEvent_GetPower()
     {
         Fire.Play();
+        HighLightONground.Play();
         MubAnimator.speed = 0.2f;
     }
     private void Animation_UltimateAttack()
