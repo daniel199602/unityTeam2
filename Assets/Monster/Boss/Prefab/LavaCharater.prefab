@@ -7,6 +7,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4956527747312552287, guid: 7ccf59926c27eb943a661fa1c669350c, type: 3}
+      propertyPath: HitEffect
+      value: 
+      objectReference: {fileID: 194756, guid: 2f0c8baef76730a4883b9c5d169a98ed, type: 3}
     - target: {fileID: 8592516771613902222, guid: 7ccf59926c27eb943a661fa1c669350c, type: 3}
       propertyPath: m_Name
       value: LavaCharater

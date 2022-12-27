@@ -785,7 +785,8 @@ public class BossFSM : MonoBehaviour
         if (TeleoortChoose01 > TeleoortChoose02)
         {
             magic_circle.Play();
-            Instantiate(Teleport02, TeleportPoint01.transform.position, Quaternion.identity);
+            Vector3 tt = new Vector3(TeleportPoint01.transform.position.x, TeleportPoint01.transform.position.y + 1, TeleportPoint01.transform.position.z);
+            Instantiate(Teleport02, tt, Quaternion.identity);
             magic_circle02.Play();
         }
         else
