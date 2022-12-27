@@ -6,6 +6,7 @@ public class GravityController : MonoBehaviour
 {
     private float gravity = -9.8f;
     private float dropRayDistance = 2f;
+    private float dropRayRescueDistance = 15f;
     public LayerMask hitMask;
 
     Vector3 velocity = Vector3.zero;
@@ -32,7 +33,8 @@ public class GravityController : MonoBehaviour
     {
         Gizmos.color = Color.red;
         Gizmos.DrawRay(transform.position, Vector3.down * dropRayDistance);
-        Gizmos.DrawRay(transform.position + Vector3.up * 15f, Vector3.down * dropRayDistance);
+        Gizmos.color = Color.blue;
+        Gizmos.DrawRay(transform.position + Vector3.up * dropRayRescueDistance, Vector3.down * dropRayRescueDistance);
     }
 
     /// <summary>
@@ -49,11 +51,11 @@ public class GravityController : MonoBehaviour
         }
         else
         {
-            Ray rRescue = new Ray(transform.position + Vector3.up * 15f, Vector3.down);//«OÀI°»´ú®g½u
-            if (Physics.Raycast(rRescue, dropRayDistance, hitMask))
+            Ray rRescue = new Ray(transform.position + Vector3.up * dropRayRescueDistance, Vector3.down);//«OÀI°»´ú®g½u
+            if (Physics.Raycast(rRescue, dropRayRescueDistance, hitMask))
             {
                 gravity = 9.8f;
-                velocity.y = 0;
+                velocity.y = 9.8f;
             }
             else
             {
