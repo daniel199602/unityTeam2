@@ -10939,7 +10939,7 @@ MonoBehaviour:
   BigSwordOnHand: {fileID: 18342144188396651}
   AxeOnBack: {fileID: 6771017194516281707}
   BigSwordOnBack: {fileID: 3328627539849622107}
-  temp: {fileID: 0}
+  temp: {fileID: 1002788586739039529, guid: ce33ba98c93af8946aa058c121d72500, type: 3}
   RotateSpeed: 0
   HitFlame_R: {fileID: 4116065691858157808, guid: 88e371ef47be0fa4e9c8869a488c8e7d, type: 3}
   Teleport02: {fileID: 4261955206583758039, guid: 0e3d53c1d8d23514fa93fd9025e25cfe, type: 3}

@@ -134194,6 +134194,13 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
+  - time: 0.51666665
+    functionName: singleSwoadSlash3_Event
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
   - time: 0.5833333
     functionName: PlaySwingMetalSwordEvent_1
     data: 
@@ -134203,6 +134210,20 @@ AnimationClip:
     messageOptions: 0
   - time: 0.6333333
     functionName: AttackEvent_Normal
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 0.71666664
+    functionName: Shake_Event
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 1.25
+    functionName: bigSwoadSlash2_Event
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
@@ -134222,6 +134243,20 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
+  - time: 1.4833333
+    functionName: Shake_Event
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 2.1833334
+    functionName: bigSwoadSlash3_Event
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
   - time: 2.25
     functionName: PlaySwingMetalSwordEvent_2
     data: 
@@ -134231,6 +134266,13 @@ AnimationClip:
     messageOptions: 0
   - time: 2.2833333
     functionName: AttackEvent_Big
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 2.3333333
+    functionName: Shake_Event
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0

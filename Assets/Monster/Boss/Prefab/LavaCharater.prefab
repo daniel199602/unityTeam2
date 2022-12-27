@@ -494,10 +494,6 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 291076342287781829, guid: 7ccf59926c27eb943a661fa1c669350c, type: 3}
-      propertyPath: temp
-      value: 
-      objectReference: {fileID: 1002788586739039529, guid: ce33ba98c93af8946aa058c121d72500, type: 3}
-    - target: {fileID: 291076342287781829, guid: 7ccf59926c27eb943a661fa1c669350c, type: 3}
       propertyPath: HighLight
       value: 
       objectReference: {fileID: 3029779554681985622}
@@ -682,6 +678,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   screenShake: {fileID: 0}
+--- !u!114 &51637929205705995
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3129182282413037156}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59fd9a3d4a069c049938cbbac9b5f576, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FogOfWarPlane: {fileID: 0}
 --- !u!1001 &6666233688594573797
 PrefabInstance:
   m_ObjectHideFlags: 0

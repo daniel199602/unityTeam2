@@ -2149,6 +2149,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.y
       value: -178.176
       objectReference: {fileID: 0}
+    - target: {fileID: 3097240679552525712, guid: 052b0736fab5eee4eaa4ea766d127ef3, type: 3}
+      propertyPath: FogOfWarPlane
+      value: 
+      objectReference: {fileID: 855328266}
     - target: {fileID: 3520569212546745571, guid: 052b0736fab5eee4eaa4ea766d127ef3, type: 3}
       propertyPath: m_RootOrder
       value: 7

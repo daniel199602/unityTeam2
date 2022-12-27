@@ -452,12 +452,14 @@ public class BearFSM : MonoBehaviour
         {
             MoveSpeed *= 1.5f;
             MubAnimator.SetBool("Run", true);
+            MubAnimator.SetBool("Rotate", false);
         }
         else
         {
             MoveSpeed *= 1f;
             MubAnimator.SetBool("Run", false);
             MubAnimator.SetBool("Trace", true);
+            MubAnimator.SetBool("Rotate", false);
         }
 
         GetTargetNormalize = (Target.transform.position - transform.position).normalized;
@@ -484,10 +486,12 @@ public class BearFSM : MonoBehaviour
         if (GetTargetMegnitude == ATKRadius)
         {
             BackSpeed = Speed * 0f;
+            MubAnimator.SetBool("Rotate", false);
         }
         else
         {
             BackSpeed = Speed * .003f;
+            MubAnimator.SetBool("Rotate", false);
         }
     }
     private void OnDrawGizmos()

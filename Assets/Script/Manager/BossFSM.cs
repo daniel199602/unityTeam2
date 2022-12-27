@@ -718,6 +718,7 @@ public class BossFSM : MonoBehaviour
     {
         MubAnimator.speed = 2f;
         LookBool = false;
+        HighLightONground.Stop();
     }
     private void ChargeUpEvent_Attack()
     {

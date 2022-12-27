@@ -147,6 +147,10 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3029779554681805920, guid: 693eee48e53fa1542812fc3b0f773541, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3129182282413037156, guid: 693eee48e53fa1542812fc3b0f773541, type: 3}
       propertyPath: m_Name
       value: LavaCharater Variant
