@@ -13,7 +13,7 @@ public class MagicCasterFSM : MonoBehaviour
     public LayerMask layerMask_BugSensor;
 
     public GameObject LightRays;
-    public GameObject RoarLight;    
+    public GameObject RoarLight;
     public Transform LaunchPort;
 
     private MagicCasterState m_NowState;
@@ -66,7 +66,7 @@ public class MagicCasterFSM : MonoBehaviour
         capsule = GetComponent<CharacterController>();
         MubAnimator = GetComponent<Animator>();
         State = GetComponent<MubHpData>();
-        
+
 
         hpTemporary = State.Hp;
         FrameCount_Roar = 200;
@@ -243,36 +243,50 @@ public class MagicCasterFSM : MonoBehaviour
     }
     public void Attack()
     {
-        if (m_NowState == MagicCasterState.Attack && CDs == 0)
+        if (m_NowState == MagicCasterState.Attack)
         {
-            MubAnimator.SetBool("Attack", true);
-            MubAnimator.SetBool("Back", false);
-            MubAnimator.SetBool("Wondering01", false);
-            MubAnimator.SetBool("Wondering02", false);
-            TA = false;
-        }
-        else if (Count != 0)
-        {
-            backing = TooCloseRange_RangedBattleRange(Close_ATKRadius, MySelf, Target);
-            if (backing == true)
+            
+            if (CDs == 0)
             {
-                MubAnimator.SetBool("Back", true);
-                MubAnimator.SetBool("Attack", false);
-            }
-            else
-            {
-                if (TA == false)
+                Vector3 mePos = this.transform.forward;
+                Ray r = new Ray(this.transform.position, mePos);
+                RaycastHit rh;
+                if (Physics.Raycast(r, out rh, 15f, layerMask_BugSensor))
                 {
-                    int RA = Random.Range(0, 2);
-                    if (RA == 0)
+                    return;
+                }
+                else
+                {
+                    MubAnimator.SetBool("Attack", true);
+                    MubAnimator.SetBool("Back", false);
+                    MubAnimator.SetBool("Wondering01", false);
+                    MubAnimator.SetBool("Wondering02", false);
+                    TA = false;
+                }                 
+            }
+            else if (CDs != 0)
+            {
+                backing = TooCloseRange_RangedBattleRange(Close_ATKRadius, MySelf, Target);
+                if (backing == true)
+                {
+                    MubAnimator.SetBool("Back", true);
+                    MubAnimator.SetBool("Attack", false);
+                }
+                else
+                {
+                    if (TA == false)
                     {
-                        MubAnimator.SetBool("Wondering01", true);
-                        TA = true;
-                    }
-                    else if (RA == 1)
-                    {
-                        MubAnimator.SetBool("Wondering02", true);
-                        TA = true;
+                        int RA = Random.Range(0, 2);
+                        if (RA == 0)
+                        {
+                            MubAnimator.SetBool("Wondering01", true);
+                            TA = true;
+                        }
+                        else if (RA == 1)
+                        {
+                            MubAnimator.SetBool("Wondering02", true);
+                            TA = true;
+                        }
                     }
                 }
             }
@@ -301,12 +315,12 @@ public class MagicCasterFSM : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.color = InATKrange ? Color.red : Color.yellow;
-        Gizmos.DrawWireSphere(transform.position, ATKRadius);       
+        Gizmos.DrawWireSphere(transform.position, ATKRadius);
     }
     private void AnimationSpeed_Attack()
     {
         MubAnimator.speed = 0.2f;
-        
+
         ps.Play();
         RotateSpeed = RotateSpeed * .1f;
     }
@@ -317,7 +331,7 @@ public class MagicCasterFSM : MonoBehaviour
         CDs = 4;
         RotateSpeed = RotateSpeed * 10f;
         StartCoroutine(AttackCooldown());
-        
+
         ps.Stop();
     }
     public void ZoneOpen()
@@ -339,7 +353,7 @@ public class MagicCasterFSM : MonoBehaviour
         }
     }
     private void Summon()
-    {        
+    {
         Vector3 mePos = this.transform.forward;
         Ray r = new Ray(this.transform.position, mePos);
         RaycastHit rh;
@@ -350,7 +364,7 @@ public class MagicCasterFSM : MonoBehaviour
         else
         {
             Instantiate(Bug, (MySelf.transform.position + MySelf.transform.forward * 10), MySelf.transform.rotation);
-        }           
+        }
         Count = 20;
         StartCoroutine(SummonCooldown());
     }

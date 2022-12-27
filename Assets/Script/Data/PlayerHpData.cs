@@ -76,6 +76,10 @@ public class PlayerHpData : MonoBehaviour
                 currentHp = 0;
                 Hp = 0;
             }
+            if (currentHp > MaxHp)
+            {
+                currentHp = MaxHp;
+            }
         }       
     }
 }

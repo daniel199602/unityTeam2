@@ -15,7 +15,7 @@ MonoBehaviour:
   mobName: 
   mobType: 0
   mobMaxHp: 0
-  mobDamage_instant: -1000
-  mobDamage_delay: -200
+  mobDamage_instant: -2000
+  mobDamage_delay: -400
   mobAngle: 0
   mobRadius: 0
