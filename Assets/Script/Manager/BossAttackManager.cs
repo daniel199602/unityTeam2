@@ -34,13 +34,15 @@ public class BossAttackManager : MonoBehaviour
 
     Vector3 TargetN;//自己跟對方的向量
 
+    public GameObject HitEffect;
+    GameObject ParticleSpace;
     int Hp;
     private void Start()
     {
         Target = GameManager.Instance().PlayerStart;
         PlayerData = Target.GetComponent<PlayerHpData>();
         Hp = PlayerData.Hp;
-
+        ParticleSpace = Target.transform.GetChild(0).gameObject;
         /*抓出該怪物資料*/
         /*傷害*/
         mobDamage_instant = GetComponent<ItemOnMob>().mobDamage_instant;
@@ -75,6 +77,8 @@ public class BossAttackManager : MonoBehaviour
         {
             DeductMobHpInstant(Target, mobDamage_instant);
             DeductMobHpDelay(Target, mobDamamge_delay);
+            Vector3 Pp = new Vector3(ParticleSpace.transform.position.x, ParticleSpace.transform.position.y + 5, ParticleSpace.transform.position.z);
+            Instantiate(HitEffect, Pp, ParticleSpace.transform.rotation, ParticleSpace.transform);
         }
     }
 
@@ -89,6 +93,8 @@ public class BossAttackManager : MonoBehaviour
             DeductMobHpDelay(Target, mobDamamge_delay);
 
             TargetSize.SimpleMove(TargetN * 20000 * Time.deltaTime);
+            Vector3 Pp = new Vector3(ParticleSpace.transform.position.x, ParticleSpace.transform.position.y + 5, ParticleSpace.transform.position.z);
+            Instantiate(HitEffect, Pp, ParticleSpace.transform.rotation, ParticleSpace.transform);
         }
     }
 
@@ -101,7 +107,8 @@ public class BossAttackManager : MonoBehaviour
         {
             DeductMobHpInstant(Target, mobDamage_instant_R);
             DeductMobHpDelay(Target, mobDamamge_delay_R);
-
+            Vector3 Pp = new Vector3(ParticleSpace.transform.position.x, ParticleSpace.transform.position.y + 5, ParticleSpace.transform.position.z);
+            Instantiate(HitEffect, Pp, ParticleSpace.transform.rotation, ParticleSpace.transform);
         }
     }
 
@@ -114,6 +121,8 @@ public class BossAttackManager : MonoBehaviour
         {
             DeductMobHpInstant(Target, mobDamage_instant_U);
             DeductMobHpDelay(Target, mobDamamge_delay_U);
+            Vector3 Pp = new Vector3(ParticleSpace.transform.position.x, ParticleSpace.transform.position.y + 5, ParticleSpace.transform.position.z);
+            Instantiate(HitEffect, Pp, ParticleSpace.transform.rotation, ParticleSpace.transform);
         }
     }
 

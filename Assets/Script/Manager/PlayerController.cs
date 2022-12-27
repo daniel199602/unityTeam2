@@ -45,7 +45,7 @@ public class PlayerController : MonoBehaviour
     bool isInvincibleModeSwitch = false;
     public int currentLayerNum { private set; get; }
     //[HideInInspector] public int currentLayerNum = 0;//當前Layer預設第0層
-    
+
     //手綁物品空物件
     public GameObject torchL;//左手(專門綁火把)
     public GameObject weaponL;//左手
@@ -53,7 +53,7 @@ public class PlayerController : MonoBehaviour
 
     //玩家數值(挖洞)
     PlayerHpData State;
-    [SerializeField]int hpTemporary;
+    [SerializeField] int hpTemporary;
     int hpTemporaryMax;
     int RandomNum;
     bool isOpenBeHit = true;
@@ -147,20 +147,20 @@ public class PlayerController : MonoBehaviour
             {
                 if (hpTemporary != hpTemporaryMax)
                 {
-                    hpTemporary+=10;
+                    hpTemporary += 10;
                     Reviving = true;
                 }
-                if (hpTemporary == hpTemporaryMax&&Reviving == true)
+                if (hpTemporary == hpTemporaryMax && Reviving == true)
                 {
-                    charaterAnimator.SetBool("Revive",true);
-                    Reviving = false; 
+                    charaterAnimator.SetBool("Revive", true);
+                    Reviving = false;
                     if (Reviving == false)
                     {
                         charaterAnimator.SetBool("Revive", false);
                     }
                 }
             }
-            
+
             if (m_pCurrentState == pFSMState.MoveTree)
             {
                 isUseFire1 = true;
@@ -197,6 +197,7 @@ public class PlayerController : MonoBehaviour
                 if (hpTemporary - State.Hp < 50)
                 {
                     hpTemporary = State.Hp;
+                    return;
                 }
                 else if (hpTemporary - State.Hp >= 50)
                 {
@@ -205,18 +206,22 @@ public class PlayerController : MonoBehaviour
                         RandomNum = Random.Range(1, 2);
                         isOpenBeHit = false;
                     }
-                    hpTemporary = State.Hp;
+
                     if (RandomNum == 1)
                     {
                         charaterAnimator.SetBool("GetHit01", true);
                         charaterAnimator.speed = 1f;
+                        hpTemporary = State.Hp;
+                        return;
                     }
                     else if (RandomNum == 2)
                     {
                         charaterAnimator.SetBool("GetHit02", true);
                         charaterAnimator.speed = 1f;
+                        hpTemporary = State.Hp;
+                        return;
                     }
-                }                               
+                }
             }
             else
             {
@@ -243,21 +248,21 @@ public class PlayerController : MonoBehaviour
 
         //*******這裡可能會造成不同層Layer的矛盾，可能要分開或合併
         //Layer(0)的攻擊
-        if (currentLayerNum == 0 &&!animStateInfo.IsName("BlendMove") && animStateInfo.normalizedTime > 0.8f)
+        if (currentLayerNum == 0 && !animStateInfo.IsName("BlendMove") && animStateInfo.normalizedTime > 0.8f)
         {
             // 每次設置完參數之後,都應該在下一幀開始時將參數設置清空,避免連續切換  
             charaterAnimator.SetInteger("intAttackID", 0);
             isOpenAttackMove = false;
         }
         //Layer(1)的攻擊
-        if (currentLayerNum == 1&& !animStateInfo.IsName("BlendMoveSingleHand") && animStateInfo.normalizedTime > 0.8f)
+        if (currentLayerNum == 1 && !animStateInfo.IsName("BlendMoveSingleHand") && animStateInfo.normalizedTime > 0.8f)
         {
             // 每次設置完參數之後,都應該在下一幀開始時將參數設置清空,避免連續切換  
             charaterAnimator.SetInteger("intAttackID", 0);
             isOpenAttackMove = false;
         }
         //Layer(2)的攻擊
-        if (currentLayerNum==2 && !animStateInfo.IsName("BlendMove2Hands") && animStateInfo.normalizedTime > 0.95f)
+        if (currentLayerNum == 2 && !animStateInfo.IsName("BlendMove2Hands") && animStateInfo.normalizedTime > 0.95f)
         {
             // 每次設置完參數之後,都應該在下一幀開始時將參數設置清空,避免連續切換  
             charaterAnimator.SetInteger("intAttackID", 0);
@@ -281,7 +286,7 @@ public class PlayerController : MonoBehaviour
                 charaterAnimator.SetTrigger("isTriggerAttack2");
             }
         }
-        if(isMouseClickDownR && currentLayerNum == 2 && animStateInfo.IsName("BlendMove2Hands"))//滑鼠右鍵
+        if (isMouseClickDownR && currentLayerNum == 2 && animStateInfo.IsName("BlendMove2Hands"))//滑鼠右鍵
         {
             m_pCurrentState = pFSMState.Attack;
             if (!charaterAnimator.IsInTransition(2))
@@ -371,7 +376,7 @@ public class PlayerController : MonoBehaviour
                     StartCoroutine(ShowWeaponR());
                 }
             }
-            
+
         }
     }
 
@@ -460,16 +465,16 @@ public class PlayerController : MonoBehaviour
         {
             charaterAnimator.SetFloat("velocityV", 0.0f);
             charaterAnimator.SetFloat("velocityH", 0.0f);
-            
+
             if (isJump && isUseJump)
-            {                
+            {
                 if (JumpLocker == false)
                 {
                     m_pCurrentState = pFSMState.Roll;//進入翻滾狀態***
                     charaterAnimator.SetTrigger("isTriggerJump");
                     JumpLocker = true;
                     StartCoroutine(Jumplock());
-                }                
+                }
             }
         }
     }

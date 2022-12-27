@@ -47,8 +47,4 @@ public class HealingCrystal : MonoBehaviour
     {
         gameObject.SetActive(false);
     }
-    private void OnDisable()
-    {
-        Destroy(gameObject);
-    }
 }

@@ -81,6 +81,8 @@ public class BossFSM : MonoBehaviour
     ParticleSystem Fire;
     public GameObject HitFlame;
     ParticleSystem FlameONground;
+    public GameObject HighLight;
+    ParticleSystem HighLightONground;
     //2¶¥¬q
     GameObject Flame;
     ParticleSystem Roar;
@@ -127,6 +129,7 @@ public class BossFSM : MonoBehaviour
         Roar = Flame.GetComponent<ParticleSystem>();
         //Bladelight = BLight.GetComponent<ParticleSystem>();
         FlameONground = HitFlame.GetComponentInChildren<ParticleSystem>();
+        HighLightONground= HighLight.GetComponentInChildren<ParticleSystem>();
         Head01P = Head01.GetComponentInChildren<ParticleSystem>();
         Head02P = Head02.GetComponentInChildren<ParticleSystem>();
 
@@ -361,6 +364,7 @@ public class BossFSM : MonoBehaviour
             InATKrange = IsInRange_BattleRange(ATKRadius, MySelf, Target);
             if (InATKrange == true)
             {
+                LookBool = true;
                 InATKrangeSwitch = true;
                 ATKRadius = ATKRadius_Atk;
                 m_NowState = BossState.Attack;
@@ -419,7 +423,7 @@ public class BossFSM : MonoBehaviour
                 float dot = Vector3.Dot(direction.normalized, transform.forward);
 
                 float offsetAngle = Mathf.Acos(dot) * Mathf.Rad2Deg;
-                if (offsetAngle > (mobAngle * .7f)/3*2)
+                if (offsetAngle > (mobAngle * .7f)/3)
                 {
                     MubAnimator.speed = 1.5f;
                     Vector3 MyF = transform.forward;
@@ -444,7 +448,7 @@ public class BossFSM : MonoBehaviour
                         Debug.Log("TurnRight");
                     }
                 }
-                else if(offsetAngle <= (mobAngle * .7f) / 3 * 2)
+                else if(offsetAngle <= (mobAngle * .7f) / 3)
                 {
                     MubAnimator.SetBool("TurnL", false);
                     MubAnimator.SetBool("TurnR", false);
@@ -655,6 +659,7 @@ public class BossFSM : MonoBehaviour
     private void StartAim()
     {
         LookBool = true;
+        HighLightONground.Play();
         LookPoint();
     }
     private void StageTwoEventSwitch()
@@ -714,13 +719,14 @@ public class BossFSM : MonoBehaviour
     private void ChargeUpEvent_Attack()
     {
         Instantiate(HitFlame, MySelf.transform.position, MySelf.transform.rotation);
+        HighLightONground.Stop();
     }
     private void Animation_UltimateCoolDown()
     {
         MubAnimator.speed = 1f;
+        
         MubAnimator.SetBool("ChargeUp", false);
         MubAnimator.ResetTrigger("Ulti");
-        LookBool = true;
         Ulting = false;
         UCount = 80;
         StartCoroutine(UltimateCooldown());
@@ -785,7 +791,8 @@ public class BossFSM : MonoBehaviour
         if (TeleoortChoose01 > TeleoortChoose02)
         {
             magic_circle.Play();
-            Instantiate(Teleport02, TeleportPoint01.transform.position, Quaternion.identity);
+            Vector3 tt = new Vector3(TeleportPoint01.transform.position.x, TeleportPoint01.transform.position.y + 1, TeleportPoint01.transform.position.z);
+            Instantiate(Teleport02, tt, Quaternion.identity);
             magic_circle02.Play();
         }
         else

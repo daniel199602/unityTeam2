@@ -8,7 +8,7 @@ public class ChooseWeaponEvent_ForBorn : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        uIManager = UIManager.Instance();
+        
         //uIManager.OpenOneOfThreeAndChooseWeapon();
     }
 
@@ -16,6 +16,7 @@ public class ChooseWeaponEvent_ForBorn : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
+            uIManager = UIManager.Instance();
             uIManager.OpenOneOfThreeAndChooseWeapon();
         }
     }

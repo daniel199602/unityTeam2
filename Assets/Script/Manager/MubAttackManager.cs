@@ -164,30 +164,30 @@ public class MubAttackManager : MonoBehaviour
             Count--;
         }
     }
-    private void OnDrawGizmos()
-    {
-        //¥k¤âªZ¾¹§ðÀ»¥b®|
-        Gizmos.color = Color.red;
-        float angleR = mobAngle;
-        float radiusR = mobRadius;
-        int segments = 100;
-        float deltaAngle = angleR / segments;
-        Vector3 forward = transform.forward;
+    //private void OnDrawGizmos()
+    //{
+    //    //¥k¤âªZ¾¹§ðÀ»¥b®|
+    //    Gizmos.color = flag? Color.white: Color.black;
+    //    float angleR = mobAngle;
+    //    float radiusR = mobRadius;
+    //    int segments = 100;
+    //    float deltaAngle = angleR / segments;
+    //    Vector3 forward = transform.forward;
 
 
-        Vector3[] vertices = new Vector3[segments + 2];
-        vertices[0] = transform.position;
-        for (int i = 1; i < vertices.Length; i++)
-        {
-            Vector3 pos = Quaternion.Euler(0f, -angleR / 2 + deltaAngle * (i - 1), 0f) * forward * radiusR + transform.position;
-            vertices[i] = pos;
-        }
-        for (int i = 1; i < vertices.Length - 1; i++)
-        {
-            Gizmos.DrawLine(vertices[i], vertices[i + 1]);
-        }
-        Gizmos.DrawLine(vertices[0], vertices[vertices.Length - 1]);
-        Gizmos.DrawLine(vertices[0], vertices[1]);
+    //    Vector3[] vertices = new Vector3[segments + 2];
+    //    vertices[0] = transform.position;
+    //    for (int i = 1; i < vertices.Length; i++)
+    //    {
+    //        Vector3 pos = Quaternion.Euler(0f, -angleR / 2 + deltaAngle * (i - 1), 0f) * forward * radiusR + transform.position;
+    //        vertices[i] = pos;
+    //    }
+    //    for (int i = 1; i < vertices.Length - 1; i++)
+    //    {
+    //        Gizmos.DrawLine(vertices[i], vertices[i + 1]);
+    //    }
+    //    Gizmos.DrawLine(vertices[0], vertices[vertices.Length - 1]);
+    //    Gizmos.DrawLine(vertices[0], vertices[1]);
 
-    }
+    //}
 }

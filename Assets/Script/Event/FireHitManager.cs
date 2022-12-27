@@ -18,7 +18,6 @@ public class FireHitManager : MonoBehaviour
         mobDamamge_delay = GetComponent<ItemOnMob>().mobDamage_delay;
         Target = GameManager.Instance().PlayerStart;
         PlayerData = Target.GetComponent<PlayerHpData>();
-        transform.rotation = MySelf.transform.rotation;
         StartCoroutine(cc());
     }
     // Update is called once per frame    
