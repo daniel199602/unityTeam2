@@ -140106,7 +140106,7 @@ AnimationClip:
     intParameter: 0
     messageOptions: 0
   - time: 0.7
-    functionName: PlaySwingAxEvent_swing
+    functionName: PlaySwingMetalSwordEvent_1
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
@@ -140140,6 +140140,13 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
+  - time: 1.2333333
+    functionName: PlaySwingMetalSwordEvent_2
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
   - time: 1.4333333
     functionName: Shake_Event
     data: 
@@ -140155,7 +140162,7 @@ AnimationClip:
     intParameter: 0
     messageOptions: 0
   - time: 2.4666667
-    functionName: PlaySwingAxEvent_swing
+    functionName: PlaySwingMetalSwordEvent_2
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0

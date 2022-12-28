@@ -87,7 +87,7 @@ public class FrogTrap : MonoBehaviour
         yield return new WaitForSeconds(1);
         ParticleSystem ps = trap.GetComponent<ParticleSystem>();
         ps.Play();
-        InvokeRepeating("AttackEvent_Normal",0,1);
+        InvokeRepeating("AttackEvent_Normal",0,1.5f);
     }
 
     private void AttackEvent_Normal()

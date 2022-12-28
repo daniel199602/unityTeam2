@@ -80,7 +80,7 @@ public class SkeletonFSM : MonoBehaviour
     {
         StartCoroutine(AttackCooldown());
         m_NowState = SkeletonState.Idle;
-        FrameCount_Roar = 140;
+        FrameCount_Roar = 100;
         RoarBool = false;
         MubAnimator = GetComponent<Animator>();
         MubAnimator.speed = 1f;
@@ -93,7 +93,7 @@ public class SkeletonFSM : MonoBehaviour
     {
         m_NowState = SkeletonState.Idle;
         RoarBool = false;
-        FrameCount_Roar = 140;
+        FrameCount_Roar = 100;
     }
     // Update is called once per frame
     void Update()

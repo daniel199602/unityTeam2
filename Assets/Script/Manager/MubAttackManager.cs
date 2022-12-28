@@ -62,7 +62,6 @@ public class MubAttackManager : MonoBehaviour
             DeductMobHpInstant(Target, mobDamage_instant);
             DeductMobHpDelay(Target, mobDamamge_delay);
 
-            TargetSize.SimpleMove(TargetN * 20000 * Time.deltaTime);
             Debug.LogWarning("Hit");
         }
 
@@ -111,7 +110,6 @@ public class MubAttackManager : MonoBehaviour
             Instantiate(ps, Pp, Target.transform.rotation, ParticleSpace.transform);
             ps.Play();
             recoilShake.camraBearSake();
-            TargetSize.SimpleMove(TargetN * 20000 * Time.deltaTime);
             Debug.LogWarning("Hit");
         }
 

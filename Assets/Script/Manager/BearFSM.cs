@@ -353,6 +353,7 @@ public class BearFSM : MonoBehaviour
                 if (GetTargetMegnitude <= ATKRadius)
                 {
                     MoveSpeed = Speed * 0f;
+                    MubAnimator.SetBool("Trace", false);
                 }
                 else
                 {
@@ -376,9 +377,10 @@ public class BearFSM : MonoBehaviour
         capsule.Move(GetTargetNormalize * MoveSpeed * Time.deltaTime);
         LookTarget();
 
-        if (GetTargetMegnitude <= Close_ATKRadius)
+        if (GetTargetMegnitude <= ATKRadius)
         {
             MoveSpeed = Speed * 0f;
+            MubAnimator.SetBool("Trace", false);
         }
         else
         {
@@ -396,7 +398,10 @@ public class BearFSM : MonoBehaviour
     }
     private void Animation_Attack()
     {
-        MubAnimator.speed = 2f;
+        MubAnimator.speed = 3f;
+        MubAnimator.SetBool("Attack01", false);
+        MubAnimator.SetBool("Attack02", false);
+        MubAnimator.SetBool("Attack03", false);
     }
 
     private void AnimationSpeed_AttackEnd01()

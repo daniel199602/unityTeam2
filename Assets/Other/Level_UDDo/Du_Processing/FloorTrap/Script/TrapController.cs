@@ -28,8 +28,7 @@ public class TrapController : MonoBehaviour
         if (Player.tag=="Player")
         {            
             //Debug.Log("Enter");
-            TrapRelease();
-            audioSource.PlayOneShot(prick,0.5f);
+            TrapRelease();            
         }
     }
     private void OnTriggerStay(Collider Player)
@@ -48,6 +47,10 @@ public class TrapController : MonoBehaviour
             CancelInvoke("TrapRelease");
             TrapRevoke();
         }
+    }
+    private void playTrapSound()
+    {
+        audioSource.PlayOneShot(prick, 0.5f);
     }
     // Update is called once per frame
 }

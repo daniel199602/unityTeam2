@@ -73,10 +73,10 @@ public class CharacterAttackManager : MonoBehaviour
     /// </summary>
     private void AttackEvent_rightDuo()
     {
-        int weaponDamage_instant = WeaponManager.Instance().CurrentWeaponR_weaponR.GetComponent<ItemOnWeapon>().weaponDamage_instant+10;
+        int weaponDamage_instant = WeaponManager.Instance().CurrentWeaponR_weaponR.GetComponent<ItemOnWeapon>().weaponDamage_instant+20;
         int weaponDamamge_delay = WeaponManager.Instance().CurrentWeaponR_weaponR.GetComponent<ItemOnWeapon>().weaponDamage_delay;
         float angle = WeaponManager.Instance().CurrentWeaponR_weaponR.GetComponent<ItemOnWeapon>().weaponAngle;
-        float radius = WeaponManager.Instance().CurrentWeaponR_weaponR.GetComponent<ItemOnWeapon>().weaponRadius;
+        float radius = WeaponManager.Instance().CurrentWeaponR_weaponR.GetComponent<ItemOnWeapon>().weaponRadius+10;
         float angle360 = (angle / angle) + 210;
         foreach (GameObject mob in GameManager.Instance().mobPool)
         {
@@ -164,7 +164,7 @@ public class CharacterAttackManager : MonoBehaviour
                 ParticleSystem ps = hitVFX.GetComponent<ParticleSystem>();
                 Instantiate(ps, mob.transform.position+up, mob.transform.rotation);
                 ps.Play();
-                audioSource.PlayOneShot(Hit, 1f);
+                audioSource.PlayOneShot(Hit, .5f);
                 Debug.LogWarning("Hit : " + mob.GetComponent<ItemOnMob>().mobName + "Hp : " + mob.GetComponent<MubHpData>().Hp);
             }
         }
@@ -190,7 +190,7 @@ public class CharacterAttackManager : MonoBehaviour
                 ParticleSystem ps = hitVFX.GetComponent<ParticleSystem>();
                 Instantiate(ps, mob.transform.position+up, mob.transform.rotation);
                 ps.Play();
-                audioSource.PlayOneShot(Hit, 1f);
+                audioSource.PlayOneShot(Hit, .8f);
                 //recoilShake.camraPlayerSake();
                 Debug.LogWarning("Hit : " + mob.GetComponent<ItemOnMob>().mobName + "Hp : " + mob.GetComponent<MubHpData>().Hp);
             }
@@ -300,7 +300,7 @@ public class CharacterAttackManager : MonoBehaviour
     {
         if (mob.GetComponent<ItemOnMob>().mobType == 1 || mob.GetComponent<ItemOnMob>().mobType == 0)
         {
-            mob.GetComponent<CharacterController>().Move((player.transform.position- mob.transform.forward).normalized*500 * Time.deltaTime);
+            mob.GetComponent<CharacterController>().Move(-(player.transform.position- mob.transform.position)*25 * Time.deltaTime);
         }
         if (mob.GetComponent<ItemOnMob>().mobType == 2)
         {

@@ -29,7 +29,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 100006, guid: f31a5d90425a25d41ba533ed233b25ff, type: 3}
       propertyPath: m_Name
-      value: Cube.048 (3)
+      value: Cube.048 (3) Variant
       objectReference: {fileID: 0}
     - target: {fileID: 100006, guid: f31a5d90425a25d41ba533ed233b25ff, type: 3}
       propertyPath: m_IsActive
@@ -101,7 +101,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2300000, guid: f31a5d90425a25d41ba533ed233b25ff, type: 3}
       propertyPath: m_CastShadows
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2300000, guid: f31a5d90425a25d41ba533ed233b25ff, type: 3}
       propertyPath: m_LightmapIndex

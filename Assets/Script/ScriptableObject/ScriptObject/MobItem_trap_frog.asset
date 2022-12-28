@@ -15,7 +15,7 @@ MonoBehaviour:
   mobName: trap_frog
   mobType: 10
   mobMaxHp: 0
-  mobDamage_instant: 50
+  mobDamage_instant: 70
   mobDamage_delay: 10
   mobAngle: 30
   mobRadius: 140

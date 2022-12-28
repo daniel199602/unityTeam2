@@ -371,7 +371,6 @@ public class BossFSM : MonoBehaviour
                 MubAnimator.SetBool("Back", false);
                 MubAnimator.SetBool("R_Attack", false);
                 Attack();
-                Debug.Log("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
             }
             else
             {
@@ -464,19 +463,19 @@ public class BossFSM : MonoBehaviour
                         if (RandomChoose == 1)
                         {
                             MubAnimator.SetBool("TAttack01", true);
-                            Count = 3;
+                            Count = 2;
                             StartCoroutine(AttackCooldown());
                         }
                         else if (RandomChoose == 2)
                         {
                             MubAnimator.SetBool("TAttack02", true);
-                            Count = 3;
+                            Count = 2;
                             StartCoroutine(AttackCooldown());
                         }
                         else if (RandomChoose == 3)
                         {
                             MubAnimator.SetBool("TAttack03", true);
-                            Count = 3;
+                            Count = 2;
                             StartCoroutine(AttackCooldown());
                         }
                     }
@@ -731,10 +730,14 @@ public class BossFSM : MonoBehaviour
         
         MubAnimator.SetBool("ChargeUp", false);
         MubAnimator.ResetTrigger("Ulti");               
-        Fire.Stop();
-        Ulting = false;
+        Fire.Stop();        
         UCount = 80;
+        Ulting = false;
         StartCoroutine(UltimateCooldown());
+    }
+    private void Ulti_False()
+    {
+       
     }
     private void UltiPatricle_End()
     {
