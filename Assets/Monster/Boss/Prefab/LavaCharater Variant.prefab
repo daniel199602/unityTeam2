@@ -463,7 +463,8 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0.11
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 51637929205705995, guid: 693eee48e53fa1542812fc3b0f773541, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 693eee48e53fa1542812fc3b0f773541, type: 3}
 --- !u!1 &81620202878197503 stripped
 GameObject:
@@ -566,6 +567,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &4872777605045287447
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 81620202878197503}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f09e4da2064da0344bdde3680a0c81cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fadeColor_ForBoss: {fileID: 0}
 --- !u!1 &684225953818290280 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2536147202394366195, guid: 693eee48e53fa1542812fc3b0f773541, type: 3}

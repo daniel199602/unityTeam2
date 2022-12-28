@@ -2149,7 +2149,15 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.y
       value: -178.176
       objectReference: {fileID: 0}
-    - target: {fileID: 3097240679552525712, guid: 052b0736fab5eee4eaa4ea766d127ef3, type: 3}
+    - target: {fileID: 1569996161574858431, guid: 052b0736fab5eee4eaa4ea766d127ef3, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1930744122940406245, guid: 052b0736fab5eee4eaa4ea766d127ef3, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
       propertyPath: FogOfWarPlane
       value: 
       objectReference: {fileID: 855328266}
@@ -2217,6 +2225,14 @@ PrefabInstance:
       propertyPath: HealthbarLate
       value: 
       objectReference: {fileID: 1225803053}
+    - target: {fileID: 4872777605045287447, guid: 052b0736fab5eee4eaa4ea766d127ef3, type: 3}
+      propertyPath: fadeColor_ForBoss
+      value: 
+      objectReference: {fileID: 855328265}
+    - target: {fileID: 7681085589540152407, guid: 052b0736fab5eee4eaa4ea766d127ef3, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8510088616971104976, guid: 052b0736fab5eee4eaa4ea766d127ef3, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: -24.900024

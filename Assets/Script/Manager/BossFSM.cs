@@ -86,9 +86,6 @@ public class BossFSM : MonoBehaviour
     //2¶¥¬q
     GameObject Flame;
     ParticleSystem Roar;
-    //¤M¥ú
-    //public GameObject BLight;
-    //ParticleSystem Bladelight;
     //ÀY
     public GameObject Head01;
     ParticleSystem Head01P;
@@ -151,6 +148,8 @@ public class BossFSM : MonoBehaviour
         RangedRadius_norm = ATKRadius * 3f;
         TraceRadius = ATKRadius * 4f;
         mobAngle = ThisItemOnMob_State.mobAngle;
+
+        HighLight.SetActive(false);
 
         GetHit = false;
         inRrangeBool = false;
@@ -401,7 +400,6 @@ public class BossFSM : MonoBehaviour
                 {
                     LookBool = true;
                     LookPoint();
-                    Debug.Log("tttttttttttttttttttttttttttttrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr");
                     MubAnimator.SetBool("Trace", true);
                     MubAnimator.SetBool("R_Attack", false);
                     MubAnimator.SetBool("TurnL", false);
@@ -659,8 +657,6 @@ public class BossFSM : MonoBehaviour
     private void StartAim()
     {
         LookBool = true;
-        
-        LookPoint();
     }
     private void StageTwoEventSwitch()
     {
@@ -711,6 +707,7 @@ public class BossFSM : MonoBehaviour
     private void ChargeUpEvent_GetPower()
     {
         Fire.Play();
+        HighLight.SetActive(true);
         HighLightONground.Play();
         MubAnimator.speed = 0.2f;
     }
@@ -724,13 +721,17 @@ public class BossFSM : MonoBehaviour
     {
         Instantiate(HitFlame, MySelf.transform.position, MySelf.transform.rotation);
         HighLightONground.Stop();
+        HighLight.SetActive(false);
+        Fire.Stop();
+        
     }
     private void Animation_UltimateCoolDown()
     {
         MubAnimator.speed = 1f;
         
         MubAnimator.SetBool("ChargeUp", false);
-        MubAnimator.ResetTrigger("Ulti");
+        MubAnimator.ResetTrigger("Ulti");               
+        Fire.Stop();
         Ulting = false;
         UCount = 80;
         StartCoroutine(UltimateCooldown());
