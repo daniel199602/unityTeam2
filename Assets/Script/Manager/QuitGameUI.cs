@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 
 public class QuitGameUI : MonoBehaviour
 {
+    public GameObject fog;
 
     private void Start()
     {
@@ -18,6 +19,7 @@ public class QuitGameUI : MonoBehaviour
     /// </summary>
     public void ClickQuitGameBtnYes()
     {
+        fog.GetComponent<MeshRenderer>().materials[0].SetFloat("_FogRadius", 80);
         SceneManager.LoadScene("GameMenu");
         UIManager.Instance().GameMenuPanelOpen();
         UIManager.Instance().QuitGameUIClose();

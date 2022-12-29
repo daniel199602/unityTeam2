@@ -446,6 +446,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: QuitGamePanel
       objectReference: {fileID: 0}
+    - target: {fileID: 1529755745058131716, guid: faacc6eec94f2734a8b7bc612285e928, type: 3}
+      propertyPath: fog
+      value: 
+      objectReference: {fileID: 175362198}
     - target: {fileID: 1529755745527624194, guid: faacc6eec94f2734a8b7bc612285e928, type: 3}
       propertyPath: m_Name
       value: UIManager

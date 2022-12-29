@@ -10,6 +10,8 @@ public class EndGame : MonoBehaviour
     public GameObject EndVFX;
     public AudioClip portal;
     public GameObject fadeColor_ForEnd;
+    GameObject fog;
+
 
     ParticleSystem ps;
     AudioSource audioSource;
@@ -17,6 +19,7 @@ public class EndGame : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        fog = GameObject.Find("FogOfWarPlane");
         isInZone = false;
         EndVFXing = false;
         ps = EndVFX.GetComponent<ParticleSystem>();
@@ -44,6 +47,7 @@ public class EndGame : MonoBehaviour
 
     void EndToGameMenu()
     {
+        fog.GetComponent<MeshRenderer>().materials[0].SetFloat("_FogRadius", 80);
         SceneManager.LoadScene("GameMenu");
         UIManager.Instance().GameMenuPanelOpen();
         UIManager.Instance().QuitGameUIClose();
