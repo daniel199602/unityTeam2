@@ -48,7 +48,7 @@ public class PlayerHpData : MonoBehaviour
     /// <param name="Num">扣血量(請填入>=0整數)</param>
     public void HpDeduction(int Num)
     {
-        if (playerController.GetLayerNumNow() == 1)
+        if (playerController.GetLayerNumNow() == 1)//單手劍模式
         {
             Hp -= (int)(Num*0.9f);
         }
@@ -58,6 +58,13 @@ public class PlayerHpData : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 人物填滿血量(進入遊戲時使用)
+    /// </summary>
+    public void HpAddToMax()
+    {
+        Hp = thisItemOnMob.mobMaxHp;
+    }
 
     /// <summary>
     /// 檢查血量，並影響血量條

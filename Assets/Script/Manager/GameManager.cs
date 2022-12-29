@@ -67,6 +67,7 @@ public class GameManager : MonoBehaviour
             audioSource.clip = audios[1];
             audioSource.Play();
             Debug.Log(PlayerStart.transform.position);
+            PlayerStart.GetComponent<PlayerHpData>().HpAddToMax();//¦å¶q¶ñº¡
             PlayerStart.SetActive(true);
             fadeIn.Play("FadeIn");
         }
