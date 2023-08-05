@@ -33,7 +33,7 @@ public class MubAttackManager : MonoBehaviour
 
     private void Start()
     {
-        Target = GameManager.Instance().PlayerStart;
+        Target = GameManager.Instance().PlayerCharacter;
         recoilShake = GetComponent<RecoilShake>();
 
         /*1211抓出該怪物資料*/

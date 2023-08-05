@@ -508,7 +508,7 @@ PrefabInstance:
       objectReference: {fileID: 8300000, guid: e899e4e1ab546cb45b0aa6861492b6e6, type: 3}
     - target: {fileID: 7292658344771522932, guid: f5b41ba4c79702547a89de7544b80656, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 7292658344771522932, guid: f5b41ba4c79702547a89de7544b80656, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1816,9 +1816,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: DemonGirlMesh_C Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 5760155195853954090, guid: b115e60b742ffac43af5a949b71b4bc5, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5762522301104137826, guid: b115e60b742ffac43af5a949b71b4bc5, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5762522301104137826, guid: b115e60b742ffac43af5a949b71b4bc5, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1974,6 +1978,10 @@ PrefabInstance:
     - target: {fileID: 81620202878197503, guid: 052b0736fab5eee4eaa4ea766d127ef3, type: 3}
       propertyPath: m_Name
       value: LavaCharater Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 81620202878197503, guid: 052b0736fab5eee4eaa4ea766d127ef3, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 750457955320366149, guid: 052b0736fab5eee4eaa4ea766d127ef3, type: 3}
       propertyPath: m_RootOrder
@@ -2551,7 +2559,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 104523b927e17b342a6ebfad1c809580, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fadeColor: {fileID: 0}
+  fadeColor: {fileID: 1264516154}
   weaponOneOfThreePanel: {fileID: 865065212}
   weaponFramePanel: {fileID: 1678693403}
   quitGamePanel: {fileID: 0}
@@ -2605,7 +2613,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1505789358
 PrefabInstance:
@@ -2941,10 +2949,6 @@ MonoBehaviour:
   torchPoolL: []
   weaponPoolL: []
   weaponPoolR: []
-  test_type1_id: 10
-  test_type23: 2
-  test_type2_id: 20
-  test_type3_id: 30
 --- !u!4 &1611268680
 Transform:
   m_ObjectHideFlags: 0
@@ -3230,11 +3234,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2153022781153084927, guid: dbd17ff80e477aa4ab50d5859533e9a9, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4462403224705691565, guid: dbd17ff80e477aa4ab50d5859533e9a9, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4462403224705691565, guid: dbd17ff80e477aa4ab50d5859533e9a9, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3748,7 +3752,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1653007880946665845, guid: cb127769b2452d442b75f42bb454d456, type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 1653007880946665845, guid: cb127769b2452d442b75f42bb454d456, type: 3}
       propertyPath: m_LocalPosition.x

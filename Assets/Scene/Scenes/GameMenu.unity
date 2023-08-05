@@ -1391,6 +1391,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1f03e65ac5a2f7042be919e25fafc24d, type: 3}
+--- !u!1 &1348401456 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 274948114648757798, guid: 843a687dd2b95bb4cb66922c432cf3f4, type: 3}
+  m_PrefabInstance: {fileID: 2089231958}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1411667029
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1454,6 +1459,18 @@ PrefabInstance:
       propertyPath: weaponR
       value: 
       objectReference: {fileID: 1599314718}
+    - target: {fileID: 8938021073850991366, guid: b9b8e96b73a07ae4396dce1d88c9d38b, type: 3}
+      propertyPath: torchPoolL.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8938021073850991366, guid: b9b8e96b73a07ae4396dce1d88c9d38b, type: 3}
+      propertyPath: weaponPoolR.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8938021073850991366, guid: b9b8e96b73a07ae4396dce1d88c9d38b, type: 3}
+      propertyPath: weaponPoolR.Array.data[0]
+      value: 
+      objectReference: {fileID: 1348401456}
     - target: {fileID: 8938021073850991367, guid: b9b8e96b73a07ae4396dce1d88c9d38b, type: 3}
       propertyPath: m_Name
       value: WeaponManager
@@ -1575,7 +1592,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc2e16b85be51254e8c4aac11b05eee3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerStart: {fileID: 2089231961}
+  PlayerCharacter: {fileID: 2089231961}
   mobPool: []
   fade: {fileID: 617807853}
   MainCamera_Audio: {fileID: 971858858}
@@ -1585,6 +1602,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: a585093ef9bee554fb6ad8cf5bbf4b21, type: 3}
   - {fileID: 8300000, guid: c99154c003906614cac280e79fe674f7, type: 3}
   audioSource: {fileID: 0}
+  canvasRoot: {fileID: 156089911}
 --- !u!4 &2082297687
 Transform:
   m_ObjectHideFlags: 0

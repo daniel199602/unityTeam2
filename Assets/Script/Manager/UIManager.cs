@@ -1,9 +1,7 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
-using UnityEngine.EventSystems;
-using TMPro;
 
 public class UIManager : MonoBehaviour
 {
@@ -31,7 +29,6 @@ public class UIManager : MonoBehaviour
         }
         mInstance = this;
         DontDestroyOnLoad(gameObject);
-
 
         dicIDWeaponImage = new Dictionary<int, Sprite>();
     }

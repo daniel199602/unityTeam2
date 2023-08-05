@@ -5,34 +5,29 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    private static GameManager mInstance;
+    static GameManager mInstance;
     public static GameManager Instance() { return mInstance; }
-    public GameObject PlayerStart;
-    public List<GameObject> mobPool;
-    public GameObject fade;
-    public GameObject MainCamera_Audio;
+    public GameObject PlayerCharacter = null;
+    public List<GameObject> mobPool = new List<GameObject>();
+    public GameObject fade = null;
+    public GameObject MainCamera_Audio = null;
     public AudioClip[] audios;
-
     Animation fadeIn;
     [HideInInspector] public AudioSource audioSource;
-    
-
     private float duration;
+
+    [SerializeField] RectTransform canvasRoot = null;
 
     private void Awake()
     {
         if (mInstance != null)
         {
-            //Debug.LogErrorFormat(gameObject, "Multiple instances of {0} is not allow", GetType().Name);
             Debug.LogWarning("有兩個相同的singleton物件,GameManager");
             DestroyImmediate(gameObject);
             return;
         }
         mInstance = this;
         DontDestroyOnLoad(this.gameObject);
-        
-        mobPool = new List<GameObject>();
-        //PlayerStart = GameObject.FindWithTag("Player");
     }
 
     private void Start()
@@ -45,30 +40,28 @@ public class GameManager : MonoBehaviour
         PlayerSetActiveSwitch(false);//先將玩家關閉
     }
 
-
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-
         if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Boss"))
         {
-            PlayerStart.SetActive(false);
-            Debug.Log(PlayerStart.transform.position);
+            PlayerCharacter.SetActive(false);
+            Debug.Log(PlayerCharacter.transform.position);
             audioSource.clip = audios[2];
             audioSource.Play();
-            PlayerStart.transform.position = new Vector3(-195, 6, -330);
-            Debug.Log(PlayerStart.transform.position);
-            PlayerStart.SetActive(true);
+            PlayerCharacter.transform.position = new Vector3(-195, 6, -330);
+            Debug.Log(PlayerCharacter.transform.position);
+            PlayerCharacter.SetActive(true);
             fadeIn.Play("FadeIn");
         }
         if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("room"))
         {
-            Debug.Log(PlayerStart.transform.position);
-            PlayerStart.transform.position = new Vector3(-10, 6, -186.7f);
+            Debug.Log(PlayerCharacter.transform.position);
+            PlayerCharacter.transform.position = new Vector3(-10, 6, -186.7f);
             audioSource.clip = audios[1];
             audioSource.Play();
-            Debug.Log(PlayerStart.transform.position);
-            PlayerStart.GetComponent<PlayerHpData>().HpAddToMax();//血量填滿
-            PlayerStart.SetActive(true);
+            Debug.Log(PlayerCharacter.transform.position);
+            PlayerCharacter.GetComponent<PlayerHpData>().HpAddToMax();//血量填滿
+            PlayerCharacter.SetActive(true);
             fadeIn.Play("FadeIn");
         }
     }
@@ -80,10 +73,10 @@ public class GameManager : MonoBehaviour
             MobPoolClear();
             UIManager.Instance().weaponFramePanel.GetComponent<WeaponFrameUI>().SetEmptyWeaponImage();//清空武器格圖示
             WeaponManager.Instance().SetAllCurrentWeaponsEmpty();//清除玩家當前裝備的所有武器
-            PlayerStart.SetActive(false);
+            PlayerCharacter.SetActive(false);
             SceneManager.LoadSceneAsync("room");
-            PlayerStart.transform.position = new Vector3(0,2,-160);
-            PlayerStart.SetActive(true);
+            PlayerCharacter.transform.position = new Vector3(0,2,-160);
+            PlayerCharacter.SetActive(true);
         }
     }
 
@@ -110,7 +103,7 @@ public class GameManager : MonoBehaviour
     /// <param name="boolen">開關</param>
     public void PlayerSetActiveSwitch(bool boolen)
     {
-        PlayerStart.SetActive(boolen);
+        PlayerCharacter.SetActive(boolen);
     }
 
 }

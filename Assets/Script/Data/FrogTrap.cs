@@ -32,7 +32,7 @@ public class FrogTrap : MonoBehaviour
         mobDamamge_delay = GetComponent<ItemOnMob>().mobDamage_delay;
         radius = GetComponent<ItemOnMob>().mobRadius;
         angle = GetComponent<ItemOnMob>().mobAngle;
-        Target = GameManager.Instance().PlayerStart;
+        Target = GameManager.Instance().PlayerCharacter;
         PlayerData = Target.GetComponent<PlayerHpData>();
     }
 

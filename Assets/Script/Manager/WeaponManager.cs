@@ -8,15 +8,15 @@ public class WeaponManager : MonoBehaviour
     private static WeaponManager mInstance;
     public static WeaponManager Instance() { return mInstance; }
 
-    private GameObject player;//存玩家
+    PlayerController player;
 
-    public GameObject torchL;//綁火把的左手
-    public GameObject weaponL;//左手
-    public GameObject weaponR;//右手
+    GameObject torchL = null;//綁火把的左手
+    GameObject weaponL = null;//左手
+    GameObject weaponR = null;//右手
 
-    public List<GameObject> torchPoolL;//火把池
-    public List<GameObject> weaponPoolL;//左手武器池
-    public List<GameObject> weaponPoolR;//右手武器池
+    [SerializeField] List<GameObject> torchPoolL = new List<GameObject>();//火把池
+    [SerializeField] List<GameObject> weaponPoolL = new List<GameObject>();//左手武器池
+    [SerializeField] List<GameObject> weaponPoolR = new List<GameObject>();//右手武器池
 
     /*非常非常重要的設定!!_會影響PlayerController的動畫Layer的切換*/
     //左單火把_type 0, id 範圍 0~9 整數
@@ -51,13 +51,17 @@ public class WeaponManager : MonoBehaviour
         }
         mInstance = this;
         DontDestroyOnLoad(this.gameObject);
-
-        AddAllWeaponsInTheirWeaponPool();//將所有武器，分別加入他們各自的武器池
     }
 
     void Start()
     {
-        player = GameManager.Instance().PlayerStart;//抓到玩家
+        player = GameManager.Instance().PlayerCharacter.GetComponent<PlayerController>();//抓到玩家
+
+        torchL = player.torchL;//綁火把的左手物件
+        weaponL = player.weaponL;//左手武器物件
+        weaponR = player.weaponR;//右手武器物件
+
+        AddAllWeaponsInTheirWeaponPool();//將所有武器，分別加入他們各自的武器池
 
         //玩家初始武器設定
         ChooseAndUseWeaponTest(0, 0);//初始火把
@@ -66,11 +70,6 @@ public class WeaponManager : MonoBehaviour
         //ChooseAndUseWeaponTest(1, 10);//初始盾牌
         //ChooseAndUseWeaponTest(2, 20);//初始右手單手劍
         //ChooseAndUseWeaponTest(3, 31);//初始右手雙手劍
-    }
-
-    private void Update()
-    {
-
     }
 
     /// <summary>
@@ -104,9 +103,6 @@ public class WeaponManager : MonoBehaviour
         }
     }
 
-
-
-
     /// <summary>
     /// 選擇並使用該武器(舊版，專門測試用)
     /// BossTeleport外掛按鍵引用中
@@ -129,13 +125,13 @@ public class WeaponManager : MonoBehaviour
         else if (type == 2)
         {
             this.CurrentWeaponR_weaponR = GetWeapon(type, id);//當前右單手武器
-            player.GetComponent<PlayerController>().AutoSwitchWeaponR(this.CurrentWeaponR_weaponR);
+            player.AutoSwitchWeaponR(this.CurrentWeaponR_weaponR);
             return CurrentWeaponR_weaponR;
         }
         else if (type == 3)
         {
             this.CurrentWeaponR_weaponR = GetWeapon(type, id);//當前右雙手武器
-            player.GetComponent<PlayerController>().AutoSwitchWeaponR(this.CurrentWeaponR_weaponR);
+            player.AutoSwitchWeaponR(this.CurrentWeaponR_weaponR);
             return CurrentWeaponR_weaponR;
         }
         Debug.Log("沒有設定到武器");
@@ -408,13 +404,13 @@ public class WeaponManager : MonoBehaviour
         {
             this.CurrentWeaponR_weaponR = GetWeapon(type, id);//當前右單手武器
             UIManager.Instance().weaponFramePanel.GetComponent<WeaponFrameUI>().SetCurrentWeaponImage(aWeapon);//設置當前武器進武器格
-            player.GetComponent<PlayerController>().AutoSwitchWeaponR(this.CurrentWeaponR_weaponR);
+            player.AutoSwitchWeaponR(this.CurrentWeaponR_weaponR);
         }
         if (type == 3)
         {
             this.CurrentWeaponR_weaponR = GetWeapon(type, id);//當前右雙手武器
             UIManager.Instance().weaponFramePanel.GetComponent<WeaponFrameUI>().SetCurrentWeaponImage(aWeapon);//設置當前武器進武器格
-            player.GetComponent<PlayerController>().AutoSwitchWeaponR(this.CurrentWeaponR_weaponR);
+            player.AutoSwitchWeaponR(this.CurrentWeaponR_weaponR);
         }
     }
     /*---------------------------------*/

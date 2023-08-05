@@ -39,7 +39,7 @@ public class BossAttackManager : MonoBehaviour
     int Hp;
     private void Start()
     {
-        Target = GameManager.Instance().PlayerStart;
+        Target = GameManager.Instance().PlayerCharacter;
         PlayerData = Target.GetComponent<PlayerHpData>();
         Hp = PlayerData.Hp;
         ParticleSpace = Target.transform.GetChild(0).gameObject;

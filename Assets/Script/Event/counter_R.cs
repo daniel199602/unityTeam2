@@ -16,7 +16,7 @@ public class counter_R : MonoBehaviour
         TimeLine = 3;
         mobDamage_instant = GetComponent<ItemOnMob>().mobDamage_instant;
         mobDamamge_delay = GetComponent<ItemOnMob>().mobDamage_delay;
-        Target = GameManager.Instance().PlayerStart;
+        Target = GameManager.Instance().PlayerCharacter;
         PlayerData = Target.GetComponent<PlayerHpData>();
         StartCoroutine(cc());
     }

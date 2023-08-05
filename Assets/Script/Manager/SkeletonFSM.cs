@@ -52,7 +52,7 @@ public class SkeletonFSM : MonoBehaviour
     }
     void Start()
     {
-        Target = GameManager.Instance().PlayerStart;//抓出玩家
+        Target = GameManager.Instance().PlayerCharacter;//抓出玩家
         MySelf = this.transform.gameObject;//抓出自己
 
         m_NowState = SkeletonState.Idle;

@@ -53,7 +53,7 @@ public class BearFSM : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Target = GameManager.Instance().PlayerStart;//抓出玩家
+        Target = GameManager.Instance().PlayerCharacter;//抓出玩家
 
         MySelf = this.transform.gameObject;//抓出自己
 

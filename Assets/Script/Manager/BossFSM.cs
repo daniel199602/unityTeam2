@@ -105,7 +105,7 @@ public class BossFSM : MonoBehaviour
     void Start()
     {
         StartBattle = false;
-        Target = GameManager.Instance().PlayerStart;//抓出玩家
+        Target = GameManager.Instance().PlayerCharacter;//抓出玩家
         MySelf = this.transform.gameObject;//抓出自己
         TargetHp = Target.GetComponent<PlayerHpData>().Hp;
         capsule = GetComponent<CharacterController>();

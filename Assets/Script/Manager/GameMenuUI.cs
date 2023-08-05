@@ -27,7 +27,7 @@ public class GameMenuUI : MonoBehaviour
 
         WeaponManager.Instance().SetDefaultWeaponFirst(); //開始時設置預設武器(遊戲展示用)
 
-        GameManager.Instance().PlayerStart.SetActive(false);
+        GameManager.Instance().PlayerCharacter.SetActive(false);
         SceneManager.LoadSceneAsync("room");
         //SceneManager.LoadScene("room");
         transform.gameObject.SetActive(false);

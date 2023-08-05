@@ -72,7 +72,7 @@ public class SpiderFSM : MonoBehaviour
     }
     private void Start()
     {
-        Target = GameManager.Instance().PlayerStart;//抓出玩家
+        Target = GameManager.Instance().PlayerCharacter;//抓出玩家
         MySelf = this.transform.gameObject;//抓出自己
 
         recoilShake = GetComponent<RecoilShake>();
