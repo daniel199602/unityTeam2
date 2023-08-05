@@ -1,22 +1,22 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
-public class WeaponManager : MonoBehaviour
+/// <summary>
+/// 武器管理員
+/// </summary>
+public class WeaponManager : Singleton<WeaponManager>
 {
-    private static WeaponManager mInstance;
-    public static WeaponManager Instance() { return mInstance; }
-
-    PlayerController player;
-
+    PlayerController playerController;
     GameObject torchL = null;//綁火把的左手
     GameObject weaponL = null;//左手
     GameObject weaponR = null;//右手
 
-    [SerializeField] List<GameObject> torchPoolL = new List<GameObject>();//火把池
-    [SerializeField] List<GameObject> weaponPoolL = new List<GameObject>();//左手武器池
-    [SerializeField] List<GameObject> weaponPoolR = new List<GameObject>();//右手武器池
+    List<ItemOnWeapon> torchPoolL = new List<ItemOnWeapon>();//火把池
+    List<ItemOnWeapon> weaponPoolL = new List<ItemOnWeapon>();//左手武器池
+    List<ItemOnWeapon> weaponPoolR = new List<ItemOnWeapon>();//右手武器池
 
     /*非常非常重要的設定!!_會影響PlayerController的動畫Layer的切換*/
     //左單火把_type 0, id 範圍 0~9 整數
@@ -24,49 +24,50 @@ public class WeaponManager : MonoBehaviour
     //右單手劍_type 2, id 範圍 20~29 整數
     //右雙手劍_type 3, id 範圍 30~39 整數
     /**/
+    public enum WeaponType
+    {
+        LeftTorch = 0,
+        LeftShield = 1,
+        RightSword = 2,
+        BothHandsSword = 3,
+    }
+
+
+    //武器切換後UI應該要被通知並切換圖示
+
 
     /// <summary>
     /// 當前使用中的火把
     /// </summary>
-    public GameObject CurrentTorchL_torch { private set; get; }
+    public ItemOnWeapon CurrentTorchL_torch { private set; get; }
     /// <summary>
     /// 當前使用中的左手武器
     /// </summary>
-    public GameObject CurrentWeaponL_weaponL { private set; get; }
+    public ItemOnWeapon CurrentWeaponL_weaponL { private set; get; }
     /// <summary>
     /// 當前使用中的右手武器
     /// PlayerController判斷玩家當前Animator Layer的依據，右手武器type==2 or type==3
     /// </summary>
-    public GameObject CurrentWeaponR_weaponR { private set; get; }
+    public ItemOnWeapon CurrentWeaponR_weaponR { private set; get; }
 
-
-    private void Awake()
+    /// <summary>
+    /// 初始化
+    /// 統一讓GameManager初始化
+    /// </summary>
+    /// <param name="player">玩家</param>
+    public void Initialize(GameObject player)
     {
-        if (mInstance != null)
-        {
-            //Debug.LogErrorFormat(gameObject, "Multiple instances of {0} is not allow", GetType().Name);
-            Debug.LogWarning("有兩個相同的singleton物件,WeaponManager");
-            DestroyImmediate(gameObject);
-            return;
-        }
-        mInstance = this;
-        DontDestroyOnLoad(this.gameObject);
-    }
+        this.playerController = player.GetComponent<PlayerController>();
+        torchL = playerController.torchL;//綁火把的左手物件
+        weaponL = playerController.weaponL;//左手武器物件
+        weaponR = playerController.weaponR;//右手武器物件
 
-    void Start()
-    {
-        player = GameManager.Instance().PlayerCharacter.GetComponent<PlayerController>();//抓到玩家
-
-        torchL = player.torchL;//綁火把的左手物件
-        weaponL = player.weaponL;//左手武器物件
-        weaponR = player.weaponR;//右手武器物件
-
-        AddAllWeaponsInTheirWeaponPool();//將所有武器，分別加入他們各自的武器池
+        AddAllWeaponsInTheirWeaponPool();
 
         //玩家初始武器設定
-        ChooseAndUseWeaponTest(0, 0);//初始火把
+        EquipWeapon(WeaponType.LeftTorch, 0);//初始火把
 
-        //寫完三選一後，這邊就由三選一來設定，之後刪
+        //武器設定示範
         //ChooseAndUseWeaponTest(1, 10);//初始盾牌
         //ChooseAndUseWeaponTest(2, 20);//初始右手單手劍
         //ChooseAndUseWeaponTest(3, 31);//初始右手雙手劍
@@ -75,14 +76,14 @@ public class WeaponManager : MonoBehaviour
     /// <summary>
     /// 將所有武器，分別加入他們各自的武器池
     /// </summary>
-    private void AddAllWeaponsInTheirWeaponPool()
+    void AddAllWeaponsInTheirWeaponPool()
     {
         //左手火把存進 火把池(L)
         if (torchL.transform.GetChild(0).gameObject)
         {
             for (int i = 0; i < torchL.transform.childCount; i++)
             {
-                torchPoolL.Add(torchL.transform.GetChild(i).gameObject);
+                torchPoolL.Add(torchL.transform.GetChild(i).GetComponent<ItemOnWeapon>());
             }
         }
         //左手武器存進 武器池(L)
@@ -90,7 +91,7 @@ public class WeaponManager : MonoBehaviour
         {
             for (int i = 0; i < weaponL.transform.childCount; i++)
             {
-                weaponPoolL.Add(weaponL.transform.GetChild(i).gameObject);
+                weaponPoolL.Add(weaponL.transform.GetChild(i).GetComponent<ItemOnWeapon>());
             }
         }
         //右手武器存進 武器池(R)
@@ -98,118 +99,75 @@ public class WeaponManager : MonoBehaviour
         {
             for (int i = 0; i < weaponR.transform.childCount; i++)
             {
-                weaponPoolR.Add(weaponR.transform.GetChild(i).gameObject);
+                weaponPoolR.Add(weaponR.transform.GetChild(i).GetComponent<ItemOnWeapon>());
             }
         }
     }
 
     /// <summary>
-    /// 選擇並使用該武器(舊版，專門測試用)
+    /// 裝備上武器(舊版，專門測試用)
     /// BossTeleport外掛按鍵引用中
     /// </summary>
     /// <param name="type"></param>
     /// <param name="id"></param>
-    public GameObject ChooseAndUseWeaponTest(int type, int id)
+    ItemOnWeapon EquipWeapon(WeaponType type, int id)
     {
         WeaponSetActiveOpen(type, id);//開啟選擇的武器
-        if (type == 0)
+        switch (type)
         {
-            this.CurrentTorchL_torch = GetWeapon(type, id);//當前火把
-            return CurrentTorchL_torch;
+            case WeaponType.LeftTorch:
+                CurrentTorchL_torch = GetWeapon(type, id);
+                return CurrentTorchL_torch;
+            case WeaponType.LeftShield:
+                CurrentWeaponL_weaponL = GetWeapon(type, id);
+                return CurrentWeaponL_weaponL;
+            case WeaponType.RightSword:
+                CurrentWeaponR_weaponR = GetWeapon(type, id);
+                playerController.AutoSwitchWeaponR(CurrentWeaponR_weaponR);//之後改註冊事件
+                return CurrentWeaponR_weaponR;
+            case WeaponType.BothHandsSword:
+                CurrentWeaponR_weaponR = GetWeapon(type, id);
+                playerController.AutoSwitchWeaponR(CurrentWeaponR_weaponR);//之後改註冊事件
+                return CurrentWeaponR_weaponR;
+            default:
+                Debug.Log("沒有設定到武器");
+                return null;
         }
-        else if (type == 1)
-        {
-            this.CurrentWeaponL_weaponL = GetWeapon(type, id);//當前左手武器
-            return CurrentWeaponL_weaponL;
-        }
-        else if (type == 2)
-        {
-            this.CurrentWeaponR_weaponR = GetWeapon(type, id);//當前右單手武器
-            player.AutoSwitchWeaponR(this.CurrentWeaponR_weaponR);
-            return CurrentWeaponR_weaponR;
-        }
-        else if (type == 3)
-        {
-            this.CurrentWeaponR_weaponR = GetWeapon(type, id);//當前右雙手武器
-            player.AutoSwitchWeaponR(this.CurrentWeaponR_weaponR);
-            return CurrentWeaponR_weaponR;
-        }
-        Debug.Log("沒有設定到武器");
-        return null;
     }
-
-
- 
 
     /// <summary>
     /// 開啟選擇的武器，並關閉其他同類型的武器
+    /// 武器預先綁好在武器物件下，這裡顯示目前持有武器，其餘關閉
     /// </summary>
     /// <param name="type">武器類型</param>
     /// <param name="id">武器id</param>
-    public void WeaponSetActiveOpen(int type, int id)
+    void WeaponSetActiveOpen(WeaponType type, int id)
     {
-        if (type == 0)//左單火把_type0
+        ItemOnWeapon weapon = null;
+        switch (type)
         {
-            foreach (GameObject weapon in torchPoolL)
-            {
-                if (weapon.GetComponent<ItemOnWeapon>().weaponID == id)
-                {
-                    weapon.SetActive(true);
-                    Debug.LogWarning("火把的type:" + type+"id:"+id);//debug
-                }
-                else
-                {
-                    weapon.SetActive(false);
-                }
-            }
-        }
-        if (type == 1)//左單手盾_type1
-        {
-            foreach (GameObject weapon in weaponPoolL)
-            {
-                if (weapon.GetComponent<ItemOnWeapon>().weaponID == id)
-                {
-                    weapon.SetActive(true);
-                    Debug.LogWarning("左單手盾type:" + type + "id:" + id);//debug
-                }
-                else
-                {
-                    weapon.SetActive(false);
-                }
-            }
-        }
-        if (type == 2)//右單手劍_type2
-        {
-            foreach (GameObject weapon in weaponPoolR)
-            {
-                if (weapon.GetComponent<ItemOnWeapon>().weaponID == id)
-                {
-                    weapon.SetActive(true);
-                    Debug.LogWarning("右單手劍 type:" + type + "id:" + id);//debug
-                }
-                else
-                {
-                    weapon.SetActive(false);
-                }
-            }
-        }
-        if (type == 3)//右雙手劍_type3
-        {
-            foreach (GameObject weapon in weaponPoolR)
-            {
-                if (weapon.GetComponent<ItemOnWeapon>().weaponID == id)
-                {
-                    weapon.SetActive(true);
-                    Debug.LogWarning("右雙手劍 type:" + type + "id:" + id);//debug
-                }
-                else
-                {
-                    weapon.SetActive(false);
-                }
-            }
+            case WeaponType.LeftTorch:
+                torchPoolL.ForEach(v => v.gameObject.SetActive(false));
+                weapon = torchPoolL.FirstOrDefault(v => v.weaponID == id);
+                weapon.gameObject.SetActive(true);
+                break;
+            case WeaponType.LeftShield:
+                weaponPoolL.ForEach(v => v.gameObject.SetActive(false));
+                weapon = weaponPoolL.FirstOrDefault(v => v.weaponID == id);
+                weapon.gameObject.SetActive(true);
+                break;
+            case WeaponType.RightSword:
+                weaponPoolR.ForEach(v => v.gameObject.SetActive(false));
+                weapon = weaponPoolR.FirstOrDefault(v => v.weaponID == id);
+                weapon.gameObject.SetActive(true);
+                break;
+            case WeaponType.BothHandsSword:
+                weaponPoolR.ForEach(v => v.gameObject.SetActive(false));
+                weapon = weaponPoolR.FirstOrDefault(v => v.weaponID == id);
+                weapon.gameObject.SetActive(true);
+                break;
         }
     }
-
 
     /// <summary>
     /// 抓出該武器物件(不會切換)
@@ -217,49 +175,21 @@ public class WeaponManager : MonoBehaviour
     /// <param name="type">武器類型</param>
     /// <param name="id">武器id</param>
     /// <returns></returns>
-    public GameObject GetWeapon(int type, int id)
+    ItemOnWeapon GetWeapon(WeaponType type, int id)
     {
-        if (type == 0)//左單手火把_0
+        switch (type)
         {
-            foreach (GameObject weapon in torchPoolL)
-            {
-                if (weapon.GetComponent<ItemOnWeapon>().weaponID == id)
-                {
-                    return weapon;
-                }
-            }
+            case WeaponType.LeftTorch:
+                return torchPoolL.FirstOrDefault(v => v.weaponID == id);
+            case WeaponType.LeftShield:
+                return weaponPoolL.FirstOrDefault(v => v.weaponID == id);
+            case WeaponType.RightSword:
+                return weaponPoolR.FirstOrDefault(v => v.weaponID == id);
+            case WeaponType.BothHandsSword:
+                return weaponPoolR.FirstOrDefault(v => v.weaponID == id);
+            default:
+                return null;
         }
-        if (type == 1)//左單手盾_1
-        {
-            foreach (GameObject weapon in weaponPoolL)
-            {
-                if (weapon.GetComponent<ItemOnWeapon>().weaponID == id)
-                {
-                    return weapon;
-                }
-            }
-        }
-        if (type == 2)//右單手劍_2
-        {
-            foreach (GameObject weapon in weaponPoolR)
-            {
-                if (weapon.GetComponent<ItemOnWeapon>().weaponID == id)
-                {
-                    return weapon;
-                }
-            }
-        }
-        if(type == 3)//右雙手劍_3
-        {
-            foreach (GameObject weapon in weaponPoolR)
-            {
-                if (weapon.GetComponent<ItemOnWeapon>().weaponID == id)
-                {
-                    return weapon;
-                }
-            }
-        }
-        return null;
     }
 
     /*武器三選一*/
@@ -272,18 +202,18 @@ public class WeaponManager : MonoBehaviour
     /// 從weaponPoolR中，取隨機不重複1支雙手劍、1支單手劍 、再1支右手劍
     /// 並回傳一個 List<GameObject>
     /// </summary>
-    public List<GameObject> GetRandomThreeWeaponR()
+    public List<ItemOnWeapon> GetRandomThreeWeaponR()
     {
         int UsedWeaponType3Index = -1;//用過的雙手劍weaponPoolR 內的index
         int UsedWeaponType2Index = -1;//用過的單手劍weaponPoolR 內的index
 
         int randomIndex = UnityEngine.Random.Range(0, weaponPoolR.Count);
-        List<GameObject> randomThreeWeaponRPool = new List<GameObject>();
+        List<ItemOnWeapon> randomThreeWeaponRPool = new List<ItemOnWeapon>();
 
         //雙手劍 && 不等於當前裝備右手武器
         for (int i = 0; i < weaponPoolR.Count; i++)
         {
-            if (weaponPoolR[randomIndex].GetComponent<ItemOnWeapon>().weaponType == 3)
+            if (weaponPoolR[randomIndex].weaponType == 3)
             {
                 if (weaponPoolR[randomIndex] != CurrentWeaponR_weaponR)
                 {
@@ -300,7 +230,7 @@ public class WeaponManager : MonoBehaviour
         randomIndex = randomIndexForSecondChoose;
         for (int i = 0; i < weaponPoolR.Count; i++)
         {
-            if (weaponPoolR[randomIndex].GetComponent<ItemOnWeapon>().weaponType == 2)
+            if (weaponPoolR[randomIndex].weaponType == 2)
             {
                 if (weaponPoolR[randomIndex] != CurrentWeaponR_weaponR)
                 {
@@ -339,11 +269,11 @@ public class WeaponManager : MonoBehaviour
     /// 從weaponPoolR中，取隨機不重複3把盾
     /// 並回傳一個 List<GameObject>
     /// </summary>
-    public List<GameObject> GetRandomThreeWeaponL()
+    public List<ItemOnWeapon> GetRandomThreeWeaponL()
     {
         int UsedWeaponLIndexX = -1;
         int randomIndex = UnityEngine.Random.Range(0, weaponPoolL.Count);
-        List<GameObject> randomThreeWeaponLPool = new List<GameObject>();
+        List<ItemOnWeapon> randomThreeWeaponLPool = new List<ItemOnWeapon>();
 
         //盾牌X
         for (int i = 0; i < weaponPoolL.Count; i++)
@@ -388,29 +318,41 @@ public class WeaponManager : MonoBehaviour
     /// 選擇並使用該武器
     /// (三選一機制會用到這個函式)
     /// </summary>
-    public void ChooseAndUseWeapon(GameObject aWeapon)
+    public void ChooseAndUseWeapon(ItemOnWeapon aWeapon)
     {
-        int type = aWeapon.GetComponent<ItemOnWeapon>().weaponType;
-        int id = aWeapon.GetComponent<ItemOnWeapon>().weaponID;
+        WeaponType type = (WeaponType)aWeapon.weaponType;
+        int id = aWeapon.weaponID;
 
         WeaponSetActiveOpen(type, id);//開啟選擇的武器
 
-        if (type == 0)
-            this.CurrentTorchL_torch = GetWeapon(type, id);//當前火把
-        if (type == 1)
-            this.CurrentWeaponL_weaponL = GetWeapon(type, id);//當前左手武器
-        UIManager.Instance().weaponFramePanel.GetComponent<WeaponFrameUI>().SetCurrentWeaponImage(aWeapon);//設置當前武器進武器格
-        if (type == 2)
+        switch (type)
         {
-            this.CurrentWeaponR_weaponR = GetWeapon(type, id);//當前右單手武器
-            UIManager.Instance().weaponFramePanel.GetComponent<WeaponFrameUI>().SetCurrentWeaponImage(aWeapon);//設置當前武器進武器格
-            player.AutoSwitchWeaponR(this.CurrentWeaponR_weaponR);
-        }
-        if (type == 3)
-        {
-            this.CurrentWeaponR_weaponR = GetWeapon(type, id);//當前右雙手武器
-            UIManager.Instance().weaponFramePanel.GetComponent<WeaponFrameUI>().SetCurrentWeaponImage(aWeapon);//設置當前武器進武器格
-            player.AutoSwitchWeaponR(this.CurrentWeaponR_weaponR);
+            case WeaponType.LeftTorch:
+                CurrentTorchL_torch = GetWeapon(type, id);
+                break;
+            case WeaponType.LeftShield:
+                CurrentWeaponL_weaponL = GetWeapon(type, id);
+                //設置當前武器進武器格
+                UIManager.Instance().weaponFramePanel.GetComponent<WeaponFrameUI>()
+                    .SetCurrentWeaponImage(aWeapon);
+                break;
+            case WeaponType.RightSword:
+                CurrentWeaponR_weaponR = GetWeapon(type, id);//當前右單手武器
+                //設置當前武器進武器格
+                UIManager.Instance().weaponFramePanel.GetComponent<WeaponFrameUI>()
+                    .SetCurrentWeaponImage(aWeapon);
+                playerController.AutoSwitchWeaponR(CurrentWeaponR_weaponR);
+                break;
+            case WeaponType.BothHandsSword:
+                CurrentWeaponR_weaponR = GetWeapon(type, id);//當前右雙手武器
+                //設置當前武器進武器格
+                UIManager.Instance().weaponFramePanel.GetComponent<WeaponFrameUI>()
+                    .SetCurrentWeaponImage(aWeapon);
+                playerController.AutoSwitchWeaponR(CurrentWeaponR_weaponR);
+                break;
+            default:
+                Debug.LogError("武器不存在");
+                break;
         }
     }
     /*---------------------------------*/
@@ -429,7 +371,7 @@ public class WeaponManager : MonoBehaviour
     /// </summary>
     public void SetDefaultWeaponFirst()
     {
-        GameObject weapon = ChooseAndUseWeaponTest(3, 30);//設置id30號武器
+        ItemOnWeapon weapon = EquipWeapon(WeaponType.BothHandsSword, 30);//設置id30號武器
         UIManager.Instance().weaponFramePanel.GetComponent<WeaponFrameUI>().SetCurrentWeaponImage(weapon);//設置當前武器進武器格
     }
 

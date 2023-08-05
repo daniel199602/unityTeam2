@@ -50,10 +50,10 @@ public class CharacterAttackManager : MonoBehaviour
     /// </summary>
     public bool AttackEvent_left_torch()
     {
-        int weaponDamage_instant = WeaponManager.Instance().CurrentTorchL_torch.GetComponent<ItemOnWeapon>().weaponDamage_instant;
-        int weaponDamamge_delay = WeaponManager.Instance().CurrentTorchL_torch.GetComponent<ItemOnWeapon>().weaponDamage_delay;
-        float angle = WeaponManager.Instance().CurrentTorchL_torch.GetComponent<ItemOnWeapon>().weaponAngle;
-        float radius = WeaponManager.Instance().CurrentTorchL_torch.GetComponent<ItemOnWeapon>().weaponRadius;
+        int weaponDamage_instant = WeaponManager.Instance.CurrentTorchL_torch.weaponDamage_instant;
+        int weaponDamamge_delay = WeaponManager.Instance.CurrentTorchL_torch.weaponDamage_delay;
+        float angle = WeaponManager.Instance.CurrentTorchL_torch.weaponAngle;
+        float radius = WeaponManager.Instance.CurrentTorchL_torch.weaponRadius;
 
         foreach (GameObject mob in GameManager.Instance().mobPool)
         {
@@ -73,10 +73,10 @@ public class CharacterAttackManager : MonoBehaviour
     /// </summary>
     private void AttackEvent_rightDuo()
     {
-        int weaponDamage_instant = WeaponManager.Instance().CurrentWeaponR_weaponR.GetComponent<ItemOnWeapon>().weaponDamage_instant+20;
-        int weaponDamamge_delay = WeaponManager.Instance().CurrentWeaponR_weaponR.GetComponent<ItemOnWeapon>().weaponDamage_delay;
-        float angle = WeaponManager.Instance().CurrentWeaponR_weaponR.GetComponent<ItemOnWeapon>().weaponAngle;
-        float radius = WeaponManager.Instance().CurrentWeaponR_weaponR.GetComponent<ItemOnWeapon>().weaponRadius+10;
+        int weaponDamage_instant = WeaponManager.Instance.CurrentWeaponR_weaponR.weaponDamage_instant+20;
+        int weaponDamamge_delay = WeaponManager.Instance.CurrentWeaponR_weaponR.weaponDamage_delay;
+        float angle = WeaponManager.Instance.CurrentWeaponR_weaponR.weaponAngle;
+        float radius = WeaponManager.Instance.CurrentWeaponR_weaponR.weaponRadius+10;
         float angle360 = (angle / angle) + 210;
         foreach (GameObject mob in GameManager.Instance().mobPool)
         {
@@ -99,10 +99,10 @@ public class CharacterAttackManager : MonoBehaviour
     /// </summary>
     private void AttackEvent_left()
     {
-        int weaponDamage_instant = WeaponManager.Instance().CurrentWeaponL_weaponL.GetComponent<ItemOnWeapon>().weaponDamage_instant;
-        int weaponDamamge_delay = WeaponManager.Instance().CurrentWeaponL_weaponL.GetComponent<ItemOnWeapon>().weaponDamage_delay;
-        float angle = WeaponManager.Instance().CurrentWeaponL_weaponL.GetComponent<ItemOnWeapon>().weaponAngle;
-        float radius = WeaponManager.Instance().CurrentWeaponL_weaponL.GetComponent<ItemOnWeapon>().weaponRadius;
+        int weaponDamage_instant = WeaponManager.Instance.CurrentWeaponL_weaponL.weaponDamage_instant;
+        int weaponDamamge_delay = WeaponManager.Instance.CurrentWeaponL_weaponL.weaponDamage_delay;
+        float angle = WeaponManager.Instance.CurrentWeaponL_weaponL.weaponAngle;
+        float radius = WeaponManager.Instance.CurrentWeaponL_weaponL.weaponRadius;
 
         foreach (GameObject mob in GameManager.Instance().mobPool)
         {
@@ -127,8 +127,8 @@ public class CharacterAttackManager : MonoBehaviour
     /// </summary>
     private void AttackAmimatorDelayEvent()
     {
-        float angle = WeaponManager.Instance().CurrentWeaponR_weaponR.GetComponent<ItemOnWeapon>().weaponAngle;
-        float radius = WeaponManager.Instance().CurrentWeaponR_weaponR.GetComponent<ItemOnWeapon>().weaponRadius;
+        float angle = WeaponManager.Instance.CurrentWeaponR_weaponR.weaponAngle;
+        float radius = WeaponManager.Instance.CurrentWeaponR_weaponR.weaponRadius;
 
         foreach (GameObject mob in GameManager.Instance().mobPool)
         {
@@ -149,10 +149,10 @@ public class CharacterAttackManager : MonoBehaviour
     /// </summary>
     private void AttackEvent()
     {
-        int weaponDamage_instant = WeaponManager.Instance().CurrentWeaponR_weaponR.GetComponent<ItemOnWeapon>().weaponDamage_instant;
-        int weaponDamamge_delay = WeaponManager.Instance().CurrentWeaponR_weaponR.GetComponent<ItemOnWeapon>().weaponDamage_delay;
-        float angle = WeaponManager.Instance().CurrentWeaponR_weaponR.GetComponent<ItemOnWeapon>().weaponAngle;
-        float radius = WeaponManager.Instance().CurrentWeaponR_weaponR.GetComponent<ItemOnWeapon>().weaponRadius;
+        int weaponDamage_instant = WeaponManager.Instance.CurrentWeaponR_weaponR.weaponDamage_instant;
+        int weaponDamamge_delay = WeaponManager.Instance.CurrentWeaponR_weaponR.weaponDamage_delay;
+        float angle = WeaponManager.Instance.CurrentWeaponR_weaponR.weaponAngle;
+        float radius = WeaponManager.Instance.CurrentWeaponR_weaponR.weaponRadius;
 
         foreach (GameObject mob in GameManager.Instance().mobPool)
         {
@@ -175,10 +175,10 @@ public class CharacterAttackManager : MonoBehaviour
     /// </summary>
     private void AttackEvent_bigRight()
     {
-        int weaponDamage_instant = WeaponManager.Instance().CurrentWeaponR_weaponR.GetComponent<ItemOnWeapon>().weaponDamage_instant;
-        int weaponDamamge_delay = WeaponManager.Instance().CurrentWeaponR_weaponR.GetComponent<ItemOnWeapon>().weaponDamage_delay;
-        float angle = WeaponManager.Instance().CurrentWeaponR_weaponR.GetComponent<ItemOnWeapon>().weaponAngle;
-        float radius = WeaponManager.Instance().CurrentWeaponR_weaponR.GetComponent<ItemOnWeapon>().weaponRadius;
+        int weaponDamage_instant = WeaponManager.Instance.CurrentWeaponR_weaponR.weaponDamage_instant;
+        int weaponDamamge_delay = WeaponManager.Instance.CurrentWeaponR_weaponR.weaponDamage_delay;
+        float angle = WeaponManager.Instance.CurrentWeaponR_weaponR.weaponAngle;
+        float radius = WeaponManager.Instance.CurrentWeaponR_weaponR.weaponRadius;
 
         foreach (GameObject mob in GameManager.Instance().mobPool)
         {
@@ -202,8 +202,8 @@ public class CharacterAttackManager : MonoBehaviour
     /// </summary>
     private void AttackParticleEvent()
     {
-        float angle = WeaponManager.Instance().CurrentWeaponR_weaponR.GetComponent<ItemOnWeapon>().weaponAngle;
-        float radius = WeaponManager.Instance().CurrentWeaponR_weaponR.GetComponent<ItemOnWeapon>().weaponRadius;
+        float angle = WeaponManager.Instance.CurrentWeaponR_weaponR.weaponAngle;
+        float radius = WeaponManager.Instance.CurrentWeaponR_weaponR.weaponRadius;
 
         foreach (GameObject mob in GameManager.Instance().mobPool)
         {
@@ -310,12 +310,12 @@ public class CharacterAttackManager : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        if(isOpenOnDrawGizmos && WeaponManager.Instance().CurrentWeaponR_weaponR)
+        if(isOpenOnDrawGizmos && WeaponManager.Instance.CurrentWeaponR_weaponR)
         {
             //右手武器攻擊半徑
             Gizmos.color = Color.green;
-            float angleR = WeaponManager.Instance().CurrentWeaponR_weaponR.GetComponent<ItemOnWeapon>().weaponAngle;
-            float radiusR = WeaponManager.Instance().CurrentWeaponR_weaponR.GetComponent<ItemOnWeapon>().weaponRadius;
+            float angleR = WeaponManager.Instance.CurrentWeaponR_weaponR.weaponAngle;
+            float radiusR = WeaponManager.Instance.CurrentWeaponR_weaponR.weaponRadius;
             int segments = 100;
             float deltaAngle = angleR / segments;
             Vector3 forward = transform.forward;

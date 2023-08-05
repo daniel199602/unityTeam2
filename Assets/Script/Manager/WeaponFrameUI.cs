@@ -13,20 +13,20 @@ public class WeaponFrameUI : MonoBehaviour
     /// <summary>
     /// 讓WeaponManager通過UImanager使用，當前武器改變時，設置武器格圖示
     /// </summary>
-    public void SetCurrentWeaponImage(GameObject weapon)
+    public void SetCurrentWeaponImage(ItemOnWeapon weapon)
     {
-        if(weapon.GetComponent<ItemOnWeapon>().weaponType==3)//雙手劍
+        if(weapon.weaponType==3)//雙手劍
         {
-            imageWeaponR.sprite = UIManager.Instance().dicIDWeaponImage[weapon.GetComponent<ItemOnWeapon>().weaponID];
+            imageWeaponR.sprite = UIManager.Instance().dicIDWeaponImage[weapon.weaponID];
             imageWeaponL.sprite = UIManager.Instance().dicIDWeaponImage[-2];
         }
-        else if(weapon.GetComponent<ItemOnWeapon>().weaponType == 2)//單手劍
+        else if(weapon.weaponType == 2)//單手劍
         {
-            imageWeaponR.sprite = UIManager.Instance().dicIDWeaponImage[weapon.GetComponent<ItemOnWeapon>().weaponID];
+            imageWeaponR.sprite = UIManager.Instance().dicIDWeaponImage[weapon.weaponID];
         }
-        else if (weapon.GetComponent<ItemOnWeapon>().weaponType == 1)//盾
+        else if (weapon.weaponType == 1)//盾
         {
-            imageWeaponL.sprite = UIManager.Instance().dicIDWeaponImage[weapon.GetComponent<ItemOnWeapon>().weaponID];
+            imageWeaponL.sprite = UIManager.Instance().dicIDWeaponImage[weapon.weaponID];
         }
     }
 

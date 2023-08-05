@@ -6,13 +6,14 @@ using UnityEngine.SceneManagement;
 
 public class bossTeleport : MonoBehaviour
 {
-
     AudioSource audioSource;
     public AudioClip portal;
 
     Animation fadeOut;
     GameObject Player;
     public GameObject TeleportVFX;
+
+    GameManager gameManager = GameManager.Instance();
 
     private float duration;
     private float duration2;
@@ -38,10 +39,10 @@ public class bossTeleport : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.F8))
         {
-            WeaponManager.Instance().SetDefaultWeaponFirst(); //開始時設置預設武器(遊戲展示用)
+            WeaponManager.Instance.SetDefaultWeaponFirst(); //開始時設置預設武器(遊戲展示用)
 
             PlayPortalEvent();//播音效
-            GameManager.Instance().mobPool.Clear();
+            gameManager.mobPool.Clear();
             FadeOutWait();
             //作弊系統直接傳王關 不要亂按!!
         }

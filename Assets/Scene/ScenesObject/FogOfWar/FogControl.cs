@@ -27,7 +27,7 @@ public class FogControl : MonoBehaviour
             t += Time.deltaTime;
             this.transform.GetComponent<MeshRenderer>().materials[0].SetFloat("_FogRadius", Mathf.Lerp(80, 60, t));
         }
-        if (Input.GetKeyDown(KeyCode.Alpha2) && WeaponManager.Instance().CurrentWeaponR_weaponR)
+        if (Input.GetKeyDown(KeyCode.Alpha2) && WeaponManager.Instance.CurrentWeaponR_weaponR)
         {
             //this.transform.GetComponent<Renderer>().material = M1;
             t += Time.deltaTime;

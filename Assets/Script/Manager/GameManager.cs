@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+/// <summary>
+/// 遊戲管理員(only)
+/// </summary>
 public class GameManager : MonoBehaviour
 {
     static GameManager mInstance;
@@ -17,6 +20,7 @@ public class GameManager : MonoBehaviour
     private float duration;
 
     [SerializeField] RectTransform canvasRoot = null;
+    public WeaponManager weaponManager => WeaponManager.Instance;
 
     private void Awake()
     {
@@ -38,7 +42,17 @@ public class GameManager : MonoBehaviour
         audioSource.clip = audios[0];
         audioSource.Play();
         PlayerSetActiveSwitch(false);//先將玩家關閉
+        InitializeOtherSingleton();
     }
+
+    /// <summary>
+    /// 初始化 其他需要初始化的Sigleton
+    /// </summary>
+    void InitializeOtherSingleton()
+    {
+        weaponManager.Initialize(PlayerCharacter);
+    }
+
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
@@ -72,7 +86,7 @@ public class GameManager : MonoBehaviour
         {
             MobPoolClear();
             UIManager.Instance().weaponFramePanel.GetComponent<WeaponFrameUI>().SetEmptyWeaponImage();//清空武器格圖示
-            WeaponManager.Instance().SetAllCurrentWeaponsEmpty();//清除玩家當前裝備的所有武器
+            weaponManager.SetAllCurrentWeaponsEmpty();//清除玩家當前裝備的所有武器
             PlayerCharacter.SetActive(false);
             SceneManager.LoadSceneAsync("room");
             PlayerCharacter.transform.position = new Vector3(0,2,-160);

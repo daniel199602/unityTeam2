@@ -19,9 +19,9 @@ public class WeaponOneOfThreeUI : MonoBehaviour
     private TMP_Text[] weaponDataArrayY;//武器文字陣列
     private TMP_Text[] weaponDataArrayZ;//武器文字陣列
 
-    [HideInInspector] public GameObject weaponX;//暫存按鈕位置武器
-    [HideInInspector] public GameObject weaponY;//暫存按鈕位置武器
-    [HideInInspector] public GameObject weaponZ;//暫存按鈕位置武器
+    ItemOnWeapon weaponX; //該按鈕的武器
+    ItemOnWeapon weaponY; //該按鈕的武器
+    ItemOnWeapon weaponZ; //該按鈕的武器
 
     private void Awake()
     {
@@ -42,38 +42,38 @@ public class WeaponOneOfThreeUI : MonoBehaviour
     public void SetRandomThreeWeaponR()
     {
         int i = 0;
-        foreach (GameObject weaponR in WeaponManager.Instance().GetRandomThreeWeaponR())
+        foreach (ItemOnWeapon weaponR in WeaponManager.Instance.GetRandomThreeWeaponR())
         {
             if (i == 0)
             {
                 weaponX = weaponR;
-                imageX.sprite = UIManager.Instance().dicIDWeaponImage[weaponR.GetComponent<ItemOnWeapon>().weaponID];
-                weaponDataArrayX[0].text = "" + weaponR.GetComponent<ItemOnWeapon>().weaponName;
-                weaponDataArrayX[1].text = "" + weaponR.GetComponent<ItemOnWeapon>().weaponDamage_instant;
-                weaponDataArrayX[2].text = "" + weaponR.GetComponent<ItemOnWeapon>().weaponDamage_delay;
-                weaponDataArrayX[3].text = "" + weaponR.GetComponent<ItemOnWeapon>().weaponAngle;
-                weaponDataArrayX[4].text = "" + weaponR.GetComponent<ItemOnWeapon>().weaponRadius;
+                imageX.sprite = UIManager.Instance().dicIDWeaponImage[weaponR.weaponID];
+                weaponDataArrayX[0].text = "" + weaponR.weaponName;
+                weaponDataArrayX[1].text = "" + weaponR.weaponDamage_instant;
+                weaponDataArrayX[2].text = "" + weaponR.weaponDamage_delay;
+                weaponDataArrayX[3].text = "" + weaponR.weaponAngle;
+                weaponDataArrayX[4].text = "" + weaponR.weaponRadius;
             }
             if (i == 1)
             {
                 weaponY = weaponR;
-                imageY.sprite = UIManager.Instance().dicIDWeaponImage[weaponR.GetComponent<ItemOnWeapon>().weaponID];
-                weaponDataArrayY[0].text = "" + weaponR.GetComponent<ItemOnWeapon>().weaponName;
-                weaponDataArrayY[1].text = "" + weaponR.GetComponent<ItemOnWeapon>().weaponDamage_instant;
-                weaponDataArrayY[2].text = "" + weaponR.GetComponent<ItemOnWeapon>().weaponDamage_delay;
-                weaponDataArrayY[3].text = "" + weaponR.GetComponent<ItemOnWeapon>().weaponAngle;
-                weaponDataArrayY[4].text = "" + weaponR.GetComponent<ItemOnWeapon>().weaponRadius;
+                imageY.sprite = UIManager.Instance().dicIDWeaponImage[weaponR.weaponID];
+                weaponDataArrayY[0].text = "" + weaponR.weaponName;
+                weaponDataArrayY[1].text = "" + weaponR.weaponDamage_instant;
+                weaponDataArrayY[2].text = "" + weaponR.weaponDamage_delay;
+                weaponDataArrayY[3].text = "" + weaponR.weaponAngle;
+                weaponDataArrayY[4].text = "" + weaponR.weaponRadius;
 
             }
             if (i == 2)
             {
                 weaponZ = weaponR;
-                imageZ.sprite = UIManager.Instance().dicIDWeaponImage[weaponR.GetComponent<ItemOnWeapon>().weaponID];
-                weaponDataArrayZ[0].text = "" + weaponR.GetComponent<ItemOnWeapon>().weaponName;
-                weaponDataArrayZ[1].text = "" + weaponR.GetComponent<ItemOnWeapon>().weaponDamage_instant;
-                weaponDataArrayZ[2].text = "" + weaponR.GetComponent<ItemOnWeapon>().weaponDamage_delay;
-                weaponDataArrayZ[3].text = "" + weaponR.GetComponent<ItemOnWeapon>().weaponAngle;
-                weaponDataArrayZ[4].text = "" + weaponR.GetComponent<ItemOnWeapon>().weaponRadius;
+                imageZ.sprite = UIManager.Instance().dicIDWeaponImage[weaponR.weaponID];
+                weaponDataArrayZ[0].text = "" + weaponR.weaponName;
+                weaponDataArrayZ[1].text = "" + weaponR.weaponDamage_instant;
+                weaponDataArrayZ[2].text = "" + weaponR.weaponDamage_delay;
+                weaponDataArrayZ[3].text = "" + weaponR.weaponAngle;
+                weaponDataArrayZ[4].text = "" + weaponR.weaponRadius;
             }
             i++;
         }
@@ -85,38 +85,38 @@ public class WeaponOneOfThreeUI : MonoBehaviour
     public void SetRandomThreeWeaponL()
     {
         int i = 0;
-        foreach (GameObject weaponL in WeaponManager.Instance().GetRandomThreeWeaponL())
+        foreach (ItemOnWeapon weaponL in WeaponManager.Instance.GetRandomThreeWeaponL())
         {
             if (i == 0)
             {
                 weaponX = weaponL;
-                imageX.sprite = UIManager.Instance().dicIDWeaponImage[weaponL.GetComponent<ItemOnWeapon>().weaponID];
-                weaponDataArrayX[0].text = "" + weaponL.GetComponent<ItemOnWeapon>().weaponName;
-                weaponDataArrayX[1].text = "" + weaponL.GetComponent<ItemOnWeapon>().weaponDamage_instant;
-                weaponDataArrayX[2].text = "" + weaponL.GetComponent<ItemOnWeapon>().weaponDamage_delay;
-                weaponDataArrayX[3].text = "" + weaponL.GetComponent<ItemOnWeapon>().weaponAngle;
-                weaponDataArrayX[4].text = "" + weaponL.GetComponent<ItemOnWeapon>().weaponRadius;
+                imageX.sprite = UIManager.Instance().dicIDWeaponImage[weaponL.weaponID];
+                weaponDataArrayX[0].text = "" + weaponL.weaponName;
+                weaponDataArrayX[1].text = "" + weaponL.weaponDamage_instant;
+                weaponDataArrayX[2].text = "" + weaponL.weaponDamage_delay;
+                weaponDataArrayX[3].text = "" + weaponL.weaponAngle;
+                weaponDataArrayX[4].text = "" + weaponL.weaponRadius;
             }
             if (i == 1)
             {
                 weaponY = weaponL;
-                imageY.sprite = UIManager.Instance().dicIDWeaponImage[weaponL.GetComponent<ItemOnWeapon>().weaponID];
-                weaponDataArrayY[0].text = "" + weaponL.GetComponent<ItemOnWeapon>().weaponName;
-                weaponDataArrayY[1].text = "" + weaponL.GetComponent<ItemOnWeapon>().weaponDamage_instant;
-                weaponDataArrayY[2].text = "" + weaponL.GetComponent<ItemOnWeapon>().weaponDamage_delay;
-                weaponDataArrayY[3].text = "" + weaponL.GetComponent<ItemOnWeapon>().weaponAngle;
-                weaponDataArrayY[4].text = "" + weaponL.GetComponent<ItemOnWeapon>().weaponRadius;
+                imageY.sprite = UIManager.Instance().dicIDWeaponImage[weaponL.weaponID];
+                weaponDataArrayY[0].text = "" + weaponL.weaponName;
+                weaponDataArrayY[1].text = "" + weaponL.weaponDamage_instant;
+                weaponDataArrayY[2].text = "" + weaponL.weaponDamage_delay;
+                weaponDataArrayY[3].text = "" + weaponL.weaponAngle;
+                weaponDataArrayY[4].text = "" + weaponL.weaponRadius;
 
             }
             if (i == 2)
             {
                 weaponZ = weaponL;
-                imageZ.sprite = UIManager.Instance().dicIDWeaponImage[weaponL.GetComponent<ItemOnWeapon>().weaponID];
-                weaponDataArrayZ[0].text = "" + weaponL.GetComponent<ItemOnWeapon>().weaponName;
-                weaponDataArrayZ[1].text = "" + weaponL.GetComponent<ItemOnWeapon>().weaponDamage_instant;
-                weaponDataArrayZ[2].text = "" + weaponL.GetComponent<ItemOnWeapon>().weaponDamage_delay;
-                weaponDataArrayZ[3].text = "" + weaponL.GetComponent<ItemOnWeapon>().weaponAngle;
-                weaponDataArrayZ[4].text = "" + weaponL.GetComponent<ItemOnWeapon>().weaponRadius;
+                imageZ.sprite = UIManager.Instance().dicIDWeaponImage[weaponL.weaponID];
+                weaponDataArrayZ[0].text = "" + weaponL.weaponName;
+                weaponDataArrayZ[1].text = "" + weaponL.weaponDamage_instant;
+                weaponDataArrayZ[2].text = "" + weaponL.weaponDamage_delay;
+                weaponDataArrayZ[3].text = "" + weaponL.weaponAngle;
+                weaponDataArrayZ[4].text = "" + weaponL.weaponRadius;
             }
             i++;
         }
@@ -127,8 +127,8 @@ public class WeaponOneOfThreeUI : MonoBehaviour
     /// </summary>
     public void ClickWeaponBtnX()
     {
-        WeaponManager.Instance().ChooseAndUseWeapon(weaponX);
-        if(weaponX.GetComponent<ItemOnWeapon>().weaponType==2)
+        WeaponManager.Instance.ChooseAndUseWeapon(weaponX);
+        if(weaponX.weaponType==2)
         {
             SetRandomThreeWeaponL();
         }
@@ -142,8 +142,8 @@ public class WeaponOneOfThreeUI : MonoBehaviour
     /// </summary>
     public void ClickWeaponBtnY()
     {
-        WeaponManager.Instance().ChooseAndUseWeapon(weaponY);
-        if (weaponY.GetComponent<ItemOnWeapon>().weaponType == 2)
+        WeaponManager.Instance.ChooseAndUseWeapon(weaponY);
+        if (weaponY.weaponType == 2)
         {
             SetRandomThreeWeaponL();
         }
@@ -157,8 +157,8 @@ public class WeaponOneOfThreeUI : MonoBehaviour
     /// </summary>
     public void ClickWeaponBtnZ()
     {
-        WeaponManager.Instance().ChooseAndUseWeapon(weaponZ);
-        if (weaponZ.GetComponent<ItemOnWeapon>().weaponType == 2)
+        WeaponManager.Instance.ChooseAndUseWeapon(weaponZ);
+        if (weaponZ.weaponType == 2)
         {
             SetRandomThreeWeaponL();
         }
