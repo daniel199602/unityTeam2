@@ -311,10 +311,10 @@ public class WeaponManager : Singleton<WeaponManager>
     /// 選擇並使用該武器
     /// (三選一機制會用到這個函式)
     /// </summary>
-    public void ChooseAndUseWeapon(ItemOnWeapon aWeapon)
+    public void ChooseAndUseWeapon(ItemOnWeapon weapon)
     {
-        WeaponType type = (WeaponType)aWeapon.weaponType;
-        int id = aWeapon.weaponID;
+        WeaponType type = weapon.weaponType;
+        int id = weapon.weaponID;
 
         WeaponSetActiveOpen(type, id);//開啟選擇的武器
 
@@ -327,20 +327,20 @@ public class WeaponManager : Singleton<WeaponManager>
                 CurrentWeaponL_weaponL = GetWeapon(type, id);
                 //設置當前武器進武器格
                 UIManager.Instance().weaponFramePanel.GetComponent<WeaponFrameUI>()
-                    .SetCurrentWeaponImage(aWeapon);
+                    .SetCurrentWeaponImage(weapon);
                 break;
             case WeaponType.RightSword:
                 CurrentWeaponR_weaponR = GetWeapon(type, id);//當前右單手武器
                 //設置當前武器進武器格
                 UIManager.Instance().weaponFramePanel.GetComponent<WeaponFrameUI>()
-                    .SetCurrentWeaponImage(aWeapon);
+                    .SetCurrentWeaponImage(weapon);
                 playerController.AutoSwitchWeaponR(type);
                 break;
             case WeaponType.BothHandsSword:
                 CurrentWeaponR_weaponR = GetWeapon(type, id);//當前右雙手武器
                 //設置當前武器進武器格
                 UIManager.Instance().weaponFramePanel.GetComponent<WeaponFrameUI>()
-                    .SetCurrentWeaponImage(aWeapon);
+                    .SetCurrentWeaponImage(weapon);
                 playerController.AutoSwitchWeaponR(type);
                 break;
             default:

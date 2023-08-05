@@ -26,9 +26,9 @@ public class WeaponOneOfThreeUI : MonoBehaviour
     TMP_Text[] weaponDataArrayY;//武器文字陣列
     TMP_Text[] weaponDataArrayZ;//武器文字陣列
 
-    ItemOnWeapon weaponX; //該按鈕的武器
-    ItemOnWeapon weaponY; //該按鈕的武器
-    ItemOnWeapon weaponZ; //該按鈕的武器
+    ItemOnWeapon weaponX = null; //該按鈕的武器
+    ItemOnWeapon weaponY = null; //該按鈕的武器
+    ItemOnWeapon weaponZ = null; //該按鈕的武器
 
     private void Start()
     {
@@ -43,7 +43,7 @@ public class WeaponOneOfThreeUI : MonoBehaviour
     }
 
     /// <summary>
-    /// 設置右手武器三選一資料
+    /// 設置武器三選一資料 右手
     /// </summary>
     public void SetRandomThreeWeaponR()
     {
@@ -86,7 +86,7 @@ public class WeaponOneOfThreeUI : MonoBehaviour
     }
 
     /// <summary>
-    /// 設置左手武器三選一資料
+    /// 設置武器三選一資料 左手
     /// </summary>
     public void SetRandomThreeWeaponL()
     {
@@ -136,38 +136,33 @@ public class WeaponOneOfThreeUI : MonoBehaviour
         switch (buttonType)
         {
             case ButtonType.X:
-                WeaponManager.Instance.ChooseAndUseWeapon(weaponX);
-                if (weaponX.weaponType == WeaponType.RightSword)
-                {
-                    SetRandomThreeWeaponL();
-                }
-                else
-                {
-                    UIManager.Instance().OneOfThreeUIClose();
-                }
+                ChoiceMechanism(weaponX);
                 break;
             case ButtonType.Y:
-                WeaponManager.Instance.ChooseAndUseWeapon(weaponY);
-                if (weaponY.weaponType == WeaponType.RightSword)
-                {
-                    SetRandomThreeWeaponL();
-                }
-                else
-                {
-                    UIManager.Instance().OneOfThreeUIClose();
-                }
+                ChoiceMechanism(weaponY);
                 break;
             case ButtonType.Z:
-                WeaponManager.Instance.ChooseAndUseWeapon(weaponZ);
-                if (weaponZ.weaponType == WeaponType.RightSword)
-                {
-                    SetRandomThreeWeaponL();
-                }
-                else
-                {
-                    UIManager.Instance().OneOfThreeUIClose();
-                }
+                ChoiceMechanism(weaponZ);
                 break;
+        }
+    }
+
+    /// <summary>
+    /// 選擇機制 
+    /// 依照右手武器的類型，決定是否選擇左手武器
+    /// 右單手劍 可再選左手盾牌
+    /// </summary>
+    /// <param name="weapon"></param>
+    void ChoiceMechanism(ItemOnWeapon weapon)
+    {
+        WeaponManager.Instance.ChooseAndUseWeapon(weapon);
+        if (weapon.weaponType == WeaponType.RightSword)
+        {
+            SetRandomThreeWeaponL();
+        }
+        else
+        {
+            UIManager.Instance().OneOfThreeUIClose();
         }
     }
 }
