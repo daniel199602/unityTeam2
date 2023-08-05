@@ -24,14 +24,6 @@ public class WeaponManager : Singleton<WeaponManager>
     //右單手劍_type 2, id 範圍 20~29 整數
     //右雙手劍_type 3, id 範圍 30~39 整數
     /**/
-    public enum WeaponType
-    {
-        LeftTorch = 0,
-        LeftShield = 1,
-        RightSword = 2,
-        BothHandsSword = 3,
-    }
-
 
     //武器切換後UI應該要被通知並切換圖示
 
@@ -46,7 +38,7 @@ public class WeaponManager : Singleton<WeaponManager>
     public ItemOnWeapon CurrentWeaponL_weaponL { private set; get; }
     /// <summary>
     /// 當前使用中的右手武器
-    /// PlayerController判斷玩家當前Animator Layer的依據，右手武器type==2 or type==3
+    /// PlayerController判斷玩家當前Animator Layer的依據
     /// </summary>
     public ItemOnWeapon CurrentWeaponR_weaponR { private set; get; }
 
@@ -62,6 +54,7 @@ public class WeaponManager : Singleton<WeaponManager>
         weaponL = playerController.weaponL;//左手武器物件
         weaponR = playerController.weaponR;//右手武器物件
 
+        //將所有武器，分別加入他們各自的武器池
         AddAllWeaponsInTheirWeaponPool();
 
         //玩家初始武器設定
@@ -123,11 +116,11 @@ public class WeaponManager : Singleton<WeaponManager>
                 return CurrentWeaponL_weaponL;
             case WeaponType.RightSword:
                 CurrentWeaponR_weaponR = GetWeapon(type, id);
-                playerController.AutoSwitchWeaponR(CurrentWeaponR_weaponR);//之後改註冊事件
+                playerController.AutoSwitchWeaponR(type);//之後改註冊事件
                 return CurrentWeaponR_weaponR;
             case WeaponType.BothHandsSword:
                 CurrentWeaponR_weaponR = GetWeapon(type, id);
-                playerController.AutoSwitchWeaponR(CurrentWeaponR_weaponR);//之後改註冊事件
+                playerController.AutoSwitchWeaponR(type);//之後改註冊事件
                 return CurrentWeaponR_weaponR;
             default:
                 Debug.Log("沒有設定到武器");
@@ -213,7 +206,7 @@ public class WeaponManager : Singleton<WeaponManager>
         //雙手劍 && 不等於當前裝備右手武器
         for (int i = 0; i < weaponPoolR.Count; i++)
         {
-            if (weaponPoolR[randomIndex].weaponType == 3)
+            if (weaponPoolR[randomIndex].weaponType == WeaponType.BothHandsSword)
             {
                 if (weaponPoolR[randomIndex] != CurrentWeaponR_weaponR)
                 {
@@ -230,7 +223,7 @@ public class WeaponManager : Singleton<WeaponManager>
         randomIndex = randomIndexForSecondChoose;
         for (int i = 0; i < weaponPoolR.Count; i++)
         {
-            if (weaponPoolR[randomIndex].weaponType == 2)
+            if (weaponPoolR[randomIndex].weaponType == WeaponType.RightSword)
             {
                 if (weaponPoolR[randomIndex] != CurrentWeaponR_weaponR)
                 {
@@ -341,14 +334,14 @@ public class WeaponManager : Singleton<WeaponManager>
                 //設置當前武器進武器格
                 UIManager.Instance().weaponFramePanel.GetComponent<WeaponFrameUI>()
                     .SetCurrentWeaponImage(aWeapon);
-                playerController.AutoSwitchWeaponR(CurrentWeaponR_weaponR);
+                playerController.AutoSwitchWeaponR(type);
                 break;
             case WeaponType.BothHandsSword:
                 CurrentWeaponR_weaponR = GetWeapon(type, id);//當前右雙手武器
                 //設置當前武器進武器格
                 UIManager.Instance().weaponFramePanel.GetComponent<WeaponFrameUI>()
                     .SetCurrentWeaponImage(aWeapon);
-                playerController.AutoSwitchWeaponR(CurrentWeaponR_weaponR);
+                playerController.AutoSwitchWeaponR(type);
                 break;
             default:
                 Debug.LogError("武器不存在");

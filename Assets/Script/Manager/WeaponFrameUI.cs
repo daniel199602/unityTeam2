@@ -15,18 +15,18 @@ public class WeaponFrameUI : MonoBehaviour
     /// </summary>
     public void SetCurrentWeaponImage(ItemOnWeapon weapon)
     {
-        if(weapon.weaponType==3)//雙手劍
+        switch(weapon.weaponType)
         {
-            imageWeaponR.sprite = UIManager.Instance().dicIDWeaponImage[weapon.weaponID];
-            imageWeaponL.sprite = UIManager.Instance().dicIDWeaponImage[-2];
-        }
-        else if(weapon.weaponType == 2)//單手劍
-        {
-            imageWeaponR.sprite = UIManager.Instance().dicIDWeaponImage[weapon.weaponID];
-        }
-        else if (weapon.weaponType == 1)//盾
-        {
-            imageWeaponL.sprite = UIManager.Instance().dicIDWeaponImage[weapon.weaponID];
+            case WeaponType.LeftShield:
+                imageWeaponL.sprite = UIManager.Instance().dicIDWeaponImage[weapon.weaponID];
+                break;
+            case WeaponType.RightSword:
+                imageWeaponR.sprite = UIManager.Instance().dicIDWeaponImage[weapon.weaponID];
+                break;
+            case WeaponType.BothHandsSword:
+                imageWeaponR.sprite = UIManager.Instance().dicIDWeaponImage[weapon.weaponID];
+                imageWeaponL.sprite = UIManager.Instance().dicIDWeaponImage[-2];
+                break;
         }
     }
 

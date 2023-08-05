@@ -4,37 +4,43 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using TMPro;
+using System;
 
 public class WeaponOneOfThreeUI : MonoBehaviour
 {
-    public Transform weaponButtonX;//武器卡(按鈕)
-    public Transform weaponButtonY;//武器卡(按鈕)
-    public Transform weaponButtonZ;//武器卡(按鈕)
-    public Image imageX;//三選一之0，顯示武器圖示
-    public Image imageY;//三選一之1，顯示武器圖示
-    public Image imageZ;//三選一之2，顯示武器圖示
+    enum ButtonType
+    {
+        X,
+        Y,
+        Z
+    }
 
-   
-    private TMP_Text[] weaponDataArrayX;//武器文字陣列
-    private TMP_Text[] weaponDataArrayY;//武器文字陣列
-    private TMP_Text[] weaponDataArrayZ;//武器文字陣列
+    [SerializeField] Button weaponButtonX = null;//武器卡(按鈕)
+    [SerializeField] Button weaponButtonY = null;//武器卡(按鈕)
+    [SerializeField] Button weaponButtonZ = null;//武器卡(按鈕)
+    [SerializeField] Image imageX = null;//三選一之0，顯示武器圖示
+    [SerializeField] Image imageY = null;//三選一之1，顯示武器圖示
+    [SerializeField] Image imageZ = null;//三選一之2，顯示武器圖示
+
+    TMP_Text[] weaponDataArrayX;//武器文字陣列
+    TMP_Text[] weaponDataArrayY;//武器文字陣列
+    TMP_Text[] weaponDataArrayZ;//武器文字陣列
 
     ItemOnWeapon weaponX; //該按鈕的武器
     ItemOnWeapon weaponY; //該按鈕的武器
     ItemOnWeapon weaponZ; //該按鈕的武器
 
-    private void Awake()
+    private void Start()
     {
+        weaponButtonX.onClick.AddListener(() => OnButtonEvent(ButtonType.X));
+        weaponButtonY.onClick.AddListener(() => OnButtonEvent(ButtonType.Y));
+        weaponButtonZ.onClick.AddListener(() => OnButtonEvent(ButtonType.Z));
+
         weaponDataArrayX = weaponButtonX.GetComponentsInChildren<TMP_Text>();//依照子對象順序查找
         weaponDataArrayY = weaponButtonY.GetComponentsInChildren<TMP_Text>();//依照子對象順序查找
         weaponDataArrayZ = weaponButtonZ.GetComponentsInChildren<TMP_Text>();//依照子對象順序查找
-    }
-
-    private void Start()
-    {
         transform.gameObject.SetActive(false);
     }
-
 
     /// <summary>
     /// 設置右手武器三選一資料
@@ -123,48 +129,45 @@ public class WeaponOneOfThreeUI : MonoBehaviour
     }
 
     /// <summary>
-    /// 點擊武器按鈕X，設置武器
+    /// 按鈕事件
     /// </summary>
-    public void ClickWeaponBtnX()
+    void OnButtonEvent(ButtonType buttonType)
     {
-        WeaponManager.Instance.ChooseAndUseWeapon(weaponX);
-        if(weaponX.weaponType==2)
+        switch (buttonType)
         {
-            SetRandomThreeWeaponL();
-        }
-        else
-        {
-            UIManager.Instance().OneOfThreeUIClose();
-        }
-    }
-    /// <summary>
-    /// 點擊武器按鈕Y事件，設置武器
-    /// </summary>
-    public void ClickWeaponBtnY()
-    {
-        WeaponManager.Instance.ChooseAndUseWeapon(weaponY);
-        if (weaponY.weaponType == 2)
-        {
-            SetRandomThreeWeaponL();
-        }
-        else
-        {
-            UIManager.Instance().OneOfThreeUIClose();
-        }
-    }
-    /// <summary>
-    /// 點擊武器按鈕Z事件，設置武器
-    /// </summary>
-    public void ClickWeaponBtnZ()
-    {
-        WeaponManager.Instance.ChooseAndUseWeapon(weaponZ);
-        if (weaponZ.weaponType == 2)
-        {
-            SetRandomThreeWeaponL();
-        }
-        else
-        {
-            UIManager.Instance().OneOfThreeUIClose();
+            case ButtonType.X:
+                WeaponManager.Instance.ChooseAndUseWeapon(weaponX);
+                if (weaponX.weaponType == WeaponType.RightSword)
+                {
+                    SetRandomThreeWeaponL();
+                }
+                else
+                {
+                    UIManager.Instance().OneOfThreeUIClose();
+                }
+                break;
+            case ButtonType.Y:
+                WeaponManager.Instance.ChooseAndUseWeapon(weaponY);
+                if (weaponY.weaponType == WeaponType.RightSword)
+                {
+                    SetRandomThreeWeaponL();
+                }
+                else
+                {
+                    UIManager.Instance().OneOfThreeUIClose();
+                }
+                break;
+            case ButtonType.Z:
+                WeaponManager.Instance.ChooseAndUseWeapon(weaponZ);
+                if (weaponZ.weaponType == WeaponType.RightSword)
+                {
+                    SetRandomThreeWeaponL();
+                }
+                else
+                {
+                    UIManager.Instance().OneOfThreeUIClose();
+                }
+                break;
         }
     }
 }

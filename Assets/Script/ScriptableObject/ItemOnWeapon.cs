@@ -12,7 +12,7 @@ public class ItemOnWeapon : MonoBehaviour
     /// <summary>
     /// 武器種類
     /// </summary>
-    public int weaponType { private set; get; }
+    public WeaponType weaponType { private set; get; }
     /// <summary>
     /// 武器ID
     /// </summary>
@@ -37,7 +37,7 @@ public class ItemOnWeapon : MonoBehaviour
     void Awake()
     {
         this.weaponName = thisWeaponItem.weaponName;
-        this.weaponType = thisWeaponItem.weaponType;
+        this.weaponType = (WeaponType)thisWeaponItem.weaponType;
         this.weaponID = thisWeaponItem.weaponID;
         this.weaponDamage_instant = thisWeaponItem.weaponDamage_instant;
         this.weaponDamage_delay = thisWeaponItem.weaponDamage_delay;

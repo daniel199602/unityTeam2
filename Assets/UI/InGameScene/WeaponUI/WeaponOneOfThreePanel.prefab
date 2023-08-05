@@ -125,9 +125,6 @@ MonoBehaviour:
   imageX: {fileID: 4013938093211698826}
   imageY: {fileID: 4013938093498667212}
   imageZ: {fileID: 4013938093449502079}
-  weaponX: {fileID: 0}
-  weaponY: {fileID: 0}
-  weaponZ: {fileID: 0}
 --- !u!1001 &9143560997184137067
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -137,7 +134,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5282769803417240796, guid: bb3a0ddff91c2fd4d947ec97669fbb40, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5282769803417240796, guid: bb3a0ddff91c2fd4d947ec97669fbb40, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
@@ -282,7 +279,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5282769803417240796, guid: bb3a0ddff91c2fd4d947ec97669fbb40, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5282769803417240796, guid: bb3a0ddff91c2fd4d947ec97669fbb40, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
@@ -427,7 +424,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5282769803417240796, guid: bb3a0ddff91c2fd4d947ec97669fbb40, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5282769803417240796, guid: bb3a0ddff91c2fd4d947ec97669fbb40, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode

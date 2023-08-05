@@ -9,11 +9,6 @@ public class ChooseWeaponEvent : MonoBehaviour
     bool isInZone;
     UIManager uIManager;
 
-    private void Awake()
-    {
-        
-    }
-
     private void Start()
     {
         uIManager = UIManager.Instance();

@@ -326,21 +326,22 @@ public class PlayerController : MonoBehaviour
     /// 判斷當前的右手武器類型
     /// 若玩家當前 layer==1 or layer==2，才去切換玩家Animator Layer狀態
     /// </summary>
-    public void AutoSwitchWeaponR(ItemOnWeapon currentWeaponR)
+    public void AutoSwitchWeaponR(WeaponType weaponType)
     {
         if (currentLayerNum == 1 || currentLayerNum == 2)
         {
-            if (currentWeaponR.weaponType == 2)
+            switch(weaponType)
             {
-                currentLayerNum = 1;
-                charaterAnimator.SetTrigger("isTriggerLayerChange");
-                StartCoroutine(ShowWeaponLWeaponR());
-            }
-            else if (currentWeaponR.weaponType == 3)
-            {
-                currentLayerNum = 2;
-                charaterAnimator.SetTrigger("isTriggerLayerChange");
-                StartCoroutine(ShowWeaponR());
+                case WeaponType.RightSword:
+                    currentLayerNum = 1;
+                    charaterAnimator.SetTrigger("isTriggerLayerChange");
+                    StartCoroutine(ShowWeaponLWeaponR());
+                    break;
+                case WeaponType.BothHandsSword:
+                    currentLayerNum = 2;
+                    charaterAnimator.SetTrigger("isTriggerLayerChange");
+                    StartCoroutine(ShowWeaponR());
+                    break;
             }
         }
     }
@@ -363,17 +364,19 @@ public class PlayerController : MonoBehaviour
         {
             if (WeaponManager.Instance.CurrentWeaponR_weaponR)//有裝備當前右手武器才開啟
             {
-                if (WeaponManager.Instance.CurrentWeaponR_weaponR.weaponType == 2)
+                var weaponType = WeaponManager.Instance.CurrentWeaponR_weaponR.weaponType;
+                switch(weaponType)
                 {
-                    currentLayerNum = 1;
-                    charaterAnimator.SetTrigger("isTriggerLayerChange");
-                    StartCoroutine(ShowWeaponLWeaponR());
-                }
-                else if (WeaponManager.Instance.CurrentWeaponR_weaponR.weaponType == 3)
-                {
-                    currentLayerNum = 2;
-                    charaterAnimator.SetTrigger("isTriggerLayerChange");
-                    StartCoroutine(ShowWeaponR());
+                    case WeaponType.RightSword:
+                        currentLayerNum = 1;
+                        charaterAnimator.SetTrigger("isTriggerLayerChange");
+                        StartCoroutine(ShowWeaponLWeaponR());
+                        break;
+                    case WeaponType.BothHandsSword:
+                        currentLayerNum = 2;
+                        charaterAnimator.SetTrigger("isTriggerLayerChange");
+                        StartCoroutine(ShowWeaponR());
+                        break;
                 }
             }
 
