@@ -1,4 +1,4 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 using UnityEditor;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -8,11 +8,11 @@ public class CharacterAttackManager : MonoBehaviour
 {
     AudioSource audioSource;
 
-    RecoilShake recoilShake;//ÃèÀY¾_°Ê
-    public GameObject hitVFX;  //©Çª«¨üÀ»¯S®Ä
-    Vector3 up = new Vector3(0, 10, 0);//½Õ°ª©Çª«¨üÀ»¯S®Ä¦ì¸m
+    RecoilShake recoilShake;//é¡é ­éœ‡å‹•
+    public GameObject hitVFX;  //æ€ªç‰©å—æ“Šç‰¹æ•ˆ
+    Vector3 up = new Vector3(0, 10, 0);//èª¿é«˜æ€ªç‰©å—æ“Šç‰¹æ•ˆä½ç½®
 
-    private bool isOpenOnDrawGizmos = false;//¬O§_¥´¶}OnDrawGizmos
+    private bool isOpenOnDrawGizmos = false;//æ˜¯å¦æ‰“é–‹OnDrawGizmos
     Animator playerAnimator;
     public AudioClip Hit;
     private void Start()
@@ -24,21 +24,21 @@ public class CharacterAttackManager : MonoBehaviour
     }
 
     /// <summary>
-    /// °Êµe´î³t¨Æ¥ó
+    /// å‹•ç•«æ¸›é€Ÿäº‹ä»¶
     /// </summary>
     public void SpeedMinusEvent()
     {
         playerAnimator.speed = 0.8f;
     }
     /// <summary>
-    /// °Êµe¥¿±`³t«×¨Æ¥ó
+    /// å‹•ç•«æ­£å¸¸é€Ÿåº¦äº‹ä»¶
     /// </summary>
     public void SpeedNormalEvent()
     {
         playerAnimator.speed = 1f;
     }
     /// <summary>
-    /// °Êµe¥[³t¨Æ¥ó
+    /// å‹•ç•«åŠ é€Ÿäº‹ä»¶
     /// </summary>
     public void SpeedPlusEvent()
     {
@@ -46,7 +46,7 @@ public class CharacterAttackManager : MonoBehaviour
     }
 
     /// <summary>
-    /// ¥ª¤â¤õ§â§ğÀ»¨Æ¥ó¡A¸j¦b¥ª¤â¤õ§â§ğÀ»°Êµe¤W
+    /// å·¦æ‰‹ç«æŠŠæ”»æ“Šäº‹ä»¶ï¼Œç¶åœ¨å·¦æ‰‹ç«æŠŠæ”»æ“Šå‹•ç•«ä¸Š
     /// </summary>
     public bool AttackEvent_left_torch()
     {
@@ -69,7 +69,7 @@ public class CharacterAttackManager : MonoBehaviour
         return true;
     }
     /// <summary>
-    /// °j±Û±Ù§ğÀ»¨Æ¥ó¡A¸j¦b¥k¤â§ğÀ»°Êµe¤W
+    /// è¿´æ—‹æ–¬æ”»æ“Šäº‹ä»¶ï¼Œç¶åœ¨å³æ‰‹æ”»æ“Šå‹•ç•«ä¸Š
     /// </summary>
     private void AttackEvent_rightDuo()
     {
@@ -95,7 +95,7 @@ public class CharacterAttackManager : MonoBehaviour
     }
 
     /// <summary>
-    /// ¬ŞÀ»¡A¥ª¤â§ğÀ»¨Æ¥ó¡A¸j¦b¥ª¤â§ğÀ»°Êµe¤W
+    /// ç›¾æ“Šï¼Œå·¦æ‰‹æ”»æ“Šäº‹ä»¶ï¼Œç¶åœ¨å·¦æ‰‹æ”»æ“Šå‹•ç•«ä¸Š
     /// </summary>
     private void AttackEvent_left()
     {
@@ -123,7 +123,7 @@ public class CharacterAttackManager : MonoBehaviour
     }
 
     /// <summary>
-    /// ±Mªù³B²z©ñºC°Ê§@¡A§ğÀ»¨Æ¥ó¡A¸j¦b§ğÀ»°Êµe¤W
+    /// å°ˆé–€è™•ç†æ”¾æ…¢å‹•ä½œï¼Œæ”»æ“Šäº‹ä»¶ï¼Œç¶åœ¨æ”»æ“Šå‹•ç•«ä¸Š
     /// </summary>
     private void AttackAmimatorDelayEvent()
     {
@@ -145,7 +145,7 @@ public class CharacterAttackManager : MonoBehaviour
 
 
     /// <summary>
-    /// ³æ¤â¼CÀ»¡A¥k¤â§ğÀ»¨Æ¥ó¡A¸j¦b¥k¤â§ğÀ»°Êµe¤W
+    /// å–®æ‰‹åŠæ“Šï¼Œå³æ‰‹æ”»æ“Šäº‹ä»¶ï¼Œç¶åœ¨å³æ‰‹æ”»æ“Šå‹•ç•«ä¸Š
     /// </summary>
     private void AttackEvent()
     {
@@ -171,7 +171,7 @@ public class CharacterAttackManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Âù¤â¤j¼CÀ»¡A¥k¤â§ğÀ»¨Æ¥ó¡A¸j¦b¥k¤â§ğÀ»°Êµe¤W
+    /// é›™æ‰‹å¤§åŠæ“Šï¼Œå³æ‰‹æ”»æ“Šäº‹ä»¶ï¼Œç¶åœ¨å³æ‰‹æ”»æ“Šå‹•ç•«ä¸Š
     /// </summary>
     private void AttackEvent_bigRight()
     {
@@ -198,7 +198,7 @@ public class CharacterAttackManager : MonoBehaviour
     }
 
     /// <summary>
-    /// ³æ¯Â¥´À»²É¤l¯S®Ä
+    /// å–®ç´”æ‰“æ“Šç²’å­ç‰¹æ•ˆ
     /// </summary>
     private void AttackParticleEvent()
     {
@@ -219,14 +219,14 @@ public class CharacterAttackManager : MonoBehaviour
 
 
     /// <summary>
-    /// §ğÀ»½d³ò§P©w
+    /// æ”»æ“Šç¯„åœåˆ¤å®š
     /// </summary>
-    /// <param name="sectorAngle">¨¤«×</param>
-    /// <param name="sectorRadius">¶ZÂ÷</param>
-    /// <param name="attacker">§ğÀ»ªÌ</param>
-    /// <param name="attacked">³Q§ğÀ»ªÌ</param>
+    /// <param name="sectorAngle">è§’åº¦</param>
+    /// <param name="sectorRadius">è·é›¢</param>
+    /// <param name="attacker">æ”»æ“Šè€…</param>
+    /// <param name="attacked">è¢«æ”»æ“Šè€…</param>
     /// <returns></returns>
-    public bool IsInRange(float sectorAngle, float sectorRadius, Transform attacker, Transform attacked)//1209µy·L­×¾ã¤@¤UÅÜ¼Æ¦WºÙ
+    public bool IsInRange(float sectorAngle, float sectorRadius, Transform attacker, Transform attacked)//1209ç¨å¾®ä¿®æ•´ä¸€ä¸‹è®Šæ•¸åç¨±
     {
         Vector3 direction = attacked.position - attacker.position;
         float dot = Vector3.Dot(direction.normalized, transform.forward);
@@ -236,10 +236,10 @@ public class CharacterAttackManager : MonoBehaviour
     }
 
     /// <summary>
-    /// ¦©©Çª«¦å_¥uºâ¥ß§Y¶Ë®`
+    /// æ‰£æ€ªç‰©è¡€_åªç®—ç«‹å³å‚·å®³
     /// </summary>
-    /// <param name="mob">©Çª«</param>
-    /// <param name="demage_instant">¥ß§Y¶Ë®`</param>
+    /// <param name="mob">æ€ªç‰©</param>
+    /// <param name="demage_instant">ç«‹å³å‚·å®³</param>
     public void DeductMobHpInstant(GameObject mob, int demage_instant)
     {
         mob.GetComponent<MubHpData>().HpDeduction(demage_instant);
@@ -247,17 +247,17 @@ public class CharacterAttackManager : MonoBehaviour
 
 
     /// <summary>
-    /// ¦©©Çª«¦å_¥uºâDebuff³y¦¨©µ¿ğ¶Ë®`
+    /// æ‰£æ€ªç‰©è¡€_åªç®—Debuffé€ æˆå»¶é²å‚·å®³
     /// </summary>
     /// <param name="mob"></param>
     /// <param name="demage_delay"></param>
     public void DeductMobHpDelay(GameObject mob, int demage_delay)
     {
         StartCoroutine(DamageDelay(mob,demage_delay));
-        Debug.LogWarning("«ùÄò¦©¦åµ²§ô");
+        Debug.LogWarning("æŒçºŒæ‰£è¡€çµæŸ");
     }
     /// <summary>
-    /// ©µ¿ğ¶Ë®`_Debuff«ùÄò¦©¦å
+    /// å»¶é²å‚·å®³_DebuffæŒçºŒæ‰£è¡€
     /// </summary>
     /// <param name="mob"></param>
     /// <param name="demage_delay"></param>
@@ -273,15 +273,15 @@ public class CharacterAttackManager : MonoBehaviour
         }
     }
     /// <summary>
-    /// ©Çª«°Ê§@©ñºC
+    /// æ€ªç‰©å‹•ä½œæ”¾æ…¢
     /// </summary>
     public void DeductMobAnimatorDelay(GameObject mob)
     {
         StartCoroutine(AnimatorDelay(mob));
-        Debug.LogWarning("©ñºC");
+        Debug.LogWarning("æ”¾æ…¢");
     }
     /// <summary>
-    /// ©Çª«°Ê§@©ñºC0.5¬í«á«ì´_
+    /// æ€ªç‰©å‹•ä½œæ”¾æ…¢0.5ç§’å¾Œæ¢å¾©
     /// </summary>
     IEnumerator AnimatorDelay(GameObject mob)
     {
@@ -293,7 +293,7 @@ public class CharacterAttackManager : MonoBehaviour
     }
 
     /// <summary>
-    /// ©Çª«À»°h¦ì²¾
+    /// æ€ªç‰©æ“Šé€€ä½ç§»
     /// </summary>
     /// <param name="mob"></param>
     public void KnockBack(GameObject mob, GameObject player)
@@ -312,7 +312,7 @@ public class CharacterAttackManager : MonoBehaviour
     {
         if(isOpenOnDrawGizmos && WeaponManager.Instance().CurrentWeaponR_weaponR)
         {
-            //¥k¤âªZ¾¹§ğÀ»¥b®|
+            //å³æ‰‹æ­¦å™¨æ”»æ“ŠåŠå¾‘
             Gizmos.color = Color.green;
             float angleR = WeaponManager.Instance().CurrentWeaponR_weaponR.GetComponent<ItemOnWeapon>().weaponAngle;
             float radiusR = WeaponManager.Instance().CurrentWeaponR_weaponR.GetComponent<ItemOnWeapon>().weaponRadius;

@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -14,7 +14,7 @@ public class AudioEvent_mobSpider : MonoBehaviour
     }
 
     /// <summary>
-    /// ¼½©ñ»jµïÃz¬µ­µ®Ä
+    /// æ’­æ”¾èœ˜è››çˆ†ç‚¸éŸ³æ•ˆ
     /// </summary>
     void PlaySpiderBombEvent()
     {
@@ -22,7 +22,7 @@ public class AudioEvent_mobSpider : MonoBehaviour
     }
 
     /// <summary>
-    /// ¼½©ñ»jµï¥sÁnÃz¬µ­µ®Ä
+    /// æ’­æ”¾èœ˜è››å«è²çˆ†ç‚¸éŸ³æ•ˆ
     /// </summary>
     void PlaySpiderBrustEvent()
     {

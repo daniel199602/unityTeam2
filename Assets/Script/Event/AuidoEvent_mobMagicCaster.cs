@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -15,7 +15,7 @@ public class AuidoEvent_mobMagicCaster : MonoBehaviour
     }
 
     /// <summary>
-    /// ¼½©ñµo®g¹p®g­µ®Ä
+    /// æ’­æ”¾ç™¼å°„é›·å°„éŸ³æ•ˆ
     /// </summary>
     void PlaySpitMagicLaserEvent()
     {

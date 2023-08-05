@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -10,8 +10,8 @@ public class SkeletonFSM : MonoBehaviour
 {
     private SkeletonState m_NowState;
 
-    private GameObject Target;//¦sª±®a
-    private GameObject MySelf;//¦s¦Û¤v
+    private GameObject Target;//å­˜ç©å®¶
+    private GameObject MySelf;//å­˜è‡ªå·±
 
     public GameObject Blade;
     public Transform HandP;
@@ -52,8 +52,8 @@ public class SkeletonFSM : MonoBehaviour
     }
     void Start()
     {
-        Target = GameManager.Instance().PlayerStart;//§ì¥Xª±®a
-        MySelf = this.transform.gameObject;//§ì¥X¦Û¤v
+        Target = GameManager.Instance().PlayerStart;//æŠ“å‡ºç©å®¶
+        MySelf = this.transform.gameObject;//æŠ“å‡ºè‡ªå·±
 
         m_NowState = SkeletonState.Idle;
         capsule = GetComponent<CharacterController>();
@@ -63,7 +63,7 @@ public class SkeletonFSM : MonoBehaviour
         FrameCount_Roar = 140;
         LeaveAttackRangeBool = false;
 
-        ATKRadius = ThisItemOnMob_State.mobRadius;//WeaponÂĞ»\
+        ATKRadius = ThisItemOnMob_State.mobRadius;//Weaponè¦†è“‹
 
         mobAngle = ThisItemOnMob_State.mobAngle;
 
@@ -112,7 +112,7 @@ public class SkeletonFSM : MonoBehaviour
             Roar();
             RoarBool = true;
         }
-        if (State.Hp <= 0)//¦º¤`¡÷µLª¬ºA
+        if (State.Hp <= 0)//æ­»äº¡â†’ç„¡ç‹€æ…‹
         {
             if (deathIng == false)
             {
@@ -246,7 +246,7 @@ public class SkeletonFSM : MonoBehaviour
 
         return direction.magnitude <= RadiusMax && direction.magnitude > RadiusMin;
     }
-    /*½d³ò§P©w_°lÂÜ*/
+    /*ç¯„åœåˆ¤å®š_è¿½è¹¤*/
     public bool IsInRange_TraceRange(float RadiusMax, GameObject attacker, GameObject attacked)
     {
         Vector3 direction = attacked.transform.position - attacker.transform.position;

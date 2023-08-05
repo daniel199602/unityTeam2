@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -26,7 +26,7 @@ public class AudioEvent_mobBoss : MonoBehaviour
     }
 
     /// <summary>
-    /// ©òÀ»­µ®Ä
+    /// æ–§æ“ŠéŸ³æ•ˆ
     /// </summary>
     void PlaySwingAxEvent_swing()
     {
@@ -38,7 +38,7 @@ public class AudioEvent_mobBoss : MonoBehaviour
     }
 
     /// <summary>
-    /// ¼CÀ»­µ®Ä_1
+    /// åŠæ“ŠéŸ³æ•ˆ_1
     /// </summary>
     void PlaySwingMetalSwordEvent_1()
     {
@@ -46,7 +46,7 @@ public class AudioEvent_mobBoss : MonoBehaviour
     }
 
     /// <summary>
-    /// ¼CÀ»­µ®Ä_2
+    /// åŠæ“ŠéŸ³æ•ˆ_2
     /// </summary>
     void PlaySwingMetalSwordEvent_2()
     {
@@ -54,7 +54,7 @@ public class AudioEvent_mobBoss : MonoBehaviour
     }
 
     /// <summary>
-    /// ¤õª¢¹D¸ô­µ®Ä
+    /// ç«ç‚é“è·¯éŸ³æ•ˆ
     /// </summary>
     void PlayFireRoadEvent()
     {
@@ -62,7 +62,7 @@ public class AudioEvent_mobBoss : MonoBehaviour
     }
 
     /// <summary>
-    /// ¤õµK²y¥Î©ó¤Á´«¨ìª¬ºA¤G­µ®Ä_1
+    /// ç«ç„°çƒç”¨æ–¼åˆ‡æ›åˆ°ç‹€æ…‹äºŒéŸ³æ•ˆ_1
     /// </summary>
     void PlayFireBallStageTowEvent_1()
     {
@@ -70,7 +70,7 @@ public class AudioEvent_mobBoss : MonoBehaviour
     }
 
     /// <summary>
-    /// ¤õµK²y¥Î©ó¼Q¤õ­µ®Ä_2
+    /// ç«ç„°çƒç”¨æ–¼å™´ç«éŸ³æ•ˆ_2
     /// </summary>
     void PlayFireBallEvent_2()
     {

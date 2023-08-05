@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -15,9 +15,9 @@ public class AttackFSM :MonoBehaviour
         BulletOT=Instantiate(Bullet, transform.position, transform.rotation)as GameObject;
         BulletOT.transform.position = Vector3.MoveTowards(transform.position, direction, Time.deltaTime);
         /*
-         °İÃD:IFª±®a´£«e¸I¨ìªk²y       
-         ¸Ñªk1:©ßª«½u
-         ¸Ñªk2:¹ê®É°»´úª±®a¦ì¸m
+         å•é¡Œ:IFç©å®¶æå‰ç¢°åˆ°æ³•çƒ       
+         è§£æ³•1:æ‹‹ç‰©ç·š
+         è§£æ³•2:å¯¦æ™‚åµæ¸¬ç©å®¶ä½ç½®
         */
     }
     public void LongRangeAttack_FireRay()
@@ -26,15 +26,15 @@ public class AttackFSM :MonoBehaviour
         Self.transform.forward = direction;
         
         /*
-         °İÃD:IFª±®a´£«e¸I¨ìªk²y       
-         ¸Ñªk1:©ßª«½u
-         ¸Ñªk2:¹ê®É°»´úª±®a¦ì¸m
+         å•é¡Œ:IFç©å®¶æå‰ç¢°åˆ°æ³•çƒ       
+         è§£æ³•1:æ‹‹ç‰©ç·š
+         è§£æ³•2:å¯¦æ™‚åµæ¸¬ç©å®¶ä½ç½®
         */
     }
     public void MeleeAttack()
     {
         var direction = Self.transform.position - AttackTarget.transform.position;
         Self.transform.forward = direction;
-       //Animation¼½©ñ§ğÀ»¡AEVENT§PÂ_§ğÀ»©R¤¤        
+       //Animationæ’­æ”¾æ”»æ“Šï¼ŒEVENTåˆ¤æ–·æ”»æ“Šå‘½ä¸­        
     }
 }

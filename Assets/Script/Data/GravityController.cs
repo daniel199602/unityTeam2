@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -38,11 +38,11 @@ public class GravityController : MonoBehaviour
     }
 
     /// <summary>
-    /// ®g½u°»´ú
+    /// å°„ç·šåµæ¸¬
     /// </summary>
     void UpdateRaycast()
     {
-        Ray r = new Ray(transform.position, Vector3.down);//¦a­±°»´ú®g½u
+        Ray r = new Ray(transform.position, Vector3.down);//åœ°é¢åµæ¸¬å°„ç·š
         
         if (Physics.Raycast(r, dropRayDistance, hitMask))
         {
@@ -51,7 +51,7 @@ public class GravityController : MonoBehaviour
         }
         else
         {
-            Ray rRescue = new Ray(transform.position + Vector3.up * dropRayRescueDistance, Vector3.down);//«OÀI°»´ú®g½u
+            Ray rRescue = new Ray(transform.position + Vector3.up * dropRayRescueDistance, Vector3.down);//ä¿éšªåµæ¸¬å°„ç·š
             if (Physics.Raycast(rRescue, dropRayRescueDistance, hitMask))
             {
                 gravity = 9.8f;
@@ -65,14 +65,14 @@ public class GravityController : MonoBehaviour
     }
     
     /// <summary>
-    /// ¨C¬í­pºâ¥X·í«eªº­«¤O¥[³t«×¦ì²¾¦V¶q
+    /// æ¯ç§’è¨ˆç®—å‡ºç•¶å‰çš„é‡åŠ›åŠ é€Ÿåº¦ä½ç§»å‘é‡
     /// </summary>
     /// <param name="deltatime"></param>
     void UpdateGravity(float deltatime)
     {
         velocity.y += gravity * deltatime;
         
-        //³Ì¤j¦ì²¾¦V¶q
+        //æœ€å¤§ä½ç§»å‘é‡
         if (velocity.y < -30.0f)
         {
             velocity.y = -30.0f;
@@ -80,7 +80,7 @@ public class GravityController : MonoBehaviour
     }
 
     /// <summary>
-    /// ¨C¬í§ïÅÜª±®a·í«e®y¼Ğ¦ì¸m
+    /// æ¯ç§’æ”¹è®Šç©å®¶ç•¶å‰åº§æ¨™ä½ç½®
     /// </summary>
     /// <param name="deltatime"></param>
     void UpdateMovement(float deltatime)

@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -6,37 +6,37 @@ using UnityEngine.EventSystems;
 
 public class WeaponFrameUI : MonoBehaviour
 {
-    public Image imageTorch;//ªZ¾¹¹Ï¥Ü(¤õ§â)
-    public Image imageWeaponR;//ªZ¾¹¹Ï¥Ü(¥k¤â)
-    public Image imageWeaponL;//ªZ¾¹¹Ï¥Ü(¥ª¤â)
+    public Image imageTorch;//æ­¦å™¨åœ–ç¤º(ç«æŠŠ)
+    public Image imageWeaponR;//æ­¦å™¨åœ–ç¤º(å³æ‰‹)
+    public Image imageWeaponL;//æ­¦å™¨åœ–ç¤º(å·¦æ‰‹)
 
     /// <summary>
-    /// ÅıWeaponManager³q¹LUImanager¨Ï¥Î¡A·í«eªZ¾¹§ïÅÜ®É¡A³]¸mªZ¾¹®æ¹Ï¥Ü
+    /// è®“WeaponManageré€šéUImanagerä½¿ç”¨ï¼Œç•¶å‰æ­¦å™¨æ”¹è®Šæ™‚ï¼Œè¨­ç½®æ­¦å™¨æ ¼åœ–ç¤º
     /// </summary>
     public void SetCurrentWeaponImage(GameObject weapon)
     {
-        if(weapon.GetComponent<ItemOnWeapon>().weaponType==3)//Âù¤â¼C
+        if(weapon.GetComponent<ItemOnWeapon>().weaponType==3)//é›™æ‰‹åŠ
         {
             imageWeaponR.sprite = UIManager.Instance().dicIDWeaponImage[weapon.GetComponent<ItemOnWeapon>().weaponID];
             imageWeaponL.sprite = UIManager.Instance().dicIDWeaponImage[-2];
         }
-        else if(weapon.GetComponent<ItemOnWeapon>().weaponType == 2)//³æ¤â¼C
+        else if(weapon.GetComponent<ItemOnWeapon>().weaponType == 2)//å–®æ‰‹åŠ
         {
             imageWeaponR.sprite = UIManager.Instance().dicIDWeaponImage[weapon.GetComponent<ItemOnWeapon>().weaponID];
         }
-        else if (weapon.GetComponent<ItemOnWeapon>().weaponType == 1)//¬Ş
+        else if (weapon.GetComponent<ItemOnWeapon>().weaponType == 1)//ç›¾
         {
             imageWeaponL.sprite = UIManager.Instance().dicIDWeaponImage[weapon.GetComponent<ItemOnWeapon>().weaponID];
         }
     }
 
     /// <summary>
-    /// ±NªZ¾¹®æªº¹Ï¥Ü¥ş³¡²MªÅ
+    /// å°‡æ­¦å™¨æ ¼çš„åœ–ç¤ºå…¨éƒ¨æ¸…ç©º
     /// </summary>
     public void SetEmptyWeaponImage()
     {
-        imageWeaponR.sprite = UIManager.Instance().dicIDWeaponImage[-1];//¥k¤âªZ¾¹(¼C)Frame
-        imageWeaponL.sprite = UIManager.Instance().dicIDWeaponImage[-1];//¥ª¤âªZ¾¹(¬Ş)Frame
+        imageWeaponR.sprite = UIManager.Instance().dicIDWeaponImage[-1];//å³æ‰‹æ­¦å™¨(åŠ)Frame
+        imageWeaponL.sprite = UIManager.Instance().dicIDWeaponImage[-1];//å·¦æ‰‹æ­¦å™¨(ç›¾)Frame
     }
 
 }

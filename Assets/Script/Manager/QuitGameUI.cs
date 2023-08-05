@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -15,7 +15,7 @@ public class QuitGameUI : MonoBehaviour
     }
 
     /// <summary>
-    /// ÂIÀ»½T©wÂ÷¶}¨Æ¥ó¡A¦^¥D¿ï³æ
+    /// é»æ“Šç¢ºå®šé›¢é–‹äº‹ä»¶ï¼Œå›ä¸»é¸å–®
     /// </summary>
     public void ClickQuitGameBtnYes()
     {
@@ -30,7 +30,7 @@ public class QuitGameUI : MonoBehaviour
     }
 
     /// <summary>
-    /// ÂIÀ»¨ú®øÂ÷¶}¨Æ¥ó¡AÄ~Äò¹CÀ¸
+    /// é»æ“Šå–æ¶ˆé›¢é–‹äº‹ä»¶ï¼Œç¹¼çºŒéŠæˆ²
     /// </summary>
     public void ClickQuitGameBtnNo()
     {

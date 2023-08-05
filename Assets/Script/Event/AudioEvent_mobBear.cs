@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -14,7 +14,7 @@ public class AudioEvent_mobBear : MonoBehaviour
     }
 
     /// <summary>
-    /// ¼½©ñºµ§q­µ®Ä
+    /// æ’­æ”¾ç†Šå¼éŸ³æ•ˆ
     /// </summary>
     public void PlayBearGrowlEvent()
     {
@@ -22,7 +22,7 @@ public class AudioEvent_mobBear : MonoBehaviour
     }
 
     /// <summary>
-    /// ¼½©ñºµ«rÀ»­µ®Ä
+    /// æ’­æ”¾ç†Šå’¬æ“ŠéŸ³æ•ˆ
     /// </summary>
     public void PlayBearBiteEvent()
     {

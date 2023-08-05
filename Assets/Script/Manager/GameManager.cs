@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -24,7 +24,7 @@ public class GameManager : MonoBehaviour
         if (mInstance != null)
         {
             //Debug.LogErrorFormat(gameObject, "Multiple instances of {0} is not allow", GetType().Name);
-            Debug.LogWarning("¦³¨â­Ó¬Û¦Pªºsingletonª«¥ó,GameManager");
+            Debug.LogWarning("æœ‰å…©å€‹ç›¸åŒçš„singletonç‰©ä»¶,GameManager");
             DestroyImmediate(gameObject);
             return;
         }
@@ -42,7 +42,7 @@ public class GameManager : MonoBehaviour
         audioSource = MainCamera_Audio.GetComponent<AudioSource>();
         audioSource.clip = audios[0];
         audioSource.Play();
-        PlayerSetActiveSwitch(false);//¥ı±Nª±®aÃö³¬
+        PlayerSetActiveSwitch(false);//å…ˆå°‡ç©å®¶é—œé–‰
     }
 
 
@@ -67,7 +67,7 @@ public class GameManager : MonoBehaviour
             audioSource.clip = audios[1];
             audioSource.Play();
             Debug.Log(PlayerStart.transform.position);
-            PlayerStart.GetComponent<PlayerHpData>().HpAddToMax();//¦å¶q¶ñº¡
+            PlayerStart.GetComponent<PlayerHpData>().HpAddToMax();//è¡€é‡å¡«æ»¿
             PlayerStart.SetActive(true);
             fadeIn.Play("FadeIn");
         }
@@ -78,8 +78,8 @@ public class GameManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.F1))
         {
             MobPoolClear();
-            UIManager.Instance().weaponFramePanel.GetComponent<WeaponFrameUI>().SetEmptyWeaponImage();//²MªÅªZ¾¹®æ¹Ï¥Ü
-            WeaponManager.Instance().SetAllCurrentWeaponsEmpty();//²M°£ª±®a·í«e¸Ë³Æªº©Ò¦³ªZ¾¹
+            UIManager.Instance().weaponFramePanel.GetComponent<WeaponFrameUI>().SetEmptyWeaponImage();//æ¸…ç©ºæ­¦å™¨æ ¼åœ–ç¤º
+            WeaponManager.Instance().SetAllCurrentWeaponsEmpty();//æ¸…é™¤ç©å®¶ç•¶å‰è£å‚™çš„æ‰€æœ‰æ­¦å™¨
             PlayerStart.SetActive(false);
             SceneManager.LoadSceneAsync("room");
             PlayerStart.transform.position = new Vector3(0,2,-160);
@@ -88,15 +88,15 @@ public class GameManager : MonoBehaviour
     }
 
     /// <summary>
-    /// ª½±µÃö³¬À³¥Îµ{¦¡
+    /// ç›´æ¥é—œé–‰æ‡‰ç”¨ç¨‹å¼
     /// </summary>
     public void QuitGame()
     {
-        Application.Quit(); //Ãö³¬À³¥Îµ{¦¡
+        Application.Quit(); //é—œé–‰æ‡‰ç”¨ç¨‹å¼
     }
 
     /// <summary>
-    /// ²M°£©Çª«¦À
+    /// æ¸…é™¤æ€ªç‰©æ± 
     /// </summary>
     public void MobPoolClear()
     {
@@ -105,9 +105,9 @@ public class GameManager : MonoBehaviour
 
 
     /// <summary>
-    /// ª±®a¨¤¦âSetActive¤Á´«
+    /// ç©å®¶è§’è‰²SetActiveåˆ‡æ›
     /// </summary>
-    /// <param name="boolen">¶}Ãö</param>
+    /// <param name="boolen">é–‹é—œ</param>
     public void PlayerSetActiveSwitch(bool boolen)
     {
         PlayerStart.SetActive(boolen);

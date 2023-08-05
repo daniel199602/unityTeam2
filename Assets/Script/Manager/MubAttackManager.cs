@@ -1,4 +1,4 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 using UnityEditor;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -10,7 +10,7 @@ public class MubAttackManager : MonoBehaviour
     [HideInInspector] public int mobDamamge_delay;
     [HideInInspector] public float mobAngle;
     [HideInInspector] public float mobRadius;
-    //ªk®vÀ»¤¤¯S®Ä
+    //æ³•å¸«æ“Šä¸­ç‰¹æ•ˆ
     public GameObject HitEffect;
 
     public GameObject hitVFX_Bear;
@@ -21,22 +21,22 @@ public class MubAttackManager : MonoBehaviour
 
     public GameObject hitVFX_Bear_C;
 
-    [SerializeField] private GameObject Target;//¦sª±®a
+    [SerializeField] private GameObject Target;//å­˜ç©å®¶
     GameObject ParticleSpace;
 
-    PlayerHpData PlayerData;//ª±®a¦å¶qª¬ºA
-    CharacterController TargetSize;//ª±®a¥ÎCharacterController
+    PlayerHpData PlayerData;//ç©å®¶è¡€é‡ç‹€æ…‹
+    CharacterController TargetSize;//ç©å®¶ç”¨CharacterController
 
-    private bool flag = false; //OnDrawGizmos§PÂ_¬O§_¦b½d³ò¥Î
-    int fHp = 0; //1211¥Ø«ePlayerGetHit¦³¥Î¨ì¥¦§R±¼·|³ø¿ù¡AµM«á©Çª«¦³¥ÎPlayerGetHit¡A©Ò¥HPlayerGetHit¥Ø«eÁÙ¤£¯à§R
-    Vector3 TargetN;//¦Û¤v¸ò¹ï¤èªº¦V¶q
+    private bool flag = false; //OnDrawGizmosåˆ¤æ–·æ˜¯å¦åœ¨ç¯„åœç”¨
+    int fHp = 0; //1211ç›®å‰PlayerGetHitæœ‰ç”¨åˆ°å®ƒåˆªæ‰æœƒå ±éŒ¯ï¼Œç„¶å¾Œæ€ªç‰©æœ‰ç”¨PlayerGetHitï¼Œæ‰€ä»¥PlayerGetHitç›®å‰é‚„ä¸èƒ½åˆª
+    Vector3 TargetN;//è‡ªå·±è·Ÿå°æ–¹çš„å‘é‡
 
     private void Start()
     {
         Target = GameManager.Instance().PlayerStart;
         recoilShake = GetComponent<RecoilShake>();
 
-        /*1211§ì¥X¸Ó©Çª«¸ê®Æ*/
+        /*1211æŠ“å‡ºè©²æ€ªç‰©è³‡æ–™*/
         mobDamage_instant = GetComponent<ItemOnMob>().mobDamage_instant;
         mobDamamge_delay = GetComponent<ItemOnMob>().mobDamage_delay;
         mobAngle = GetComponent<ItemOnMob>().mobAngle;
@@ -50,11 +50,11 @@ public class MubAttackManager : MonoBehaviour
     }
 
     /// <summary>
-    /// ©Çª«§ğÀ»¨Æ¥ó
+    /// æ€ªç‰©æ”»æ“Šäº‹ä»¶
     /// </summary>
     private void AttackEvent()
     {
-        //OnDrawGizmos§PÂ_¬O§_¦b½d³ò¥Î
+        //OnDrawGizmosåˆ¤æ–·æ˜¯å¦åœ¨ç¯„åœç”¨
         flag = IsInRange(mobAngle, mobRadius, gameObject.transform, Target.transform);
 
         if (IsInRange(mobAngle, mobRadius, gameObject.transform, Target.transform))
@@ -68,7 +68,7 @@ public class MubAttackManager : MonoBehaviour
     }
     private void AttackEvent_Crystal()
     {
-        //OnDrawGizmos§PÂ_¬O§_¦b½d³ò¥Î
+        //OnDrawGizmosåˆ¤æ–·æ˜¯å¦åœ¨ç¯„åœç”¨
         DeductMobHpInstant(Target, mobDamage_instant);
         DeductMobHpDelay(Target, mobDamamge_delay);
         Vector3 Pp = new Vector3(ParticleSpace.transform.position.x, ParticleSpace.transform.position.y + 5, ParticleSpace.transform.position.z);
@@ -80,7 +80,7 @@ public class MubAttackManager : MonoBehaviour
     }
     private void AttackEvent_MagicCaster()
     {
-        //OnDrawGizmos§PÂ_¬O§_¦b½d³ò¥Î
+        //OnDrawGizmosåˆ¤æ–·æ˜¯å¦åœ¨ç¯„åœç”¨
         flag = IsInRange(mobAngle, mobRadius, gameObject.transform, Target.transform);
 
         if (IsInRange(mobAngle, mobRadius, gameObject.transform, Target.transform))
@@ -94,11 +94,11 @@ public class MubAttackManager : MonoBehaviour
 
     }
     /// <summary>
-    /// ©Çª«§ğÀ»¨Æ¥ó_Bear¥Î
+    /// æ€ªç‰©æ”»æ“Šäº‹ä»¶_Bearç”¨
     /// </summary>
     private void AttackEvent_Bear()
     {
-        //OnDrawGizmos§PÂ_¬O§_¦b½d³ò¥Î
+        //OnDrawGizmosåˆ¤æ–·æ˜¯å¦åœ¨ç¯„åœç”¨
         flag = IsInRange(mobAngle, mobRadius, gameObject.transform, Target.transform);
 
         if (IsInRange(mobAngle, mobRadius, gameObject.transform, Target.transform))
@@ -127,10 +127,10 @@ public class MubAttackManager : MonoBehaviour
 
 
     /// <summary>
-    /// ¦©©Çª«¦å_¥uºâ¥ß§Y¶Ë®`
+    /// æ‰£æ€ªç‰©è¡€_åªç®—ç«‹å³å‚·å®³
     /// </summary>
-    /// <param name="mob">©Çª«</param>
-    /// <param name="demage_instant">¥ß§Y¶Ë®`</param>
+    /// <param name="mob">æ€ªç‰©</param>
+    /// <param name="demage_instant">ç«‹å³å‚·å®³</param>
     public void DeductMobHpInstant(GameObject mob, int demage_instant)
     {
         mob.GetComponent<PlayerHpData>().HpDeduction(demage_instant);
@@ -138,17 +138,17 @@ public class MubAttackManager : MonoBehaviour
 
 
     /// <summary>
-    /// ¦©©Çª«¦å_¥uºâDebuff³y¦¨©µ¿ğ¶Ë®`
+    /// æ‰£æ€ªç‰©è¡€_åªç®—Debuffé€ æˆå»¶é²å‚·å®³
     /// </summary>
     /// <param name="mob"></param>
     /// <param name="demage_delay"></param>
     public void DeductMobHpDelay(GameObject mob, int demage_delay)
     {
         StartCoroutine(DamageDelay(mob, demage_delay));
-        Debug.LogWarning("«ùÄò¦©¦åµ²§ô");
+        Debug.LogWarning("æŒçºŒæ‰£è¡€çµæŸ");
     }
     /// <summary>
-    /// ©µ¿ğ¶Ë®`_Debuff«ùÄò¦©¦å
+    /// å»¶é²å‚·å®³_DebuffæŒçºŒæ‰£è¡€
     /// </summary>
     /// <param name="mob"></param>
     /// <param name="demage_delay"></param>
@@ -165,7 +165,7 @@ public class MubAttackManager : MonoBehaviour
     }
     //private void OnDrawGizmos()
     //{
-    //    //¥k¤âªZ¾¹§ğÀ»¥b®|
+    //    //å³æ‰‹æ­¦å™¨æ”»æ“ŠåŠå¾‘
     //    Gizmos.color = flag? Color.white: Color.black;
     //    float angleR = mobAngle;
     //    float radiusR = mobRadius;

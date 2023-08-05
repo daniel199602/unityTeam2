@@ -1,24 +1,24 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class RandomDecor : MonoBehaviour
 {
-    //¥Í¦¨ÀH¾÷¸Ë¹¢«~
+    //ç”Ÿæˆéš¨æ©Ÿè£é£¾å“
     [SerializeField] GameObject[] decorPrefabs;
     Random_room myGenerator;
     bool isCompleted;
     public MobBoXBorn aa;
     void Awake()
     {
-        //§ì¥XMain_roomª«¥ó©³¤UªºScript
+        //æŠ“å‡ºMain_roomç‰©ä»¶åº•ä¸‹çš„Script
         myGenerator = GameObject.Find("Main_room").GetComponent<Random_room>();
     }
 
     
     void Update()
     {
-        //¦pªG¦a¦¨¥Í¦¨¤w§¹¦¨´N°õ¦æ
+        //å¦‚æœåœ°æˆç”Ÿæˆå·²å®Œæˆå°±åŸ·è¡Œ
         if(!isCompleted && myGenerator.dungeonState == DungeonState.completed)
         {
             isCompleted = true;

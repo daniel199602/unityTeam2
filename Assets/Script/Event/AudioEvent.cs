@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -21,7 +21,7 @@ public class AudioEvent : MonoBehaviour
     }
 
     /// <summary>
-    /// ¤õ§â­µ®Ä
+    /// ç«æŠŠéŸ³æ•ˆ
     /// </summary>
     void PlayTorchEvent_swing()
     {
@@ -29,7 +29,7 @@ public class AudioEvent : MonoBehaviour
     }
 
     /// <summary>
-    /// ®³¼C­µ®Ä
+    /// æ‹¿åŠéŸ³æ•ˆ
     /// </summary>
     void PlaySwordEvent_take()
     {
@@ -37,7 +37,7 @@ public class AudioEvent : MonoBehaviour
     }
 
     /// <summary>
-    /// ´§¼C­µ®Ä
+    /// æ®åŠéŸ³æ•ˆ
     /// </summary>
     void PlaySwordEvent_swing()
     {
@@ -45,14 +45,14 @@ public class AudioEvent : MonoBehaviour
     }
 
     /// <summary>
-    /// ´§²Ó¼C­µ®Ä1
+    /// æ®ç´°åŠéŸ³æ•ˆ1
     /// </summary>
     void PlaySwordEvent_swing1()
     {
         audioSource.PlayOneShot(swingSword1, 0.5f);
     }
     /// <summary>
-    /// ´§²Ó¼C­µ®Ä2
+    /// æ®ç´°åŠéŸ³æ•ˆ2
     /// </summary>
     void PlaySwordEvent_swing2()
     {
@@ -60,7 +60,7 @@ public class AudioEvent : MonoBehaviour
     }
 
     /// <summary>
-    /// ¬ŞÀ»­µ®Ä
+    /// ç›¾æ“ŠéŸ³æ•ˆ
     /// </summary>
     void PlayPunchShield()
     {

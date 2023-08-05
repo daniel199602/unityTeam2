@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -43,12 +43,12 @@ public class PlayerHpData : MonoBehaviour
 
 
     /// <summary>
-    /// ¦å¶q¦©°£
+    /// è¡€é‡æ‰£é™¤
     /// </summary>
-    /// <param name="Num">¦©¦å¶q(½Ğ¶ñ¤J>=0¾ã¼Æ)</param>
+    /// <param name="Num">æ‰£è¡€é‡(è«‹å¡«å…¥>=0æ•´æ•¸)</param>
     public void HpDeduction(int Num)
     {
-        if (playerController.GetLayerNumNow() == 1)//³æ¤â¼C¼Ò¦¡
+        if (playerController.GetLayerNumNow() == 1)//å–®æ‰‹åŠæ¨¡å¼
         {
             Hp -= (int)(Num*0.9f);
         }
@@ -59,7 +59,7 @@ public class PlayerHpData : MonoBehaviour
     }
 
     /// <summary>
-    /// ¤Hª«¶ñº¡¦å¶q(¶i¤J¹CÀ¸®É¨Ï¥Î)
+    /// äººç‰©å¡«æ»¿è¡€é‡(é€²å…¥éŠæˆ²æ™‚ä½¿ç”¨)
     /// </summary>
     public void HpAddToMax()
     {
@@ -67,7 +67,7 @@ public class PlayerHpData : MonoBehaviour
     }
 
     /// <summary>
-    /// ÀË¬d¦å¶q¡A¨Ã¼vÅT¦å¶q±ø
+    /// æª¢æŸ¥è¡€é‡ï¼Œä¸¦å½±éŸ¿è¡€é‡æ¢
     /// </summary>
     public void HpCheck()
     {
@@ -75,7 +75,7 @@ public class PlayerHpData : MonoBehaviour
         {
             if (Hp != currentHp)
             {
-                //Debug.Log("¦©¦å");
+                //Debug.Log("æ‰£è¡€");
                 currentHp = Hp;
             }
             if (currentHp < 0)

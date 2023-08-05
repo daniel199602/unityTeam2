@@ -1,4 +1,4 @@
-using System;
+ï»¿using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,34 +8,34 @@ public class WeaponManager : MonoBehaviour
     private static WeaponManager mInstance;
     public static WeaponManager Instance() { return mInstance; }
 
-    private GameObject player;//¦sª±®a
+    private GameObject player;//å­˜ç©å®¶
 
-    public GameObject torchL;//¸j¤õ§âªº¥ª¤â
-    public GameObject weaponL;//¥ª¤â
-    public GameObject weaponR;//¥k¤â
+    public GameObject torchL;//ç¶ç«æŠŠçš„å·¦æ‰‹
+    public GameObject weaponL;//å·¦æ‰‹
+    public GameObject weaponR;//å³æ‰‹
 
-    public List<GameObject> torchPoolL;//¤õ§â¦À
-    public List<GameObject> weaponPoolL;//¥ª¤âªZ¾¹¦À
-    public List<GameObject> weaponPoolR;//¥k¤âªZ¾¹¦À
+    public List<GameObject> torchPoolL;//ç«æŠŠæ± 
+    public List<GameObject> weaponPoolL;//å·¦æ‰‹æ­¦å™¨æ± 
+    public List<GameObject> weaponPoolR;//å³æ‰‹æ­¦å™¨æ± 
 
-    /*«D±`«D±`­«­nªº³]©w!!_·|¼vÅTPlayerControllerªº°ÊµeLayerªº¤Á´«*/
-    //¥ª³æ¤õ§â_type 0, id ½d³ò 0~9 ¾ã¼Æ
-    //¥ª³æ¤â¬Ş_type 1, id ½d³ò 10~19 ¾ã¼Æ
-    //¥k³æ¤â¼C_type 2, id ½d³ò 20~29 ¾ã¼Æ
-    //¥kÂù¤â¼C_type 3, id ½d³ò 30~39 ¾ã¼Æ
+    /*éå¸¸éå¸¸é‡è¦çš„è¨­å®š!!_æœƒå½±éŸ¿PlayerControllerçš„å‹•ç•«Layerçš„åˆ‡æ›*/
+    //å·¦å–®ç«æŠŠ_type 0, id ç¯„åœ 0~9 æ•´æ•¸
+    //å·¦å–®æ‰‹ç›¾_type 1, id ç¯„åœ 10~19 æ•´æ•¸
+    //å³å–®æ‰‹åŠ_type 2, id ç¯„åœ 20~29 æ•´æ•¸
+    //å³é›™æ‰‹åŠ_type 3, id ç¯„åœ 30~39 æ•´æ•¸
     /**/
 
     /// <summary>
-    /// ·í«e¨Ï¥Î¤¤ªº¤õ§â
+    /// ç•¶å‰ä½¿ç”¨ä¸­çš„ç«æŠŠ
     /// </summary>
     public GameObject CurrentTorchL_torch { private set; get; }
     /// <summary>
-    /// ·í«e¨Ï¥Î¤¤ªº¥ª¤âªZ¾¹
+    /// ç•¶å‰ä½¿ç”¨ä¸­çš„å·¦æ‰‹æ­¦å™¨
     /// </summary>
     public GameObject CurrentWeaponL_weaponL { private set; get; }
     /// <summary>
-    /// ·í«e¨Ï¥Î¤¤ªº¥k¤âªZ¾¹
-    /// PlayerController§PÂ_ª±®a·í«eAnimator Layerªº¨Ì¾Ú¡A¥k¤âªZ¾¹type==2 or type==3
+    /// ç•¶å‰ä½¿ç”¨ä¸­çš„å³æ‰‹æ­¦å™¨
+    /// PlayerControlleråˆ¤æ–·ç©å®¶ç•¶å‰Animator Layerçš„ä¾æ“šï¼Œå³æ‰‹æ­¦å™¨type==2 or type==3
     /// </summary>
     public GameObject CurrentWeaponR_weaponR { private set; get; }
 
@@ -45,27 +45,27 @@ public class WeaponManager : MonoBehaviour
         if (mInstance != null)
         {
             //Debug.LogErrorFormat(gameObject, "Multiple instances of {0} is not allow", GetType().Name);
-            Debug.LogWarning("¦³¨â­Ó¬Û¦Pªºsingletonª«¥ó,WeaponManager");
+            Debug.LogWarning("æœ‰å…©å€‹ç›¸åŒçš„singletonç‰©ä»¶,WeaponManager");
             DestroyImmediate(gameObject);
             return;
         }
         mInstance = this;
         DontDestroyOnLoad(this.gameObject);
 
-        AddAllWeaponsInTheirWeaponPool();//±N©Ò¦³ªZ¾¹¡A¤À§O¥[¤J¥L­Ì¦U¦ÛªºªZ¾¹¦À
+        AddAllWeaponsInTheirWeaponPool();//å°‡æ‰€æœ‰æ­¦å™¨ï¼Œåˆ†åˆ¥åŠ å…¥ä»–å€‘å„è‡ªçš„æ­¦å™¨æ± 
     }
 
     void Start()
     {
-        player = GameManager.Instance().PlayerStart;//§ì¨ìª±®a
+        player = GameManager.Instance().PlayerStart;//æŠ“åˆ°ç©å®¶
 
-        //ª±®aªì©lªZ¾¹³]©w
-        ChooseAndUseWeaponTest(0, 0);//ªì©l¤õ§â
+        //ç©å®¶åˆå§‹æ­¦å™¨è¨­å®š
+        ChooseAndUseWeaponTest(0, 0);//åˆå§‹ç«æŠŠ
 
-        //¼g§¹¤T¿ï¤@«á¡A³oÃä´N¥Ñ¤T¿ï¤@¨Ó³]©w¡A¤§«á§R
-        //ChooseAndUseWeaponTest(1, 10);//ªì©l¬ŞµP
-        //ChooseAndUseWeaponTest(2, 20);//ªì©l¥k¤â³æ¤â¼C
-        //ChooseAndUseWeaponTest(3, 31);//ªì©l¥k¤âÂù¤â¼C
+        //å¯«å®Œä¸‰é¸ä¸€å¾Œï¼Œé€™é‚Šå°±ç”±ä¸‰é¸ä¸€ä¾†è¨­å®šï¼Œä¹‹å¾Œåˆª
+        //ChooseAndUseWeaponTest(1, 10);//åˆå§‹ç›¾ç‰Œ
+        //ChooseAndUseWeaponTest(2, 20);//åˆå§‹å³æ‰‹å–®æ‰‹åŠ
+        //ChooseAndUseWeaponTest(3, 31);//åˆå§‹å³æ‰‹é›™æ‰‹åŠ
     }
 
     private void Update()
@@ -74,11 +74,11 @@ public class WeaponManager : MonoBehaviour
     }
 
     /// <summary>
-    /// ±N©Ò¦³ªZ¾¹¡A¤À§O¥[¤J¥L­Ì¦U¦ÛªºªZ¾¹¦À
+    /// å°‡æ‰€æœ‰æ­¦å™¨ï¼Œåˆ†åˆ¥åŠ å…¥ä»–å€‘å„è‡ªçš„æ­¦å™¨æ± 
     /// </summary>
     private void AddAllWeaponsInTheirWeaponPool()
     {
-        //¥ª¤â¤õ§â¦s¶i ¤õ§â¦À(L)
+        //å·¦æ‰‹ç«æŠŠå­˜é€² ç«æŠŠæ± (L)
         if (torchL.transform.GetChild(0).gameObject)
         {
             for (int i = 0; i < torchL.transform.childCount; i++)
@@ -86,7 +86,7 @@ public class WeaponManager : MonoBehaviour
                 torchPoolL.Add(torchL.transform.GetChild(i).gameObject);
             }
         }
-        //¥ª¤âªZ¾¹¦s¶i ªZ¾¹¦À(L)
+        //å·¦æ‰‹æ­¦å™¨å­˜é€² æ­¦å™¨æ± (L)
         if (weaponL.transform.GetChild(0).gameObject)
         {
             for (int i = 0; i < weaponL.transform.childCount; i++)
@@ -94,7 +94,7 @@ public class WeaponManager : MonoBehaviour
                 weaponPoolL.Add(weaponL.transform.GetChild(i).gameObject);
             }
         }
-        //¥k¤âªZ¾¹¦s¶i ªZ¾¹¦À(R)
+        //å³æ‰‹æ­¦å™¨å­˜é€² æ­¦å™¨æ± (R)
         if (weaponR.transform.GetChild(0).gameObject)
         {
             for (int i = 0; i < weaponR.transform.childCount; i++)
@@ -108,37 +108,37 @@ public class WeaponManager : MonoBehaviour
 
 
     /// <summary>
-    /// ¿ï¾Ü¨Ã¨Ï¥Î¸ÓªZ¾¹(ÂÂª©¡A±Mªù´ú¸Õ¥Î)
-    /// BossTeleport¥~±¾«öÁä¤Ş¥Î¤¤
+    /// é¸æ“‡ä¸¦ä½¿ç”¨è©²æ­¦å™¨(èˆŠç‰ˆï¼Œå°ˆé–€æ¸¬è©¦ç”¨)
+    /// BossTeleportå¤–æ›æŒ‰éµå¼•ç”¨ä¸­
     /// </summary>
     /// <param name="type"></param>
     /// <param name="id"></param>
     public GameObject ChooseAndUseWeaponTest(int type, int id)
     {
-        WeaponSetActiveOpen(type, id);//¶}±Ò¿ï¾ÜªºªZ¾¹
+        WeaponSetActiveOpen(type, id);//é–‹å•Ÿé¸æ“‡çš„æ­¦å™¨
         if (type == 0)
         {
-            this.CurrentTorchL_torch = GetWeapon(type, id);//·í«e¤õ§â
+            this.CurrentTorchL_torch = GetWeapon(type, id);//ç•¶å‰ç«æŠŠ
             return CurrentTorchL_torch;
         }
         else if (type == 1)
         {
-            this.CurrentWeaponL_weaponL = GetWeapon(type, id);//·í«e¥ª¤âªZ¾¹
+            this.CurrentWeaponL_weaponL = GetWeapon(type, id);//ç•¶å‰å·¦æ‰‹æ­¦å™¨
             return CurrentWeaponL_weaponL;
         }
         else if (type == 2)
         {
-            this.CurrentWeaponR_weaponR = GetWeapon(type, id);//·í«e¥k³æ¤âªZ¾¹
+            this.CurrentWeaponR_weaponR = GetWeapon(type, id);//ç•¶å‰å³å–®æ‰‹æ­¦å™¨
             player.GetComponent<PlayerController>().AutoSwitchWeaponR(this.CurrentWeaponR_weaponR);
             return CurrentWeaponR_weaponR;
         }
         else if (type == 3)
         {
-            this.CurrentWeaponR_weaponR = GetWeapon(type, id);//·í«e¥kÂù¤âªZ¾¹
+            this.CurrentWeaponR_weaponR = GetWeapon(type, id);//ç•¶å‰å³é›™æ‰‹æ­¦å™¨
             player.GetComponent<PlayerController>().AutoSwitchWeaponR(this.CurrentWeaponR_weaponR);
             return CurrentWeaponR_weaponR;
         }
-        Debug.Log("¨S¦³³]©w¨ìªZ¾¹");
+        Debug.Log("æ²’æœ‰è¨­å®šåˆ°æ­¦å™¨");
         return null;
     }
 
@@ -146,20 +146,20 @@ public class WeaponManager : MonoBehaviour
  
 
     /// <summary>
-    /// ¶}±Ò¿ï¾ÜªºªZ¾¹¡A¨ÃÃö³¬¨ä¥L¦PÃş«¬ªºªZ¾¹
+    /// é–‹å•Ÿé¸æ“‡çš„æ­¦å™¨ï¼Œä¸¦é—œé–‰å…¶ä»–åŒé¡å‹çš„æ­¦å™¨
     /// </summary>
-    /// <param name="type">ªZ¾¹Ãş«¬</param>
-    /// <param name="id">ªZ¾¹id</param>
+    /// <param name="type">æ­¦å™¨é¡å‹</param>
+    /// <param name="id">æ­¦å™¨id</param>
     public void WeaponSetActiveOpen(int type, int id)
     {
-        if (type == 0)//¥ª³æ¤õ§â_type0
+        if (type == 0)//å·¦å–®ç«æŠŠ_type0
         {
             foreach (GameObject weapon in torchPoolL)
             {
                 if (weapon.GetComponent<ItemOnWeapon>().weaponID == id)
                 {
                     weapon.SetActive(true);
-                    Debug.LogWarning("¤õ§âªºtype:" + type+"id:"+id);//debug
+                    Debug.LogWarning("ç«æŠŠçš„type:" + type+"id:"+id);//debug
                 }
                 else
                 {
@@ -167,14 +167,14 @@ public class WeaponManager : MonoBehaviour
                 }
             }
         }
-        if (type == 1)//¥ª³æ¤â¬Ş_type1
+        if (type == 1)//å·¦å–®æ‰‹ç›¾_type1
         {
             foreach (GameObject weapon in weaponPoolL)
             {
                 if (weapon.GetComponent<ItemOnWeapon>().weaponID == id)
                 {
                     weapon.SetActive(true);
-                    Debug.LogWarning("¥ª³æ¤â¬Ştype:" + type + "id:" + id);//debug
+                    Debug.LogWarning("å·¦å–®æ‰‹ç›¾type:" + type + "id:" + id);//debug
                 }
                 else
                 {
@@ -182,14 +182,14 @@ public class WeaponManager : MonoBehaviour
                 }
             }
         }
-        if (type == 2)//¥k³æ¤â¼C_type2
+        if (type == 2)//å³å–®æ‰‹åŠ_type2
         {
             foreach (GameObject weapon in weaponPoolR)
             {
                 if (weapon.GetComponent<ItemOnWeapon>().weaponID == id)
                 {
                     weapon.SetActive(true);
-                    Debug.LogWarning("¥k³æ¤â¼C type:" + type + "id:" + id);//debug
+                    Debug.LogWarning("å³å–®æ‰‹åŠ type:" + type + "id:" + id);//debug
                 }
                 else
                 {
@@ -197,14 +197,14 @@ public class WeaponManager : MonoBehaviour
                 }
             }
         }
-        if (type == 3)//¥kÂù¤â¼C_type3
+        if (type == 3)//å³é›™æ‰‹åŠ_type3
         {
             foreach (GameObject weapon in weaponPoolR)
             {
                 if (weapon.GetComponent<ItemOnWeapon>().weaponID == id)
                 {
                     weapon.SetActive(true);
-                    Debug.LogWarning("¥kÂù¤â¼C type:" + type + "id:" + id);//debug
+                    Debug.LogWarning("å³é›™æ‰‹åŠ type:" + type + "id:" + id);//debug
                 }
                 else
                 {
@@ -216,14 +216,14 @@ public class WeaponManager : MonoBehaviour
 
 
     /// <summary>
-    /// §ì¥X¸ÓªZ¾¹ª«¥ó(¤£·|¤Á´«)
+    /// æŠ“å‡ºè©²æ­¦å™¨ç‰©ä»¶(ä¸æœƒåˆ‡æ›)
     /// </summary>
-    /// <param name="type">ªZ¾¹Ãş«¬</param>
-    /// <param name="id">ªZ¾¹id</param>
+    /// <param name="type">æ­¦å™¨é¡å‹</param>
+    /// <param name="id">æ­¦å™¨id</param>
     /// <returns></returns>
     public GameObject GetWeapon(int type, int id)
     {
-        if (type == 0)//¥ª³æ¤â¤õ§â_0
+        if (type == 0)//å·¦å–®æ‰‹ç«æŠŠ_0
         {
             foreach (GameObject weapon in torchPoolL)
             {
@@ -233,7 +233,7 @@ public class WeaponManager : MonoBehaviour
                 }
             }
         }
-        if (type == 1)//¥ª³æ¤â¬Ş_1
+        if (type == 1)//å·¦å–®æ‰‹ç›¾_1
         {
             foreach (GameObject weapon in weaponPoolL)
             {
@@ -243,7 +243,7 @@ public class WeaponManager : MonoBehaviour
                 }
             }
         }
-        if (type == 2)//¥k³æ¤â¼C_2
+        if (type == 2)//å³å–®æ‰‹åŠ_2
         {
             foreach (GameObject weapon in weaponPoolR)
             {
@@ -253,7 +253,7 @@ public class WeaponManager : MonoBehaviour
                 }
             }
         }
-        if(type == 3)//¥kÂù¤â¼C_3
+        if(type == 3)//å³é›™æ‰‹åŠ_3
         {
             foreach (GameObject weapon in weaponPoolR)
             {
@@ -266,25 +266,25 @@ public class WeaponManager : MonoBehaviour
         return null;
     }
 
-    /*ªZ¾¹¤T¿ï¤@*/
-    //°õ¦æ¶¶¦ì: ­n¦bªZ¾¹¦À§ì§¹©Ò¦³ªZ¾¹¤§«á
+    /*æ­¦å™¨ä¸‰é¸ä¸€*/
+    //åŸ·è¡Œé †ä½: è¦åœ¨æ­¦å™¨æ± æŠ“å®Œæ‰€æœ‰æ­¦å™¨ä¹‹å¾Œ
 
-    //²Ä¤@¨B¾÷¨î:
-    //ÀH¾÷±q weaponPoolR §ì3¤ä¤£­«½Æªº¥k¤âªZ¾¹(¼C)
-    //¥ı§ì1¤äÂù¤â¼C¡A¦A§ì1¤ä³æ¤â¼C¡A¦AÀH¾÷§ì1¤ä¥k¤â¼C¡A¥B¦pªG¦³·í«e¸Ë³Æªº¥k¤â¼C«h­n±Æ°£
+    //ç¬¬ä¸€æ­¥æ©Ÿåˆ¶:
+    //éš¨æ©Ÿå¾ weaponPoolR æŠ“3æ”¯ä¸é‡è¤‡çš„å³æ‰‹æ­¦å™¨(åŠ)
+    //å…ˆæŠ“1æ”¯é›™æ‰‹åŠï¼Œå†æŠ“1æ”¯å–®æ‰‹åŠï¼Œå†éš¨æ©ŸæŠ“1æ”¯å³æ‰‹åŠï¼Œä¸”å¦‚æœæœ‰ç•¶å‰è£å‚™çš„å³æ‰‹åŠå‰‡è¦æ’é™¤
     /// <summary>
-    /// ±qweaponPoolR¤¤¡A¨úÀH¾÷¤£­«½Æ1¤äÂù¤â¼C¡B1¤ä³æ¤â¼C ¡B¦A1¤ä¥k¤â¼C
-    /// ¨Ã¦^¶Ç¤@­Ó List<GameObject>
+    /// å¾weaponPoolRä¸­ï¼Œå–éš¨æ©Ÿä¸é‡è¤‡1æ”¯é›™æ‰‹åŠã€1æ”¯å–®æ‰‹åŠ ã€å†1æ”¯å³æ‰‹åŠ
+    /// ä¸¦å›å‚³ä¸€å€‹ List<GameObject>
     /// </summary>
     public List<GameObject> GetRandomThreeWeaponR()
     {
-        int UsedWeaponType3Index = -1;//¥Î¹LªºÂù¤â¼CweaponPoolR ¤ºªºindex
-        int UsedWeaponType2Index = -1;//¥Î¹Lªº³æ¤â¼CweaponPoolR ¤ºªºindex
+        int UsedWeaponType3Index = -1;//ç”¨éçš„é›™æ‰‹åŠweaponPoolR å…§çš„index
+        int UsedWeaponType2Index = -1;//ç”¨éçš„å–®æ‰‹åŠweaponPoolR å…§çš„index
 
         int randomIndex = UnityEngine.Random.Range(0, weaponPoolR.Count);
         List<GameObject> randomThreeWeaponRPool = new List<GameObject>();
 
-        //Âù¤â¼C && ¤£µ¥©ó·í«e¸Ë³Æ¥k¤âªZ¾¹
+        //é›™æ‰‹åŠ && ä¸ç­‰æ–¼ç•¶å‰è£å‚™å³æ‰‹æ­¦å™¨
         for (int i = 0; i < weaponPoolR.Count; i++)
         {
             if (weaponPoolR[randomIndex].GetComponent<ItemOnWeapon>().weaponType == 3)
@@ -299,8 +299,8 @@ public class WeaponManager : MonoBehaviour
             if (randomIndex == (weaponPoolR.Count - 1)) randomIndex = 0;
             if (randomIndex < weaponPoolR.Count) randomIndex++;
         }
-        //³æ¤â¼C && ¤£µ¥©ó·í«e¸Ë³Æ¥k¤âªZ¾¹
-        int randomIndexForSecondChoose = UnityEngine.Random.Range(0, weaponPoolR.Count);//¼W¥[ÀH¾÷©Ê
+        //å–®æ‰‹åŠ && ä¸ç­‰æ–¼ç•¶å‰è£å‚™å³æ‰‹æ­¦å™¨
+        int randomIndexForSecondChoose = UnityEngine.Random.Range(0, weaponPoolR.Count);//å¢åŠ éš¨æ©Ÿæ€§
         randomIndex = randomIndexForSecondChoose;
         for (int i = 0; i < weaponPoolR.Count; i++)
         {
@@ -316,8 +316,8 @@ public class WeaponManager : MonoBehaviour
             if (randomIndex == (weaponPoolR.Count - 1)) randomIndex = 0;
             if (randomIndex < weaponPoolR.Count) randomIndex++;
         }
-        //¦AÀH¾÷§ì1¤ä¥k¤â¼C && ¤£µ¥©ó·í«e¸Ë³Æ¥k¤âªZ¾¹ && ¤£­«½Æ«e¨â§âªZ¾¹
-        int randomIndexForThridChoose = UnityEngine.Random.Range(0, weaponPoolR.Count);//¼W¥[ÀH¾÷©Ê
+        //å†éš¨æ©ŸæŠ“1æ”¯å³æ‰‹åŠ && ä¸ç­‰æ–¼ç•¶å‰è£å‚™å³æ‰‹æ­¦å™¨ && ä¸é‡è¤‡å‰å…©æŠŠæ­¦å™¨
+        int randomIndexForThridChoose = UnityEngine.Random.Range(0, weaponPoolR.Count);//å¢åŠ éš¨æ©Ÿæ€§
         randomIndex = randomIndexForThridChoose;
         for (int i = 0; i < weaponPoolR.Count; i++)
         {
@@ -335,13 +335,13 @@ public class WeaponManager : MonoBehaviour
         return randomThreeWeaponRPool;
     }
 
-    //²Ä¤G¨B¾÷¨î:
-    //ÀH¾÷±q weaponPoolR §ì3¤ä¤£­«½Æªº¥ª¤âªZ¾¹(¬Ş)
-    //¦pªG¦³·í«e¸Ë³Æªº¥ª¤â¬Ş«h­n±Æ°£
+    //ç¬¬äºŒæ­¥æ©Ÿåˆ¶:
+    //éš¨æ©Ÿå¾ weaponPoolR æŠ“3æ”¯ä¸é‡è¤‡çš„å·¦æ‰‹æ­¦å™¨(ç›¾)
+    //å¦‚æœæœ‰ç•¶å‰è£å‚™çš„å·¦æ‰‹ç›¾å‰‡è¦æ’é™¤
 
     /// <summary>
-    /// ±qweaponPoolR¤¤¡A¨úÀH¾÷¤£­«½Æ3§â¬Ş
-    /// ¨Ã¦^¶Ç¤@­Ó List<GameObject>
+    /// å¾weaponPoolRä¸­ï¼Œå–éš¨æ©Ÿä¸é‡è¤‡3æŠŠç›¾
+    /// ä¸¦å›å‚³ä¸€å€‹ List<GameObject>
     /// </summary>
     public List<GameObject> GetRandomThreeWeaponL()
     {
@@ -349,7 +349,7 @@ public class WeaponManager : MonoBehaviour
         int randomIndex = UnityEngine.Random.Range(0, weaponPoolL.Count);
         List<GameObject> randomThreeWeaponLPool = new List<GameObject>();
 
-        //¬ŞµPX
+        //ç›¾ç‰ŒX
         for (int i = 0; i < weaponPoolL.Count; i++)
         {
             if (weaponPoolL[randomIndex] != CurrentWeaponL_weaponL)
@@ -361,7 +361,7 @@ public class WeaponManager : MonoBehaviour
             if (randomIndex == (weaponPoolL.Count - 1)) randomIndex = 0;
             if (randomIndex < weaponPoolL.Count) randomIndex++;
         }
-        //¬ŞµPY
+        //ç›¾ç‰ŒY
         for (int i = 0; i < weaponPoolL.Count + 2; i++)
         {
             if (randomIndex != UsedWeaponLIndexX)
@@ -375,7 +375,7 @@ public class WeaponManager : MonoBehaviour
             if (randomIndex == (weaponPoolL.Count - 1)) randomIndex = 0;
             if (randomIndex < weaponPoolL.Count) randomIndex++;
         }
-        //¬ŞµPZ
+        //ç›¾ç‰ŒZ
         foreach (var weaponZ in weaponPoolL)
         {
             if (weaponZ != randomThreeWeaponLPool[0] && weaponZ != randomThreeWeaponLPool[1])
@@ -389,38 +389,38 @@ public class WeaponManager : MonoBehaviour
     }
 
     /// <summary>
-    /// ¿ï¾Ü¨Ã¨Ï¥Î¸ÓªZ¾¹
-    /// (¤T¿ï¤@¾÷¨î·|¥Î¨ì³o­Ó¨ç¦¡)
+    /// é¸æ“‡ä¸¦ä½¿ç”¨è©²æ­¦å™¨
+    /// (ä¸‰é¸ä¸€æ©Ÿåˆ¶æœƒç”¨åˆ°é€™å€‹å‡½å¼)
     /// </summary>
     public void ChooseAndUseWeapon(GameObject aWeapon)
     {
         int type = aWeapon.GetComponent<ItemOnWeapon>().weaponType;
         int id = aWeapon.GetComponent<ItemOnWeapon>().weaponID;
 
-        WeaponSetActiveOpen(type, id);//¶}±Ò¿ï¾ÜªºªZ¾¹
+        WeaponSetActiveOpen(type, id);//é–‹å•Ÿé¸æ“‡çš„æ­¦å™¨
 
         if (type == 0)
-            this.CurrentTorchL_torch = GetWeapon(type, id);//·í«e¤õ§â
+            this.CurrentTorchL_torch = GetWeapon(type, id);//ç•¶å‰ç«æŠŠ
         if (type == 1)
-            this.CurrentWeaponL_weaponL = GetWeapon(type, id);//·í«e¥ª¤âªZ¾¹
-        UIManager.Instance().weaponFramePanel.GetComponent<WeaponFrameUI>().SetCurrentWeaponImage(aWeapon);//³]¸m·í«eªZ¾¹¶iªZ¾¹®æ
+            this.CurrentWeaponL_weaponL = GetWeapon(type, id);//ç•¶å‰å·¦æ‰‹æ­¦å™¨
+        UIManager.Instance().weaponFramePanel.GetComponent<WeaponFrameUI>().SetCurrentWeaponImage(aWeapon);//è¨­ç½®ç•¶å‰æ­¦å™¨é€²æ­¦å™¨æ ¼
         if (type == 2)
         {
-            this.CurrentWeaponR_weaponR = GetWeapon(type, id);//·í«e¥k³æ¤âªZ¾¹
-            UIManager.Instance().weaponFramePanel.GetComponent<WeaponFrameUI>().SetCurrentWeaponImage(aWeapon);//³]¸m·í«eªZ¾¹¶iªZ¾¹®æ
+            this.CurrentWeaponR_weaponR = GetWeapon(type, id);//ç•¶å‰å³å–®æ‰‹æ­¦å™¨
+            UIManager.Instance().weaponFramePanel.GetComponent<WeaponFrameUI>().SetCurrentWeaponImage(aWeapon);//è¨­ç½®ç•¶å‰æ­¦å™¨é€²æ­¦å™¨æ ¼
             player.GetComponent<PlayerController>().AutoSwitchWeaponR(this.CurrentWeaponR_weaponR);
         }
         if (type == 3)
         {
-            this.CurrentWeaponR_weaponR = GetWeapon(type, id);//·í«e¥kÂù¤âªZ¾¹
-            UIManager.Instance().weaponFramePanel.GetComponent<WeaponFrameUI>().SetCurrentWeaponImage(aWeapon);//³]¸m·í«eªZ¾¹¶iªZ¾¹®æ
+            this.CurrentWeaponR_weaponR = GetWeapon(type, id);//ç•¶å‰å³é›™æ‰‹æ­¦å™¨
+            UIManager.Instance().weaponFramePanel.GetComponent<WeaponFrameUI>().SetCurrentWeaponImage(aWeapon);//è¨­ç½®ç•¶å‰æ­¦å™¨é€²æ­¦å™¨æ ¼
             player.GetComponent<PlayerController>().AutoSwitchWeaponR(this.CurrentWeaponR_weaponR);
         }
     }
     /*---------------------------------*/
 
     /// <summary>
-    /// ²M°£ª±®a·í«e¸Ë³Æªº©Ò¦³ªZ¾¹(°£¤F¤õ§â)
+    /// æ¸…é™¤ç©å®¶ç•¶å‰è£å‚™çš„æ‰€æœ‰æ­¦å™¨(é™¤äº†ç«æŠŠ)
     /// </summary>
     public void SetAllCurrentWeaponsEmpty()
     {
@@ -429,12 +429,12 @@ public class WeaponManager : MonoBehaviour
     }
 
     /// <summary>
-    /// ¶}©l®É³]¸m¹w³]ªZ¾¹(¹CÀ¸®i¥Ü¥Î)
+    /// é–‹å§‹æ™‚è¨­ç½®é è¨­æ­¦å™¨(éŠæˆ²å±•ç¤ºç”¨)
     /// </summary>
     public void SetDefaultWeaponFirst()
     {
-        GameObject weapon = ChooseAndUseWeaponTest(3, 30);//³]¸mid30¸¹ªZ¾¹
-        UIManager.Instance().weaponFramePanel.GetComponent<WeaponFrameUI>().SetCurrentWeaponImage(weapon);//³]¸m·í«eªZ¾¹¶iªZ¾¹®æ
+        GameObject weapon = ChooseAndUseWeaponTest(3, 30);//è¨­ç½®id30è™Ÿæ­¦å™¨
+        UIManager.Instance().weaponFramePanel.GetComponent<WeaponFrameUI>().SetCurrentWeaponImage(weapon);//è¨­ç½®ç•¶å‰æ­¦å™¨é€²æ­¦å™¨æ ¼
     }
 
 }

@@ -1,4 +1,4 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 using UnityEditor;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -6,7 +6,7 @@ using System.Collections;
 
 public class BossAttackManager : MonoBehaviour
 {
-    /*¶Ë®`¦s¨ú¯¸*/
+    /*å‚·å®³å­˜å–ç«™*/
     [HideInInspector] public int mobDamage_instant;
     [HideInInspector] public int mobDamage_instant_R;
     [HideInInspector] public int mobDamage_instant_U;
@@ -24,15 +24,15 @@ public class BossAttackManager : MonoBehaviour
 
     //RecoilShake recoilShake;
 
-    [SerializeField] private GameObject Target;//¦sª±®a
+    [SerializeField] private GameObject Target;//å­˜ç©å®¶
 
-    PlayerHpData PlayerData;//ª±®a¦å¶qª¬ºA
+    PlayerHpData PlayerData;//ç©å®¶è¡€é‡ç‹€æ…‹
 
-    CharacterController TargetSize;//ª±®a¥ÎCharacterController
+    CharacterController TargetSize;//ç©å®¶ç”¨CharacterController
 
-    private bool flag = false; //OnDrawGizmos§PÂ_¬O§_¦b½d³ò¥Î
+    private bool flag = false; //OnDrawGizmosåˆ¤æ–·æ˜¯å¦åœ¨ç¯„åœç”¨
 
-    Vector3 TargetN;//¦Û¤v¸ò¹ï¤èªº¦V¶q
+    Vector3 TargetN;//è‡ªå·±è·Ÿå°æ–¹çš„å‘é‡
 
     public GameObject HitEffect;
     GameObject ParticleSpace;
@@ -43,19 +43,19 @@ public class BossAttackManager : MonoBehaviour
         PlayerData = Target.GetComponent<PlayerHpData>();
         Hp = PlayerData.Hp;
         ParticleSpace = Target.transform.GetChild(0).gameObject;
-        /*§ì¥X¸Ó©Çª«¸ê®Æ*/
-        /*¶Ë®`*/
+        /*æŠ“å‡ºè©²æ€ªç‰©è³‡æ–™*/
+        /*å‚·å®³*/
         mobDamage_instant = GetComponent<ItemOnMob>().mobDamage_instant;
         mobDamage_instant_R = GetComponent<ItemOnMob>().mobDamage_instant-30;
         mobDamage_instant_U = GetComponent<ItemOnMob>().mobDamage_instant +(Hp/3);
         mobDamamge_delay = GetComponent<ItemOnMob>().mobDamage_delay;
         mobDamamge_delay_R = GetComponent<ItemOnMob>().mobDamage_delay+10;
         mobDamamge_delay_U = GetComponent<ItemOnMob>().mobDamage_delay*0;
-        /*¨¤«×*/
+        /*è§’åº¦*/
         mobAngle = GetComponent<ItemOnMob>().mobAngle;
         mobAngle_R = GetComponent<ItemOnMob>().mobAngle / 3;
         mobAngle_U = GetComponent<ItemOnMob>().mobAngle / 5;
-        /*¶ZÂ÷*/
+        /*è·é›¢*/
         mobRadius = GetComponent<ItemOnMob>().mobRadius;
         mobRadius_R = GetComponent<ItemOnMob>().mobRadius * 3f;
         mobRadius_U = GetComponent<ItemOnMob>().mobRadius * 30f;
@@ -66,11 +66,11 @@ public class BossAttackManager : MonoBehaviour
     }
 
     /// <summary>
-    /// ©Çª«§ğÀ»¨Æ¥ó
+    /// æ€ªç‰©æ”»æ“Šäº‹ä»¶
     /// </summary>
     private void AttackEvent_Normal()
     {
-        //OnDrawGizmos§PÂ_¬O§_¦b½d³ò¥Î
+        //OnDrawGizmosåˆ¤æ–·æ˜¯å¦åœ¨ç¯„åœç”¨
         flag = IsInRange(mobAngle, mobRadius, gameObject.transform, Target.transform);
 
         if (flag)
@@ -84,7 +84,7 @@ public class BossAttackManager : MonoBehaviour
 
     private void AttackEvent_Big()
     {
-        //OnDrawGizmos§PÂ_¬O§_¦b½d³ò¥Î
+        //OnDrawGizmosåˆ¤æ–·æ˜¯å¦åœ¨ç¯„åœç”¨
         flag = IsInRange(mobAngle, mobRadius, gameObject.transform, Target.transform);
 
         if (flag)
@@ -100,7 +100,7 @@ public class BossAttackManager : MonoBehaviour
 
     private void AttackEvent_Ranged()
     {
-        //OnDrawGizmos§PÂ_¬O§_¦b½d³ò¥Î
+        //OnDrawGizmosåˆ¤æ–·æ˜¯å¦åœ¨ç¯„åœç”¨
         flag = IsInRange(mobAngle_R, mobRadius_R, gameObject.transform, Target.transform);
 
         if (flag)
@@ -114,7 +114,7 @@ public class BossAttackManager : MonoBehaviour
 
     private void AttackEvent_Ultimate()
     {
-        //OnDrawGizmos§PÂ_¬O§_¦b½d³ò¥Î
+        //OnDrawGizmosåˆ¤æ–·æ˜¯å¦åœ¨ç¯„åœç”¨
         flag = IsInRange(mobAngle_U, mobRadius_U, gameObject.transform, Target.transform);
 
         if (flag)
@@ -138,17 +138,17 @@ public class BossAttackManager : MonoBehaviour
     }
 
     /// <summary>
-    /// ¦©©Çª«¦å_¥uºâ¥ß§Y¶Ë®`
+    /// æ‰£æ€ªç‰©è¡€_åªç®—ç«‹å³å‚·å®³
     /// </summary>
-    /// <param name="mob">©Çª«</param>
-    /// <param name="demage_instant">¥ß§Y¶Ë®`</param>
+    /// <param name="mob">æ€ªç‰©</param>
+    /// <param name="demage_instant">ç«‹å³å‚·å®³</param>
     public void DeductMobHpInstant(GameObject mob, int demage_instant)
     {
         mob.GetComponent<PlayerHpData>().HpDeduction(demage_instant);
     }
 
     /// <summary>
-    /// ¦©©Çª«¦å_¥uºâDebuff³y¦¨©µ¿ğ¶Ë®`
+    /// æ‰£æ€ªç‰©è¡€_åªç®—Debuffé€ æˆå»¶é²å‚·å®³
     /// </summary>
     /// <param name="mob"></param>
     /// <param name="demage_delay"></param>
@@ -157,7 +157,7 @@ public class BossAttackManager : MonoBehaviour
         StartCoroutine(DamageDelay(mob, demage_delay));
     }
     /// <summary>
-    /// ©µ¿ğ¶Ë®`_Debuff«ùÄò¦©¦å
+    /// å»¶é²å‚·å®³_DebuffæŒçºŒæ‰£è¡€
     /// </summary>
     /// <param name="mob"></param>
     /// <param name="demage_delay"></param>
@@ -174,7 +174,7 @@ public class BossAttackManager : MonoBehaviour
     }
     private void OnDrawGizmos()
     {
-        //¥k¤âªZ¾¹§ğÀ»¥b®|
+        //å³æ‰‹æ­¦å™¨æ”»æ“ŠåŠå¾‘
         Gizmos.color = Color.red;
         float angleR = mobAngle;
         float radiusR = mobRadius;
@@ -197,7 +197,7 @@ public class BossAttackManager : MonoBehaviour
         Gizmos.DrawLine(vertices[0], vertices[vertices.Length - 1]);
         Gizmos.DrawLine(vertices[0], vertices[1]);
 
-        //»·¶ZÂ÷§ğÀ»¥b®|
+        //é è·é›¢æ”»æ“ŠåŠå¾‘
         Gizmos.color = Color.cyan;
         float angleR_R = mobAngle_R;
         float radiusR_R = mobRadius_R;
@@ -220,7 +220,7 @@ public class BossAttackManager : MonoBehaviour
         Gizmos.DrawLine(vertices_R[0], vertices_R[vertices_R.Length - 1]);
         Gizmos.DrawLine(vertices_R[0], vertices_R[1]);
 
-        //»·¶ZÂ÷§ğÀ»¥b®|
+        //é è·é›¢æ”»æ“ŠåŠå¾‘
         Gizmos.color = Color.cyan;
         float angleR_u = mobAngle_U;
         float radiusR_u = mobRadius_U;

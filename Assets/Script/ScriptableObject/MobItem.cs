@@ -1,15 +1,15 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "MobItem", menuName = "Inventory/MobItem")]
 public class MobItem : ScriptableObject
 {
-    public string mobName;//©Çª«¦WºÙ
-    public int mobType;//©Çª«ºØÃş
-    public int mobMaxHp;//³Ì¤j¦å¶q
-    public int mobDamage_instant;//©Çª«¶Ë®`_¥ß§Y
-    public int mobDamage_delay;//©Çª«¶Ë®`_©µ¿ğ
-    public float mobAngle;//©Çª«§P©w¨¤«×
-    public float mobRadius;//©Çª«§P©w¥b®|
+    public string mobName;//æ€ªç‰©åç¨±
+    public int mobType;//æ€ªç‰©ç¨®é¡
+    public int mobMaxHp;//æœ€å¤§è¡€é‡
+    public int mobDamage_instant;//æ€ªç‰©å‚·å®³_ç«‹å³
+    public int mobDamage_delay;//æ€ªç‰©å‚·å®³_å»¶é²
+    public float mobAngle;//æ€ªç‰©åˆ¤å®šè§’åº¦
+    public float mobRadius;//æ€ªç‰©åˆ¤å®šåŠå¾‘
 }

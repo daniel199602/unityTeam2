@@ -1,10 +1,10 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class EnterHit : MonoBehaviour
 {
-    /*¥Ø«eµL¥Î*/
+    /*ç›®å‰ç„¡ç”¨*/
     ParticleSystem HeadEnable;
     ParticleSystem HeadEnables;
  

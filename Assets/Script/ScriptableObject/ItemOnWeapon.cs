@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,31 +6,31 @@ public class ItemOnWeapon : MonoBehaviour
 {
     public WeaponItem thisWeaponItem;
     /// <summary>
-    /// ªZ¾¹¦WºÙ
+    /// æ­¦å™¨åç¨±
     /// </summary>
     public string weaponName { private set; get; }
     /// <summary>
-    /// ªZ¾¹ºØÃş
+    /// æ­¦å™¨ç¨®é¡
     /// </summary>
     public int weaponType { private set; get; }
     /// <summary>
-    /// ªZ¾¹ID
+    /// æ­¦å™¨ID
     /// </summary>
     public int weaponID { private set; get; }
     /// <summary>
-    /// ¥ß§Y¶Ë®`
+    /// ç«‹å³å‚·å®³
     /// </summary>
     public int weaponDamage_instant { private set; get; }
     /// <summary>
-    /// ©µ¿ğ¶Ë®`
+    /// å»¶é²å‚·å®³
     /// </summary>
     public int weaponDamage_delay { private set; get; }
     /// <summary>
-    /// ªZ¾¹§@¥Î½d³ò¨¤«×
+    /// æ­¦å™¨ä½œç”¨ç¯„åœè§’åº¦
     /// </summary>
     public float weaponAngle { private set; get; }
     /// <summary>
-    /// ªZ¾¹§@¥Î½d³ò¥b®|
+    /// æ­¦å™¨ä½œç”¨ç¯„åœåŠå¾‘
     /// </summary>
     public float weaponRadius { private set; get; }
 

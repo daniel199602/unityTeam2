@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -38,9 +38,9 @@ public class MubHpData : MonoBehaviour
 
 
     /// <summary>
-    /// ¦å¶q¦©°£
+    /// è¡€é‡æ‰£é™¤
     /// </summary>
-    /// <param name="Num">¦©¦å¶q(½Ğ¶ñ¤J>=0¾ã¼Æ)</param>
+    /// <param name="Num">æ‰£è¡€é‡(è«‹å¡«å…¥>=0æ•´æ•¸)</param>
     public void HpDeduction(int Num)
     {
         Hp -= Num;
@@ -48,13 +48,13 @@ public class MubHpData : MonoBehaviour
 
 
     /// <summary>
-    /// ÀË¬d¦å¶q¡A¨Ã¼vÅT¦å¶q±ø
+    /// æª¢æŸ¥è¡€é‡ï¼Œä¸¦å½±éŸ¿è¡€é‡æ¢
     /// </summary>
     public void HpCheck()
     {
         if (Hp != currentHp)
         {
-          //  Debug.Log("¦©¦å");
+          //  Debug.Log("æ‰£è¡€");
             currentHp = Hp;
         }
         if (currentHp < 0)

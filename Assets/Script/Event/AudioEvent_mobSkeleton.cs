@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -13,7 +13,7 @@ public class AudioEvent_mobSkeleton : MonoBehaviour
     }
 
     /// <summary>
-    /// ¼½©ñ¥X¥Íªº­·­µ®Ä
+    /// æ’­æ”¾å‡ºç”Ÿçš„é¢¨éŸ³æ•ˆ
     /// </summary>
     public void PlayWindBornEvent()
     {

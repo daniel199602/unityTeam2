@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -9,11 +9,11 @@ public class DoorOpen_MobLast : MonoBehaviour
     public GameObject door_VFX;
     bool door_VFX_isPlaying;
     ParticleSystem ps;
-    AudioEvent_electircDoor mobBornRoom;//­µ®Ä¸}¥»_¹p¹qªù
+    AudioEvent_electircDoor mobBornRoom;//éŸ³æ•ˆè…³æœ¬_é›·é›»é–€
 
     private void Start()
     {
-        mobBornRoom = this.gameObject.GetComponentInParent<AudioEvent_electircDoor>();//§ì¤÷¿Ëªº¸}¥»
+        mobBornRoom = this.gameObject.GetComponentInParent<AudioEvent_electircDoor>();//æŠ“çˆ¶è¦ªçš„è…³æœ¬
         ps = door_VFX.GetComponent<ParticleSystem>();
         door_VFX_isPlaying = false;
     }
@@ -30,7 +30,7 @@ public class DoorOpen_MobLast : MonoBehaviour
                 
                 ps.Play();
 
-                mobBornRoom.PlayElectricityEvent();//¼½­µ®Ä
+                mobBornRoom.PlayElectricityEvent();//æ’­éŸ³æ•ˆ
 
                 door_VFX_isPlaying = true;
             }

@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -17,13 +17,13 @@ public class MobBoXBorn : MonoBehaviour
     
     public GameObject mob1,mob2;
 
-    AudioEvent_electircDoor mobBornRoom;//­µ®Ä¸}¥»_¹p¹qªù
-    AudioEvent_mobSkeleton mobBornSkeleton;//­µ®Ä¸}¥»_¾uÅ\
+    AudioEvent_electircDoor mobBornRoom;//éŸ³æ•ˆè…³æœ¬_é›·é›»é–€
+    AudioEvent_mobSkeleton mobBornSkeleton;//éŸ³æ•ˆè…³æœ¬_éª·é«
 
     private void Start()
     {
-        mobBornRoom = this.gameObject.GetComponentInParent<AudioEvent_electircDoor>();//§ì¤÷¿Ëªº¸}¥»
-        mobBornSkeleton = this.gameObject.GetComponentInParent<AudioEvent_mobSkeleton>();//§ì¤÷¿Ëªº¸}¥»
+        mobBornRoom = this.gameObject.GetComponentInParent<AudioEvent_electircDoor>();//æŠ“çˆ¶è¦ªçš„è…³æœ¬
+        mobBornSkeleton = this.gameObject.GetComponentInParent<AudioEvent_mobSkeleton>();//æŠ“çˆ¶è¦ªçš„è…³æœ¬
         door = this.gameObject.transform.GetChild(0).gameObject;
         door.SetActive(false);
         GenerationTimes = 0;
@@ -41,14 +41,14 @@ public class MobBoXBorn : MonoBehaviour
         int count = MobMain.Instance().pAliveObject.Count;
         if (count < 4)
         {
-            //¤£ª¾¹D¬°¬Æ»ò¨¤¦âÄ²µo«á²Ä¤G¦¸­«¥Í°¸º¸·|¬°NULL,©Ò¥H¥[¤Wif¨¾·í
+            //ä¸çŸ¥é“ç‚ºç”šéº¼è§’è‰²è§¸ç™¼å¾Œç¬¬äºŒæ¬¡é‡ç”Ÿå¶çˆ¾æœƒç‚ºNULL,æ‰€ä»¥åŠ ä¸Šifé˜²ç•¶
             GameObject go = MobMain.Instance().oPool.LoadObjectFromPool(MobMain.Instance().pTestList);
 
             if (go != null)
             {
                 go.transform.position = startPos;
                 go.SetActive(true);
-                go.GetComponent<MubHpData>().Hp = 1000;//­«¥Í¦å¶q¦^º¡
+                go.GetComponent<MubHpData>().Hp = 1000;//é‡ç”Ÿè¡€é‡å›æ»¿
                 MobMain.Instance().pAliveObject.Add(go);
 
             }
@@ -58,7 +58,7 @@ public class MobBoXBorn : MonoBehaviour
             {
                 go1.transform.position = startPos1;
                 go1.SetActive(true);
-                go1.GetComponent<MubHpData>().Hp = 1000;//­«¥Í¦å¶q¦^º¡
+                go1.GetComponent<MubHpData>().Hp = 1000;//é‡ç”Ÿè¡€é‡å›æ»¿
                 MobMain.Instance().pAliveObject.Add(go1);
 
             }
@@ -68,7 +68,7 @@ public class MobBoXBorn : MonoBehaviour
             {
                 go2.transform.position = startPos2;
                 go2.SetActive(true);
-                go2.GetComponent<MubHpData>().Hp = 1000;//­«¥Í¦å¶q¦^º¡
+                go2.GetComponent<MubHpData>().Hp = 1000;//é‡ç”Ÿè¡€é‡å›æ»¿
                 MobMain.Instance().pAliveObject.Add(go2);
 
             }
@@ -78,10 +78,10 @@ public class MobBoXBorn : MonoBehaviour
             {
                 go3.transform.position = startPos3;
                 go3.SetActive(true);
-                go3.GetComponent<MubHpData>().Hp = 1000;//­«¥Í¦å¶q¦^º¡
+                go3.GetComponent<MubHpData>().Hp = 1000;//é‡ç”Ÿè¡€é‡å›æ»¿
                 MobMain.Instance().pAliveObject.Add(go3);
 
-                mobBornSkeleton.PlayWindBornEvent();//¼½¾uÅ\½Ï¥Í­·­µ®Ä
+                mobBornSkeleton.PlayWindBornEvent();//æ’­éª·é«èª•ç”Ÿé¢¨éŸ³æ•ˆ
             }
         }
     }
@@ -92,7 +92,7 @@ public class MobBoXBorn : MonoBehaviour
         {
             door.SetActive(!door.activeSelf);
             isInZone = true;
-            mobBornRoom.PlayElectricityEvent();//¼½­µ®Ä
+            mobBornRoom.PlayElectricityEvent();//æ’­éŸ³æ•ˆ
             born();
             //Debug.Log(isInZone);
             GenerationTimes = 0;

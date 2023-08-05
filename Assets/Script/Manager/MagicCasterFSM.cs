@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -59,8 +59,8 @@ public class MagicCasterFSM : MonoBehaviour
     }
     void Start()
     {
-        Target = GameManager.Instance().PlayerStart;//§ì¥Xª±®a
-        MySelf = this.transform.gameObject;//§ì¥X¦Û¤v
+        Target = GameManager.Instance().PlayerStart;//æŠ“å‡ºçŽ©å®¶
+        MySelf = this.transform.gameObject;//æŠ“å‡ºè‡ªå·±
 
         m_NowState = MagicCasterState.Idle;
         capsule = GetComponent<CharacterController>();
@@ -75,7 +75,7 @@ public class MagicCasterFSM : MonoBehaviour
 
         m_NowState = MagicCasterState.Idle;
 
-        ATKRadius = ThisItemOnMob_State.mobRadius;//WeaponÂÐ»\
+        ATKRadius = ThisItemOnMob_State.mobRadius;//Weaponè¦†è“‹
 
         Close_ATKRadius = ATKRadius * 0.8f;
         AwakeRadius = ATKRadius * 2.5f;
@@ -102,7 +102,7 @@ public class MagicCasterFSM : MonoBehaviour
                 Roar();
                 RoarBool = true;
             }
-            if (State.Hp <= 0)//¦º¤`¡÷µLª¬ºA
+            if (State.Hp <= 0)//æ­»äº¡â†’ç„¡ç‹€æ…‹
             {
                 m_NowState = MagicCasterState.Dead;
                 DeadStatus();
@@ -174,7 +174,7 @@ public class MagicCasterFSM : MonoBehaviour
             capsule.radius = 0f;
         }
     }
-    //°lÀ»ª¬ºA
+    //è¿½æ“Šç‹€æ…‹
     public void TraceStatus()
     {
         if (m_NowState != MagicCasterState.Summon)
@@ -196,7 +196,7 @@ public class MagicCasterFSM : MonoBehaviour
             }
         }
     }
-    //§ðÀ»ª¬ºA
+    //æ”»æ“Šç‹€æ…‹
     public void AttackStatus()
     {
         InATKrange = IsInRange_RangedBattleRange(ATKRadius, MySelf, Target);
@@ -208,21 +208,21 @@ public class MagicCasterFSM : MonoBehaviour
             Attack();
         }
     }
-    //µd¿ôª¬ºA
+    //ç”¦é†’ç‹€æ…‹
     public bool IsInRange_AwakeRange(float Radius, GameObject attacker, GameObject attacked)
     {
         Vector3 direction = attacked.transform.position - attacker.transform.position;
 
         return direction.magnitude <= Radius;
     }
-    //¦b»·µ{§ðÀ»½d³ò¤º 
+    //åœ¨é ç¨‹æ”»æ“Šç¯„åœå…§ 
     public bool IsInRange_RangedBattleRange(float Radius, GameObject attacker, GameObject attacked)
     {
         Vector3 direction = attacked.transform.position - attacker.transform.position;
 
         return direction.magnitude <= Radius;
     }
-    //½d³ò§P©w_«á°h
+    //ç¯„åœåˆ¤å®š_å¾Œé€€
     public bool TooCloseRange_RangedBattleRange(float Radius, GameObject attacker, GameObject attacked)
     {
         Vector3 direction = attacked.transform.position - attacker.transform.position;
@@ -230,7 +230,7 @@ public class MagicCasterFSM : MonoBehaviour
         return direction.magnitude < Radius;
     }
 
-    /*½d³ò§P©w_°lÂÜ*/
+    /*ç¯„åœåˆ¤å®š_è¿½è¹¤*/
     public bool IsInRange_TraceRange(float Radius, GameObject attacker, GameObject attacked)
     {
         Vector3 direction = attacked.transform.position - attacker.transform.position;
@@ -300,7 +300,7 @@ public class MagicCasterFSM : MonoBehaviour
             if (m_NowState == MagicCasterState.Summon)
             {
                 MubAnimator.SetBool("GrenerateBug", true);
-                Debug.Log("²£¥ÍÂÎÂÎ");
+                Debug.Log("ç”¢ç”ŸèŸ²èŸ²");
                 MubAnimator.SetBool("Trace", false);
                 MubAnimator.SetBool("Attack", false);
                 MubAnimator.SetBool("Back", false);

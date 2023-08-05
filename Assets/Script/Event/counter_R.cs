@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -49,17 +49,17 @@ public class counter_R : MonoBehaviour
         DeductMobHpDelay(Target, mobDamamge_delay);
     }
     /// <summary>
-    /// ¦©©Çª«¦å_¥uºâ¥ß§Y¶Ë®`
+    /// æ‰£æ€ªç‰©è¡€_åªç®—ç«‹å³å‚·å®³
     /// </summary>
-    /// <param name="mob">©Çª«</param>
-    /// <param name="demage_instant">¥ß§Y¶Ë®`</param>
+    /// <param name="mob">æ€ªç‰©</param>
+    /// <param name="demage_instant">ç«‹å³å‚·å®³</param>
     public void DeductMobHpInstant(GameObject mob, int demage_instant)
     {
         mob.GetComponent<PlayerHpData>().HpDeduction(demage_instant);
     }
 
     /// <summary>
-    /// ¦©©Çª«¦å_¥uºâDebuff³y¦¨©µ¿ğ¶Ë®`
+    /// æ‰£æ€ªç‰©è¡€_åªç®—Debuffé€ æˆå»¶é²å‚·å®³
     /// </summary>
     /// <param name="mob"></param>
     /// <param name="demage_delay"></param>
@@ -68,7 +68,7 @@ public class counter_R : MonoBehaviour
         StartCoroutine(DamageDelay(mob, demage_delay));
     }
     /// <summary>
-    /// ©µ¿ğ¶Ë®`_Debuff«ùÄò¦©¦å
+    /// å»¶é²å‚·å®³_DebuffæŒçºŒæ‰£è¡€
     /// </summary>
     /// <param name="mob"></param>
     /// <param name="demage_delay"></param>

@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,15 +8,15 @@ public enum SpiderState
 }
 public class SpiderFSM : MonoBehaviour
 {
-    private SpiderState m_NowState;//ª¬ºA¾÷
+    private SpiderState m_NowState;//ç‹€æ…‹æ©Ÿ
 
-    public Mesh mesh;//¥~«¬
-    public Material mat;//ÅÜ¦â
-    public int matIndex;//ÅÜ¦â°Ñ¼Æ
-    public float offset;//ÅÜ¦â°Ñ¼Æ
+    public Mesh mesh;//å¤–å‹
+    public Material mat;//è®Šè‰²
+    public int matIndex;//è®Šè‰²åƒæ•¸
+    public float offset;//è®Šè‰²åƒæ•¸
 
-    [SerializeField]private GameObject Target;//¦sª±®a
-    private GameObject MySelf;//¦s¦Û¤v
+    [SerializeField]private GameObject Target;//å­˜ç©å®¶
+    private GameObject MySelf;//å­˜è‡ªå·±
 
     ItemOnMob ThisItemOnMob_State;
 
@@ -72,8 +72,8 @@ public class SpiderFSM : MonoBehaviour
     }
     private void Start()
     {
-        Target = GameManager.Instance().PlayerStart;//§ì¥Xª±®a
-        MySelf = this.transform.gameObject;//§ì¥X¦Û¤v
+        Target = GameManager.Instance().PlayerStart;//æŠ“å‡ºç©å®¶
+        MySelf = this.transform.gameObject;//æŠ“å‡ºè‡ªå·±
 
         recoilShake = GetComponent<RecoilShake>();
 
@@ -91,7 +91,7 @@ public class SpiderFSM : MonoBehaviour
 
         FrameCount_Roar = 390;
 
-        ATKRadius = ThisItemOnMob_State.mobRadius;//WeaponÂĞ»\
+        ATKRadius = ThisItemOnMob_State.mobRadius;//Weaponè¦†è“‹
 
         StartExplosionRadius = ATKRadius * 0.5f;
 
@@ -111,7 +111,7 @@ public class SpiderFSM : MonoBehaviour
             Roar();
             RoarBool = true;
         }
-        if (StartExplosive== true)//¦º¤`¡÷µLª¬ºA
+        if (StartExplosive== true)//æ­»äº¡â†’ç„¡ç‹€æ…‹
         {
             m_NowState = SpiderState.Dead;
             DeadStatus();

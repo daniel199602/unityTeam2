@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -59,7 +59,7 @@ public class ExplosiveChest : MonoBehaviour
     }
 
     /// <summary>
-    /// Ä_½c¿ïªZ¾¹¨Æ¥ó
+    /// å¯¶ç®±é¸æ­¦å™¨äº‹ä»¶
     /// </summary>
     public void BoxChangeWeaponEvent()
     {
@@ -145,7 +145,7 @@ public class ExplosiveChest : MonoBehaviour
     }
 
     /// <summary>
-    /// ¼½©ñÄ_¬Û·n®Ì­µ®Ä
+    /// æ’­æ”¾å¯¶ç›¸æ–æ™ƒéŸ³æ•ˆ
     /// </summary>
     void PlayBoxKnockEvent()
     {

@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -11,8 +11,8 @@ public class BearFSM : MonoBehaviour
     private BearState m_NowState;
     ItemOnMob ThisItemOnMob_State;
 
-    private GameObject Target;//¦sª±®a
-    private GameObject MySelf;//¦s¦Û¤v
+    private GameObject Target;//å­˜ç©å®¶
+    private GameObject MySelf;//å­˜è‡ªå·±
 
     MubHpData State;
     Animator MubAnimator;
@@ -53,9 +53,9 @@ public class BearFSM : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Target = GameManager.Instance().PlayerStart;//§ì¥Xª±®a
+        Target = GameManager.Instance().PlayerStart;//æŠ“å‡ºç©å®¶
 
-        MySelf = this.transform.gameObject;//§ì¥X¦Û¤v
+        MySelf = this.transform.gameObject;//æŠ“å‡ºè‡ªå·±
 
         MoveSpeed = Speed;
 
@@ -67,11 +67,11 @@ public class BearFSM : MonoBehaviour
 
         hpTemporary = State.Hp;
 
-        FrameCount_Roar = 200;//Âê¦í°_©l¦ì²¾
+        FrameCount_Roar = 200;//é–ä½èµ·å§‹ä½ç§»
 
         m_NowState = BearState.Idle;
 
-        ATKRadius = ThisItemOnMob_State.mobRadius;//WeaponÂĞ»\
+        ATKRadius = ThisItemOnMob_State.mobRadius;//Weaponè¦†è“‹
 
         mobAngle = ThisItemOnMob_State.mobAngle;
 
@@ -87,7 +87,7 @@ public class BearFSM : MonoBehaviour
 
         Count = 0;
     }
-    //°lÀ»ª¬ºA
+    //è¿½æ“Šç‹€æ…‹
     public void TraceStatus()
     {
         if (AttackCBool == false)
@@ -99,7 +99,7 @@ public class BearFSM : MonoBehaviour
             }
         }
     }
-    //§ğÀ»ª¬ºA
+    //æ”»æ“Šç‹€æ…‹
     public void AttackStatus()
     {
         InATKrange = IsInRange_RangedBattleRange(ATKRadius, MySelf, Target);
@@ -129,7 +129,7 @@ public class BearFSM : MonoBehaviour
                 Roar();
                 RoarBool = true;
             }
-            if (State.Hp <= 0)//¦º¤`¡÷µLª¬ºA
+            if (State.Hp <= 0)//æ­»äº¡â†’ç„¡ç‹€æ…‹
             {
                 m_NowState = BearState.Dead;
                 DeadStatus();
@@ -449,7 +449,7 @@ public class BearFSM : MonoBehaviour
 
         return direction.magnitude <= Radius;
     }
-    //¦b§ğÀ»½d³ò¤º 
+    //åœ¨æ”»æ“Šç¯„åœå…§ 
     public bool IsInRange_RangedBattleRange(float Radius, GameObject attacker, GameObject attacked)
     {
         Vector3 direction = attacked.transform.position - attacker.transform.position;
@@ -457,7 +457,7 @@ public class BearFSM : MonoBehaviour
         return direction.magnitude <= Radius;
     }
 
-    /*½d³ò§P©w_°lÂÜ*/
+    /*ç¯„åœåˆ¤å®š_è¿½è¹¤*/
     public bool IsInRange_TraceRange(float Radius, GameObject attacker, GameObject attacked)
     {
         Vector3 direction = attacked.transform.position - attacker.transform.position;

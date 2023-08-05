@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -25,7 +25,7 @@ public class bossTeleport : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         ParticleSystem ps = TeleportVFX.GetComponent<ParticleSystem>();
-        PlayPortalEvent();//¼½­µ®Ä
+        PlayPortalEvent();//æ’­éŸ³æ•ˆ
         ps.Play();
 
         Debug.Log("boss");
@@ -38,12 +38,12 @@ public class bossTeleport : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.F8))
         {
-            WeaponManager.Instance().SetDefaultWeaponFirst(); //¶}©l®É³]¸m¹w³]ªZ¾¹(¹CÀ¸®i¥Ü¥Î)
+            WeaponManager.Instance().SetDefaultWeaponFirst(); //é–‹å§‹æ™‚è¨­ç½®é è¨­æ­¦å™¨(éŠæˆ²å±•ç¤ºç”¨)
 
-            PlayPortalEvent();//¼½­µ®Ä
+            PlayPortalEvent();//æ’­éŸ³æ•ˆ
             GameManager.Instance().mobPool.Clear();
             FadeOutWait();
-            //§@¹ú¨t²Îª½±µ¶Ç¤ıÃö ¤£­n¶Ã«ö!!
+            //ä½œå¼Šç³»çµ±ç›´æ¥å‚³ç‹é—œ ä¸è¦äº‚æŒ‰!!
         }
     }
 

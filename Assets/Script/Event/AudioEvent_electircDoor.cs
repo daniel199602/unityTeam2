@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -14,7 +14,7 @@ public class AudioEvent_electircDoor : MonoBehaviour
     }
 
     /// <summary>
-    /// ¼½©ñ¹p¹qªù­µ®Ä
+    /// æ’­æ”¾é›·é›»é–€éŸ³æ•ˆ
     /// </summary>
     public void PlayElectricityEvent()
     {

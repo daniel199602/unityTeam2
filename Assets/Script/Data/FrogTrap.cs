@@ -1,15 +1,15 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class FrogTrap : MonoBehaviour
 {
     /// <summary>
-    /// °»´ú¨ìª±®a
+    /// åµæ¸¬åˆ°ç©å®¶
     /// </summary>
     public LayerMask HitPlayer;
     /// <summary>
-    /// «Cµìªº¬r
+    /// é’è›™çš„æ¯’
     /// </summary>
     public GameObject trap;
     public GameObject prepare;
@@ -27,7 +27,7 @@ public class FrogTrap : MonoBehaviour
 
     void Start()
     {
-        frogTrap = this.gameObject.GetComponentInParent<AudioEvent_frogTrap>();//§ì¤÷¿Ëªº¸}¥»
+        frogTrap = this.gameObject.GetComponentInParent<AudioEvent_frogTrap>();//æŠ“çˆ¶è¦ªçš„è…³æœ¬
         mobDamage_instant = GetComponent<ItemOnMob>().mobDamage_instant;
         mobDamamge_delay = GetComponent<ItemOnMob>().mobDamage_delay;
         radius = GetComponent<ItemOnMob>().mobRadius;
@@ -38,7 +38,7 @@ public class FrogTrap : MonoBehaviour
 
     void FixedUpdate()
     {
-        //«Cµì«e100ªº¶ZÂ÷­Y°»´ú¨ìª±®a¼·©ñ«Cµìªº¬r
+        //é’è›™å‰100çš„è·é›¢è‹¥åµæ¸¬åˆ°ç©å®¶æ’¥æ”¾é’è›™çš„æ¯’
         Vector3 mePos =this.transform.right;
         Ray r = new Ray(this.transform.position, mePos);
         RaycastHit rh;
@@ -47,7 +47,7 @@ public class FrogTrap : MonoBehaviour
             ParticleSystem ps = prepare.GetComponent<ParticleSystem>();
             ps.Play();
 
-            frogTrap.PlayFrogSpitFireEvent();//¼½©ñ«Cµì¼Q¤õ­µ®Ä
+            frogTrap.PlayFrogSpitFireEvent();//æ’­æ”¾é’è›™å™´ç«éŸ³æ•ˆ
 
             TimeLine = 3;
             if (Spilt == false)
@@ -102,17 +102,17 @@ public class FrogTrap : MonoBehaviour
         }
     }
     /// <summary>
-    /// ¦©©Çª«¦å_¥uºâ¥ß§Y¶Ë®`
+    /// æ‰£æ€ªç‰©è¡€_åªç®—ç«‹å³å‚·å®³
     /// </summary>
-    /// <param name="mob">©Çª«</param>
-    /// <param name="demage_instant">¥ß§Y¶Ë®`</param>
+    /// <param name="mob">æ€ªç‰©</param>
+    /// <param name="demage_instant">ç«‹å³å‚·å®³</param>
     public void DeductMobHpInstant(GameObject mob, int demage_instant)
     {
         mob.GetComponent<PlayerHpData>().HpDeduction(demage_instant);
     }
 
     /// <summary>
-    /// ¦©©Çª«¦å_¥uºâDebuff³y¦¨©µ¿ğ¶Ë®`
+    /// æ‰£æ€ªç‰©è¡€_åªç®—Debuffé€ æˆå»¶é²å‚·å®³
     /// </summary>
     /// <param name="mob"></param>
     /// <param name="demage_delay"></param>
@@ -121,7 +121,7 @@ public class FrogTrap : MonoBehaviour
         StartCoroutine(DamageDelay(mob, demage_delay));
     }
     /// <summary>
-    /// ©µ¿ğ¶Ë®`_Debuff«ùÄò¦©¦å
+    /// å»¶é²å‚·å®³_DebuffæŒçºŒæ‰£è¡€
     /// </summary>
     /// <param name="mob"></param>
     /// <param name="demage_delay"></param>
@@ -149,7 +149,7 @@ public class FrogTrap : MonoBehaviour
     }
 
     /// <summary>
-    /// ´ú¸Õ½u(«Cµì¶ZÂ÷)
+    /// æ¸¬è©¦ç·š(é’è›™è·é›¢)
     /// </summary>
     private void OnDrawGizmos()
     {

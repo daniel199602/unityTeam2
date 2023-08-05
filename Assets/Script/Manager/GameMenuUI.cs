@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -18,14 +18,14 @@ public class GameMenuUI : MonoBehaviour
     }
 
     /// <summary>
-    /// ÂIÀ»_¶i¤J¹CÀ¸
+    /// é»æ“Š_é€²å…¥éŠæˆ²
     /// </summary>
     public void ClickPlayGameBtn()
     {
-        UIManager.Instance().weaponFramePanel.GetComponent<WeaponFrameUI>().SetEmptyWeaponImage();//²MªÅªZ¾¹®æ¹Ï¥Ü
-        WeaponManager.Instance().SetAllCurrentWeaponsEmpty();//²M°£ª±®a·í«e¸Ë³Æªº©Ò¦³ªZ¾¹
+        UIManager.Instance().weaponFramePanel.GetComponent<WeaponFrameUI>().SetEmptyWeaponImage();//æ¸…ç©ºæ­¦å™¨æ ¼åœ–ç¤º
+        WeaponManager.Instance().SetAllCurrentWeaponsEmpty();//æ¸…é™¤ç©å®¶ç•¶å‰è£å‚™çš„æ‰€æœ‰æ­¦å™¨
 
-        WeaponManager.Instance().SetDefaultWeaponFirst(); //¶}©l®É³]¸m¹w³]ªZ¾¹(¹CÀ¸®i¥Ü¥Î)
+        WeaponManager.Instance().SetDefaultWeaponFirst(); //é–‹å§‹æ™‚è¨­ç½®é è¨­æ­¦å™¨(éŠæˆ²å±•ç¤ºç”¨)
 
         GameManager.Instance().PlayerStart.SetActive(false);
         SceneManager.LoadSceneAsync("room");
@@ -34,11 +34,11 @@ public class GameMenuUI : MonoBehaviour
     }
 
     /// <summary>
-    /// ÂIÀ»_µ²§ô¹CÀ¸
+    /// é»æ“Š_çµæŸéŠæˆ²
     /// </summary>
     public void ClickQuitGameBtn()
     {
-        GameManager.Instance().QuitGame();//Ãö³¬À³¥Îµ{¦¡
+        GameManager.Instance().QuitGame();//é—œé–‰æ‡‰ç”¨ç¨‹å¼
     }
 
 }

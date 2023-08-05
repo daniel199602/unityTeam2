@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -14,7 +14,7 @@ public class AudioEvent_frogTrap : MonoBehaviour
     }
 
     /// <summary>
-    /// ¼½©ñ«Cµì³´¨À¼Q¤õ­µ®Ä
+    /// æ’­æ”¾é’è›™é™·é˜±å™´ç«éŸ³æ•ˆ
     /// </summary>
     public void PlayFrogSpitFireEvent()
     {

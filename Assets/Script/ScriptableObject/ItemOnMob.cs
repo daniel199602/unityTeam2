@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,31 +7,31 @@ public class ItemOnMob : MonoBehaviour
     public MobItem thisMobItem;
 
     /// <summary>
-    /// ©Çª«¦W
+    /// æ€ªç‰©å
     /// </summary>
     public string mobName { private set; get; }
     /// <summary>
-    /// ©Çª«ºØÃş
+    /// æ€ªç‰©ç¨®é¡
     /// </summary>
     public int mobType { private set; get; }
     /// <summary>
-    /// ©Çª«³Ì¤j¦å¶q
+    /// æ€ªç‰©æœ€å¤§è¡€é‡
     /// </summary>
     public int mobMaxHp { private set; get; }
     /// <summary>
-    /// ©Çª«¶Ë®`_¥ß§Y
+    /// æ€ªç‰©å‚·å®³_ç«‹å³
     /// </summary>
     public int mobDamage_instant { private set; get; }
     /// <summary>
-    /// ©Çª«¶Ë®`_©µ¿ğ
+    /// æ€ªç‰©å‚·å®³_å»¶é²
     /// </summary>
     public int mobDamage_delay { private set; get; }
     /// <summary>
-    /// ©Çª«§P©w¨¤«×
+    /// æ€ªç‰©åˆ¤å®šè§’åº¦
     /// </summary>
     public float mobAngle { private set; get; }
     /// <summary>
-    /// ©Çª«§P©w¥b®|
+    /// æ€ªç‰©åˆ¤å®šåŠå¾‘
     /// </summary>
     public float mobRadius { private set; get; }
 

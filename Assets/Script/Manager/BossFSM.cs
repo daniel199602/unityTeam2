@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using UnityEngine;
 
 public enum BossState
@@ -9,8 +9,8 @@ public class BossFSM : MonoBehaviour
 {
     private BossState m_NowState;
 
-    [SerializeField] private GameObject Target;//¦sª±®a
-    private GameObject MySelf;//¦s¦Û¤v
+    [SerializeField] private GameObject Target;//å­˜ç©å®¶
+    private GameObject MySelf;//å­˜è‡ªå·±
 
     [SerializeField] private GameObject TeleportPoint01;
     [SerializeField] private GameObject TeleportPoint02;
@@ -40,7 +40,7 @@ public class BossFSM : MonoBehaviour
     bool GetHit;
     bool StageTwo = false;
     bool Ulting = false;
-    bool IK = false;//2¶¥¬q³æ¦¸§P©w¡A¤£·|­«½Æ¶i¤J2¶¥¬q
+    bool IK = false;//2éšæ®µå–®æ¬¡åˆ¤å®šï¼Œä¸æœƒé‡è¤‡é€²å…¥2éšæ®µ
 
     float TraceRadius;
     float ATKRadius;
@@ -67,26 +67,26 @@ public class BossFSM : MonoBehaviour
 
     ItemOnMob ThisItemOnMob_State;
 
-    //¼Q¤õ
+    //å™´ç«
     GameObject LeftArm;
     ParticleSystem Spilt_Fire;
     public GameObject HitFlame_R;
-    //¶Ç°e
+    //å‚³é€
     GameObject Teleport;
     ParticleSystem magic_circle;
     public GameObject Teleport02;
     ParticleSystem magic_circle02;
-    //¤j©Û
+    //å¤§æ‹›
     GameObject UltimateFire;
     ParticleSystem Fire;
     public GameObject HitFlame;
     ParticleSystem FlameONground;
     public GameObject HighLight;
     ParticleSystem HighLightONground;
-    //2¶¥¬q
+    //2éšæ®µ
     GameObject Flame;
     ParticleSystem Roar;
-    //ÀY
+    //é ­
     public GameObject Head01;
     ParticleSystem Head01P;
     public GameObject Head02;
@@ -105,20 +105,20 @@ public class BossFSM : MonoBehaviour
     void Start()
     {
         StartBattle = false;
-        Target = GameManager.Instance().PlayerStart;//§ì¥Xª±®a
-        MySelf = this.transform.gameObject;//§ì¥X¦Û¤v
+        Target = GameManager.Instance().PlayerStart;//æŠ“å‡ºç©å®¶
+        MySelf = this.transform.gameObject;//æŠ“å‡ºè‡ªå·±
         TargetHp = Target.GetComponent<PlayerHpData>().Hp;
         capsule = GetComponent<CharacterController>();
         MubAnimator = GetComponent<Animator>();
         State = GetComponent<MubHpData>();
 
-        //ªZ¾¹ªì©lª¬ºA
+        //æ­¦å™¨åˆå§‹ç‹€æ…‹
         BigSwordOnBack.SetActive(true);
         BigSwordOnHand.SetActive(false);
         AxeOnBack.SetActive(true);
         AxeOnHand.SetActive(false);
 
-        //¯S®Ä
+        //ç‰¹æ•ˆ
         Spilt_Fire = LeftArm.GetComponent<ParticleSystem>();
         magic_circle = Teleport.GetComponent<ParticleSystem>();
         magic_circle02 = Teleport02.GetComponent<ParticleSystem>();
@@ -130,19 +130,19 @@ public class BossFSM : MonoBehaviour
         Head01P = Head01.GetComponentInChildren<ParticleSystem>();
         Head02P = Head02.GetComponentInChildren<ParticleSystem>();
 
-        //¦å¶q°Ï
+        //è¡€é‡å€
         hpTemporary = State.Hp;
         hpTemporaryMax = State.Hp;
 
         LookBool = true;
         RotateSpeed = 7f;
 
-        //ªì©lª¬ºA
+        //åˆå§‹ç‹€æ…‹
         m_NowState = BossState.Idle;
 
-        //½d³ò³]©w
+        //ç¯„åœè¨­å®š
         ATKRadius = ThisItemOnMob_State.mobRadius;
-        ATKRadius_norm = ThisItemOnMob_State.mobRadius;//WeaponÂĞ»\
+        ATKRadius_norm = ThisItemOnMob_State.mobRadius;//Weaponè¦†è“‹
         ATKRadius_Atk = ThisItemOnMob_State.mobRadius * 1.5f;
         RangedRadius = ATKRadius * 3f;
         RangedRadius_norm = ATKRadius * 3f;
@@ -153,9 +153,9 @@ public class BossFSM : MonoBehaviour
 
         GetHit = false;
         inRrangeBool = false;
-        InATKrangeSwitch = false;//ªñ¶ZÂ÷&»·¶ZÂ÷¤Á´«§P©w
+        InATKrangeSwitch = false;//è¿‘è·é›¢&é è·é›¢åˆ‡æ›åˆ¤å®š
 
-        //ªì©l§N«o³]©w
+        //åˆå§‹å†·å»è¨­å®š
         Count = 0;
         RCount = 0;
         UCount = 60;
@@ -170,7 +170,7 @@ public class BossFSM : MonoBehaviour
             Vector3 pv = new Vector3(transform.position.x, 0f, transform.position.z);
             transform.position = pv;
 
-            if (State.Hp <= 0)//¦º¤`¡÷µLª¬ºA
+            if (State.Hp <= 0)//æ­»äº¡â†’ç„¡ç‹€æ…‹
             {
                 m_NowState = BossState.Dead;
                 DeadStatus();
@@ -305,7 +305,7 @@ public class BossFSM : MonoBehaviour
             capsule.radius = 0f;
         }
     }
-    //°lÀ»ª¬ºA
+    //è¿½æ“Šç‹€æ…‹
     public void TraceStatus()
     {
         if (inRrangeBool == false)
@@ -355,7 +355,7 @@ public class BossFSM : MonoBehaviour
             }
         }
     }
-    //§ğÀ»ª¬ºA
+    //æ”»æ“Šç‹€æ…‹
     public void AttackStatus()
     {
         if (Ulting == false)
@@ -429,17 +429,17 @@ public class BossFSM : MonoBehaviour
                     Vector3 MTN = (Target.transform.position - transform.position).normalized;
                     Vector3 MXTFB = Vector3.Cross(MyR, MTN);
                     Vector3 MXTLR = Vector3.Cross(MyF, MT);
-                    if (MXTFB.y > 0)//¤£·|¦V«áÂà
+                    if (MXTFB.y > 0)//ä¸æœƒå‘å¾Œè½‰
                     {
                         MubAnimator.SetBool("TurnB", true);
                         Debug.Log("TurnBack");
                     }
-                    else if (MXTLR.y < 0)//¥ªÂà
+                    else if (MXTLR.y < 0)//å·¦è½‰
                     {
                         MubAnimator.SetBool("TurnL", true);
                         Debug.Log("TurnLeft");
                     }
-                    else if (MXTLR.y > 0)//¥kÂà
+                    else if (MXTLR.y > 0)//å³è½‰
                     {
                         MubAnimator.SetBool("TurnR", true);
                         Debug.Log("TurnRight");
@@ -457,7 +457,7 @@ public class BossFSM : MonoBehaviour
                         if (RandomChooseCd == false)
                         {
                             RandomChoose = UnityEngine.Random.Range(1, 4);
-                            Debug.Log("ÀH¾÷¼Æ:" + RandomChoose);
+                            Debug.Log("éš¨æ©Ÿæ•¸:" + RandomChoose);
                             RandomChooseCd = true;
                         }
                         if (RandomChoose == 1)
@@ -484,7 +484,7 @@ public class BossFSM : MonoBehaviour
                         if (RandomChooseCd == false)
                         {
                             RandomChoose = UnityEngine.Random.Range(1, 4);
-                            Debug.Log("ÀH¾÷¼Æ:" + RandomChoose);
+                            Debug.Log("éš¨æ©Ÿæ•¸:" + RandomChoose);
                             RandomChooseCd = true;
                         }
 
@@ -530,23 +530,23 @@ public class BossFSM : MonoBehaviour
                     Vector3 MTN = (Target.transform.position - transform.position).normalized;
                     Vector3 MXTFB = Vector3.Cross(MyR, MTN);
                     Vector3 MXTLR = Vector3.Cross(MyF, MT);
-                    if (MXTFB.y > 180)//¤£·|¦V«áÂà
+                    if (MXTFB.y > 180)//ä¸æœƒå‘å¾Œè½‰
                     {
                         MubAnimator.SetBool("TurnB", true);
                         Debug.Log("TurnBack");
                     }
-                    else if (MXTLR.y < 0)//¥ªÂà
+                    else if (MXTLR.y < 0)//å·¦è½‰
                     {
                         MubAnimator.SetBool("TurnL", true);
                         Debug.Log("TurnLeft");
                     }
-                    else if (MXTLR.y > 0)//¥kÂà
+                    else if (MXTLR.y > 0)//å³è½‰
                     {
                         MubAnimator.SetBool("TurnR", true);
                         Debug.Log("TurnRight");
                     }                   
                 }
-                else//¥­¦æ 
+                else//å¹³è¡Œ 
                 {
                     MubAnimator.SetBool("TurnL", false);
                     MubAnimator.SetBool("TurnR", false);
@@ -557,7 +557,7 @@ public class BossFSM : MonoBehaviour
     }
     public void Ultimate()
     {
-        Debug.LogWarning("¤j©Û");
+        Debug.LogWarning("å¤§æ‹›");
         MubAnimator.SetTrigger("Ulti");
         MubAnimator.SetBool("Attack01", false);
         MubAnimator.SetBool("Attack02", false);
@@ -569,28 +569,28 @@ public class BossFSM : MonoBehaviour
         LookPoint();
     }
 
-    //µd¿ôª¬ºA
+    //ç”¦é†’ç‹€æ…‹
     public bool IsInRange_AwakeRange(float Radius, GameObject attacker, GameObject attacked)
     {
         Vector3 direction = attacked.transform.position - attacker.transform.position;
 
         return direction.magnitude <= Radius;
     }
-    //¦b»·µ{§ğÀ»½d³ò¤º 
+    //åœ¨é ç¨‹æ”»æ“Šç¯„åœå…§ 
     public bool IsInRange_RangedBattleRange(float Radius, GameObject attacker, GameObject attacked)
     {
         Vector3 direction = attacked.transform.position - attacker.transform.position;
 
         return direction.magnitude <= Radius;
     }
-    //¦b§ğÀ»½d³ò¤º 
+    //åœ¨æ”»æ“Šç¯„åœå…§ 
     public bool IsInRange_BattleRange(float Radius, GameObject attacker, GameObject attacked)
     {
         Vector3 direction = attacked.transform.position - attacker.transform.position;
 
         return direction.magnitude <= Radius;
     }
-    //½d³ò§P©w_«á°h
+    //ç¯„åœåˆ¤å®š_å¾Œé€€
     public bool TooCloseRange_RangedBattleRange(float Radius, GameObject attacker, GameObject attacked)
     {
         Vector3 direction = attacked.transform.position - attacker.transform.position;
@@ -598,7 +598,7 @@ public class BossFSM : MonoBehaviour
         return direction.magnitude < Radius;
     }
 
-    //½d³ò§P©w_°lÂÜ
+    //ç¯„åœåˆ¤å®š_è¿½è¹¤
     public bool IsInRange_TraceRange(float Radius, GameObject attacker, GameObject attacked)
     {
         Vector3 direction = attacked.transform.position - attacker.transform.position;
@@ -818,7 +818,7 @@ public class BossFSM : MonoBehaviour
         {
             yield return new WaitForSeconds(1);
             Count--;
-            Debug.Log("§ğÀ»CD:" + Count);
+            Debug.Log("æ”»æ“ŠCD:" + Count);
             if (Count == 1)
             {
                 RandomChooseCd = false;
@@ -831,7 +831,7 @@ public class BossFSM : MonoBehaviour
         {
             yield return new WaitForSeconds(1);
             RCount--;
-            Debug.Log("»·µ{CD:" + RCount);
+            Debug.Log("é ç¨‹CD:" + RCount);
         }
     }
     IEnumerator UltimateCooldown()
@@ -840,7 +840,7 @@ public class BossFSM : MonoBehaviour
         {
             yield return new WaitForSeconds(1);
             UCount--;
-            Debug.Log("¤j©ÛCD:" + UCount);
+            Debug.Log("å¤§æ‹›CD:" + UCount);
         }
     }
 }

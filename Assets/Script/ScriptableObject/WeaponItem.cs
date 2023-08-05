@@ -1,15 +1,15 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName ="WeaponItem",menuName ="Inventory/WeaponItem")]
 public class WeaponItem : ScriptableObject
 {
-    public string weaponName;//ªZ¾¹¦WºÙ
-    public int weaponType;//ªZ¾¹ºØÃş
-    public int weaponID;//ªZ¾¹ID
-    public int weaponDamage_instant;//¥ß§Y¶Ë®`
-    public int weaponDamage_delay;//©µ¿ğ¶Ë®`
-    public float weaponAngle;//ªZ¾¹§@¥Î½d³ò¨¤«×
-    public float weaponRadius;//ªZ¾¹§@¥Î½d³ò¥b®|
+    public string weaponName;//æ­¦å™¨åç¨±
+    public int weaponType;//æ­¦å™¨ç¨®é¡
+    public int weaponID;//æ­¦å™¨ID
+    public int weaponDamage_instant;//ç«‹å³å‚·å®³
+    public int weaponDamage_delay;//å»¶é²å‚·å®³
+    public float weaponAngle;//æ­¦å™¨ä½œç”¨ç¯„åœè§’åº¦
+    public float weaponRadius;//æ­¦å™¨ä½œç”¨ç¯„åœåŠå¾‘
 }

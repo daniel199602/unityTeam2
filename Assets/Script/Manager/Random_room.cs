@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -14,7 +14,7 @@ public class Random_room : MonoBehaviour
     [SerializeField] GameObject[] blockedPredabs;
     [SerializeField] GameObject[] doorPredabs;
     
-    //¨Ï©Ğ¶¡¤£­«Å|(¥¼°µ)
+    //ä½¿æˆ¿é–“ä¸é‡ç–Š(æœªåš)
     [Header("Debug options")]
     [SerializeField] bool useBoxColliders;
 
@@ -26,11 +26,11 @@ public class Random_room : MonoBehaviour
     [Range(0, 25)] [SerializeField] int noBranches = 10;
     [Range(0, 100)] [SerializeField] int doorPercent = 25;
 
-    //¼W´ú¥Ø«e©Ğ¶¡
+    //å¢æ¸¬ç›®å‰æˆ¿é–“
     [Header("Available at Runtime")]
     public List<Tile> generatedTiles = new List<Tile>();
 
-    //HideInInspectorÁôÂÃ
+    //HideInInspectoréš±è—
     [HideInInspector] public DungeonState dungeonState = DungeonState.inactive;
 
 
@@ -59,7 +59,7 @@ public class Random_room : MonoBehaviour
             tilesForm = tilesTo;
             if(generatedTiles.Count == mainLength-1)
             {
-                //Exit«Ø¥ß¥X¤f
+                //Exitå»ºç«‹å‡ºå£
                 tilesTo = roomExit();
             }
             else if(generatedTiles.Count > mainLength -6)
@@ -73,7 +73,7 @@ public class Random_room : MonoBehaviour
 
             ConnectTile();
         }
-        //¨S¦³³s±µªº³q¹D
+        //æ²’æœ‰é€£æ¥çš„é€šé“
         foreach (Connector connector in container.GetComponentsInChildren<Connector>())
         {
             if(!connector.isConnected)
@@ -112,7 +112,7 @@ public class Random_room : MonoBehaviour
         yield return null;
     }
     /// <summary>
-    /// ¥Í¦¨»ÙÃªª«(¾×¦í¨S¥Í¦¨©Ğ¶¡ªº±µ¤f³B)
+    /// ç”Ÿæˆéšœç¤™ç‰©(æ“‹ä½æ²’ç”Ÿæˆæˆ¿é–“çš„æ¥å£è™•)
     /// </summary>
     void BlockedPassages()
     {
@@ -128,7 +128,7 @@ public class Random_room : MonoBehaviour
     }
 
     /// <summary>
-    /// §âForm©ñ¨ìtoªº¤÷ª«¥óÂk0±ÛÂà180
+    /// æŠŠFormæ”¾åˆ°toçš„çˆ¶ç‰©ä»¶æ­¸0æ—‹è½‰180
     /// </summary>
     private void ConnectTile()
     {
@@ -146,7 +146,7 @@ public class Random_room : MonoBehaviour
         generatedTiles.Last().connector = connectForm.GetComponent<Connector>();
     }
     /// <summary>
-    /// ÀH¾÷§ä¤@­Ó©Ğ¶¡¨Ã©ñ¨ì°}¦C
+    /// éš¨æ©Ÿæ‰¾ä¸€å€‹æˆ¿é–“ä¸¦æ”¾åˆ°é™£åˆ—
     /// </summary>
     /// <param name="tile"></param>
     /// <returns></returns>
@@ -163,7 +163,7 @@ public class Random_room : MonoBehaviour
         return null;
     }
     /// <summary>
-    /// ¥Í¦¨©Çª«©Ğ¶¡
+    /// ç”Ÿæˆæ€ªç‰©æˆ¿é–“
     /// </summary>
     /// <returns></returns>
     Transform tilesRoom()
@@ -171,13 +171,13 @@ public class Random_room : MonoBehaviour
         int Index = Random.Range(0, tilesPrefabs.Length-1);
         GameObject goTile = Instantiate(tilesPrefabs[Index], Vector3.zero, Quaternion.identity, container) as GameObject;
         goTile.name = tilesPrefabs[Index].name;
-        //¥[¨ì¥Í¦¨tile
+        //åŠ åˆ°ç”Ÿæˆtile
         Transform origin = generatedTiles[generatedTiles.FindIndex(x => x.tile == tilesForm)].tile;
         generatedTiles.Add(new Tile(goTile.transform,origin));
         return goTile.transform;
     }
     /// <summary>
-    /// ¥Í¦¨©T©w©Ğ¶¡(«á4¶¡¦Ü¤Ö¦U1)
+    /// ç”Ÿæˆå›ºå®šæˆ¿é–“(å¾Œ4é–“è‡³å°‘å„1)
     /// </summary>
     /// <returns></returns>
     Transform tilesFixedRoom()
@@ -187,7 +187,7 @@ public class Random_room : MonoBehaviour
         int result = FixedRandom[Index];
         GameObject goTile = Instantiate(tilesPrefabs[result], Vector3.zero, Quaternion.identity, container) as GameObject;
         goTile.name = tilesPrefabs[result].name;
-        //¥[¨ì¥Í¦¨tile
+        //åŠ åˆ°ç”Ÿæˆtile
         Transform origin = generatedTiles[generatedTiles.FindIndex(x => x.tile == tilesForm)].tile;
         generatedTiles.Add(new Tile(goTile.transform, origin));
         FixedRandom.RemoveAt(Index);
@@ -195,7 +195,7 @@ public class Random_room : MonoBehaviour
     }
 
     /// <summary>
-    /// ¥Í¦¨¥X¤f
+    /// ç”Ÿæˆå‡ºå£
     /// </summary>
     /// <returns></returns>
     Transform roomExit()
@@ -203,13 +203,13 @@ public class Random_room : MonoBehaviour
         int Index = Random.Range(0, exitPrefabs.Length);
         GameObject goTile = Instantiate(exitPrefabs[Index], Vector3.zero, Quaternion.identity, container) as GameObject;
         goTile.name = "ExitRoom";
-        //¥[¨ì¥Í¦¨tile
+        //åŠ åˆ°ç”Ÿæˆtile
         Transform origin = generatedTiles[generatedTiles.FindIndex(x => x.tile == tilesForm)].tile;
         generatedTiles.Add(new Tile(goTile.transform, origin));
         return goTile.transform;
     }
     /// <summary>
-    /// ÀH¾÷¦a«°ªº¶}©lÂI
+    /// éš¨æ©Ÿåœ°åŸçš„é–‹å§‹é»
     /// </summary>
     /// <returns></returns>
     Transform roomStart()
@@ -217,7 +217,7 @@ public class Random_room : MonoBehaviour
         int Index = Random.Range(0, startPrefabs.Length);
         GameObject goTile = Instantiate(startPrefabs[Index], Vector3.zero, Quaternion.identity, container) as GameObject;
         goTile.name = "SartRoom";
-        //¥[¨ì¥Í¦¨tile
+        //åŠ åˆ°ç”Ÿæˆtile
         generatedTiles.Add(new Tile(goTile.transform, null));
 
         return goTile.transform;

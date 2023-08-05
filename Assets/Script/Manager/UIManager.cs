@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -10,22 +10,22 @@ public class UIManager : MonoBehaviour
     private static UIManager mInstance;
     public static UIManager Instance() { return mInstance; }
 
-    public RectTransform fadeColor;//·t¹õ
-    public RectTransform weaponOneOfThreePanel;//¤T¿ï¤@­±ªO
-    public RectTransform weaponFramePanel;//ªZ¾¹®æ­±ªO
-    public RectTransform quitGamePanel;//Â÷¶}¹CÀ¸­±ªO
-    public RectTransform gameMenuPanel;//¹CÀ¸µæ³æ­±ªO
+    public RectTransform fadeColor;//æš—å¹•
+    public RectTransform weaponOneOfThreePanel;//ä¸‰é¸ä¸€é¢æ¿
+    public RectTransform weaponFramePanel;//æ­¦å™¨æ ¼é¢æ¿
+    public RectTransform quitGamePanel;//é›¢é–‹éŠæˆ²é¢æ¿
+    public RectTransform gameMenuPanel;//éŠæˆ²èœå–®é¢æ¿
 
-    public Dictionary<int, Sprite> dicIDWeaponImage;//ID §ä ªZ¾¹¹Ï ¦r¨å
+    public Dictionary<int, Sprite> dicIDWeaponImage;//ID æ‰¾ æ­¦å™¨åœ– å­—å…¸
 
-    bool isOpenQuitGameUI = false;//¬O§_¥´¶}Â÷¶}¿ï³æ¡A¹w³]false
+    bool isOpenQuitGameUI = false;//æ˜¯å¦æ‰“é–‹é›¢é–‹é¸å–®ï¼Œé è¨­false
 
     private void Awake()
     {
         if (mInstance != null)
         {
             //Debug.LogErrorFormat(gameObject, "Multiple instances of {0} is not allow", GetType().Name);
-            Debug.LogWarning("¦³¨â­Ó¬Û¦Pªºsingletonª«¥ó,UIManager");
+            Debug.LogWarning("æœ‰å…©å€‹ç›¸åŒçš„singletonç‰©ä»¶,UIManager");
             DestroyImmediate(gameObject);
             return;
         }
@@ -57,7 +57,7 @@ public class UIManager : MonoBehaviour
     private void Update()
     {
 
-        //«ö¤UescÁä
+        //æŒ‰ä¸‹escéµ
         if (Input.GetKeyDown("escape"))
         {
             isOpenQuitGameUI = !isOpenQuitGameUI;
@@ -74,23 +74,23 @@ public class UIManager : MonoBehaviour
     }
 
     /// <summary>
-    /// µ¹Ä_½c¨Ï¥Î¡A³]¸mªZ¾¹¤T¿ï¤@¹Ï¥Ü
+    /// çµ¦å¯¶ç®±ä½¿ç”¨ï¼Œè¨­ç½®æ­¦å™¨ä¸‰é¸ä¸€åœ–ç¤º
     /// </summary>
     public void OpenOneOfThreeAndChooseWeapon()
     {
         OneOfThreeUIOpen();
-        weaponOneOfThreePanel.GetComponent<WeaponOneOfThreeUI>().SetRandomThreeWeaponR();//³]¸m¥k¤âªZ¾¹¤T¿ï¤@
+        weaponOneOfThreePanel.GetComponent<WeaponOneOfThreeUI>().SetRandomThreeWeaponR();//è¨­ç½®å³æ‰‹æ­¦å™¨ä¸‰é¸ä¸€
     }
 
     /// <summary>
-    /// ¶}±Ò¹CÀ¸µæ³æ¤¶­±
+    /// é–‹å•ŸéŠæˆ²èœå–®ä»‹é¢
     /// </summary>
     public void GameMenuPanelOpen()
     {
         gameMenuPanel.gameObject.SetActive(true);
     }
     /// <summary>
-    /// Ãö³¬¹CÀ¸µæ³æ¤¶­±
+    /// é—œé–‰éŠæˆ²èœå–®ä»‹é¢
     /// </summary>
     public void GameMenuPanelClose()
     {
@@ -99,7 +99,7 @@ public class UIManager : MonoBehaviour
 
 
     /// <summary>
-    /// ¶}±Ò¤T¿ï¤@¤¶­±¡A®É¶¡½ÕºC
+    /// é–‹å•Ÿä¸‰é¸ä¸€ä»‹é¢ï¼Œæ™‚é–“èª¿æ…¢
     /// </summary>
     public void OneOfThreeUIOpen()
     {
@@ -108,7 +108,7 @@ public class UIManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Ãö³¬¤T¿ï¤@¤¶­±¡A®É¶¡«ì´_¥¿±`
+    /// é—œé–‰ä¸‰é¸ä¸€ä»‹é¢ï¼Œæ™‚é–“æ¢å¾©æ­£å¸¸
     /// </summary>
     public void OneOfThreeUIClose()
     {
@@ -117,7 +117,7 @@ public class UIManager : MonoBehaviour
     }
 
     /// <summary>
-    /// ¶}±ÒÂ÷¶}¹CÀ¸¤¶­±¡A®É¶¡½ÕºC
+    /// é–‹å•Ÿé›¢é–‹éŠæˆ²ä»‹é¢ï¼Œæ™‚é–“èª¿æ…¢
     /// </summary>
     public void QuitGameUIOpen()
     {
@@ -126,13 +126,13 @@ public class UIManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Ãö³¬Â÷¶}¹CÀ¸¤¶­±¡A®É¶¡«ì´_¥¿±`
+    /// é—œé–‰é›¢é–‹éŠæˆ²ä»‹é¢ï¼Œæ™‚é–“æ¢å¾©æ­£å¸¸
     /// </summary>
     public void QuitGameUIClose()
     {
         quitGamePanel.gameObject.SetActive(false);
         Time.timeScale = 1f;
-        isOpenQuitGameUI = false;//¬O§_¥´¶}Â÷¶}¿ï³æ¡A¤Á¦¨false
+        isOpenQuitGameUI = false;//æ˜¯å¦æ‰“é–‹é›¢é–‹é¸å–®ï¼Œåˆ‡æˆfalse
     }
 
 }

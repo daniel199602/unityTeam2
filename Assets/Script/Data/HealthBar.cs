@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -44,7 +44,7 @@ public class HealthBar : MonoBehaviour
     public void BarFilter()
     {
         Healthbar.fillAmount = Health / Maxhealth;
-      //  Debug.Log("´î¤Ö¤¤" + Health / Maxhealth);
+      //  Debug.Log("æ¸›å°‘ä¸­" + Health / Maxhealth);
        // Debug.Log(Healthbar.fillAmount);
 
     }

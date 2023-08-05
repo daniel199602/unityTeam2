@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -19,12 +19,12 @@ public class PlayerGetHit : MonoBehaviour
     public int GetHitByOther(int i)
     {
         GetHitType_Damage(i);
-        Debug.Log("¶Ç¤J­È" + i);
+        Debug.Log("å‚³å…¥å€¼" + i);
         return i;
     }
     public int GetHitType_Damage(int Type)
     {
-        Debug.Log("¶Ë®`Ãş«¬" + Type);
+        Debug.Log("å‚·å®³é¡å‹" + Type);
         switch (Type)
         {
             case 1:
@@ -40,8 +40,8 @@ public class PlayerGetHit : MonoBehaviour
     {
         //fooHp.fHp -= Weapondamage_Instant;
         StartCoroutine(DamageDelay());
-        //Debug.Log("HP´î¤Ö¶q" + fooHp.fHp);
-        //Debug.Log("¶Ë®`¶q" + Weapondamage_Instant);
+        //Debug.Log("HPæ¸›å°‘é‡" + fooHp.fHp);
+        //Debug.Log("å‚·å®³é‡" + Weapondamage_Instant);
     }
 
     IEnumerator DamageDelay()
@@ -59,7 +59,7 @@ public class PlayerGetHit : MonoBehaviour
     {
         //fooHp.fHp = 0;
         //fooHp.fHp -= Weapondamage_Instant;
-        //Debug.Log("À³³y¦¨¶Ë®`¶q:" + (fooHp.fHp -= Weapondamage_Instant));        
+        //Debug.Log("æ‡‰é€ æˆå‚·å®³é‡:" + (fooHp.fHp -= Weapondamage_Instant));        
     }
     
 }

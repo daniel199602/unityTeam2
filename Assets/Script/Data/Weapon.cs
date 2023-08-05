@@ -1,9 +1,9 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// Weapon ¤w±ó¥Î(¤§«á§R°£)
+/// Weapon å·²æ£„ç”¨(ä¹‹å¾Œåˆªé™¤)
 /// </summary>
 public class Weapon : MonoBehaviour
 {

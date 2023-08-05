@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -13,7 +13,7 @@ public class AudioEvent_HealCrystalsv : MonoBehaviour
     }
 
     /// <summary>
-    /// ªvÂ¡­µ®Ä
+    /// æ²»ç™’éŸ³æ•ˆ
     /// </summary>
     void PlayHealHpEvent()
     {

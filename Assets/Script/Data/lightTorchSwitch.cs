@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -14,7 +14,7 @@ public class lightTorchSwitch : MonoBehaviour
     {
         
         haveFire = true;
-        //´ú¸Õ»Ý¶}Ãö¥Î
+        //æ¸¬è©¦éœ€é–‹é—œç”¨
         //fire.SetActive(false);
     }
 
@@ -23,7 +23,7 @@ public class lightTorchSwitch : MonoBehaviour
     {
         if (isInZone && Input.GetMouseButtonDown(0)&& GameManager.Instance().PlayerStart.GetComponent<PlayerController>().currentLayerNum==0)
         {
-            //´ú¸Õ»Ý¶}Ãö¥Î
+            //æ¸¬è©¦éœ€é–‹é—œç”¨
             //fire.SetActive(!fire.activeSelf);
             
             fire.SetActive(true);

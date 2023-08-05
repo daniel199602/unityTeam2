@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -35,7 +35,7 @@ public class RangeSensorFSM
     // Update is called once per frame
     void Update()
     {
-        if (State.Hp <=0)//¦º¤`¡÷µLª¬ºA
+        if (State.Hp <=0)//æ­»äº¡â†’ç„¡ç‹€æ…‹
         {
             //MubAnimator.SetTrigger("isTriggerDie");
             capsule.radius = 0f;
@@ -64,7 +64,7 @@ public class RangeSensorFSM
             }
         }        
     }
-    /*§ä¥Ø¼Ğ*/
+    /*æ‰¾ç›®æ¨™*/
     //public void IdleThing()
     //{
     //    var position = new Vector3(transform.forward.x+ Random.Range(-1.0f, 1.0f), 0, transform.forward.z+Random.Range(-1.0f, 1.0f));
@@ -77,14 +77,14 @@ public class RangeSensorFSM
     //        //Stop
     //    }
     //}
-    /*§ğÀ»½d³ò§P©w_ªñ¶ZÂ÷§ğÀ»*/
+    /*æ”»æ“Šç¯„åœåˆ¤å®š_è¿‘è·é›¢æ”»æ“Š*/
     public bool IsInRange_MeleeBattleRange( float Radius, GameObject attacker, GameObject attacked)
     {
         Vector3 direction = attacked.transform.position - attacker.transform.position;
                
         return direction.magnitude < Radius;
     }
-    /*§ğÀ»½d³ò§P©w_»·µ{§ğÀ»*/
+    /*æ”»æ“Šç¯„åœåˆ¤å®š_é ç¨‹æ”»æ“Š*/
     public bool IsInRange_LongRangeBattleRange(float RadiusMIn,float RadiusMax, GameObject attacker, GameObject attacked)
     {
         Vector3 direction = attacked.transform.position - attacker.transform.position;
@@ -93,18 +93,18 @@ public class RangeSensorFSM
 
         return direction.magnitude > RadiusMIn && direction.magnitude < RadiusMax; 
     }
-    ///*½d³ò§P©w_°lÂÜ*/
+    ///*ç¯„åœåˆ¤å®š_è¿½è¹¤*/
     //public bool IsInRange_TraceRange(float Radius, GameObject attacker, GameObject attacked)
     //{
     //    Vector3 direction = attacked.transform.position - attacker.transform.position;
 
     //    return direction.magnitude > Radius;
     //}
-    /*½d³ò§P©w_°k¶]*/
+    /*ç¯„åœåˆ¤å®š_é€ƒè·‘*/
     public bool IsInRange_LongRangeBattleRange_Flee(float Radius, GameObject attacker, GameObject attacked)
     {
         Vector3 direction = attacked.transform.position - attacker.transform.position;
-        //³Ì¤p¶ZÂ÷
+        //æœ€å°è·é›¢
         Radius -= AttackRangeMiddle;
 
         return direction.magnitude < Radius;

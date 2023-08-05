@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -7,27 +7,27 @@ using TMPro;
 
 public class WeaponOneOfThreeUI : MonoBehaviour
 {
-    public Transform weaponButtonX;//ªZ¾¹¥d(«ö¶s)
-    public Transform weaponButtonY;//ªZ¾¹¥d(«ö¶s)
-    public Transform weaponButtonZ;//ªZ¾¹¥d(«ö¶s)
-    public Image imageX;//¤T¿ï¤@¤§0¡AÅã¥ÜªZ¾¹¹Ï¥Ü
-    public Image imageY;//¤T¿ï¤@¤§1¡AÅã¥ÜªZ¾¹¹Ï¥Ü
-    public Image imageZ;//¤T¿ï¤@¤§2¡AÅã¥ÜªZ¾¹¹Ï¥Ü
+    public Transform weaponButtonX;//æ­¦å™¨å¡(æŒ‰éˆ•)
+    public Transform weaponButtonY;//æ­¦å™¨å¡(æŒ‰éˆ•)
+    public Transform weaponButtonZ;//æ­¦å™¨å¡(æŒ‰éˆ•)
+    public Image imageX;//ä¸‰é¸ä¸€ä¹‹0ï¼Œé¡¯ç¤ºæ­¦å™¨åœ–ç¤º
+    public Image imageY;//ä¸‰é¸ä¸€ä¹‹1ï¼Œé¡¯ç¤ºæ­¦å™¨åœ–ç¤º
+    public Image imageZ;//ä¸‰é¸ä¸€ä¹‹2ï¼Œé¡¯ç¤ºæ­¦å™¨åœ–ç¤º
 
    
-    private TMP_Text[] weaponDataArrayX;//ªZ¾¹¤å¦r°}¦C
-    private TMP_Text[] weaponDataArrayY;//ªZ¾¹¤å¦r°}¦C
-    private TMP_Text[] weaponDataArrayZ;//ªZ¾¹¤å¦r°}¦C
+    private TMP_Text[] weaponDataArrayX;//æ­¦å™¨æ–‡å­—é™£åˆ—
+    private TMP_Text[] weaponDataArrayY;//æ­¦å™¨æ–‡å­—é™£åˆ—
+    private TMP_Text[] weaponDataArrayZ;//æ­¦å™¨æ–‡å­—é™£åˆ—
 
-    [HideInInspector] public GameObject weaponX;//¼È¦s«ö¶s¦ì¸mªZ¾¹
-    [HideInInspector] public GameObject weaponY;//¼È¦s«ö¶s¦ì¸mªZ¾¹
-    [HideInInspector] public GameObject weaponZ;//¼È¦s«ö¶s¦ì¸mªZ¾¹
+    [HideInInspector] public GameObject weaponX;//æš«å­˜æŒ‰éˆ•ä½ç½®æ­¦å™¨
+    [HideInInspector] public GameObject weaponY;//æš«å­˜æŒ‰éˆ•ä½ç½®æ­¦å™¨
+    [HideInInspector] public GameObject weaponZ;//æš«å­˜æŒ‰éˆ•ä½ç½®æ­¦å™¨
 
     private void Awake()
     {
-        weaponDataArrayX = weaponButtonX.GetComponentsInChildren<TMP_Text>();//¨Ì·Ó¤l¹ï¶H¶¶§Ç¬d§ä
-        weaponDataArrayY = weaponButtonY.GetComponentsInChildren<TMP_Text>();//¨Ì·Ó¤l¹ï¶H¶¶§Ç¬d§ä
-        weaponDataArrayZ = weaponButtonZ.GetComponentsInChildren<TMP_Text>();//¨Ì·Ó¤l¹ï¶H¶¶§Ç¬d§ä
+        weaponDataArrayX = weaponButtonX.GetComponentsInChildren<TMP_Text>();//ä¾ç…§å­å°è±¡é †åºæŸ¥æ‰¾
+        weaponDataArrayY = weaponButtonY.GetComponentsInChildren<TMP_Text>();//ä¾ç…§å­å°è±¡é †åºæŸ¥æ‰¾
+        weaponDataArrayZ = weaponButtonZ.GetComponentsInChildren<TMP_Text>();//ä¾ç…§å­å°è±¡é †åºæŸ¥æ‰¾
     }
 
     private void Start()
@@ -37,7 +37,7 @@ public class WeaponOneOfThreeUI : MonoBehaviour
 
 
     /// <summary>
-    /// ³]¸m¥k¤âªZ¾¹¤T¿ï¤@¸ê®Æ
+    /// è¨­ç½®å³æ‰‹æ­¦å™¨ä¸‰é¸ä¸€è³‡æ–™
     /// </summary>
     public void SetRandomThreeWeaponR()
     {
@@ -80,7 +80,7 @@ public class WeaponOneOfThreeUI : MonoBehaviour
     }
 
     /// <summary>
-    /// ³]¸m¥ª¤âªZ¾¹¤T¿ï¤@¸ê®Æ
+    /// è¨­ç½®å·¦æ‰‹æ­¦å™¨ä¸‰é¸ä¸€è³‡æ–™
     /// </summary>
     public void SetRandomThreeWeaponL()
     {
@@ -123,7 +123,7 @@ public class WeaponOneOfThreeUI : MonoBehaviour
     }
 
     /// <summary>
-    /// ÂIÀ»ªZ¾¹«ö¶sX¡A³]¸mªZ¾¹
+    /// é»æ“Šæ­¦å™¨æŒ‰éˆ•Xï¼Œè¨­ç½®æ­¦å™¨
     /// </summary>
     public void ClickWeaponBtnX()
     {
@@ -138,7 +138,7 @@ public class WeaponOneOfThreeUI : MonoBehaviour
         }
     }
     /// <summary>
-    /// ÂIÀ»ªZ¾¹«ö¶sY¨Æ¥ó¡A³]¸mªZ¾¹
+    /// é»æ“Šæ­¦å™¨æŒ‰éˆ•Yäº‹ä»¶ï¼Œè¨­ç½®æ­¦å™¨
     /// </summary>
     public void ClickWeaponBtnY()
     {
@@ -153,7 +153,7 @@ public class WeaponOneOfThreeUI : MonoBehaviour
         }
     }
     /// <summary>
-    /// ÂIÀ»ªZ¾¹«ö¶sZ¨Æ¥ó¡A³]¸mªZ¾¹
+    /// é»æ“Šæ­¦å™¨æŒ‰éˆ•Zäº‹ä»¶ï¼Œè¨­ç½®æ­¦å™¨
     /// </summary>
     public void ClickWeaponBtnZ()
     {
